@@ -1,3 +1,4 @@
 .idea/
 target/
 .bloop/
+node_modules
