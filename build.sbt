@@ -8,14 +8,17 @@ val baseSettings: Project => Project =
     .enablePlugins(ScalaJSBundlerPlugin)
     .settings(
       scalaVersion := "2.12.7",
-      organization := "org.scalablytyped.demo",
       version := "0.1-SNAPSHOT",
+      scalacOptions ++= ScalacOptions.flags,
+      /* disabled because it somehow triggers many warnings */
       emitSourceMaps := false,
+      /* in preparation for scala.js 1.0 */
+      scalacOptions += "-P:scalajs:sjsDefinedByDefault",
+      /* for ScalablyTyped */
       resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped"),
+      /* scalajs-bundler setup. Specify current versions and modes */
       scalaJSUseMainModuleInitializer := true,
       scalaJSModuleKind := ModuleKind.CommonJSModule,
-      scalacOptions ++= ScalacOptions.flags,
-      scalacOptions += "-P:scalajs:sjsDefinedByDefault",
       version in startWebpackDevServer := "3.1.10",
       version in webpack := "4.26.1",
       webpackExtraArgs in (Compile, fastOptJS) += "--mode=development",
