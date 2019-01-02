@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scala.js+Vue.js sample application!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        #demo li,
+        .demo li {
+            cursor: pointer;
+            color: #34495e;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        #demo span.done,
+        .demo span.done {
+            color: #7f8c8d;
+            text-decoration: line-through;
+        }
+        .bar {
+            transition: width 0.5s;
+            -webkit-transition: width 0.5s;
+            -moz-transition: width 0.5s;
+            -o-transition: width 0.5s;
+            height: 20px;
+            background: black;
+        }
+
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+            opacity: 0
+        }
+
+    </style>
+</head>
+<body>
+
+<!--  vue start-->
+<div id="demo">
+    <div style="float:left;height:400px;overflow: auto;">
+        Title=<input v-model="title"/>
+
+        <transition-group name="fade" tag="ol">
+            <li v-for="(todo,index) in todos" :key="todo">
+              <span @click="todo.done = !todo.done" :class="{done: todo.done}">
+                {{todo.content}}
+                <button @click="remove(index)">Remove</button>
+              </span>
+            </li>
+        </transition-group>
+
+        Tasks# {{todos.length}}<BR/>
+        N={{n}}<BR/>
+    </div>
+    <div style="padding-left:30px;height:400px;overflow: auto;width:30%"><pre>data JSON: {{$data | json 2}}</pre></div>
+
+    <div style="clear:left">
+        Using a v-text directive title=<span v-text="title"></span>
+        <div>Smooth CSS animation:
+            <input type="button" value="+" @click="barValue += 50"/>
+            <input type="button" value="-" @click="barValue -= 50">
+        </div>
+        <div class="bar" :style="{ width: barValue + 'px' }"></div>
+        <div v-text="'Using a v-text directive with inline expression, title='+title"></div>
+        <div>Title reversed={{title | reverse}}</div>
+        <div>Title wrapper={{title | wrap('<<','>>')}}</div>
+        <div v-mydirective="title">xx</div>
+        <my-component my-msg="hello">Special content</my-component>
+        <!---->
+        <button @click="clickHandler">Call clickHandler in Scala</button>
+        <button @click="n++">Increment N</button>
+        <!---->
+        <button @click="addTask">Add Task</button>
+        <button @click="change1st">Change 1st</button>
+        <button @click="remove(0)">Remove 1st</button>
+        <button @click="flipAll">Flip All</button><BR/><BR/>
+        Todos computed: {{ todosComputed }}
+    </div>
+</div>
+
+
+<div id="mydiv"></div>
+<script type="text/javascript" src="vue-fastopt-bundle.js"></script>
+
+
+</body>
+</html>

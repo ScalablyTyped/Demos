@@ -93,6 +93,19 @@ val `react-slick` =
       )
     )
 
+val `vue` =
+  project
+    .configure(baseSettings, browserProject)
+    .settings(
+      webpackDevServerPort := 8006,
+      libraryDependencies ++= Seq(
+        ScalablyTyped.V.vue,
+      ),
+      npmDependencies in Compile ++= Seq(
+        "vue" -> "2.5.21",
+      )
+    )
+
 val d3 = project
   .configure(baseSettings, browserProject)
   .settings(

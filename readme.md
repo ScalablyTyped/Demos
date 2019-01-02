@@ -34,7 +34,7 @@ It uses d3 to generate a rather fancy spinning globe. Demo is converted from [he
 `sbt> d3/start` starts a webpack-dev-server at http://localhost:8002 .
 
 ### google-maps
-The demo loads the google maps javascript as distributed by google (see `index.html`).
+The demo loads the google maps javascript as distributed by google (see [index.html](./google-maps/assets/index.html) ).
 It's very simple usage, it just shows the location of a few beaches.
 
 `sbt> google-maps/start` starts a webpack-dev-server at http://localhost:8004 .
@@ -51,6 +51,15 @@ This is poor mans interface augmentation (a mechanism by which typescript does t
 - jqueryui
 
 `sbt> jquery/start` starts a webpack-dev-server at http://localhost:8003 .
+
+### Vue
+This demo showcases a pretty simple todo app (stolen and adapted from [scalajs-vue](https://github.com/fancellu/scalajs-vue/)).
+Some templating is done in [index.html](./vue/assets/index.html), while a bunch of stuff is done in Scala.
+
+From its design it's pretty clear that Vue was designed by javascript people.
+Trying to obtain type safety in this mess will probably never be worth it, 
+but at least now you can try! :)
+`sbt> vue/start` starts a webpack-dev-server at http://localhost:8006 .
 
 ### lodash
 This is a very simple app which uses a few functions from lodash.
