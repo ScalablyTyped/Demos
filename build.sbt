@@ -109,6 +109,32 @@ val `vue` =
       )
     )
 
+val `react-big-calendar` =
+  project
+    .configure(baseSettings, browserProject)
+    .settings(
+      webpackDevServerPort := 8007,
+      /* custom webpack file to include css */
+      webpackConfigFile := Some(baseDirectory.value / "custom.webpack.config.js"),
+      libraryDependencies ++= Seq(
+        ScalablyTyped.M.moment,
+        ScalablyTyped.R.`react-dom`,
+        ScalablyTyped.R.`react-big-calendar`,
+        ScalablyTyped.R.`react-contrib`,
+      ),
+      npmDependencies in Compile ++= Seq(
+        "moment" -> "2.23.0",
+        "react" -> "16.5.1",
+        "react-dom" -> "16.5.1",
+        "react-big-calendar" -> "0.20",
+      ),
+      npmDevDependencies in Compile ++= Seq(
+        "webpack-merge" -> "4.1",
+        "css-loader" -> "2.1.0",
+        "style-loader" -> "0.23.1"
+      )
+    )
+
 val d3 = project
   .configure(baseSettings, browserProject)
   .settings(

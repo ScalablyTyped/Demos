@@ -36,11 +36,11 @@ object Main {
           s"Selected image index: ${$.state.selectedIdx.fold("none")(_.toString)}"
         ),
         SlickFacade(new Settings {
-          onInit       = js.defined(() => println("slick init"))
-          dots         = true
-          autoplay     = true
+          onInit        = js.defined(() => println("slick init"))
+          dots          = true
+          autoplay      = true
           autoplaySpeed = js.defined(1000)
-          slidesToShow = js.defined(2)
+          slidesToShow  = js.defined(2)
         })(images: _*)
       )
     }

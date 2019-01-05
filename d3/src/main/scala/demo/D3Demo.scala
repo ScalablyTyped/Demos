@@ -5,7 +5,14 @@ import typings.d3Lib.d3Mod.{d3ModMembers => d3}
 import typings.geojsonLib.geojsonLibStrings
 import typings.geojsonLib.geojsonMod.{LineString, Position}
 import typings.stdLib.stdLibMembers.{document, window}
-import typings.stdLib.{ArrayLike, CanvasRenderingContext2D, FrameRequestCallback, HTMLCanvasElement, HTMLCollectionOf, stdLibStrings}
+import typings.stdLib.{
+  stdLibStrings,
+  ArrayLike,
+  CanvasRenderingContext2D,
+  FrameRequestCallback,
+  HTMLCanvasElement,
+  HTMLCollectionOf
+}
 
 import scala.scalajs.js
 import scala.scalajs.js.|

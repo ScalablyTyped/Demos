@@ -10,7 +10,6 @@ import scala.scalajs.js
 import scala.scalajs.js.ThisFunction0
 import scala.scalajs.js.annotation.{JSExport, JSImport}
 
-@JSExport
 object Todo extends {
 
   @js.native
