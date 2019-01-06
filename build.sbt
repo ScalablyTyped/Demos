@@ -135,6 +135,19 @@ val `react-big-calendar` =
       )
     )
 
+val three =
+  project
+    .configure(baseSettings, browserProject)
+    .settings(
+      webpackDevServerPort := 8008,
+      libraryDependencies ++= Seq(
+        ScalablyTyped.T.three,
+      ),
+      npmDependencies in Compile ++= Seq(
+        "three" -> "0.93",
+      )
+    )
+
 val d3 = project
   .configure(baseSettings, browserProject)
   .settings(

@@ -61,6 +61,16 @@ Trying to obtain type safety in this mess will probably never be worth it,
 but at least now you can try! :)
 `sbt> vue/start` starts a webpack-dev-server at http://localhost:8006 .
 
+### React big calendar
+This uses react and react-big-calendar
+
+`sbt> react-big-calendar/start` starts a webpack-dev-server at http://localhost:8007 .
+
+### Three.js
+A fancy animation of a horse, stolen from [three.js demos](https://github.com/mrdoob/three.js/blob/master/examples/webgl_morphtargets_horse.html),
+ with a change of loaders from [retyped demos](https://github.com/Retyped/Demos/tree/master/ThreeJsDemo)
+`sbt> three/start` starts a webpack-dev-server at http://localhost:8008 .
+
 ### lodash
 This is a very simple app which uses a few functions from lodash.
 `sbt> lodash/run` runs the demo in node.
