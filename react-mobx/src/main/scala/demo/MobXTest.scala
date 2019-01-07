@@ -8,7 +8,6 @@ import typings.mobxDashReactLib.mobxDashReactMod.mobxDashReactModMembers.observe
 import typings.mobxLib.libCoreComputedvalueMod.IComputedValue
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
 import typings.mobxLib.mobxMod.{mobxModMembers => MobX}
-import typings.reactLib.ReactDsl.{componentClass, div}
 import typings.reactLib.reactMod.ReactNs.{ComponentClass, MouseEventHandler, ReactNode}
 import typings.reactLib.reactMod._
 import typings.stdLib.stdLibMembers.console
@@ -35,6 +34,8 @@ object MobXTest {
     val store: Store
   }
 
+  import typings.reactLib.dsl._
+
   private class C extends Component[Props, js.Any, js.Any] {
     val increaseNum: MouseEventHandler[js.Object] = _ => {
       console.log("increase num")
@@ -43,9 +44,9 @@ object MobXTest {
 
     override def render: ReactNode =
       div.noprops(
-        componentClass[Avatar].apply(
+        cls[Avatar].props(
           new AvatarProps {
-            icon = componentClass[ActionAlarm].apply(
+            icon = cls[ActionAlarm].props(
               new SvgIconProps {
                 hoverColor = "blue"
                 onClick    = js.defined(e => console.warn(s"icon clicked ${e.nativeEvent}"))
@@ -61,7 +62,7 @@ object MobXTest {
         " Current foo str ",
         props.store.foo.get.str,
         " ",
-        componentClass[RaisedButton].apply(
+        cls[RaisedButton].props(
           new RaisedButtonProps { onClick = increaseNum },
           "increase num"
         )

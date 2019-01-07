@@ -5,18 +5,16 @@ This is a collection of tiny demo projects to show off how we can use javascript
 Some of the projects run in the browser, while some run on node.
 
 ### react-mobx
-This is by far the most interesting demo, given that we use a bunch of modern javascript libraries.
 
 ScalablyTyped supports that users contribute their own "sugar" on top
  of the generated typings. These projects are called `contrib` projects, 
- and this project uses `react-contrib` to make it better to work with react.
-Have a look at `ReactDsl` in the demo! 
+ and this project uses `react-contrib` to make it smoother to work with react.
  
 #### Libraries used
 
 - react and react-dom for rendering with react-contrib helpers
 - csstypes for a fully typed definition of css
-- MobX for state management (with devtools)
+- MobX for state management
 - Axios to fetch a json resource
 - Material-ui (the old version, 0.20) for graphical components.
 
@@ -65,6 +63,14 @@ but at least now you can try! :)
 This uses react and react-big-calendar
 
 `sbt> react-big-calendar/start` starts a webpack-dev-server at http://localhost:8007 .
+
+### Semantic-ui-react and redux
+Implements the same github repository search as in the react-mobx demo,
+ just with redux and semantic-ui-react instead, along with a random sampling of
+ graphical components.
+ 
+`sbt> semantic-ui-react/start` starts a webpack-dev-server at http://localhost:8009 .
+ 
 
 ### Three.js
 A fancy animation of a horse, stolen from [three.js demos](https://github.com/mrdoob/three.js/blob/master/examples/webgl_morphtargets_horse.html),

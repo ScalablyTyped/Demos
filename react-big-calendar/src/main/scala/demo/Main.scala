@@ -9,13 +9,11 @@ import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.{
 }
 import typings.reactDashBigDashCalendarLib.{reactDashBigDashCalendarLibStrings, Anon_Myweek}
 import typings.reactDashDomLib.reactDashDomMod.reactDashDomModMembers
-import typings.reactLib.ReactDsl
 import typings.reactLib.reactMod.ReactNs.{CSSProperties, FC, ReactNode}
 import typings.stdLib.Date
 import typings.stdLib.stdLibMembers.{console, document, Date, Object}
 import typings.{reactLib, stdLib}
 
-import scala.language.higherKinds
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.scalajs.js.{|, JSON, UndefOr}
@@ -36,21 +34,25 @@ trait ViewStatic[E] extends js.Object {
 }
 
 object Main {
-  import Knowedge._
+  import typings.reactLib.dsl._
 
   BigCalendarCss // touch to load css
 
   val Localizer = ReactBigCalendar.momentLocalizer(Moment)
 
   /* define a functional component with static members */
-  val MyNiceMonth =
+  val MyJsonyMonth =
+    define.fc[BigCalendarProps[Event, js.Object]] { props =>
+      div.noprops(
+        "My jsony month",
+        js.defined(props).fold[ReactNode]("No props")(x => pre.noprops(code.noprops(JSON.stringify(x))))
+      )
+    }
+
+  /* define a functional component with static members */
+  val MyJsonyMonthExtended =
     Object.assign[FC[BigCalendarProps[Event, js.Object]], ViewStatic[Event]](
-      fc { props =>
-        ReactDsl.div.noprops(
-          "My jsony month",
-          js.defined(props).fold("No props")(x => JSON.stringify(x))
-        )
-      },
+      MyJsonyMonth,
       new ViewStatic[Event] {
         override def title(e: js.UndefOr[Event]): String =
           e.flatMap(_.title).getOrElse("No title")
@@ -66,47 +68,40 @@ object Main {
   }
 
   def main(argv: Array[String]): Unit =
-    asOption(document.getElementById("container")) match {
+    Knowledge.asOption(document.getElementById("container")) match {
       case Some(container) =>
         reactDashDomModMembers.render(
-          ReactDsl
-            .componentClass[ReactBigCalendar[Event, js.Object]]
-            .apply(
-              new BigCalendarProps[Event, js.Object] {
-                override var localizer = Localizer
-                events      = js.Array(someEvent)
-                defaultDate = Date.newInstance0()
-                defaultView = reactDashBigDashCalendarLibStrings.month
-                views = new Anon_Myweek {
-                  override var month  = true
-                  override var myweek = MyNiceMonth.covary[js.Object]
-                  override var week   = true
-                }
-                /* can pass style even though it isn't specified in `BigCalendarProps` */
-                val style = new CSSProperties {
-                  height = "100vh"
-                }
+          cls[ReactBigCalendar[Event, js.Object]].props(
+            new BigCalendarProps[Event, js.Object] {
+              override var localizer = Localizer
+              events      = js.Array(someEvent)
+              defaultDate = Date.newInstance0()
+              defaultView = reactDashBigDashCalendarLibStrings.month
+              views = new Anon_Myweek {
+                override var month  = true
+                override var myweek = Knowledge.unspecify(MyJsonyMonthExtended)
+                override var week   = true
               }
-            ),
-          stdLibElementIsReactElement(container),
+              /* can pass style even though it isn't specified in `BigCalendarProps` */
+              val style = new CSSProperties {
+                height = "100vh"
+              }
+            }
+          ),
+          Knowledge.isElement(container),
         )
       case None => console.error("Could not find #container")
     }
 
 }
 
-object Knowedge {
-  def stdLibElementIsReactElement(e: stdLib.Element): reactLib.Element =
+object Knowledge {
+  def isElement(e: stdLib.Element): reactLib.Element =
     e.asInstanceOf[reactLib.Element]
 
-  implicit class Covary[M[_], O <: js.Object](mo: M[O]) {
-    def covary[OO >: O <: js.Object]: M[OO] = mo.asInstanceOf[M[OO]]
-  }
+  def unspecify[T](c: FC[T]): FC[js.Object] =
+    c.asInstanceOf[FC[js.Object]]
 
   def asOption[T](t: T | Null): Option[T] =
     Option(t.asInstanceOf[T])
-
-  /* a js.Function1 is a functional component */
-  def fc[Props <: js.Object](f: js.Function1[Props, ReactNode]): FC[Props] =
-    f.asInstanceOf[FC[Props]]
 }

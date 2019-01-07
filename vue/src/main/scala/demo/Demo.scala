@@ -8,9 +8,9 @@ import typings.vueLib.typesVueMod.{CombinedVueInstance, Vue}
 
 import scala.scalajs.js
 import scala.scalajs.js.ThisFunction0
-import scala.scalajs.js.annotation.{JSExport, JSImport}
+import scala.scalajs.js.annotation.JSImport
 
-object Todo extends {
+object Todo  {
 
   @js.native
   trait DemoVue extends Vue {

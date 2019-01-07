@@ -2,7 +2,7 @@ package demo
 
 import typings.reactDashDomLib.reactDashDomMod.reactDashDomModMembers.render
 import typings.reactLib.Element
-import typings.reactLib.ReactDsl.component
+import typings.reactLib.dsl.fromComponent
 import typings.stdLib.stdLibMembers.window
 
 object Main {
@@ -13,7 +13,7 @@ object Main {
     }
 
     render(
-      component(MainTabs.Component)(props),
+      MainTabs.Component.props(props),
       window.document.body.asInstanceOf[Element]
     )
   }

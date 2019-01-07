@@ -1,7 +1,7 @@
 package demo
 
 import typings.stdLib.{FrameRequestCallback, UIEvent, Window}
-import typings.stdLib.stdLibStrings.{div, resize}
+import typings.stdLib.stdLibStrings
 import typings.stdLib.stdLibMembers.{Date, document, requestAnimationFrame, window}
 import typings.threeLib.threeDashCoreMod.{Geometry, Material, MeshLambertMaterialParameters}
 import typings.threeLib.threeMod.{MathNs => ThreeMath, Material => _, _}
@@ -14,10 +14,10 @@ object Main {
 
   def main(argv: Array[String]): Unit = {
 
-    val container = document.createElement_div(div)
+    val container = document.createElement_div(stdLibStrings.div)
     document.body.appendChild(container)
 
-    val info = document.createElement_div(div)
+    val info = document.createElement_div(stdLibStrings.div)
     info.style.position  = "absolute"
     info.style.top       = "10px"
     info.style.width     = "100%"
@@ -72,7 +72,7 @@ object Main {
       renderer.setSize(window.innerWidth, window.innerHeight)
     }
 
-    window.addEventListener_resize(resize, onWindowResize, false)
+    window.addEventListener_resize(stdLibStrings.resize, onWindowResize, false)
 
     var prevTime = Date.now()
 

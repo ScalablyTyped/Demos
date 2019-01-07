@@ -10,8 +10,6 @@ import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.{FlatButtonPro
 import typings.mobxDashReactLib.mobxDashReactMod.mobxDashReactModMembers.observer
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
 import typings.mobxLib.mobxMod.{mobxModMembers => MobX}
-import typings.reactLib.Anon_Children
-import typings.reactLib.ReactDsl.{component, componentClass, div}
 import typings.reactLib.reactMod.ReactNs.{CSSProperties, ComponentClass, FC, ReactNode}
 import typings.reactLib.reactMod._
 import typings.stdLib.stdLibMembers.{console, window}
@@ -19,6 +17,8 @@ import typings.stdLib.stdLibMembers.{console, window}
 import scala.scalajs.js
 
 object GithubSearch {
+  import typings.reactLib.dsl._
+
   trait Props extends js.Object {
     val store: Store
   }
@@ -63,14 +63,14 @@ object GithubSearch {
   }
 
   /* this is a simple functional component to display a github repo in a table row */
-  private val RepoRow = Knowledge.fc[Repository](
+  private val RepoRow = define.fc[Repository](
     repo =>
-      componentClass[TableRow].noprops(
-        componentClass[TableRowColumn].noprops(repo.name),
-        componentClass[TableRowColumn].noprops(repo.forks_count),
-        componentClass[TableRowColumn].noprops(repo.stargazers_count),
-        componentClass[TableRowColumn].noprops(
-          componentClass[FlatButton].apply(new FlatButtonProps {
+      cls[TableRow].noprops(
+        cls[TableRowColumn].noprops(repo.name),
+        cls[TableRowColumn].noprops(repo.forks_count),
+        cls[TableRowColumn].noprops(repo.stargazers_count),
+        cls[TableRowColumn].noprops(
+          cls[FlatButton].props(new FlatButtonProps {
             onClick = js.defined(_ => window.location.assign(repo.html_url))
           }, "Go to project")
         ),
@@ -80,7 +80,7 @@ object GithubSearch {
   private class C extends Component[Props, js.Any, js.Any] {
     override def render(): ReactNode =
       div.noprops(
-        componentClass[Paper].apply(
+        cls[Paper].props(
           new PaperProps {
             style = new CSSProperties {
               height         = "100px"
@@ -90,12 +90,12 @@ object GithubSearch {
             }
             rounded = true
           },
-          componentClass[TextField].apply(new TextFieldProps {
+          cls[TextField].props(new TextFieldProps {
             name     = "search"
             value    = props.store.search.get
             onChange = js.defined((_, newValue) => props.store.search.set(newValue))
           }),
-          componentClass[FlatButton].apply(
+          cls[FlatButton].props(
             new FlatButtonProps { onClick = js.defined(_ => props.store.searchForRepos()) },
             "Search"
           ),
@@ -104,17 +104,17 @@ object GithubSearch {
           .get()
           .fold[ReactNode](div.noprops("No result yet"))(
             repos =>
-              componentClass[Table].noprops(
-                componentClass[TableHeader].noprops(
-                  componentClass[TableRow].noprops(
-                    componentClass[TableRowColumn].noprops("name"),
-                    componentClass[TableRowColumn].noprops("forks_count"),
-                    componentClass[TableRowColumn].noprops("stargazers_count"),
-                    componentClass[TableRowColumn].noprops("link"),
+              cls[Table].noprops(
+                cls[TableHeader].noprops(
+                  cls[TableRow].noprops(
+                    cls[TableRowColumn].noprops("name"),
+                    cls[TableRowColumn].noprops("forks_count"),
+                    cls[TableRowColumn].noprops("stargazers_count"),
+                    cls[TableRowColumn].noprops("link"),
                   )
                 ),
-                componentClass[TableBody].noprops(
-                  repos.map(repo => component(RepoRow).withKey(repo.name)(repo))
+                cls[TableBody].noprops(
+                  repos.map(repo => RepoRow.withKey(repo.name).props(repo))
                 )
             )
           )
@@ -124,10 +124,4 @@ object GithubSearch {
   /* this applies a decorator. Sadly, we're missing good syntax for this so far */
   val Component: ComponentClass[Props, js.Any] =
     observer(js.constructorOf[C].asInstanceOf[ComponentClass[Props, js.Any]])
-}
-
-object Knowledge {
-  // this is missing from the react dsl for now. Defines a functional component
-  def fc[P](f: js.Function1[P with Anon_Children, ReactNode]): FC[P] =
-    f.asInstanceOf[FC[P]]
 }

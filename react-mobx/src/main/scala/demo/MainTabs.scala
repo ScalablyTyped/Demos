@@ -8,7 +8,6 @@ import typings.materialDashUiLib.tabsMod._
 import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.StylesNs.MuiThemeProviderProps
 import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.TabsNs.TabProps
 import typings.mobxDashReactLib.mobxDashReactMod.mobxDashReactModMembers.observer
-import typings.reactLib.ReactDsl._
 import typings.reactLib.reactMod.ReactNs.{CSSProperties, ComponentClass, HTMLAttributes, ReactNode}
 import typings.reactLib.reactMod._
 import typings.stdLib
@@ -17,6 +16,7 @@ import typings.stdLib.stdLibMembers.console
 import scala.scalajs.js
 
 object MainTabs {
+  import typings.reactLib.dsl._
 
   trait Props extends js.Object {
     val testStore:   MobXTest.Store
@@ -30,9 +30,9 @@ object MainTabs {
         palette  = theme.palette
       })
 
-      componentClass[MuiThemeProvider].apply(
+      cls[MuiThemeProvider].props(
         new MuiThemeProviderProps { muiTheme = effectiveTheme },
-        div(
+        div.props(
           new HTMLAttributes[stdLib.HTMLDivElement] {
             onClick = js.defined(e => console.warn("onclick", e))
             style = new CSSProperties {
@@ -41,17 +41,17 @@ object MainTabs {
               height          = 800
             }
           },
-          componentClass[Tabs].noprops(
-            componentClass[Tab].apply(
+          cls[Tabs].noprops(
+            cls[Tab].props(
               new TabProps { label = js.defined("Github search") },
-              component(GithubSearch.Component)(
+              GithubSearch.Component.props(
                 new GithubSearch.Props { val store = props.githubStore },
                 "Fetch IP address"
               )
             ),
-            componentClass[Tab].apply(
+            cls[Tab].props(
               new TabProps { label = js.defined("MobX") },
-              component(MobXTest.Component)(new MobXTest.Props { val store = props.testStore })
+              MobXTest.Component.props(new MobXTest.Props { val store = props.testStore })
             ),
           )
         )

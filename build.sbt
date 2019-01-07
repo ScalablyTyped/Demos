@@ -5,20 +5,24 @@ addCommandAlias("dev", ";start;~fastOptJS::webpack")
 
 val baseSettings: Project => Project =
   _.enablePlugins(ScalaJSPlugin)
-    .enablePlugins(ScalaJSBundlerPlugin)
     .settings(
-      scalaVersion := "2.12.7",
+      scalaVersion := "2.12.8",
       version := "0.1-SNAPSHOT",
       scalacOptions ++= ScalacOptions.flags,
+      scalaJSUseMainModuleInitializer := true,
+      scalaJSModuleKind := ModuleKind.CommonJSModule,
       /* disabled because it somehow triggers many warnings */
       emitSourceMaps := false,
       /* in preparation for scala.js 1.0 */
       scalacOptions += "-P:scalajs:sjsDefinedByDefault",
       /* for ScalablyTyped */
       resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped"),
-      /* scalajs-bundler setup. Specify current versions and modes */
-      scalaJSUseMainModuleInitializer := true,
-      scalaJSModuleKind := ModuleKind.CommonJSModule,
+    )
+
+val bundlerSettings: Project => Project =
+  _.enablePlugins(ScalaJSBundlerPlugin)
+    .settings(
+      /* Specify current versions and modes */
       version in startWebpackDevServer := "3.1.10",
       version in webpack := "4.26.1",
       webpackExtraArgs in (Compile, fastOptJS) += "--mode=development",
@@ -56,7 +60,7 @@ val nodeProject: Project => Project =
 
 val `react-mobx` =
   project
-    .configure(baseSettings, browserProject)
+    .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       webpackDevServerPort := 8001,
       libraryDependencies ++= Seq(
@@ -79,7 +83,7 @@ val `react-mobx` =
 
 val `react-slick` =
   project
-    .configure(baseSettings, browserProject)
+    .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       webpackDevServerPort := 8005,
       libraryDependencies ++= Seq(
@@ -98,7 +102,7 @@ val `react-slick` =
 
 val `vue` =
   project
-    .configure(baseSettings, browserProject)
+    .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       webpackDevServerPort := 8006,
       libraryDependencies ++= Seq(
@@ -111,7 +115,7 @@ val `vue` =
 
 val `react-big-calendar` =
   project
-    .configure(baseSettings, browserProject)
+    .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       webpackDevServerPort := 8007,
       /* custom webpack file to include css */
@@ -137,7 +141,7 @@ val `react-big-calendar` =
 
 val three =
   project
-    .configure(baseSettings, browserProject)
+    .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       webpackDevServerPort := 8008,
       libraryDependencies ++= Seq(
@@ -149,7 +153,7 @@ val three =
     )
 
 val d3 = project
-  .configure(baseSettings, browserProject)
+  .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8002,
     libraryDependencies ++= Seq(ScalablyTyped.D.d3),
@@ -157,7 +161,7 @@ val d3 = project
   )
 
 val jquery = project
-  .configure(baseSettings, browserProject)
+  .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8003,
     libraryDependencies ++= Seq(ScalablyTyped.J.jquery, ScalablyTyped.J.jqueryui),
@@ -165,7 +169,7 @@ val jquery = project
   )
 
 val `google-maps` = project
-  .configure(baseSettings, browserProject)
+  .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8004,
     libraryDependencies ++= Seq(
@@ -173,9 +177,32 @@ val `google-maps` = project
     ),
   )
 
+val `semantic-ui-react` = project
+  .configure(baseSettings, bundlerSettings, browserProject)
+  .settings(
+    webpackDevServerPort := 8009,
+    libraryDependencies ++= Seq(
+      ScalablyTyped.R.`redux`,
+      ScalablyTyped.R.`redux-devtools-extension`,
+      ScalablyTyped.R.`react-redux`,
+      ScalablyTyped.R.`react-redux-contrib`,
+      ScalablyTyped.R.`react-contrib`,
+      ScalablyTyped.S.`semantic-ui-react`,
+      ScalablyTyped.S.`std-contrib`,
+    ),
+    npmDependencies in Compile ++= Seq(
+      "redux" -> "4.0.1",
+      "redux-devtools-extension" -> "2.13.7",
+      "react-dom" -> "16.7.0",
+      "react" -> "16.7.0",
+      "react-redux" -> "6.0",
+      "semantic-ui-react" -> "0.84.0",
+    ),
+  )
+
 val lodash =
   project
-    .configure(baseSettings, nodeProject)
+    .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       libraryDependencies ++= Seq(ScalablyTyped.L.lodash),
       npmDependencies in Compile ++= Seq("lodash" -> "4.17.11")
@@ -183,12 +210,12 @@ val lodash =
 
 val `node-express` =
   project
-    .configure(baseSettings, nodeProject)
+    .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(libraryDependencies ++= Seq(ScalablyTyped.E.express))
 
 val typescript =
   project
-    .configure(baseSettings, nodeProject)
+    .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       libraryDependencies ++= Seq(ScalablyTyped.N.node, ScalablyTyped.T.typescript),
       npmDependencies in Compile ++= Seq("typescript" -> "3.2.2")
