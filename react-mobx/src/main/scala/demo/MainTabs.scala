@@ -2,16 +2,16 @@ package demo
 
 import typings.materialDashUiLib.stylesBaseThemesLightBaseThemeMod.{default => theme}
 import typings.materialDashUiLib.stylesMod.MuiTheme
-import typings.materialDashUiLib.stylesMod.stylesModMembers.getMuiTheme
+import typings.materialDashUiLib.stylesMod.^.getMuiTheme
 import typings.materialDashUiLib.stylesMuiThemeProviderMod.{default => MuiThemeProvider}
 import typings.materialDashUiLib.tabsMod._
 import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.StylesNs.MuiThemeProviderProps
 import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.TabsNs.TabProps
-import typings.mobxDashReactLib.mobxDashReactMod.mobxDashReactModMembers.observer
+import typings.mobxDashReactLib.mobxDashReactMod.^.observer
 import typings.reactLib.reactMod.ReactNs.{CSSProperties, ComponentClass, HTMLAttributes, ReactNode}
 import typings.reactLib.reactMod._
 import typings.stdLib
-import typings.stdLib.stdLibMembers.console
+import typings.stdLib.^.console
 
 import scala.scalajs.js
 

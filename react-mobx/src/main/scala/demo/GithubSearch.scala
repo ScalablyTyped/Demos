@@ -1,18 +1,18 @@
 package demo
 
 import typings.axiosLib.axiosMod.AxiosRequestConfig
-import typings.axiosLib.axiosMod.axiosModMembers.{default => Axios}
+import typings.axiosLib.axiosMod.^.{default => Axios}
 import typings.materialDashUiLib.flatbuttonMod.{default => FlatButton}
 import typings.materialDashUiLib.paperMod.{default => Paper}
 import typings.materialDashUiLib.tableMod._
 import typings.materialDashUiLib.textfieldMod.{default => TextField}
 import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.{FlatButtonProps, PaperProps, TextFieldProps}
-import typings.mobxDashReactLib.mobxDashReactMod.mobxDashReactModMembers.observer
+import typings.mobxDashReactLib.mobxDashReactMod.^.observer
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
-import typings.mobxLib.mobxMod.{mobxModMembers => MobX}
-import typings.reactLib.reactMod.ReactNs.{CSSProperties, ComponentClass, FC, ReactNode}
+import typings.mobxLib.{mobxMod => MobX}
+import typings.reactLib.reactMod.ReactNs.{CSSProperties, ComponentClass, ReactNode}
 import typings.reactLib.reactMod._
-import typings.stdLib.stdLibMembers.{console, window}
+import typings.stdLib.^.console
 
 import scala.scalajs.js
 
@@ -37,13 +37,13 @@ object GithubSearch {
 
   class Store() extends js.Object {
     val search: IObservableValue[String] =
-      MobX.observable.box("ScalablyTyped")
+      MobX.^.observable.box("ScalablyTyped")
 
     val result: IObservableValue[js.UndefOr[js.Array[Repository]]] =
-      MobX.observable.box(js.undefined)
+      MobX.^.observable.box(js.undefined)
 
     def searchForRepos: js.Function0[Unit] =
-      MobX.action(
+      MobX.^.action(
         "searchForRepos",
         () =>
           Axios
@@ -71,7 +71,7 @@ object GithubSearch {
         cls[TableRowColumn].noprops(repo.stargazers_count),
         cls[TableRowColumn].noprops(
           cls[FlatButton].props(new FlatButtonProps {
-            onClick = js.defined(_ => window.location.assign(repo.html_url))
+            disabled = false
           }, "Go to project")
         ),
     )

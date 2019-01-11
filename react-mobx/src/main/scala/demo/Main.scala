@@ -1,9 +1,9 @@
 package demo
 
-import typings.reactDashDomLib.reactDashDomMod.reactDashDomModMembers.render
+import typings.reactDashDomLib.reactDashDomMod.^.render
 import typings.reactLib.Element
 import typings.reactLib.dsl.fromComponent
-import typings.stdLib.stdLibMembers.window
+import typings.stdLib.^.window
 
 object Main {
   def main(argv: Array[String]): Unit = {

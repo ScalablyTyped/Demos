@@ -2,7 +2,7 @@ package demo
 
 import typings.jqueryLib.{JQuery, JQueryEventObject, jqueryMod => $}
 import typings.jqueryuiLib.jqueryuiLibRequire
-import typings.stdLib.stdLibMembers.document
+import typings.stdLib.^.document
 import typings.stdLib.{Element, HTMLButtonElement, HTMLLabelElement}
 
 import scala.scalajs.js

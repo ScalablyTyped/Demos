@@ -1,10 +1,10 @@
 package demo
 
-import typings.lodashLib.fpMod.{fpModMembers => Fp}
+import typings.lodashLib.fpMod.{^ => Fp}
 import typings.lodashLib.lodashMod.underscoreNs.{ArrayIterator, MemoListIterator}
-import typings.lodashLib.lodashMod.{lodashModMembers => L}
+import typings.lodashLib.lodashMod.{^ => L}
 import typings.stdLib.ArrayLike
-import typings.stdLib.stdLibMembers.console
+import typings.stdLib.^.console
 
 import scala.scalajs.js
 

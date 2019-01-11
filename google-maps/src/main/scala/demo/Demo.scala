@@ -2,7 +2,7 @@ package demo
 
 import org.scalajs.dom.Event
 import typings.googlemapsLib.googleNs.{mapsNs => GMaps}
-import typings.stdLib.stdLibMembers.document
+import typings.stdLib.^.document
 
 import scala.scalajs.js
 import scala.scalajs.js.|

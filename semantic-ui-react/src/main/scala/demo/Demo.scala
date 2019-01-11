@@ -8,8 +8,8 @@ import typings.semanticDashUiDashReactLib.distCommonjsModulesTabTabMod.TabProps
 import typings.semanticDashUiDashReactLib.distCommonjsViewsCardCardHeaderMod.CardHeaderProps
 import typings.semanticDashUiDashReactLib.distCommonjsViewsCardCardMetaMod.CardMetaProps
 import typings.semanticDashUiDashReactLib.distCommonjsViewsCardCardMod.CardProps
-import typings.semanticDashUiDashReactLib.semanticDashUiDashReactMod.{semanticDashUiDashReactModMembers => Sui}
-import typings.semanticDashUiDashReactLib.{Anon_MenuItem, semanticDashUiDashReactLibStrings => SuiStrings}
+import typings.semanticDashUiDashReactLib.semanticDashUiDashReactMod.{^ => Sui}
+import typings.semanticDashUiDashReactLib.{Anon_Content, semanticDashUiDashReactLibStrings => SuiStrings}
 import typings.reactDashReduxLib.ReduxFacade.Connected
 
 import scala.scalajs.js
@@ -18,7 +18,7 @@ object Demo {
   import typings.reactLib.dsl._
 
   /* This object is unfortunately anonymous in typescript */
-  type TabStructure = Anon_MenuItem
+  type TabStructure = Anon_Content
 
   trait Props extends js.Object {
     val title: String

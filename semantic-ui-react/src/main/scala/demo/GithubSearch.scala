@@ -10,8 +10,8 @@ import typings.semanticDashUiDashReactLib.distCommonjsElementsListListHeaderMod.
 import typings.semanticDashUiDashReactLib.distCommonjsElementsListListIconMod.ListIconProps
 import typings.semanticDashUiDashReactLib.distCommonjsElementsListListMod.ListProps
 import typings.semanticDashUiDashReactLib.semanticDashUiDashReactLibStrings
-import typings.semanticDashUiDashReactLib.semanticDashUiDashReactMod.{Button, Input, semanticDashUiDashReactModMembers => Sui}
-import typings.stdLib.stdLibMembers.{console, fetch}
+import typings.semanticDashUiDashReactLib.semanticDashUiDashReactMod.{Button, Input, ^ => Sui}
+import typings.stdLib.^.{console, fetch}
 import typings.stdLib.{HTMLAnchorElement, HTMLInputElement, Record, RequestInit}
 import typings.stdLib.ThenableOps.ThenableOps
 

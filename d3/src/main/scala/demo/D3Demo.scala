@@ -1,10 +1,10 @@
 package demo
 
 import typings.d3DashGeoLib.d3DashGeoMod.{GeoContext, GeoPath, GeoPermissibleObjects, GeoProjection}
-import typings.d3Lib.d3Mod.{d3ModMembers => d3}
+import typings.d3Lib.d3Mod.{^ => d3}
 import typings.geojsonLib.geojsonLibStrings
 import typings.geojsonLib.geojsonMod.{LineString, Position}
-import typings.stdLib.stdLibMembers.{document, window}
+import typings.stdLib.^.{document, window}
 import typings.stdLib.{
   stdLibStrings,
   ArrayLike,

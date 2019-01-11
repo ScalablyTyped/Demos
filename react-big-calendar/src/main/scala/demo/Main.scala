@@ -1,22 +1,18 @@
 package demo
 
 import typings.momentLib.momentLibStrings
-import typings.momentLib.momentMod.{momentModMembers => Moment}
-import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.{
-  BigCalendarProps,
-  Navigate,
-  default => ReactBigCalendar
-}
-import typings.reactDashBigDashCalendarLib.{reactDashBigDashCalendarLibStrings, Anon_Myweek}
-import typings.reactDashDomLib.reactDashDomMod.reactDashDomModMembers
+import typings.momentLib.momentMod.{^ => Moment}
+import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.{BigCalendarProps, Navigate, default => ReactBigCalendar}
+import typings.reactDashBigDashCalendarLib.{Anon_Month, reactDashBigDashCalendarLibStrings}
+import typings.reactDashDomLib.reactDashDomMod
 import typings.reactLib.reactMod.ReactNs.{CSSProperties, FC, ReactNode}
 import typings.stdLib.Date
-import typings.stdLib.stdLibMembers.{console, document, Date, Object}
+import typings.stdLib.^.{Date, Object, console, document}
 import typings.{reactLib, stdLib}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import scala.scalajs.js.{|, JSON, UndefOr}
+import scala.scalajs.js.{JSON, UndefOr, |}
 
 @JSImport("react-big-calendar/lib/css/react-big-calendar.css", JSImport.Namespace)
 @js.native
@@ -70,14 +66,14 @@ object Main {
   def main(argv: Array[String]): Unit =
     Knowledge.asOption(document.getElementById("container")) match {
       case Some(container) =>
-        reactDashDomModMembers.render(
+        reactDashDomMod.^.render(
           cls[ReactBigCalendar[Event, js.Object]].props(
             new BigCalendarProps[Event, js.Object] {
               override var localizer = Localizer
               events      = js.Array(someEvent)
               defaultDate = Date.newInstance0()
               defaultView = reactDashBigDashCalendarLibStrings.month
-              views = new Anon_Myweek {
+              views = new Anon_Month {
                 override var month  = true
                 override var myweek = Knowledge.unspecify(MyJsonyMonthExtended)
                 override var week   = true

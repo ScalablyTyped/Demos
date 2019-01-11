@@ -1,9 +1,9 @@
 package demo
 
 import typings.expressDashServeDashStaticDashCoreLib.expressDashServeDashStaticDashCoreMod._
-import typings.expressLib.expressMod.{expressModMembers => express}
+import typings.expressLib.expressMod.{^ => express}
 import typings.nodeLib.processMod
-import typings.stdLib.stdLibMembers.console
+import typings.stdLib.^.console
 
 import scala.scalajs.js
 

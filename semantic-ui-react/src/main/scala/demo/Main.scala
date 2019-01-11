@@ -1,13 +1,14 @@
 package demo
 
-import typings.reactDashDomLib.reactDashDomMod.reactDashDomModMembers.render
+import typings.reactDashDomLib.reactDashDomMod.^.render
 import typings.reactDashReduxLib.reactDashReduxMod.Provider
 import typings.reactDashReduxLib.{ReduxFacade, reactDashReduxMod}
 import typings.reactLib.reactMod.ReactNs.{Dispatch => _, _}
 import typings.reduxDashDevtoolsDashExtensionLib.reduxDashDevtoolsDashExtensionMod.EnhancerOptions
-import typings.reduxDashDevtoolsDashExtensionLib.reduxDashDevtoolsDashExtensionMod.reduxDashDevtoolsDashExtensionModMembers.devToolsEnhancer
-import typings.reduxLib.reduxMod.{Store, reduxModMembers}
-import typings.stdLib.stdLibMembers.window
+import typings.reduxDashDevtoolsDashExtensionLib.reduxDashDevtoolsDashExtensionMod.^.devToolsEnhancer
+import typings.reduxLib.reduxMod.Store
+import typings.reduxLib.reduxMod
+import typings.stdLib.^.window
 import typings.{reactLib, stdLib}
 
 import scala.scalajs.js.|
@@ -21,7 +22,7 @@ object Main {
 
         /* set up redux store with devtools*/
         val Store: Store[GithubSearch.State, GithubSearch.SearchAction] =
-          reduxModMembers.createStore(
+          reduxMod.^.createStore(
             GithubSearch.Reducer,
             devToolsEnhancer(new EnhancerOptions {
               name = "github search store"

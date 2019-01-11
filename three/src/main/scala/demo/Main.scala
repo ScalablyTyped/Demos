@@ -1,8 +1,7 @@
 package demo
 
-import typings.stdLib.{FrameRequestCallback, UIEvent, Window}
-import typings.stdLib.stdLibStrings
-import typings.stdLib.stdLibMembers.{Date, document, requestAnimationFrame, window}
+import typings.stdLib.{FrameRequestCallback, HTMLDivElement, UIEvent, Window, stdLibStrings}
+import typings.stdLib.^.{Date, document, requestAnimationFrame, window}
 import typings.threeLib.threeDashCoreMod.{Geometry, Material, MeshLambertMaterialParameters}
 import typings.threeLib.threeMod.{MathNs => ThreeMath, Material => _, _}
 
@@ -17,7 +16,7 @@ object Main {
     val container = document.createElement_div(stdLibStrings.div)
     document.body.appendChild(container)
 
-    val info = document.createElement_div(stdLibStrings.div)
+    val info: HTMLDivElement = document.createElement_div(stdLibStrings.div)
     info.style.position  = "absolute"
     info.style.top       = "10px"
     info.style.width     = "100%"

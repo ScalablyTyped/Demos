@@ -4,13 +4,13 @@ import typings.materialDashUiLib.avatarMod.{default => Avatar}
 import typings.materialDashUiLib.raisedbuttonMod.{default => RaisedButton}
 import typings.materialDashUiLib.svgDashIconsActionAlarmMod.{default => ActionAlarm}
 import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.{AvatarProps, RaisedButtonProps, SvgIconProps}
-import typings.mobxDashReactLib.mobxDashReactMod.mobxDashReactModMembers.observer
+import typings.mobxDashReactLib.mobxDashReactMod.^.observer
 import typings.mobxLib.libCoreComputedvalueMod.IComputedValue
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
-import typings.mobxLib.mobxMod.{mobxModMembers => MobX}
+import typings.mobxLib.mobxMod.{^ => MobX}
 import typings.reactLib.reactMod.ReactNs.{ComponentClass, MouseEventHandler, ReactNode}
 import typings.reactLib.reactMod._
-import typings.stdLib.stdLibMembers.console
+import typings.stdLib.^.console
 
 import scala.scalajs.js
 
