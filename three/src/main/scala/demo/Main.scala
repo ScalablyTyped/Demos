@@ -9,7 +9,6 @@ import scala.scalajs.js
 
 object Main {
   val radius = 600
-  var theta  = 0.0
 
   def main(argv: Array[String]): Unit = {
 
@@ -74,9 +73,9 @@ object Main {
     window.addEventListener_resize(stdLibStrings.resize, onWindowResize, false)
 
     var prevTime = Date.now()
+    var theta  = 0.0
 
-    def animate: FrameRequestCallback = _ => {
-      requestAnimationFrame(animate)
+    def animate: FrameRequestCallback = time => {
       theta += 0.1
 
       camera.position.x = radius * Math.sin(ThreeMath.degToRad(theta))
@@ -85,12 +84,12 @@ object Main {
       camera.lookAt(target)
 
       mixerOpt.foreach { mixer =>
-        val time = Date.now()
         mixer.update((time - prevTime) * 0.001)
         prevTime = time;
       }
 
       renderer.render(scene, camera)
+      requestAnimationFrame(animate)
     }
 
     animate(0)
