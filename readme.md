@@ -77,6 +77,11 @@ A fancy animation of a horse, stolen from [three.js demos](https://github.com/mr
  with a change of loaders from [retyped demos](https://github.com/Retyped/Demos/tree/master/ThreeJsDemo)
 `sbt> three/start` starts a webpack-dev-server at http://localhost:8008 .
 
+### Reveal.js
+Write your talks in scala.js! This uses highlight.js and reveal.js along with
+ scalajs-react. adapted from [scala-reveal-js](https://github.com/pheymann/scala-reveal-js),
+`sbt> reveal/start` starts a webpack-dev-server at http://localhost:8010 .
+
 ### lodash
 This is a very simple app which uses a few functions from lodash.
 `sbt> lodash/run` runs the demo in node.

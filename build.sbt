@@ -200,6 +200,33 @@ val `semantic-ui-react` = project
     ),
   )
 
+val `reveal` = project
+  .configure(baseSettings, bundlerSettings, browserProject)
+  .settings(
+    webpackDevServerPort := 8010,
+    /* custom webpack file to include css */
+    webpackConfigFile := Some(baseDirectory.value / "custom.webpack.config.js"),
+    libraryDependencies ++= Seq(
+      "com.github.japgolly.scalajs-react" %%% "core" % "1.3.1",
+      ScalablyTyped.H.highlight_dot_js,
+      ScalablyTyped.R.`react-contrib`,
+      ScalablyTyped.R.`reveal`,
+    ),
+    npmDependencies in Compile ++= Seq(
+      "highlight.js" -> "9.12",
+      "reveal.js" -> "3.7.0",
+      "react-dom" -> "16.7.0",
+      "react" -> "16.7.0",
+    ),
+    npmDevDependencies in Compile ++= Seq(
+      "webpack-merge" -> "4.1",
+      "css-loader" -> "2.1.0",
+      "style-loader" -> "0.23.1",
+      "file-loader" -> "3.0.1",
+      "url-loader" -> "1.1.2",
+    )
+  )
+
 val lodash =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
