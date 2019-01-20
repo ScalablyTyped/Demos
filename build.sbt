@@ -1,7 +1,6 @@
-import java.nio.file.{Files, StandardCopyOption}
-
-// Usage: `project d3`, then `dev` in sbt. Don't think we can scope these by project :/
-addCommandAlias("dev", ";start;~fastOptJS::webpack")
+import java.nio.charset.Charset
+import java.nio.file.StandardCopyOption.REPLACE_EXISTING
+import java.nio.file.{Files}
 
 val baseSettings: Project => Project =
   _.enablePlugins(ScalaJSPlugin)
@@ -33,6 +32,7 @@ val bundlerSettings: Project => Project =
     )
 
 lazy val start = TaskKey[Unit]("start")
+lazy val dist  = TaskKey[Unit]("dist")
 
 val browserProject: Project => Project =
   _.settings(
@@ -41,16 +41,41 @@ val browserProject: Project => Project =
         PathFinder(Seq(baseDirectory.value / "assets" / "index.html")) ** "*.*",
     start := {
       (startWebpackDevServer in (Compile, fastOptJS)).value
-      val base   = baseDirectory.value
-      val target = (npmUpdate in (Compile, fastOptJS)).value
-
       /* I'm sure there are better ways to do this, but it was *not* easy to discover */
-      Files.copy(
-        new File(base, "assets/index.html").toPath,
-        new File(target, "index.html").toPath,
-        StandardCopyOption.REPLACE_EXISTING
-      )
+      val indexFrom = new File(baseDirectory.value, "assets/index.html")
+      val indexTo   = new File((npmUpdate in (Compile, fastOptJS)).value, "index.html").toPath
+      Files.copy(indexFrom.toPath, indexTo, REPLACE_EXISTING)
     },
+    dist := {
+      val artifacts      = (webpack in (Compile, fullOptJS)).value
+      val artifactFolder = (crossTarget in (Compile, fullOptJS)).value
+      val distFolder     = (baseDirectory in ThisBuild).value / "docs" / moduleName.value
+
+      distFolder.mkdirs()
+      artifacts.foreach { artifact =>
+        val target = artifact.data.relativeTo(artifactFolder) match {
+          case None          => distFolder / artifact.data.name
+          case Some(relFile) => distFolder / relFile.toString
+        }
+
+        Files.copy(artifact.data.toPath, target.toPath, REPLACE_EXISTING)
+      }
+
+      val utf8      = Charset.forName("UTF-8")
+      val indexFrom = new File(baseDirectory.value, "assets/index.html").toPath
+      val indexTo   = (distFolder / "index.html").toPath
+
+      val indexContent = {
+        import collection.JavaConverters._
+        Files
+          .readAllLines(indexFrom, utf8)
+          .asScala
+          .map(_.replaceAllLiterally("-fastopt-", "-opt-"))
+          .mkString("\n")
+      }
+
+      Files.write(indexTo, indexContent.getBytes(utf8))
+    }
   )
 
 val nodeProject: Project => Project =
