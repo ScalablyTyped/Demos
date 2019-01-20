@@ -82,6 +82,11 @@ Write your talks in scala.js! This uses highlight.js and reveal.js along with
  scalajs-react. adapted from [scala-reveal-js](https://github.com/pheymann/scala-reveal-js),
 `sbt> reveal/start` starts a webpack-dev-server at http://localhost:8010 .
 
+### Chart.js
+Simple charting using canvas elements. Shows off how to work with the DOM as well
+ as how to use chart.js. Heavily adapted from the [retyped demo](https://github.com/Retyped/Demos/tree/master/ChartJsDemo),
+`sbt> chart/start` starts a webpack-dev-server at http://localhost:8011 .
+
 ### lodash
 This is a very simple app which uses a few functions from lodash.
 `sbt> lodash/run` runs the demo in node.

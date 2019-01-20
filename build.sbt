@@ -227,6 +227,18 @@ val `reveal` = project
     )
   )
 
+val `chart` = project
+  .configure(baseSettings, bundlerSettings, browserProject)
+  .settings(
+    webpackDevServerPort := 8011,
+    libraryDependencies ++= Seq(
+      ScalablyTyped.C.chart_dot_js,
+    ),
+    npmDependencies in Compile ++= Seq(
+      "chart.js" -> "2.7",
+    )
+  )
+
 val lodash =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
