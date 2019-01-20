@@ -53,9 +53,8 @@ object D3Demo {
 
     val geometry = new LineString {
       override var coordinates = js.Array[Position]()
-      // this is pretty not amazing, all these vars refer to the same member
+      // this is pretty not amazing, both these vars refer to the same member
       override var type_LineString     = geojsonLibStrings.LineString
-      override var type_GeometryObject = geojsonLibStrings.LineString
       override var `type`              = geojsonLibStrings.LineString
     }
 
