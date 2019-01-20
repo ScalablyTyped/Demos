@@ -8,6 +8,14 @@ var local = {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             },
+            {
+                test: /\.(ttf|eot|woff|png)$/,
+                use: 'file-loader'
+            },
+            {
+                test: /\.(eot)$/,
+                use: 'url-loader'
+            }
         ]
     }
 };

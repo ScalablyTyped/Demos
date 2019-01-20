@@ -69,11 +69,9 @@ lazy val vue =
 
 lazy val `react-big-calendar` =
   project
-    .configure(baseSettings, bundlerSettings, browserProject)
+    .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
       webpackDevServerPort := 8007,
-      /* custom webpack file to include css */
-      webpackConfigFile := Some(baseDirectory.value / "custom.webpack.config.js"),
       libraryDependencies ++= Seq(
         ScalablyTyped.M.moment,
         ScalablyTyped.R.`react-dom`,
@@ -85,11 +83,6 @@ lazy val `react-big-calendar` =
         "react" -> "16.5.1",
         "react-dom" -> "16.5.1",
         "react-big-calendar" -> "0.20",
-      ),
-      npmDevDependencies in Compile ++= Seq(
-        "webpack-merge" -> "4.1",
-        "css-loader" -> "2.1.0",
-        "style-loader" -> "0.23.1"
       )
     )
 
@@ -111,20 +104,11 @@ lazy val d3 = project
   )
 
 lazy val jquery = project
-  .configure(baseSettings, bundlerSettings, browserProject)
+  .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
     webpackDevServerPort := 8003,
-    /* custom webpack file to include css */
-    webpackConfigFile := Some(baseDirectory.value / "custom.webpack.config.js"),
     libraryDependencies ++= Seq(ScalablyTyped.J.jquery, ScalablyTyped.J.jqueryui),
-    npmDependencies in Compile ++= Seq("jquery" -> "3.3", "jqueryui" -> "1.11.1"),
-    npmDevDependencies in Compile ++= Seq(
-      "webpack-merge" -> "4.1",
-      "css-loader" -> "2.1.0",
-      "style-loader" -> "0.23.1",
-      "file-loader" -> "3.0.1",
-      "url-loader" -> "1.1.2",
-    )
+    npmDependencies in Compile ++= Seq("jquery" -> "3.3", "jqueryui" -> "1.11.1")
   )
 
 lazy val `google-maps` = project
@@ -158,11 +142,9 @@ lazy val `semantic-ui-react` = project
   )
 
 lazy val reveal = project
-  .configure(baseSettings, bundlerSettings, browserProject)
+  .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
     webpackDevServerPort := 8010,
-    /* custom webpack file to include css */
-    webpackConfigFile := Some(baseDirectory.value / "custom.webpack.config.js"),
     libraryDependencies ++= Seq(
       "com.github.japgolly.scalajs-react" %%% "core" % "1.3.1",
       ScalablyTyped.H.highlight_dot_js,
@@ -175,13 +157,6 @@ lazy val reveal = project
       "react-dom" -> "16.7.0",
       "react" -> "16.7.0",
     ),
-    npmDevDependencies in Compile ++= Seq(
-      "webpack-merge" -> "4.1",
-      "css-loader" -> "2.1.0",
-      "style-loader" -> "0.23.1",
-      "file-loader" -> "3.0.1",
-      "url-loader" -> "1.1.2",
-    )
   )
 
 lazy val chart = project
@@ -241,6 +216,19 @@ lazy val bundlerSettings: Project => Project =
       webpackDevServerExtraArgs in (Compile, fullOptJS) += "--mode=production",
       useYarn := true,
     )
+
+lazy val withCssLoading: Project => Project =
+  _.settings(
+    /* custom webpack file to include css */
+    webpackConfigFile := Some((baseDirectory in ThisBuild).value / "custom.webpack.config.js"),
+    npmDevDependencies in Compile ++= Seq(
+      "webpack-merge" -> "4.1",
+      "css-loader" -> "2.1.0",
+      "style-loader" -> "0.23.1",
+      "file-loader" -> "3.0.1",
+      "url-loader" -> "1.1.2",
+    )
+  )
 
 lazy val browserProject: Project => Project =
   _.settings(
