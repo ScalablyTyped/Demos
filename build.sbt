@@ -114,8 +114,17 @@ lazy val jquery = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8003,
+    /* custom webpack file to include css */
+    webpackConfigFile := Some(baseDirectory.value / "custom.webpack.config.js"),
     libraryDependencies ++= Seq(ScalablyTyped.J.jquery, ScalablyTyped.J.jqueryui),
     npmDependencies in Compile ++= Seq("jquery" -> "3.3", "jqueryui" -> "1.11.1"),
+    npmDevDependencies in Compile ++= Seq(
+      "webpack-merge" -> "4.1",
+      "css-loader" -> "2.1.0",
+      "style-loader" -> "0.23.1",
+      "file-loader" -> "3.0.1",
+      "url-loader" -> "1.1.2",
+    )
   )
 
 lazy val `google-maps` = project
