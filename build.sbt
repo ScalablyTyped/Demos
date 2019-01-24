@@ -1,4 +1,3 @@
-import java.nio.charset.Charset
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption.REPLACE_EXISTING
 
@@ -29,7 +28,7 @@ lazy val `react-mobx` =
         ScalablyTyped.R.`react-contrib`,
         ScalablyTyped.R.`react-dom`,
       ),
-      npmDependencies in Compile ++= Seq(
+      Compile / npmDependencies ++= Seq(
         "axios" -> "0.18.0",
         "material-ui" -> "0.20.1",
         "mobx" -> "5.8.0",
@@ -51,7 +50,7 @@ lazy val `react-slick` =
         ScalablyTyped.R.`react-contrib`,
         ScalablyTyped.R.`react-japgolly-contrib`,
       ),
-      npmDependencies in Compile ++= Seq(
+      Compile / npmDependencies ++= Seq(
         "react" -> "16.5.1",
         "react-dom" -> "16.5.1",
         "react-slick" -> "0.23",
@@ -64,7 +63,7 @@ lazy val vue =
     .settings(
       webpackDevServerPort := 8006,
       libraryDependencies ++= Seq(ScalablyTyped.V.vue),
-      npmDependencies in Compile ++= Seq("vue" -> "2.5.21")
+      Compile / npmDependencies ++= Seq("vue" -> "2.5.21")
     )
 
 lazy val `react-big-calendar` =
@@ -78,7 +77,7 @@ lazy val `react-big-calendar` =
         ScalablyTyped.R.`react-big-calendar`,
         ScalablyTyped.R.`react-contrib`,
       ),
-      npmDependencies in Compile ++= Seq(
+      Compile / npmDependencies ++= Seq(
         "moment" -> "2.23.0",
         "react" -> "16.5.1",
         "react-dom" -> "16.5.1",
@@ -92,7 +91,7 @@ lazy val three =
     .settings(
       webpackDevServerPort := 8008,
       libraryDependencies ++= Seq(ScalablyTyped.T.three),
-      npmDependencies in Compile ++= Seq("three" -> "0.93")
+      Compile / npmDependencies ++= Seq("three" -> "0.93")
     )
 
 lazy val d3 = project
@@ -100,7 +99,7 @@ lazy val d3 = project
   .settings(
     webpackDevServerPort := 8002,
     libraryDependencies ++= Seq(ScalablyTyped.D.d3),
-    npmDependencies in Compile ++= Seq("d3" -> "5.5.0"),
+    Compile / npmDependencies ++= Seq("d3" -> "5.5.0"),
   )
 
 lazy val jquery = project
@@ -108,7 +107,7 @@ lazy val jquery = project
   .settings(
     webpackDevServerPort := 8003,
     libraryDependencies ++= Seq(ScalablyTyped.J.jquery, ScalablyTyped.J.jqueryui),
-    npmDependencies in Compile ++= Seq("jquery" -> "3.3", "jqueryui" -> "1.11.1")
+    Compile / npmDependencies ++= Seq("jquery" -> "3.3", "jqueryui" -> "1.11.1")
   )
 
 lazy val `google-maps` = project
@@ -131,7 +130,7 @@ lazy val `semantic-ui-react` = project
       ScalablyTyped.S.`semantic-ui-react`,
       ScalablyTyped.S.`std-contrib`,
     ),
-    npmDependencies in Compile ++= Seq(
+    Compile / npmDependencies ++= Seq(
       "redux" -> "4.0.1",
       "redux-devtools-extension" -> "2.13.7",
       "react-dom" -> "16.7.0",
@@ -151,7 +150,7 @@ lazy val reveal = project
       ScalablyTyped.R.`react-contrib`,
       ScalablyTyped.R.`reveal`,
     ),
-    npmDependencies in Compile ++= Seq(
+    Compile / npmDependencies ++= Seq(
       "highlight.js" -> "9.12",
       "reveal.js" -> "3.7.0",
       "react-dom" -> "16.7.0",
@@ -164,7 +163,7 @@ lazy val chart = project
   .settings(
     webpackDevServerPort := 8011,
     libraryDependencies ++= Seq(ScalablyTyped.C.chart_dot_js),
-    npmDependencies in Compile ++= Seq("chart.js" -> "2.7")
+    Compile / npmDependencies ++= Seq("chart.js" -> "2.7")
   )
 
 lazy val lodash =
@@ -172,7 +171,7 @@ lazy val lodash =
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       libraryDependencies ++= Seq(ScalablyTyped.L.lodash),
-      npmDependencies in Compile ++= Seq("lodash" -> "4.17.11")
+      Compile / npmDependencies ++= Seq("lodash" -> "4.17.11")
     )
 
 lazy val `node-express` =
@@ -185,7 +184,7 @@ lazy val typescript =
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       libraryDependencies ++= Seq(ScalablyTyped.N.node, ScalablyTyped.T.typescript),
-      npmDependencies in Compile ++= Seq("typescript" -> "3.2.2")
+      Compile / npmDependencies ++= Seq("typescript" -> "3.2.2")
     )
 
 lazy val baseSettings: Project => Project =
@@ -208,20 +207,20 @@ lazy val bundlerSettings: Project => Project =
   _.enablePlugins(ScalaJSBundlerPlugin)
     .settings(
       /* Specify current versions and modes */
-      version in startWebpackDevServer := "3.1.10",
-      version in webpack := "4.26.1",
-      webpackExtraArgs in (Compile, fastOptJS) += "--mode=development",
-      webpackExtraArgs in (Compile, fullOptJS) += "--mode=production",
-      webpackDevServerExtraArgs in (Compile, fastOptJS) += "--mode=development",
-      webpackDevServerExtraArgs in (Compile, fullOptJS) += "--mode=production",
+      startWebpackDevServer / version := "3.1.10",
+      webpack / version := "4.26.1",
+      Compile / fastOptJS / webpackExtraArgs += "--mode=development",
+      Compile / fullOptJS / webpackExtraArgs += "--mode=production",
+      Compile / fastOptJS / webpackDevServerExtraArgs += "--mode=development",
+      Compile / fullOptJS / webpackDevServerExtraArgs += "--mode=production",
       useYarn := true,
     )
 
 lazy val withCssLoading: Project => Project =
   _.settings(
     /* custom webpack file to include css */
-    webpackConfigFile := Some((baseDirectory in ThisBuild).value / "custom.webpack.config.js"),
-    npmDevDependencies in Compile ++= Seq(
+    webpackConfigFile := Some((ThisBuild / baseDirectory).value / "custom.webpack.config.js"),
+    Compile / npmDevDependencies ++= Seq(
       "webpack-merge" -> "4.1",
       "css-loader" -> "2.1.0",
       "style-loader" -> "0.23.1",
@@ -230,22 +229,22 @@ lazy val withCssLoading: Project => Project =
     )
   )
 
+/**
+  * Implement the `start` and `dist` tasks defined above.
+  * Most of this is really just to copy the index.html file around.
+  */
 lazy val browserProject: Project => Project =
   _.settings(
-    webpackResources :=
-      webpackResources.value +++
-        PathFinder(Seq(baseDirectory.value / "assets" / "index.html")) ** "*.*",
     start := {
-      (startWebpackDevServer in (Compile, fastOptJS)).value
-      /* I'm sure there are better ways to do this, but it was *not* easy to discover */
-      val indexFrom = new File(baseDirectory.value, "assets/index.html")
-      val indexTo   = new File((npmUpdate in (Compile, fastOptJS)).value, "index.html").toPath
-      Files.copy(indexFrom.toPath, indexTo, REPLACE_EXISTING)
+      (Compile / fastOptJS / startWebpackDevServer).value
+      val indexFrom = baseDirectory.value / "assets/index.html"
+      val indexTo   = (Compile / fastOptJS / crossTarget).value / "index.html"
+      Files.copy(indexFrom.toPath, indexTo.toPath, REPLACE_EXISTING)
     },
     dist := {
-      val artifacts      = (webpack in (Compile, fullOptJS)).value
-      val artifactFolder = (crossTarget in (Compile, fullOptJS)).value
-      val distFolder     = (baseDirectory in ThisBuild).value / "docs" / moduleName.value
+      val artifacts      = (Compile / fullOptJS / webpack).value
+      val artifactFolder = (Compile / fullOptJS / crossTarget).value
+      val distFolder     = (ThisBuild / baseDirectory).value / "docs" / moduleName.value
 
       distFolder.mkdirs()
       artifacts.foreach { artifact =>
@@ -257,20 +256,19 @@ lazy val browserProject: Project => Project =
         Files.copy(artifact.data.toPath, target.toPath, REPLACE_EXISTING)
       }
 
-      val utf8      = Charset.forName("UTF-8")
-      val indexFrom = new File(baseDirectory.value, "assets/index.html").toPath
-      val indexTo   = (distFolder / "index.html").toPath
+      val indexFrom = baseDirectory.value / "assets/index.html"
+      val indexTo   = distFolder / "index.html"
 
-      val indexContent = {
+      val indexPatchedContent = {
         import collection.JavaConverters._
         Files
-          .readAllLines(indexFrom, utf8)
+          .readAllLines(indexFrom.toPath, IO.utf8)
           .asScala
           .map(_.replaceAllLiterally("-fastopt-", "-opt-"))
           .mkString("\n")
       }
 
-      Files.write(indexTo, indexContent.getBytes(utf8))
+      Files.write(indexTo.toPath, indexPatchedContent.getBytes(IO.utf8))
     }
   )
 
