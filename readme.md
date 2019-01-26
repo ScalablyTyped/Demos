@@ -78,7 +78,7 @@ This uses react and react-big-calendar
 `sbt> react-big-calendar/start` starts a webpack-dev-server at http://localhost:8007 .
 
 ### Semantic-ui-react and redux
-[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/semantic-ui/)
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/semantic-ui-react/)
 
 Implements the same github repository search as in the react-mobx demo,
  just with redux and semantic-ui-react instead, along with a random sampling of
@@ -107,6 +107,14 @@ Write your talks in scala.js! This uses highlight.js and reveal.js along with
 Simple charting using canvas elements. Shows off how to work with the DOM as well
  as how to use chart.js. Heavily adapted from the [retyped demo](https://github.com/Retyped/Demos/tree/master/ChartJsDemo),
 `sbt> chart/start` starts a webpack-dev-server at http://localhost:8011 .
+
+### Angular 7 
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/angular/)
+
+Let's be nice and say that Angular is a reasonable alternative for creating a frontend app.
+If you agree, now is your chance to use it with Scala.js.
+
+Adapted from [sherpal's prototype](https://github.com/sherpal/AngularScalaPOC).
 
 ### lodash
 This is a very simple app which uses a few functions from lodash.

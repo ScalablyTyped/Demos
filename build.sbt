@@ -166,6 +166,38 @@ lazy val chart = project
     Compile / npmDependencies ++= Seq("chart.js" -> "2.7")
   )
 
+lazy val angular = project
+  .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
+  .settings(
+    webpackDevServerPort := 8012,
+    libraryDependencies ++= Seq(
+      ScalablyTyped.C.`core-js`,
+      ScalablyTyped.T.tslib,
+      ScalablyTyped.Z.zone_dot_js,
+      ScalablyTyped.R.rxjs,
+      ScalablyTyped.A.angular__core,
+      ScalablyTyped.A.angular__common,
+      ScalablyTyped.A.angular__compiler,
+      ScalablyTyped.A.angular__router,
+      ScalablyTyped.A.`angular__platform-browser`,
+      ScalablyTyped.A.`angular__platform-browser-dynamic`,
+      ScalablyTyped.A.angular__forms,
+    ),
+    Compile / npmDependencies ++= Seq(
+      "core-js" -> "2.5",
+      "tslib" -> "1.9.3",
+      "zone.js" -> "0.8.28",
+      "rxjs" -> "6.3.3",
+      "@angular/core" -> "7.2.1",
+      "@angular/common" -> "7.2.1",
+      "@angular/compiler" -> "7.2.1",
+      "@angular/router" -> "7.2.1",
+      "@angular/platform-browser" -> "7.2.1",
+      "@angular/platform-browser-dynamic" -> "7.2.1",
+      "@angular/forms" -> "7.2.1",
+    )
+  )
+
 lazy val lodash =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
