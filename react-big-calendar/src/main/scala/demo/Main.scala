@@ -2,17 +2,21 @@ package demo
 
 import typings.momentLib.momentLibStrings
 import typings.momentLib.momentMod.{^ => Moment}
-import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.{BigCalendarProps, Navigate, default => ReactBigCalendar}
-import typings.reactDashBigDashCalendarLib.{Anon_Month, reactDashBigDashCalendarLibStrings}
+import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.{
+  BigCalendarProps,
+  Navigate,
+  default => ReactBigCalendar
+}
+import typings.reactDashBigDashCalendarLib.{reactDashBigDashCalendarLibStrings, Anon_Month}
 import typings.reactDashDomLib.reactDashDomMod
 import typings.reactLib.reactMod.ReactNs.{CSSProperties, FC, ReactNode}
 import typings.stdLib.Date
-import typings.stdLib.^.{Date, Object, console, document}
+import typings.stdLib.^.{console, document, Date, Object}
 import typings.{reactLib, stdLib}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import scala.scalajs.js.{JSON, UndefOr, |}
+import scala.scalajs.js.{|, JSON, UndefOr}
 
 @JSImport("react-big-calendar/lib/css/react-big-calendar.css", JSImport.Namespace)
 @js.native

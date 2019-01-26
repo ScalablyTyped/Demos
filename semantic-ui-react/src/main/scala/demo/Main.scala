@@ -2,7 +2,7 @@ package demo
 
 import typings.reactDashDomLib.reactDashDomMod.^.render
 import typings.reactDashReduxLib.reactDashReduxMod.Provider
-import typings.reactDashReduxLib.{ReduxFacade, reactDashReduxMod}
+import typings.reactDashReduxLib.{reactDashReduxMod, ReduxFacade}
 import typings.reactLib.reactMod.ReactNs.{Dispatch => _, _}
 import typings.reduxDashDevtoolsDashExtensionLib.reduxDashDevtoolsDashExtensionMod.EnhancerOptions
 import typings.reduxDashDevtoolsDashExtensionLib.reduxDashDevtoolsDashExtensionMod.^.devToolsEnhancer

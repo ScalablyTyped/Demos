@@ -5,7 +5,7 @@ import Enumeration._
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^._
 
-object MyTalk  {
+object MyTalk {
 
   val chapter1 = chapter(
     chapterSlide(
@@ -13,19 +13,16 @@ object MyTalk  {
       <.br,
       <.h4("move down (down-arrow)"),
     ),
-
     headerSlide(
       "reveal.js commands",
       <.p("Press 'f' to go full-screen and ESC to see an overview of your slides."),
       <.br,
       <.p("You can navigate to the right and down.")
     ),
-
     headerSlide(
       "My Header",
       <.h3("Headers everywhere")
     ),
-
     headerSlide(
       "Enumeration",
       Enumeration(
@@ -34,7 +31,6 @@ object MyTalk  {
         Item.stable("I am also always here")
       )
     ),
-
     headerSlide(
       "Code, so much code",
       scalaC("""
@@ -48,7 +44,6 @@ object MyTalk  {
         }
       """)
     ),
-
     noHeaderSlide(
       <.h3("Or have a blank slide")
     )
@@ -58,7 +53,6 @@ object MyTalk  {
     chapterSlide(
       <.h2("Where can I find more information?"),
     ),
-
     headerSlide(
       "about reveal.js",
       <.a(
@@ -66,7 +60,6 @@ object MyTalk  {
         "reveal.js"
       )
     ),
-
     headerSlide(
       "about ScalaJS",
       <.a(

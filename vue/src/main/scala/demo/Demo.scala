@@ -10,7 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.ThisFunction0
 import scala.scalajs.js.annotation.JSImport
 
-object Todo  {
+object Todo {
 
   @js.native
   trait DemoVue extends Vue {

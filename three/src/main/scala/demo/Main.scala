@@ -1,7 +1,7 @@
 package demo
 
-import typings.stdLib.{FrameRequestCallback, HTMLDivElement, UIEvent, Window, stdLibStrings}
-import typings.stdLib.^.{Date, document, requestAnimationFrame, window}
+import typings.stdLib.{stdLibStrings, FrameRequestCallback, HTMLDivElement, UIEvent, Window}
+import typings.stdLib.^.{document, requestAnimationFrame, window, Date}
 import typings.threeLib.threeDashCoreMod.{Geometry, Material, MeshLambertMaterialParameters}
 import typings.threeLib.threeMod.{MathNs => ThreeMath, Material => _, _}
 
@@ -20,7 +20,8 @@ object Main {
     info.style.top       = "10px"
     info.style.width     = "100%"
     info.style.textAlign = "center"
-    info.innerHTML ="""<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> webgl - morph targets - horse. model by <a href="http://mirada.com/">mirada</a> from <a href="http://ro.me">rome</a>"""
+    info.innerHTML =
+      """<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> webgl - morph targets - horse. model by <a href="http://mirada.com/">mirada</a> from <a href="http://ro.me">rome</a>"""
     container.appendChild(info)
 
     val camera = new PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000)
@@ -73,7 +74,7 @@ object Main {
     window.addEventListener_resize(stdLibStrings.resize, onWindowResize, false)
 
     var prevTime = Date.now()
-    var theta  = 0.0
+    var theta    = 0.0
 
     def animate: FrameRequestCallback = time => {
       theta += 0.1

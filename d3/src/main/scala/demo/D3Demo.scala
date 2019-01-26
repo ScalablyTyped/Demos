@@ -54,8 +54,8 @@ object D3Demo {
     val geometry = new LineString {
       override var coordinates = js.Array[Position]()
       // this is pretty not amazing, both these vars refer to the same member
-      override var type_LineString     = geojsonLibStrings.LineString
-      override var `type`              = geojsonLibStrings.LineString
+      override var type_LineString = geojsonLibStrings.LineString
+      override var `type`          = geojsonLibStrings.LineString
     }
 
     def rndLon = -180 + Math.random() * 360
