@@ -1,9 +1,11 @@
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption.REPLACE_EXISTING
 
+import org.scalajs.jsenv.nodejs.NodeJSEnv
+
 /**
   * Custom task to start demo with webpack-dev-server, use as `<project>/start`.
-  * Just `start` also works, and starts all demos
+  * Just `start` also works, and starts all frontend demos
   *
   * After that, the incantation is this to watch and compile on change:
   * `~<project>/fastOptJS::webpack`
@@ -13,7 +15,7 @@ lazy val start = TaskKey[Unit]("start")
 /** Say just `dist` or `<project>/dist` to make a production bundle in
   * `docs` for github publishing
   */
-lazy val dist = TaskKey[Unit]("dist")
+lazy val dist = TaskKey[File]("dist")
 
 lazy val `react-mobx` =
   project
@@ -198,6 +200,21 @@ lazy val angular = project
     )
   )
 
+lazy val electron = project
+  .configure(baseSettings, nodeProject)
+  .settings(
+    libraryDependencies ++= Seq(ScalablyTyped.E.electron),
+    /* run with globally installed electron */
+    jsEnv := new NodeJSEnv(
+      NodeJSEnv
+        .Config()
+        .withExecutable("electron")
+        .withArgs(List((Compile / classDirectory).value.toString))
+    ),
+    /* turn the compiled file into a module. */
+    scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
+  )
+
 lazy val lodash =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
@@ -301,6 +318,7 @@ lazy val browserProject: Project => Project =
       }
 
       Files.write(indexTo.toPath, indexPatchedContent.getBytes(IO.utf8))
+      distFolder
     }
   )
 

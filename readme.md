@@ -116,6 +116,23 @@ If you agree, now is your chance to use it with Scala.js.
 
 Adapted from [sherpal's prototype](https://github.com/sherpal/AngularScalaPOC).
 
+### Electron
+Implements the backend/mainprocess part of an Electron app in Scala.js,
+ though it would be easy to do the frontend as well (in another module).
+
+To start it you'll need electron installed globally:
+```
+yarn global add electron
+```
+
+and then start the project like this:
+
+```
+sbt>electron/run
+``` 
+
+Again adapted from [sherpal's work](https://github.com/sherpal/Scala.js-Electron-App-Example).
+
 ### lodash
 This is a very simple app which uses a few functions from lodash.
 `sbt> lodash/run` runs the demo in node.
