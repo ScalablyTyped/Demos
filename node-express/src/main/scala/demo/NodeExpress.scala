@@ -7,7 +7,6 @@ import typings.stdLib.^.console
 
 import scala.scalajs.js
 
-// https://github.com/BrianDGLS/express-ts
 object WelcomeController {
   val Router: Router =
     express.Router()

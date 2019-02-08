@@ -1,4 +1,7 @@
 .idea/
 target/
 .bloop/
-node_modules
+node_modules/
+.gradle/
+build/
+local.properties

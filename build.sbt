@@ -2,6 +2,7 @@ import java.nio.file.Files
 import java.nio.file.StandardCopyOption.REPLACE_EXISTING
 
 import org.scalajs.jsenv.nodejs.NodeJSEnv
+import scala.sys.process.Process
 
 /**
   * Custom task to start demo with webpack-dev-server, use as `<project>/start`.
@@ -201,7 +202,7 @@ lazy val angular = project
   )
 
 lazy val electron = project
-  .configure(baseSettings, nodeProject)
+  .configure(baseSettings, nodeProject, outputModule)
   .settings(
     libraryDependencies ++= Seq(ScalablyTyped.E.electron),
     /* run with globally installed electron */
@@ -211,8 +212,30 @@ lazy val electron = project
         .withExecutable("electron")
         .withArgs(List((Compile / classDirectory).value.toString))
     ),
-    /* turn the compiled file into a module. */
-    scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) },
+  )
+
+lazy val reactnative = project
+  .configure(baseSettings, outputModule)
+  .settings(
+    libraryDependencies ++= Seq(
+      ScalablyTyped.R.`react-native`,
+      ScalablyTyped.R.`react-navigation`,
+      ScalablyTyped.R.`react-native-vector-icons`,
+      ScalablyTyped.R.`react-contrib`
+    ),
+    clean := {
+      val _   = clean.value
+      val dir = baseDirectory.value / "android"
+      Process("./gradlew clean", dir).!
+    },
+    /** This is not suitable for development, but effective for demo.
+      * Run `yarn` and `react-native run-android` command yourself, and run `~reactnative/fastOptJS` from sbt
+      */
+    run := {
+      Process("yarn", baseDirectory.value).!
+      (Compile / fastOptJS).value
+      Process(s"${baseDirectory.value}/node_modules/.bin/react-native run-android", baseDirectory.value).!
+    }
   )
 
 lazy val lodash =
@@ -323,6 +346,8 @@ lazy val browserProject: Project => Project =
   )
 
 val nodeProject: Project => Project =
-  _.settings(
-    jsEnv := new org.scalajs.jsenv.nodejs.NodeJSEnv,
-  )
+  _.settings(jsEnv := new org.scalajs.jsenv.nodejs.NodeJSEnv)
+
+/* turn the javascript artifact into a module. */
+val outputModule: Project => Project =
+  _.settings(scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) })

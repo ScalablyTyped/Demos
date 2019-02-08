@@ -133,12 +133,31 @@ sbt>electron/run
 
 Again adapted from [sherpal's work](https://github.com/sherpal/Scala.js-Electron-App-Example).
 
+### React-native (android)
+
+This demo is adapted from [sri](https://github.com/scalajs-react-interface/sri), namely the 
+[App with drawer navigation](https://github.com/scalajs-react-interface/sri/blob/master/docs/GettingStarted.md#drawer-navigation) 
+example. 
+
+To run this you'll need to follow the 
+[getting started guide](https://facebook.github.io/react-native/docs/getting-started.html) 
+for react-native. 
+
+When you have an emulator running, you can start the demo like this:
+
+```
+sbt>reactnative/run
+
+``` 
+Note that to we keep things simple here: no production build, no iOS version, etc. 
+
 ### lodash
 This is a very simple app which uses a few functions from lodash.
 `sbt> lodash/run` runs the demo in node.
 
 ### node-express
 This demo is a HTTP endpoint written in express, which runs on node. 
+Adapted from [this](https://github.com/BrianDGLS/express-ts)
 
 `sbt> node-express/run` will start it.
 
