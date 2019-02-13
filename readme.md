@@ -115,7 +115,17 @@ Let's be nice and say that Angular is a reasonable alternative for creating a fr
 If you agree, now is your chance to use it with Scala.js.
 
 Adapted from [sherpal's prototype](https://github.com/sherpal/AngularScalaPOC).
+`sbt> angular/start` starts a webpack-dev-server at http://localhost:8012 .
 
+### Storybook
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/storybook-react/index.html)
+
+Storybook is a pretty great prototyping and demo tool. It does a lot of webpack and babel
+ itself, so the setup is a bit more hassle than other libraries. On the bright side
+ it comes with hot module reloading out of the box, even with Scala.js
+ 
+`sbt> storybook-react/run` starts a webpack-dev-server at http://localhost:8013 .
+ 
 ### Electron
 Implements the backend/mainprocess part of an Electron app in Scala.js,
  though it would be easy to do the frontend as well (in another module).

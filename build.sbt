@@ -201,8 +201,33 @@ lazy val angular = project
     )
   )
 
+lazy val `storybook-react` = project
+  .configure(baseSettings)
+  .settings(
+    libraryDependencies ++= Seq(
+      ScalablyTyped.N.node,
+      ScalablyTyped.R.react,
+      ScalablyTyped.R.`react-contrib`,
+      ScalablyTyped.S.storybook__react,
+    ),
+    /** This is not suitable for development, but effective for demo.
+      * Run `yarn` and `yarn storybook` commands yourself, and run `~storybook-react/fastOptJS` from sbt
+      */
+    run := {
+      Process("yarn", baseDirectory.value).!
+      (Compile / fastOptJS).value
+      Process("yarn storybook", baseDirectory.value).!
+    },
+    dist := {
+      val distFolder = (ThisBuild / baseDirectory).value / "docs" / moduleName.value
+      (Compile / fullOptJS).value
+      Process("yarn dist", baseDirectory.value).!
+      distFolder
+    }
+  )
+
 lazy val electron = project
-  .configure(baseSettings, nodeProject, outputModule)
+  .configure(baseSettings, outputModule)
   .settings(
     libraryDependencies ++= Seq(ScalablyTyped.E.electron),
     /* run with globally installed electron */
@@ -229,7 +254,7 @@ lazy val reactnative = project
       Process("./gradlew clean", dir).!
     },
     /** This is not suitable for development, but effective for demo.
-      * Run `yarn` and `react-native run-android` command yourself, and run `~reactnative/fastOptJS` from sbt
+      * Run `yarn` and `react-native run-android` commands yourself, and run `~reactnative/fastOptJS` from sbt
       */
     run := {
       Process("yarn", baseDirectory.value).!

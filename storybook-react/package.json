@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "storybook": "start-storybook -p 8013 -c .storybook",
+    "dist": "build-storybook -c .storybook-dist -o ../docs/storybook-react"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0",
+    "@storybook/react": "4.0",
+    "babel-loader": "^8.0.5",
+    "react": "16.8",
+    "react-dom": "16.8",
+    "source-map-loader": "^0.2.4"
+  }
+}
