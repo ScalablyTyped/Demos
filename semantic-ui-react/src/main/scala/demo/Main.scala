@@ -22,12 +22,7 @@ object Main {
 
         /* set up redux store with devtools*/
         val Store: Store[GithubSearch.State, GithubSearch.SearchAction] =
-          reduxMod.^.createStore(
-            GithubSearch.Reducer,
-            devToolsEnhancer(new EnhancerOptions {
-              name = "github search store"
-            })
-          )
+          reduxMod.^.createStore(GithubSearch.Reducer, devToolsEnhancer(EnhancerOptions(name = "github search store")))
 
         /* Connect `Demo` component */
         val ConnectedDemo: FC[Demo.Props] =
@@ -36,12 +31,8 @@ object Main {
         /* And use `Provider` instead of just passing a normal, goddamn parameter */
         render(
           cls[Provider[GithubSearch.SearchAction]].props(
-            new reactDashReduxMod.ProviderProps[GithubSearch.SearchAction] {
-              override var store: Store[_, GithubSearch.SearchAction] = Store
-            },
-            ConnectedDemo.props(new Demo.Props {
-              val title = "Welcome"
-            })
+            reactDashReduxMod.ProviderProps[GithubSearch.SearchAction](store = Store),
+            ConnectedDemo.props(new Demo.Props("Welcome"))
           ),
           Knowledge.isElement(container)
         )

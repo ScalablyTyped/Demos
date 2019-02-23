@@ -29,16 +29,20 @@ object MainProcess {
       * Creating the BrowserWindow object, with the desired options.
       */
     val window = new BrowserWindow(
-      new BrowserWindowConstructorOptions {
-        height = js.defined(600)
-        width  = js.defined(800)
-      }
+      BrowserWindowConstructorOptions(
+        height = 600,
+        width  = 800
+      )
     )
-    window.loadURL(urlMod.^.format(new UrlObject {
-      pathname = join(app.getAppPath(), "index.html")
-      protocol = "file:"
-      slashes  = true
-    }))
+    window.loadURL(
+      urlMod.^.format(
+        UrlObject(
+          pathname = join(app.getAppPath(), "index.html"),
+          protocol = "file:",
+          slashes  = true
+        )
+      )
+    )
 
     /**
       * In Scala.js, you have two modes for compiling your code. A fast and a full optimized way. Fast optimisation

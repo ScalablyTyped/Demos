@@ -2,14 +2,14 @@ package demo
 
 import typings.momentLib.momentLibStrings
 import typings.momentLib.momentMod.{^ => Moment}
+import typings.reactDashBigDashCalendarLib.{reactDashBigDashCalendarLibStrings, Anon_Month}
 import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.{
   BigCalendarProps,
   Navigate,
   default => ReactBigCalendar
 }
-import typings.reactDashBigDashCalendarLib.{reactDashBigDashCalendarLibStrings, Anon_Month}
 import typings.reactDashDomLib.reactDashDomMod
-import typings.reactLib.reactMod.ReactNs.{CSSProperties, FC, ReactNode}
+import typings.reactLib.reactMod.ReactNs.{FC, ReactNode}
 import typings.stdLib.Date
 import typings.stdLib.^.{console, document, Date, Object}
 import typings.{reactLib, stdLib}
@@ -72,21 +72,17 @@ object Main {
       case Some(container) =>
         reactDashDomMod.^.render(
           cls[ReactBigCalendar[Event, js.Object]].props(
-            new BigCalendarProps[Event, js.Object] {
-              override var localizer = Localizer
-              events      = js.Array(someEvent)
-              defaultDate = Date.newInstance0()
-              defaultView = reactDashBigDashCalendarLibStrings.month
-              views = new Anon_Month {
-                override var month  = true
-                override var myweek = Knowledge.unspecify(MyJsonyMonthExtended)
-                override var week   = true
-              }
-              /* can pass style even though it isn't specified in `BigCalendarProps` */
-              val style = new CSSProperties {
-                height = "100vh"
-              }
-            }
+            BigCalendarProps[Event, js.Object](
+              localizer   = Localizer,
+              events      = js.Array(someEvent),
+              defaultDate = Date.newInstance0(),
+              defaultView = reactDashBigDashCalendarLibStrings.week,
+              views = Anon_Month(
+                month  = true,
+                myweek = Knowledge.unspecify(MyJsonyMonthExtended),
+                week   = true
+              )
+            )
           ),
           Knowledge.isElement(container),
         )

@@ -28,22 +28,22 @@ object Demo {
   }
 
   def chartConfig(tpe: ChartType, Data: js.Array[js.UndefOr[Double | Null]]): ChartConfiguration =
-    new ChartConfiguration {
-      `type` = tpe.asInstanceOf[String] // note, this cast avoids a compiler bug!? typer never finishes
-      data = new ChartData {
-        labels = Labels
-        datasets = js.Array(new ChartDataSets {
-          label           = "Dataset 1"
-          data            = Data
-          borderWidth     = 1
-          backgroundColor = BackgroundColor
-          borderColor     = BorderColor
-        })
-      }
-      options = new ChartOptions {
-        responsive = true
-      }
-    }
+    ChartConfiguration(
+      `type` = tpe.asInstanceOf[String], // note, this cast avoids a compiler bug!? typer never finishes
+      data = ChartData(
+        labels = Labels,
+        datasets = js.Array(
+          ChartDataSets(
+            label           = "Dataset 1",
+            data            = Data,
+            borderWidth     = 1,
+            backgroundColor = BackgroundColor,
+            borderColor     = BorderColor
+          )
+        )
+      ),
+      options = ChartOptions(responsive = true)
+    )
 
   def chart(config: ChartConfiguration): HTMLDivElement = {
     val div:    HTMLDivElement    = document.createElement_div(stdLibStrings.div)
@@ -61,13 +61,13 @@ object Demo {
     val addDataSet = button(
       "Add Dataset",
       (_, _) => {
-        val newDataset = new ChartDataSets {
-          label           = "Dataset " + dataSetsU.fold(0)(_.length + 1)
-          data            = randomData(100, random.nextInt())
-          borderWidth     = 1
-          backgroundColor = BackgroundColor
-          borderColor     = BorderColor
-        }
+        val newDataset = ChartDataSets(
+          label           = "Dataset " + dataSetsU.fold(0)(_.length + 1),
+          data            = randomData(100, random.nextInt()),
+          borderWidth     = 1,
+          backgroundColor = BackgroundColor,
+          borderColor     = BorderColor,
+        )
 
         dataSetsU.foreach(_.push(newDataset))
         c.update()

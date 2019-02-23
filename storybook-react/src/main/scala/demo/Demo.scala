@@ -3,7 +3,7 @@ package demo
 import typings.atStorybookReactLib.atStorybookReactMod.RenderFunction
 import typings.atStorybookReactLib.atStorybookReactMod.^.storiesOf
 import typings.nodeLib.^.module
-import typings.reactLib.reactMod.ReactNs.ButtonHTMLAttributes
+import typings.reactLib.reactMod.ReactNs.{ButtonHTMLAttributes, DOMAttributes, HTMLAttributes}
 import typings.stdLib.HTMLButtonElement
 import typings.stdLib.^.window
 
@@ -24,13 +24,13 @@ object Demo {
         fn(
           () =>
             button.props(
-              new ButtonHTMLAttributes[HTMLButtonElement] {
-                `aria-label` = "so cool"
-                role         = "img"
-                onClick = js.defined(e => {
-                  window.alert(s"x: ${e.pageX}, y: ${e.pageY}")
-                })
-              },
+              ButtonHTMLAttributes(
+                HTMLAttributes(
+                  DOMAttributes(onClick = e => window.alert(s"x: ${e.pageX}, y: ${e.pageY}")),
+                  `aria-label` = "so cool",
+                  role         = "img",
+                ),
+              ),
               span.noprops("😀😎")
           )
         )

@@ -22,15 +22,17 @@ object Demo {
     /* render talk before we initialize Reveal */
     MyTalk.Talk().renderIntoDOM(dom.document.body)
 
-    Includes.Reveal.initialize(new RevealOptions {
-      width      = "80%"
-      height     = "100%"
-      controls   = false
-      progress   = false
-      history    = false
-      center     = true
-      transition = "none"
-    })
+    Includes.Reveal.initialize(
+      RevealOptions(
+        width      = "80%",
+        height     = "100%",
+        controls   = false,
+        progress   = false,
+        history    = false,
+        center     = true,
+        transition = "none",
+      )
+    )
   }
 }
 
