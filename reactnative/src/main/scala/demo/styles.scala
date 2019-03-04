@@ -1,6 +1,6 @@
 package demo
 
-import typings.reactDashNativeLib.reactDashNativeMod.{TextStyle, TextStyleAndroid, ViewStyle}
+import typings.reactDashNativeLib.reactDashNativeMod.{TextStyle, ViewStyle}
 import typings.reactDashNativeLib.{reactDashNativeLibStrings, Anon_Height}
 
 object styles {
@@ -28,6 +28,7 @@ object styles {
   val navScreenHeader = ViewStyle(height = 44, paddingTop = 0, backgroundColor = red500)
 
   val sampleText = TextStyle(
-    TextStyleAndroid = TextStyleAndroid(margin = 14, shadowOffset = Anon_Height(height = 10, width = 10))
+    margin       = 14,
+    shadowOffset = Anon_Height(height = 10, width = 10)
   )
 }

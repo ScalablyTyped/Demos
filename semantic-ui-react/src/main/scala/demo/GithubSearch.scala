@@ -4,13 +4,7 @@ import org.scalablytyped.runtime.StringDictionary
 import typings.reactDashReduxLib.ReduxFacade.Extractor
 import typings.reactLib.reactMod.ReactNs.AnchorHTMLAttributes
 import typings.reduxLib.reduxMod.{Action, Dispatch, Reducer}
-import typings.semanticDashUiDashReactLib.distCommonjsElementsButtonButtonMod.ButtonProps
-import typings.semanticDashUiDashReactLib.distCommonjsElementsInputInputMod.InputProps
-import typings.semanticDashUiDashReactLib.distCommonjsElementsListListHeaderMod.ListHeaderProps
-import typings.semanticDashUiDashReactLib.distCommonjsElementsListListIconMod.ListIconProps
-import typings.semanticDashUiDashReactLib.distCommonjsElementsListListMod.ListProps
-import typings.semanticDashUiDashReactLib.semanticDashUiDashReactLibStrings
-import typings.semanticDashUiDashReactLib.semanticDashUiDashReactMod.{Button, Input, ^ => Sui}
+import typings.semanticDashUiDashReactLib.{semanticDashUiDashReactLibStrings, semanticDashUiDashReactLibComponents => Sui}
 import typings.stdLib.ThenableOps.ThenableOps
 import typings.stdLib.^.{console, fetch}
 import typings.stdLib.{Record, RequestInit}
@@ -110,45 +104,38 @@ object GithubSearch {
 
   val C = define.fc[Props] { props =>
     div.noprops(
-      cls[Input].props(
-        InputProps(
-          StringDictionary("defaultValue" -> props.state.search),
-          onChange = (_, data) => props.dispatch(SearchTextChanged(data.value))
-        ),
+      Sui.Input.props(
+        Sui.InputProps(StringDictionary("defaultValue" -> props.state.search),
+                       onChange = (_, data) => props.dispatch(SearchTextChanged(data.value))),
         input.noprops(),
-        cls[Button].props(
-          ButtonProps(
+        Sui.Button.props(
+          Sui.ButtonProps(
             onClick = (e, data) =>
-              api
-                .doSearch(props.state.search)
-                .foreach(res => props.dispatch(SearchReposSuccess(res.items)))
+              api.doSearch(props.state.search).foreach(res => props.dispatch(SearchReposSuccess(res.items)))
           )
         )
       ),
       props.state.repos.map(
         repos =>
           Sui.List.props(
-            ListProps(
-              divided = true,
-              relaxed = true
-            ),
+            Sui.ListProps(divided = true, relaxed = true),
             repos.map(
               repo =>
-                Sui.List.Item
+                Sui.ListItem
                   .withKey(repo.name)
                   .noprops(
-                    Sui.List.Icon.props(
-                      ListIconProps(
-                        name          = semanticDashUiDashReactLibStrings.github,
-                        size          = semanticDashUiDashReactLibStrings.large,
-                        verticalAlign = semanticDashUiDashReactLibStrings.middle
-                      )
+                    Sui.ListIcon.props(
+                      Sui.ListIconProps(name          = semanticDashUiDashReactLibStrings.github,
+                                        size          = semanticDashUiDashReactLibStrings.large,
+                                        verticalAlign = semanticDashUiDashReactLibStrings.middle)
                     ),
-                    Sui.List.Content.noprops(
-                      Sui.List.Header.props(
-                        ListHeaderProps(content = a.props(AnchorHTMLAttributes(href = repo.html_url), repo.full_name))
+                    Sui.ListContent.noprops(
+                      Sui.ListHeader.props(
+                        Sui.ListHeaderProps(
+                          content = a.props(AnchorHTMLAttributes(href = repo.html_url), repo.full_name)
+                        )
                       ),
-                      Sui.List.Description.noprops(repo.description)
+                      Sui.ListDescription.noprops(repo.description)
                     )
                 )
             )

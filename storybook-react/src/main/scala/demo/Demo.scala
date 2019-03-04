@@ -4,7 +4,6 @@ import typings.atStorybookReactLib.atStorybookReactMod.RenderFunction
 import typings.atStorybookReactLib.atStorybookReactMod.^.storiesOf
 import typings.nodeLib.^.module
 import typings.reactLib.reactMod.ReactNs.{ButtonHTMLAttributes, DOMAttributes, HTMLAttributes}
-import typings.stdLib.HTMLButtonElement
 import typings.stdLib.^.window
 
 import scala.scalajs.js
@@ -26,7 +25,7 @@ object Demo {
             button.props(
               ButtonHTMLAttributes(
                 HTMLAttributes(
-                  DOMAttributes(onClick = e => window.alert(s"x: ${e.pageX}, y: ${e.pageY}")),
+                  onClick      = e => window.alert(s"x: ${e.pageX}, y: ${e.pageY}"),
                   `aria-label` = "so cool",
                   role         = "img",
                 ),

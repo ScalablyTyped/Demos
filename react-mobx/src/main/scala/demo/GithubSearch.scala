@@ -4,17 +4,13 @@ import typings.axiosLib.axiosMod.AxiosRequestConfig
 import typings.axiosLib.axiosMod.^.{default => Axios}
 import typings.csstypeLib.csstypeLibStrings
 import typings.csstypeLib.csstypeMod.{Properties, StandardLonghandProperties, StandardProperties}
-import typings.materialDashUiLib.flatbuttonMod.{default => FlatButton}
-import typings.materialDashUiLib.paperMod.{default => Paper}
-import typings.materialDashUiLib.tableMod._
-import typings.materialDashUiLib.textfieldMod.{default => TextField}
-import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.{FlatButtonProps, PaperProps, TextFieldProps}
+import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
 import typings.mobxDashReactLib.mobxDashReactMod.^.observer
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
 import typings.mobxLib.{mobxMod => MobX}
-import typings.reactLib.reactMod.ReactNs.{ComponentClass, DOMAttributes, ReactNode}
+import typings.reactLib.reactMod.ReactNs.{ComponentClass, ReactNode}
 import typings.reactLib.reactMod._
-import typings.stdLib.^.console
+import typings.stdLib.^.{console, window}
 
 import scala.scalajs.js
 
@@ -64,19 +60,27 @@ object GithubSearch {
   /* this is a simple functional component to display a github repo in a table row */
   private val RepoRow = define.fc[Repository](
     repo =>
-      cls[TableRow].noprops(
-        cls[TableRowColumn].noprops(repo.name),
-        cls[TableRowColumn].noprops(repo.forks_count),
-        cls[TableRowColumn].noprops(repo.stargazers_count),
-        cls[TableRowColumn].noprops(cls[FlatButton].props(FlatButtonProps(disabled = false), "Go to project")),
+      Mui.TableRow.noprops(
+        Mui.TableRowColumn.noprops(repo.name),
+        Mui.TableRowColumn.noprops(repo.forks_count),
+        Mui.TableRowColumn.noprops(repo.stargazers_count),
+        Mui.TableRowColumn.noprops(
+          Mui.FlatButton.props(
+            Mui.FlatButtonProps(
+              disabled = false,
+              onClick  = _ => window.location.href = repo.html_url
+            ),
+            "Go to project"
+          )
+        ),
     )
   )
 
   private class C extends Component[Props, js.Any, js.Any] {
     override def render(): ReactNode =
       div.noprops(
-        cls[Paper].props(
-          PaperProps(
+        Mui.Paper.props(
+          Mui.PaperProps(
             style = Properties(
               StandardProperties = StandardProperties(
                 StandardLonghandProperties = StandardLonghandProperties(
@@ -90,31 +94,31 @@ object GithubSearch {
             rounded = true
           )
         ),
-        cls[TextField].props(
-          TextFieldProps(
+        Mui.TextField.props(
+          Mui.TextFieldProps(
             name     = "search",
             value    = props.store.search.get,
             onChange = (_, newValue) => props.store.search.set(newValue)
           )
         ),
-        cls[FlatButton].props(
-          FlatButtonProps(DOMAttributes(onClick = _ => props.store.searchForRepos())),
+        Mui.FlatButton.props(
+          Mui.FlatButtonProps(onClick = _ => props.store.searchForRepos()),
           "Search"
         ),
         props.store.result
           .get()
           .fold[ReactNode](div.noprops("No result yet"))(
             repos =>
-              cls[Table].noprops(
-                cls[TableHeader].noprops(
-                  cls[TableRow].noprops(
-                    cls[TableRowColumn].noprops("name"),
-                    cls[TableRowColumn].noprops("forks_count"),
-                    cls[TableRowColumn].noprops("stargazers_count"),
-                    cls[TableRowColumn].noprops("link"),
+              Mui.Table.noprops(
+                Mui.TableHeader.noprops(
+                  Mui.TableRow.noprops(
+                    Mui.TableRowColumn.noprops("name"),
+                    Mui.TableRowColumn.noprops("forks_count"),
+                    Mui.TableRowColumn.noprops("stargazers_count"),
+                    Mui.TableRowColumn.noprops("link"),
                   )
                 ),
-                cls[TableBody].noprops(
+                Mui.TableBody.noprops(
                   repos.map(repo => RepoRow.withKey(repo.name).props(repo))
                 )
             )

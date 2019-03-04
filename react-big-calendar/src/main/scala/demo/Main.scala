@@ -2,21 +2,17 @@ package demo
 
 import typings.momentLib.momentLibStrings
 import typings.momentLib.momentMod.{^ => Moment}
-import typings.reactDashBigDashCalendarLib.{reactDashBigDashCalendarLibStrings, Anon_Month}
-import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.{
-  BigCalendarProps,
-  Navigate,
-  default => ReactBigCalendar
-}
+import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.Navigate
+import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.default.momentLocalizer
+import typings.reactDashBigDashCalendarLib.{Anon_Month, reactDashBigDashCalendarLibStrings, reactDashBigDashCalendarLibComponents => BC}
 import typings.reactDashDomLib.reactDashDomMod
 import typings.reactLib.reactMod.ReactNs.{FC, ReactNode}
 import typings.stdLib.Date
-import typings.stdLib.^.{console, document, Date, Object}
-import typings.{reactLib, stdLib}
+import typings.stdLib.^.{Date, Object, console, document}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
-import scala.scalajs.js.{|, JSON, UndefOr}
+import scala.scalajs.js.{JSON, UndefOr, |}
 
 @JSImport("react-big-calendar/lib/css/react-big-calendar.css", JSImport.Namespace)
 @js.native
@@ -30,7 +26,7 @@ trait Event extends js.Object {
 
 trait ViewStatic[E] extends js.Object {
   def title(e:       js.UndefOr[E]): String
-  def navigate(date: js.UndefOr[stdLib.Date], action: js.UndefOr[Navigate], props: js.UndefOr[js.Any]): stdLib.Date
+  def navigate(date: js.UndefOr[Date], action: js.UndefOr[Navigate], props: js.UndefOr[js.Any]): Date
 }
 
 object Main {
@@ -38,11 +34,11 @@ object Main {
 
   BigCalendarCss // touch to load css
 
-  val Localizer = ReactBigCalendar.momentLocalizer(Moment)
+  val Localizer = momentLocalizer(Moment)
 
   /* define a functional component with static members */
   val MyJsonyMonth =
-    define.fc[BigCalendarProps[Event, js.Object]] { props =>
+    define.fc[BC.BigCalendarProps[Event, js.Object]] { props =>
       div.noprops(
         "My jsony month",
         js.defined(props).fold[ReactNode]("No props")(x => pre.noprops(code.noprops(JSON.stringify(x))))
@@ -51,7 +47,7 @@ object Main {
 
   /* define a functional component with static members */
   val MyJsonyMonthExtended =
-    Object.assign[FC[BigCalendarProps[Event, js.Object]], ViewStatic[Event]](
+    Object.assign[FC[BC.BigCalendarProps[Event, js.Object]], ViewStatic[Event]](
       MyJsonyMonth,
       new ViewStatic[Event] {
         override def title(e: js.UndefOr[Event]): String =
@@ -71,8 +67,8 @@ object Main {
     Knowledge.asOption(document.getElementById("container")) match {
       case Some(container) =>
         reactDashDomMod.^.render(
-          cls[ReactBigCalendar[Event, js.Object]].props(
-            BigCalendarProps[Event, js.Object](
+          BC.ReactDashBigDashCalendar[Event, js.Object].props(
+            BC.BigCalendarProps[Event, js.Object](
               localizer   = Localizer,
               events      = js.Array(someEvent),
               defaultDate = Date.newInstance0(),
@@ -84,7 +80,7 @@ object Main {
               )
             )
           ),
-          Knowledge.isElement(container),
+          container,
         )
       case None => console.error("Could not find #container")
     }
@@ -92,9 +88,6 @@ object Main {
 }
 
 object Knowledge {
-  def isElement(e: stdLib.Element): reactLib.Element =
-    e.asInstanceOf[reactLib.Element]
-
   def unspecify[T](c: FC[T]): FC[js.Object] =
     c.asInstanceOf[FC[js.Object]]
 

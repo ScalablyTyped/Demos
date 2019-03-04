@@ -1,9 +1,6 @@
 package demo
 
-import typings.materialDashUiLib.avatarMod.{default => Avatar}
-import typings.materialDashUiLib.raisedbuttonMod.{default => RaisedButton}
-import typings.materialDashUiLib.svgDashIconsActionAlarmMod.{default => ActionAlarm}
-import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.{AvatarProps, RaisedButtonProps, SvgIconProps}
+import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
 import typings.mobxDashReactLib.mobxDashReactMod.^.observer
 import typings.mobxLib.libCoreComputedvalueMod.IComputedValue
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
@@ -42,10 +39,10 @@ object MobXTest {
 
     override def render: ReactNode =
       div.noprops(
-        cls[Avatar].props(
-          AvatarProps(
-            icon = cls[ActionAlarm].props(
-              SvgIconProps(
+        Mui.Avatar.props(
+          Mui.AvatarProps(
+            icon = Mui.ActionAlarm.props(
+              Mui.SvgIconProps(
                 SVGAttributes = SVGAttributes(
                   DOMAttributes = DOMAttributes(onClick = e => console.warn(s"icon clicked ${e.nativeEvent}")),
                 ),
@@ -62,8 +59,8 @@ object MobXTest {
         " Current foo str ",
         props.store.foo.get.str,
         " ",
-        cls[RaisedButton].props(
-          RaisedButtonProps(onClick = increaseNum),
+        Mui.RaisedButton.props(
+          Mui.RaisedButtonProps(onClick = increaseNum),
           "increase num"
         )
       )

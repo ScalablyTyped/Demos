@@ -2,13 +2,11 @@ package demo
 
 import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
 import typings.atAngularCoreLib.srcMetadataNgUnderscoreModuleMod.NgModule
-import typings.atAngularCoreLib.srcTypeMod.Type
 import typings.atAngularRouterLib.atAngularRouterMod.RouterModule
 import typings.atAngularRouterLib.srcConfigMod.{Route, Routes}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic
-import scala.scalajs.js.|
 
 final class AppRoutingModule extends js.Object
 
@@ -19,8 +17,8 @@ object AppRoutingModule {
     js.Array(
       Core.NgModule.newInstance1(
         NgModule(
-          imports = js.Array[Import](unspecify(RouterModule.forRoot(routes))),
-          exports = js.Array[Type[_] | js.Array[_]](typeOf[RouterModule])
+          imports = js.Array(unspecify(RouterModule.forRoot(routes))),
+          exports = js.Array(typeOf[RouterModule])
         )
       )
     )
