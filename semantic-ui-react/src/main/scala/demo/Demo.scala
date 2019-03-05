@@ -7,9 +7,12 @@ import typings.semanticDashUiDashReactLib.distCommonjsModulesSearchSearchMod.Sea
 import typings.semanticDashUiDashReactLib.distCommonjsModulesTabTabMod.TabProps
 import typings.semanticDashUiDashReactLib.distCommonjsViewsCardCardHeaderMod.CardHeaderProps
 import typings.semanticDashUiDashReactLib.distCommonjsViewsCardCardMetaMod.CardMetaProps
-import typings.semanticDashUiDashReactLib.distCommonjsViewsCardCardMod.CardProps
+import typings.semanticDashUiDashReactLib.distCommonjsViewsCardCardMod.{CardProps, StrictCardProps}
 import typings.semanticDashUiDashReactLib.semanticDashUiDashReactMod.{^ => Sui}
-import typings.semanticDashUiDashReactLib.{Anon_Content, semanticDashUiDashReactLibStrings => SuiStrings}
+import typings.semanticDashUiDashReactLib.{
+  Anon_Content => TabStructure,
+  semanticDashUiDashReactLibStrings => SuiStrings
+}
 import typings.reactDashReduxLib.ReduxFacade.Connected
 
 import scala.scalajs.js
@@ -17,64 +20,39 @@ import scala.scalajs.js
 object Demo {
   import typings.reactLib.dsl._
 
-  /* This object is unfortunately anonymous in typescript */
-  type TabStructure = Anon_Content
-
-  trait Props extends js.Object {
-    val title: String
-  }
+  class Props(val title: String) extends js.Object
 
   val CardDemo: ReactElement[CardProps] =
     Sui.Card.props(
-      new CardProps { color = SuiStrings.orange },
-      Sui.CardHeader.props(new CardHeaderProps {}, "CardHeader"),
-      Sui.CardMeta.props(new CardMetaProps {}, "CardMeta"),
+      CardProps(color = SuiStrings.orange),
+      Sui.CardHeader.noprops("CardHeader"),
+      Sui.CardMeta.noprops("CardMeta"),
       Sui.Divider.noprops(),
-      Sui.Search.props(new SearchProps {
-        minCharacters = js.defined(1)
-      }),
+      Sui.Search.props(SearchProps(minCharacters = 1)),
     )
 
   val ProgressDemo: ReactElement[CardProps] =
     Sui.Card.noprops(
-      Sui.Progress.props(new ProgressProps {
-        percent = 70
-        warning = true
-      }),
-      Sui.Progress.props(new ProgressProps {
-        percent = 100
-        warning = false
-      })
+      Sui.Progress.props(ProgressProps(percent = 70, warning  = true)),
+      Sui.Progress.props(ProgressProps(percent = 100, warning = false))
     )
 
   val C = define.fc[Connected[GithubSearch.State, GithubSearch.SearchAction] with Props](
     props =>
       div.noprops(
-        Sui.Header.props(new HeaderProps {
-          size = SuiStrings.large
-        }, props.title),
-        Sui.Tab.props(new TabProps {
-          panes = js.Array(
-            new TabStructure {
-              menuItem = js.defined("Repo search")
-              render = js.defined(
-                () =>
-                  GithubSearch.C.props(new GithubSearch.Props {
-                    val state    = props.state
-                    val dispatch = props.dispatch
-                  })
-              )
-            },
-            new TabStructure {
-              menuItem = js.defined("Card")
-              render   = js.defined(() => CardDemo)
-            },
-            new TabStructure {
-              menuItem = js.defined("Progress")
-              render   = js.defined(() => ProgressDemo)
-            }
+        Sui.Header.props(HeaderProps(size = SuiStrings.large), props.title),
+        Sui.Tab.props(
+          TabProps(
+            panes = js.Array(
+              TabStructure(
+                menuItem = "Repo search",
+                render   = () => GithubSearch.C.props(new GithubSearch.Props(props.state, props.dispatch))
+              ),
+              TabStructure(menuItem = "Card", render     = () => CardDemo),
+              TabStructure(menuItem = "Progress", render = () => ProgressDemo)
+            )
           )
-        }),
+        ),
     )
   )
 }

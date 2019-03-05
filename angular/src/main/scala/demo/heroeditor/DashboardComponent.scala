@@ -6,7 +6,7 @@ import typings.atAngularCoreLib.srcMetadataDirectivesMod.Component
 import typings.atAngularCoreLib.srcMetadataLifecycleUnderscoreHooksMod.OnInit
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.{JSExportStatic, JSImport}
+import scala.scalajs.js.annotation.JSExportStatic
 
 final class DashboardComponent(heroService: HeroService) extends OnInit {
   var heroes: js.Array[Hero] = MockHeroes.heroes.slice(1, 5)
@@ -22,9 +22,10 @@ object DashboardComponent {
 
   @JSExportStatic
   val annotations = js.Array(
-    Core.Component.newInstance1(new Component {
-      selector = "app-dashboard"
-      template = """
+    Core.Component.newInstance1(
+      Component(
+        selector = "app-dashboard",
+        template = """
           |<h3>Top Heroes</h3>
           |<div class="grid grid-pad">
           |    <a *ngFor="let hero of heroes" class="col-1-4"
@@ -35,9 +36,8 @@ object DashboardComponent {
           |    </a>
           |</div>
           |
-        """.stripMargin
-
-      styles = js.Array("""
+        """.stripMargin,
+        styles   = js.Array("""
           |/* DashboardComponent's private CSS styles */
           |[class*='col-'] {
           |  float: left;
@@ -101,7 +101,8 @@ object DashboardComponent {
           |  }
           |}
         """.stripMargin)
-    }),
+      )
+    ),
   )
 
   @JSExportStatic

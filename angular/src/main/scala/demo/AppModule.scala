@@ -20,19 +20,20 @@ object AppModule {
 
   @JSExportStatic
   val annotations = js.Array(
-    Core.NgModule.newInstance1(new NgModule {
-      imports = js.Array[Import](typeOf[BrowserModule], typeOf[FormsModule], typeOf[AppRoutingModule])
-
-      declarations = js.Array[Type[_] | js.Array[_]](
-        typeOf[AppComponent],
-        typeOf[HeroesComponent],
-        typeOf[HeroDetailComponent],
-        typeOf[MessagesComponent],
-        typeOf[DashboardComponent]
+    Core.NgModule.newInstance1(
+      NgModule(
+        imports = js.Array[Import](typeOf[BrowserModule], typeOf[FormsModule], typeOf[AppRoutingModule]),
+        declarations = js.Array[Type[_] | js.Array[_]](
+          typeOf[AppComponent],
+          typeOf[HeroesComponent],
+          typeOf[HeroDetailComponent],
+          typeOf[MessagesComponent],
+          typeOf[DashboardComponent]
+        ),
+        bootstrap = js.Array[Type[_] | js.Array[_]](typeOf[AppComponent]),
+        providers = js.Array[Provider](typeOf.any[HeroService], typeOf.any[MessageService]),
+        exports   = js.Array[Type[_] | js.Array[_]]()
       )
-      bootstrap = js.Array[Type[_] | js.Array[_]](typeOf[AppComponent])
-      providers = js.Array[Provider](typeOf.any[HeroService], typeOf.any[MessageService])
-      exports   = js.Array[Type[_] | js.Array[_]]()
-    })
+    )
   )
 }

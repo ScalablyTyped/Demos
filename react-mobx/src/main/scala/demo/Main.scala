@@ -6,15 +6,9 @@ import typings.reactLib.dsl.fromComponent
 import typings.stdLib.^.window
 
 object Main {
-  def main(argv: Array[String]): Unit = {
-    val props = new MainTabs.Props {
-      val githubStore = new GithubSearch.Store()
-      val testStore   = new MobXTest.Store
-    }
-
+  def main(argv: Array[String]): Unit =
     render(
-      MainTabs.Component.props(props),
+      MainTabs.Component.props(new MainTabs.Props(new MobXTest.Store, new GithubSearch.Store())),
       window.document.body.asInstanceOf[Element]
     )
-  }
 }

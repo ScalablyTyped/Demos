@@ -27,9 +27,10 @@ object AppComponent {
     */
   @JSExportStatic
   val annotations = js.Array(
-    Core.Component.newInstance1(new Component {
-      selector = "app-root"
-      template = """
+    Core.Component.newInstance1(
+      Component(
+        selector = "app-root",
+        template = """
           |<h1>{{ title }}</h1>
           |<nav>
           |    <a routerLink="/dashboard">Dashboard</a>
@@ -39,9 +40,8 @@ object AppComponent {
           |
           |<app-messages></app-messages>
           |
-        """.stripMargin
-
-      styles = js.Array("""
+        """.stripMargin,
+        styles   = js.Array("""
           |h1 {
           |  font-size: 1.2em;
           |  color: #999;
@@ -71,6 +71,7 @@ object AppComponent {
           |  color: #039be5;
           |}
         """.stripMargin)
-    }),
+      )
+    )
   )
 }

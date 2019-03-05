@@ -18,11 +18,5 @@ object MockHeroes {
   )
 
   val heroes: js.Array[Hero] =
-    names.zipWithIndex.map {
-      case (n, index) =>
-        new Hero {
-          val id:   Int    = index + 11
-          val name: String = n
-        }
-    }
+    names.zipWithIndex.map { case (n, index) => new Hero(index + 11, n) }
 }

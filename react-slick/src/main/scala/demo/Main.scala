@@ -35,13 +35,15 @@ object Main {
           ^.style := js.Dynamic.literal(color = "blue"),
           s"Selected image index: ${$.state.selectedIdx.fold("none")(_.toString)}"
         ),
-        SlickFacade(new Settings {
-          onInit        = js.defined(() => println("slick init"))
-          dots          = true
-          autoplay      = true
-          autoplaySpeed = js.defined(1000)
-          slidesToShow  = js.defined(2)
-        })(images: _*)
+        SlickFacade(
+          Settings(
+            onInit        = () => println("slick init"),
+            dots          = true,
+            autoplay      = true,
+            autoplaySpeed = 1000,
+            slidesToShow  = 2,
+          )
+        )(images: _*)
       )
     }
     .build

@@ -1,16 +1,15 @@
 package demo
 
+import typings.csstypeLib.csstypeMod.BackgroundColorProperty
 import typings.materialDashUiLib.stylesBaseThemesLightBaseThemeMod.{default => theme}
-import typings.materialDashUiLib.stylesMod.MuiTheme
 import typings.materialDashUiLib.stylesMod.^.getMuiTheme
 import typings.materialDashUiLib.stylesMuiThemeProviderMod.{default => MuiThemeProvider}
 import typings.materialDashUiLib.tabsMod._
-import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.StylesNs.MuiThemeProviderProps
+import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.StylesNs.{MuiTheme, MuiThemeProviderProps}
 import typings.materialDashUiLib.underscoreUnderscoreMaterialUINs.TabsNs.TabProps
 import typings.mobxDashReactLib.mobxDashReactMod.^.observer
-import typings.reactLib.reactMod.ReactNs.{CSSProperties, ComponentClass, HTMLAttributes, ReactNode}
+import typings.reactLib.reactMod.ReactNs.{Component => _, _}
 import typings.reactLib.reactMod._
-import typings.stdLib
 import typings.stdLib.^.console
 
 import scala.scalajs.js
@@ -18,10 +17,7 @@ import scala.scalajs.js
 object MainTabs {
   import typings.reactLib.dsl._
 
-  trait Props extends js.Object {
-    val testStore:   MobXTest.Store
-    val githubStore: GithubSearch.Store
-  }
+  class Props(val testStore: MobXTest.Store, val githubStore: GithubSearch.Store) extends js.Object
 
   private class C extends Component[Props, js.Any, js.Any] {
     override def render(): ReactNode = {
@@ -31,27 +27,29 @@ object MainTabs {
       })
 
       cls[MuiThemeProvider].props(
-        new MuiThemeProviderProps { muiTheme = effectiveTheme },
+        MuiThemeProviderProps(effectiveTheme),
         div.props(
-          new HTMLAttributes[stdLib.HTMLDivElement] {
-            onClick = js.defined(e => console.warn("onclick", e))
+          HTMLAttributes(
+            DOMAttributes(
+              onClick = e => console.warn("onclick", e)
+            ),
             style = new CSSProperties {
-              backgroundColor = theme.palette.flatMap(_.canvasColor)
+              backgroundColor = theme.palette.flatMap(_.canvasColor).asInstanceOf[js.UndefOr[BackgroundColorProperty]]
               width           = 800
               height          = 800
             }
-          },
+          ),
           cls[Tabs].noprops(
             cls[Tab].props(
-              new TabProps { label = js.defined("Github search") },
+              TabProps(label = "Github search"),
               GithubSearch.Component.props(
-                new GithubSearch.Props { val store = props.githubStore },
+                new GithubSearch.Props(props.githubStore),
                 "Fetch IP address"
               )
             ),
             cls[Tab].props(
-              new TabProps { label = js.defined("MobX") },
-              MobXTest.Component.props(new MobXTest.Props { val store = props.testStore })
+              TabProps(label = "MobX"),
+              MobXTest.Component.props(new MobXTest.Props(props.testStore))
             ),
           )
         )

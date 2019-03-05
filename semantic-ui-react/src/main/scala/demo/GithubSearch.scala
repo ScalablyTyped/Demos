@@ -2,7 +2,7 @@ package demo
 
 import org.scalablytyped.runtime.StringDictionary
 import typings.reactDashReduxLib.ReduxFacade.Extractor
-import typings.reactLib.reactMod.ReactNs.{AnchorHTMLAttributes, InputHTMLAttributes}
+import typings.reactLib.reactMod.ReactNs.AnchorHTMLAttributes
 import typings.reduxLib.reduxMod.{Action, Dispatch, Reducer}
 import typings.semanticDashUiDashReactLib.distCommonjsElementsButtonButtonMod.ButtonProps
 import typings.semanticDashUiDashReactLib.distCommonjsElementsInputInputMod.InputProps
@@ -11,9 +11,9 @@ import typings.semanticDashUiDashReactLib.distCommonjsElementsListListIconMod.Li
 import typings.semanticDashUiDashReactLib.distCommonjsElementsListListMod.ListProps
 import typings.semanticDashUiDashReactLib.semanticDashUiDashReactLibStrings
 import typings.semanticDashUiDashReactLib.semanticDashUiDashReactMod.{Button, Input, ^ => Sui}
-import typings.stdLib.^.{console, fetch}
-import typings.stdLib.{HTMLAnchorElement, HTMLInputElement, Record, RequestInit}
 import typings.stdLib.ThenableOps.ThenableOps
+import typings.stdLib.^.{console, fetch}
+import typings.stdLib.{Record, RequestInit}
 
 import scala.scalajs.js
 import scala.scalajs.js.Promise
@@ -36,9 +36,9 @@ object GithubSearch {
     }
 
     def doSearch(search: String): Promise[Response] = {
-      val init = new RequestInit {
+      val init = RequestInit(
         headers = StringDictionary("Accept" -> "application/vnd.github.v3+json"): Record[String, String]
-      }
+      )
 
       fetch(s"https://api.github.com/search/repositories?q=$search&sort=stars", init)
         .flatMap(_.json())
@@ -106,52 +106,49 @@ object GithubSearch {
     }
   }
 
-  trait Props extends js.Object {
-    val state:    State
-    val dispatch: Dispatch[SearchAction]
-  }
+  class Props(val state: State, val dispatch: Dispatch[SearchAction]) extends js.Object
 
   val C = define.fc[Props] { props =>
     div.noprops(
       cls[Input].props(
-        new InputProps {
-          val defaultValue = props.state.search
-          onChange = js.defined((_, data) => props.dispatch(SearchTextChanged(data.value)))
-        },
-        input.props(new InputHTMLAttributes[HTMLInputElement] {}),
-        cls[Button].props(new ButtonProps {
-          onClick = js.defined(
-            (e, data) =>
+        InputProps(
+          StringDictionary("defaultValue" -> props.state.search),
+          onChange = (_, data) => props.dispatch(SearchTextChanged(data.value))
+        ),
+        input.noprops(),
+        cls[Button].props(
+          ButtonProps(
+            onClick = (e, data) =>
               api
                 .doSearch(props.state.search)
                 .foreach(res => props.dispatch(SearchReposSuccess(res.items)))
           )
-        })
+        )
       ),
       props.state.repos.map(
         repos =>
           Sui.List.props(
-            new ListProps {
-              divided = true
+            ListProps(
+              divided = true,
               relaxed = true
-            },
+            ),
             repos.map(
               repo =>
-                Sui.List.Item_Original
+                Sui.List.Item
                   .withKey(repo.name)
                   .noprops(
-                    Sui.List.Icon_Original.props(new ListIconProps {
-                      name          = "github"
-                      size          = semanticDashUiDashReactLibStrings.large
-                      verticalAlign = semanticDashUiDashReactLibStrings.middle
-                    }),
-                    Sui.List.Content_Original.noprops(
-                      Sui.List.Header_Original.props(new ListHeaderProps {
-                        content = js.defined(a.props(new AnchorHTMLAttributes[HTMLAnchorElement] {
-                          href = repo.html_url
-                        }, repo.full_name))
-                      }),
-                      Sui.List.Description_Original.noprops(repo.description)
+                    Sui.List.Icon.props(
+                      ListIconProps(
+                        name          = semanticDashUiDashReactLibStrings.github,
+                        size          = semanticDashUiDashReactLibStrings.large,
+                        verticalAlign = semanticDashUiDashReactLibStrings.middle
+                      )
+                    ),
+                    Sui.List.Content.noprops(
+                      Sui.List.Header.props(
+                        ListHeaderProps(content = a.props(AnchorHTMLAttributes(href = repo.html_url), repo.full_name))
+                      ),
+                      Sui.List.Description.noprops(repo.description)
                     )
                 )
             )

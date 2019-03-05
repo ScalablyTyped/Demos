@@ -30,9 +30,10 @@ final class HeroesComponent(heroService: HeroService) extends OnInit {
 object HeroesComponent {
   @JSExportStatic
   val annotations = js.Array(
-    Core.Component.newInstance1(new Component {
-      selector = "app-heroes"
-      template = """
+    Core.Component.newInstance1(
+      Component(
+        selector = "app-heroes",
+        template = """,
           |
           |<h2>My Heroes</h2>
           |
@@ -43,9 +44,8 @@ object HeroesComponent {
           |        </a>
           |    </li>
           |</ul>
-        """.stripMargin
-
-      styles = js.Array("""
+        """.stripMargin,
+        styles   = js.Array("""
           |/* HeroesComponent's private CSS styles */
           |.selected {
           |  background-color: #CFD8DC !important;
@@ -97,7 +97,8 @@ object HeroesComponent {
           |  border-radius: 4px 0 0 4px;
           |}
         """.stripMargin)
-    }),
+      )
+    ),
   )
 
   @JSExportStatic

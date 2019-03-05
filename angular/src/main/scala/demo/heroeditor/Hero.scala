@@ -2,7 +2,4 @@ package demo.heroeditor
 
 import scala.scalajs.js
 
-trait Hero extends js.Object {
-  val id:   Int
-  val name: String
-}
+class Hero(val id: Int, val name: String) extends js.Object

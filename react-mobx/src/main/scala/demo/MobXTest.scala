@@ -8,7 +8,7 @@ import typings.mobxDashReactLib.mobxDashReactMod.^.observer
 import typings.mobxLib.libCoreComputedvalueMod.IComputedValue
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
 import typings.mobxLib.mobxMod.{^ => MobX}
-import typings.reactLib.reactMod.ReactNs.{ComponentClass, MouseEventHandler, ReactNode}
+import typings.reactLib.reactMod.ReactNs.{Component => _, _}
 import typings.reactLib.reactMod._
 import typings.stdLib.^.console
 
@@ -30,9 +30,7 @@ object MobXTest {
       MobX.action("increaseNum", (n: Double) => foo.set(foo.get.copy(num = foo.get.num + n)))
   }
 
-  trait Props extends js.Object {
-    val store: Store
-  }
+  class Props(val store: Store) extends js.Object
 
   import typings.reactLib.dsl._
 
@@ -45,15 +43,17 @@ object MobXTest {
     override def render: ReactNode =
       div.noprops(
         cls[Avatar].props(
-          new AvatarProps {
+          AvatarProps(
             icon = cls[ActionAlarm].props(
-              new SvgIconProps {
+              SvgIconProps(
+                SVGAttributes = SVGAttributes(
+                  DOMAttributes = DOMAttributes(onClick = e => console.warn(s"icon clicked ${e.nativeEvent}")),
+                ),
                 hoverColor = "blue"
-                onClick    = js.defined(e => console.warn(s"icon clicked ${e.nativeEvent}"))
-              }
-            )
-            onClick = js.defined(e => console.warn(s"avatar clicked ${e.nativeEvent}"))
-          },
+              )
+            ),
+            onClick = e => console.warn(s"avatar clicked ${e.nativeEvent}")
+          )
         ),
         "Current bar ",
         props.store.bar.get.strnum,
@@ -63,7 +63,7 @@ object MobXTest {
         props.store.foo.get.str,
         " ",
         cls[RaisedButton].props(
-          new RaisedButtonProps { onClick = increaseNum },
+          RaisedButtonProps(onClick = increaseNum),
           "increase num"
         )
       )

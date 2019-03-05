@@ -1,49 +1,33 @@
 package demo
 
+import typings.reactDashNativeLib.reactDashNativeMod.{TextStyle, TextStyleAndroid, ViewStyle}
 import typings.reactDashNativeLib.{reactDashNativeLibStrings, Anon_Height}
-import typings.reactDashNativeLib.reactDashNativeMod.{TextStyle, ViewStyle}
-
-import scala.scalajs.js
 
 object styles {
   @inline def red500 = "#f44336"
 
-  object drawerItems extends ViewStyle {
-    marginTop = 0
-  }
+  val drawerItems = ViewStyle(marginTop = 0)
 
-  object wholeContainer extends ViewStyle {
-    flex = js.defined(1)
-  }
+  val wholeContainer = ViewStyle(flex = 1)
 
-  object drawerHeader extends ViewStyle {
-    height          = 200
-    justifyContent  = reactDashNativeLibStrings.center
-    alignItems      = reactDashNativeLibStrings.center
-    backgroundColor = red500
-  }
+  val drawerHeader = ViewStyle(
+    height          = 200,
+    justifyContent  = reactDashNativeLibStrings.center,
+    alignItems      = reactDashNativeLibStrings.center,
+    backgroundColor = red500,
+  )
 
-  object drawerHeaderLogo extends TextStyle {
-    fontWeight = reactDashNativeLibStrings.bold
-    fontSize   = js.defined(20)
-    color      = "white"
-  }
+  val drawerHeaderLogo = TextStyle(
+    fontWeight = reactDashNativeLibStrings.bold,
+    fontSize   = 20,
+    color      = "white",
+  )
 
-  object navScreenContainer extends ViewStyle {
-    flex = js.defined(1)
-  }
+  val navScreenContainer = ViewStyle(flex = 1)
 
-  object navScreenHeader extends ViewStyle {
-    height          = 44
-    paddingTop      = 0
-    backgroundColor = red500
-  }
+  val navScreenHeader = ViewStyle(height = 44, paddingTop = 0, backgroundColor = red500)
 
-  object sampleText extends TextStyle {
-    margin = 14
-    shadowOffset = js.defined(new Anon_Height {
-      override var height: Double = 10
-      override var width:  Double = 10
-    })
-  }
+  val sampleText = TextStyle(
+    TextStyleAndroid = TextStyleAndroid(margin = 14, shadowOffset = Anon_Height(height = 10, width = 10))
+  )
 }

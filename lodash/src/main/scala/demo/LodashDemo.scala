@@ -10,21 +10,10 @@ import scala.scalajs.js
 
 object LodashDemo {
 
-  trait Person extends js.Object {
-    var name: String
-    var age:  Int
-  }
+  class Person(val name: String, val age: Int) extends js.Object
 
-  val Fiona = new Person {
-    var name = "Fiona First"
-    var age  = 1
-  }
-
-  val Sam = new Person {
-    var name = "Sam Second"
-    var age  = 101
-  }
-
+  val Fiona   = new Person("Fiona First", 1)
+  val Sam     = new Person("Sam Second", 101)
   val Persons = js.Array(Fiona, Sam)
 
   def main(args: Array[String]): Unit = {

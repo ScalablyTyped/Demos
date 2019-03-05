@@ -38,11 +38,11 @@ final class HeroDetailComponent(
 object HeroDetailComponent {
   @JSExportStatic
   val annotations = js.Array(
-    Core.Component.newInstance1(new Component {
-      selector = "app-hero-detail"
-      inputs   = js.Array("hero")
-
-      template = """
+    Core.Component.newInstance1(
+      Component(
+        selector = "app-hero-detail",
+        inputs   = js.Array("hero"),
+        template = """
           |<div *ngIf="hero">
           |    <h2>{{hero.name | uppercase}} Details</h2>
           |    <div><span>id: </span>{{hero.id}}</div>
@@ -53,8 +53,8 @@ object HeroDetailComponent {
           |    </div>
           |    <button (click)="goBack()">go back</button>
           |</div>
-        """.stripMargin
-      styles   = js.Array("""
+        """.stripMargin,
+        styles   = js.Array("""
           |/* HeroDetailComponent's private CSS styles */
           |label {
           |  display: inline-block;
@@ -86,7 +86,8 @@ object HeroDetailComponent {
           |  cursor: auto;
           |}
         """.stripMargin)
-    })
+      )
+    )
   )
 
   @JSExportStatic

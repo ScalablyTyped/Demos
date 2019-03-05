@@ -16,9 +16,10 @@ object MessagesComponent {
   @JSExportStatic
   val annotations =
     js.Array(
-      Core.Component.newInstance1(new Component {
-        selector = "app-messages"
-        template = """
+      Core.Component.newInstance1(
+        Component(
+          selector = "app-messages",
+          template = """
             |<div *ngIf="messageService.messages.length">
             |
             |    <h2>Messages</h2>
@@ -27,9 +28,8 @@ object MessagesComponent {
             |    <div *ngFor='let message of messageService.messages'> {{message}} </div>
             |
             |</div>
-          """.stripMargin
-
-        styles = js.Array("""
+          """.stripMargin,
+          styles   = js.Array("""
             |h2 {
             |  color: red;
             |  font-family: Arial, Helvetica, sans-serif;
@@ -65,7 +65,8 @@ object MessagesComponent {
             |  margin-bottom: 12px;
             |}
           """.stripMargin)
-      })
+        )
+      )
     )
 
   @JSExportStatic

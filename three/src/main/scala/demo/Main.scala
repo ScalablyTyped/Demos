@@ -1,7 +1,7 @@
 package demo
 
-import typings.stdLib.{stdLibStrings, FrameRequestCallback, HTMLDivElement, UIEvent, Window}
 import typings.stdLib.^.{document, requestAnimationFrame, window, Date}
+import typings.stdLib.{stdLibStrings, FrameRequestCallback, HTMLDivElement, UIEvent, Window}
 import typings.threeLib.threeDashCoreMod.{Geometry, Material, MeshLambertMaterialParameters}
 import typings.threeLib.threeMod.{MathNs => ThreeMath, Material => _, _}
 
@@ -44,10 +44,10 @@ object Main {
     new JSONLoader().load(
       "https://raw.githubusercontent.com/Retyped/Demos/master/ThreeJsDemo/ThreeJsDemo/dist/models/horse.js",
       (geometry: Geometry, _: js.Array[Material]) => {
-        val parameters = new MeshLambertMaterialParameters {
-          vertexColors = "FaceColors".asInstanceOf[Colors]
+        val parameters = MeshLambertMaterialParameters(
+          vertexColors = "FaceColors".asInstanceOf[Colors],
           morphTargets = true
-        }
+        )
         val mesh = new Mesh(geometry, new MeshLambertMaterial(parameters))
         mesh.scale.set(1.5, 1.5, 1.5)
         scene.add(mesh)

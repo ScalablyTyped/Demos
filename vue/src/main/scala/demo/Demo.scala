@@ -52,28 +52,26 @@ object Todo {
 
     Vue.component(
       "my-component",
-      new ComponentOptions[DemoVue, Unit, Unit, Unit, ArrayPropsDefinition[DemoVue], Unit] {
-        props    = js.Array("myMsg")
+      ComponentOptions(
+        props    = js.Array("myMsg"),
         template = "<p>A custom component with msg {{myMsg}} <slot>default content</slot></p>"
-      }
+      )
     )
 
     Vue.directive(
       "mydirective",
-      new DirectiveOptions {
-        update = js.defined((el, directive, _, _) => {
+      DirectiveOptions(
+        update = (el, directive, _, _) => {
           val dir = directive.asInstanceOf[VNodeDirective]
           el.innerHTML = "This comes from my-directive with contents " + dir.value + " and expression " + dir.expression
-        })
-      }
+        }
+      )
     )
 
-    val demoOpt = new ComponentOptions[DemoVue, ThisFunction0[DemoVue, Data], Methods, Computed, PropsDefinition[
-      DemoVue
-    ], DefaultProps] {
-      el = "#demo"
-      data = js.defined(
-        _ =>
+    val demoOpt =
+      ComponentOptions[DemoVue, ThisFunction0[DemoVue, Data], Methods, Computed, PropsDefinition[DemoVue], DefaultProps](
+        el = "#demo",
+        data = _ =>
           new Data {
             val message = "Hello Vue.js!!!!!"
             val title   = "Todo App"
@@ -86,42 +84,38 @@ object Todo {
             )
             val barValue = 100
             val n        = 0
+        },
+        methods = new Methods {
+          val clickHandler = demoVue => demoVue.n -= 1
+
+          val addTask = demoVue =>
+            demoVue.todos.append(new DemoVueTodo {
+              var done    = false
+              val content = s"new $ts"
+            })
+
+          val change1st = demoVue =>
+            Vue.set(demoVue.todos, 0, new DemoVueTodo {
+              var done    = false
+              val content = ts
+            })
+
+          val remove = (demoVue, idx) => Vue.delete(demoVue.todos, idx)
+
+          val flipAll = demoVue => demoVue.todos.foreach(td => td.done = !td.done)
+        },
+        computed = Knowledge.isAccessors(new Computed {
+          val todosComputed = (demoVue: DemoVue) => demoVue.todos.map(_.content)
+        }),
+        filters = new StringDictionary[js.Function] {
+          val reverse: js.Function1[js.Any, String] =
+            _.toString.reverse
+          val wrap: js.Function3[js.Any, String, String, String] =
+            (value: js.Any, begin: String, end: String) => begin + value.toString + end
+          val extract: js.Function2[js.UndefOr[js.Array[js.Dynamic]], String, js.UndefOr[js.Array[js.Dynamic]]] =
+            (array, field) => array.map(_.map(_.selectDynamic(field)))
         }
       )
-
-      methods = new Methods {
-        val clickHandler = demoVue => demoVue.n -= 1
-
-        val addTask = demoVue =>
-          demoVue.todos.append(new DemoVueTodo {
-            var done    = false
-            val content = s"new $ts"
-          })
-
-        val change1st = demoVue =>
-          Vue.set(demoVue.todos, 0, new DemoVueTodo {
-            var done    = false
-            val content = ts
-          })
-
-        val remove = (demoVue, idx) => Vue.delete(demoVue.todos, idx)
-
-        val flipAll = demoVue => demoVue.todos.foreach(td => td.done = !td.done)
-      }
-
-      computed = js.defined(Knowledge.isAccessors(new Computed {
-        val todosComputed = (demoVue: DemoVue) => demoVue.todos.map(_.content)
-      }))
-
-      filters = new StringDictionary[js.Function] {
-        val reverse: js.Function1[js.Any, String] =
-          _.toString.reverse
-        val wrap: js.Function3[js.Any, String, String, String] =
-          (value: js.Any, begin: String, end: String) => begin + value.toString + end
-        val extract: js.Function2[js.UndefOr[js.Array[js.Dynamic]], String, js.UndefOr[js.Array[js.Dynamic]]] =
-          (array, field) => array.map(_.map(_.selectDynamic(field)))
-      }
-    }
 
     val demo = new VueClass(demoOpt).value
 

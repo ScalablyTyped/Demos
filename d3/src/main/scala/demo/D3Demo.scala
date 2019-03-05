@@ -51,12 +51,10 @@ object D3Demo {
     val geoGenerator: GeoPath[GeoPermissibleObjects, Null] =
       d3.geoPath_ThisDatumObjectGeoPermissibleObjects(projection, Knowledge.isGeoContext(context))
 
-    val geometry = new LineString {
-      override var coordinates = js.Array[Position]()
-      // this is pretty not amazing, both these vars refer to the same member
-      override var type_LineString = geojsonLibStrings.LineString
-      override var `type`          = geojsonLibStrings.LineString
-    }
+    val geometry = LineString(
+      coordinates = js.Array[Position](),
+      `type`      = geojsonLibStrings.LineString
+    )
 
     def rndLon = -180 + Math.random() * 360
     def rndLat = -90 + Math.random() * 180
