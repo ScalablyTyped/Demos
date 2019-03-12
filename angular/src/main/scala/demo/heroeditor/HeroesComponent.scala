@@ -13,10 +13,7 @@ final class HeroesComponent(heroService: HeroService) extends OnInit {
   var heroes: js.Array[Hero] = _
 
   def getHeroes(): Unit = {
-
-    heroService.heroes
-      .subscribe(hs => heroes = hs)
-
+    heroService.heroes.subscribe(hs => heroes = hs)
     heroes = MockHeroes.heroes
   }
 

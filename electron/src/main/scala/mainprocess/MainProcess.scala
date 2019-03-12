@@ -9,7 +9,6 @@ import typings.nodeLib.urlMod
 import typings.nodeLib.urlMod.UrlObject
 
 import scala.collection.mutable
-import scala.scalajs.js
 
 /**
   * This object represents the translation into Scala.js of the main.js file presented in the Electron Quick Start guide,
@@ -54,13 +53,10 @@ object MainProcess {
       * chose. In this case, we only want to open the dev tools of a window if we are in development mode, but it is
       * something that you clearly want to avoid in production code.
       */
-    if (scala.scalajs.LinkingInfo.developmentMode) {
+    if (scala.scalajs.LinkingInfo.developmentMode)
       window.webContents.openDevTools()
-    }
 
-    window.on_closed(electronLibStrings.closed, () => {
-      windows -= window
-    })
+    window.on_closed(electronLibStrings.closed, () => windows -= window)
 
     windows += window
   }
