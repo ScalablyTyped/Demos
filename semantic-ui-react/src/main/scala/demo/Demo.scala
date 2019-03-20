@@ -2,7 +2,7 @@ package demo
 
 import typings.reactDashReduxLib.ReduxFacade.Connected
 import typings.reactLib.reactMod.ReactNs.ReactElement
-import typings.semanticDashUiDashReactLib.{Anon_Content => TabStructure, semanticDashUiDashReactLibComponents => Sui, semanticDashUiDashReactLibStrings => SuiStrings}
+import typings.semanticDashUiDashReactLib.{Anon_MenuItem => TabStructure, semanticDashUiDashReactLibComponents => Sui, semanticDashUiDashReactLibStrings => SuiStrings}
 
 import scala.scalajs.js
 
