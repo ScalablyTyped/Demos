@@ -1,6 +1,6 @@
 package demo
 
-import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
+import typings.atAngularCoreLib.atAngularCoreMod.ComponentCls
 import typings.atAngularCoreLib.srcMetadataDirectivesMod.Component
 import typings.atAngularCoreLib.srcMetadataLifecycleUnderscoreHooksMod.OnInit
 
@@ -27,7 +27,7 @@ object AppComponent {
     */
   @JSExportStatic
   val annotations = js.Array(
-    Core.Component.newInstance1(
+    new ComponentCls(
       Component(
         selector = "app-root",
         template = """

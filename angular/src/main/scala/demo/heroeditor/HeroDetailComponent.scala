@@ -2,7 +2,7 @@ package demo
 package heroeditor
 
 import typings.atAngularCommonLib.atAngularCommonMod.Location
-import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
+import typings.atAngularCoreLib.atAngularCoreMod.ComponentCls
 import typings.atAngularCoreLib.srcMetadataDirectivesMod.Component
 import typings.atAngularCoreLib.srcMetadataLifecycleUnderscoreHooksMod.OnInit
 import typings.atAngularCoreLib.srcTypeMod.Type
@@ -38,7 +38,7 @@ final class HeroDetailComponent(
 object HeroDetailComponent {
   @JSExportStatic
   val annotations = js.Array(
-    Core.Component.newInstance1(
+     new ComponentCls(
       Component(
         selector = "app-hero-detail",
         inputs   = js.Array("hero"),

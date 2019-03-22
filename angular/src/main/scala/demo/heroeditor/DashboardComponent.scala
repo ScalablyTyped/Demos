@@ -1,7 +1,7 @@
 package demo
 package heroeditor
 
-import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
+import typings.atAngularCoreLib.atAngularCoreMod.ComponentCls
 import typings.atAngularCoreLib.srcMetadataDirectivesMod.Component
 import typings.atAngularCoreLib.srcMetadataLifecycleUnderscoreHooksMod.OnInit
 
@@ -22,7 +22,7 @@ object DashboardComponent {
 
   @JSExportStatic
   val annotations = js.Array(
-    Core.Component.newInstance1(
+    new ComponentCls(
       Component(
         selector = "app-dashboard",
         template = """

@@ -1,6 +1,6 @@
 package demo.heroeditor
 
-import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
+import typings.atAngularCoreLib.atAngularCoreMod.InjectableCls
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic
@@ -18,5 +18,5 @@ final class MessageService extends js.Object {
 
 object MessageService {
   @JSExportStatic
-  val annotations = js.Array(Core.Injectable.newInstance0())
+  val annotations = js.Array(new InjectableCls)
 }

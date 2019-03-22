@@ -7,8 +7,8 @@ import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.default.m
 import typings.reactDashBigDashCalendarLib.{Anon_Month, reactDashBigDashCalendarLibStrings, reactDashBigDashCalendarLibComponents => BC}
 import typings.reactDashDomLib.reactDashDomMod
 import typings.reactLib.reactMod.ReactNs.{FC, ReactNode}
-import typings.stdLib.Date
-import typings.stdLib.^.{Date, Object, console, document}
+import typings.stdLib.{Date, DateCls}
+import typings.stdLib.^.{Object, console, document}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -53,12 +53,12 @@ object Main {
         override def title(e: js.UndefOr[Event]): String =
           e.flatMap(_.title).getOrElse("No title")
         override def navigate(date: UndefOr[Date], action: UndefOr[Navigate], props: UndefOr[js.Any]): Date =
-          date.getOrElse(Date.newInstance0())
+          date.getOrElse(new DateCls)
       }
     )
 
   val someEvent = new Event {
-    val start = Date.newInstance0()
+    val start = new DateCls
     val end   = Moment(start).add(1, momentLibStrings.day).toDate()
     val title = "My amazing event"
   }
@@ -71,7 +71,7 @@ object Main {
             BC.BigCalendarProps[Event, js.Object](
               localizer   = Localizer,
               events      = js.Array(someEvent),
-              defaultDate = Date.newInstance0(),
+              defaultDate = new DateCls,
               defaultView = reactDashBigDashCalendarLibStrings.week,
               views = Anon_Month(
                 month  = true,
