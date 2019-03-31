@@ -1,7 +1,7 @@
 package demo
 package heroeditor
 
-import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
+import typings.atAngularCoreLib.atAngularCoreMod.InjectableCls
 import typings.rxjsLib.internalObservableMod.Observable
 import typings.rxjsLib.rxjsMod.{^ => rxjs}
 
@@ -23,7 +23,7 @@ final class HeroService(messageService: MessageService) extends js.Object {
 
 object HeroService {
   @JSExportStatic
-  val annotations = js.Array(Core.Injectable.newInstance0())
+  val annotations = js.Array(new InjectableCls)
 
   @JSExportStatic
   val parameters = js.Array(typeOf[MessageService])

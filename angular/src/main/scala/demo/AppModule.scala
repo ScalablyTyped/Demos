@@ -1,6 +1,6 @@
 package demo
 import demo.heroeditor._
-import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
+import typings.atAngularCoreLib.atAngularCoreMod.NgModuleCls
 import typings.atAngularCoreLib.srcMetadataNgUnderscoreModuleMod.NgModule
 import typings.atAngularFormsLib.atAngularFormsMod.FormsModule
 import typings.atAngularPlatformDashBrowserLib.atAngularPlatformDashBrowserMod.BrowserModule
@@ -17,7 +17,7 @@ object AppModule {
 
   @JSExportStatic
   val annotations = js.Array(
-    Core.NgModule.newInstance1(
+    new NgModuleCls(
       NgModule(
         imports = js.Array(typeOf[BrowserModule], typeOf[FormsModule], typeOf[AppRoutingModule]),
         declarations = js.Array(

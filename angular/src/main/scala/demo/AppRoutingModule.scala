@@ -1,6 +1,6 @@
 package demo
 
-import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
+import typings.atAngularCoreLib.atAngularCoreMod.NgModuleCls
 import typings.atAngularCoreLib.srcMetadataNgUnderscoreModuleMod.NgModule
 import typings.atAngularRouterLib.atAngularRouterMod.RouterModule
 import typings.atAngularRouterLib.srcConfigMod.{Route, Routes}
@@ -15,7 +15,7 @@ object AppRoutingModule {
   @JSExportStatic
   val annotations =
     js.Array(
-      Core.NgModule.newInstance1(
+      new NgModuleCls(
         NgModule(
           imports = js.Array(unspecify(RouterModule.forRoot(routes))),
           exports = js.Array(typeOf[RouterModule])
