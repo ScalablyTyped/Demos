@@ -3,7 +3,7 @@ package demo
 import typings.atStorybookReactLib.atStorybookReactMod.RenderFunction
 import typings.atStorybookReactLib.atStorybookReactMod.^.storiesOf
 import typings.nodeLib.^.module
-import typings.reactLib.reactMod.ReactNs.{ButtonHTMLAttributes, DOMAttributes, HTMLAttributes}
+import typings.reactLib.reactMod.{ButtonHTMLAttributes, HTMLAttributes}
 import typings.stdLib.^.window
 
 import scala.scalajs.js

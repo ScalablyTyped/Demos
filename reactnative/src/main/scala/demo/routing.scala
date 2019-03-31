@@ -7,7 +7,7 @@ import typings.reactDashNativeLib.{reactDashNativeLibComponents => RN}
 import typings.reactDashNavigationLib._
 import typings.reactDashNavigationLib.reactDashNavigationMod.^.{createAppContainer, createDrawerNavigator, DrawerItems}
 import typings.reactDashNavigationLib.reactDashNavigationMod._
-import typings.reactLib.reactMod.ReactNs.FC
+import typings.reactLib.reactMod.FC
 import typings.stdLib.^.Object
 
 object routing {
@@ -52,11 +52,9 @@ object routing {
 
   val DrawerNavigator: NavigationContainer =
     createDrawerNavigator(
-      NavigationRouteConfigMap(
-        StringDictionary(
-          "inbox" -> drawerRoute("Inbox", "inbox", screens.Inbox),
-          "drafts" -> drawerRoute("Drafts foo", "drafts", screens.Drafts)
-        )
+      StringDictionary(
+        "inbox" -> drawerRoute("Inbox", "inbox", screens.Inbox),
+        "drafts" -> drawerRoute("Drafts foo", "drafts", screens.Drafts)
       ),
       DrawerNavigatorConfig(
         contentComponent = DrawerContents,

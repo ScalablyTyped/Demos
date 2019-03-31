@@ -1,8 +1,7 @@
 package demo
 
 import typings.chartDotJsLib.chartDotJsLibStrings
-import typings.chartDotJsLib.chartDotJsMod.ChartNs._
-import typings.chartDotJsLib.chartDotJsMod.{namespaced => Chart}
+import typings.chartDotJsLib.chartDotJsMod.{^ => Chart, _}
 import typings.stdLib.^.document
 import typings.stdLib.{stdLibStrings, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
 
@@ -14,7 +13,6 @@ object Demo {
   val random = new Random()
 
   def main(argv: scala.Array[String]): Unit = {
-
     val section = document.createElement_section(stdLibStrings.section)
     section.className = "w"
     section.append(

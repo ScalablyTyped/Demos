@@ -127,6 +127,7 @@ lazy val `semantic-ui-react` = project
     libraryDependencies ++= Seq(
       ScalablyTyped.R.`redux`,
       ScalablyTyped.R.`redux-devtools-extension`,
+      ScalablyTyped.R.`react-dom`,
       ScalablyTyped.R.`react-redux`,
       ScalablyTyped.R.`react-redux-contrib`,
       ScalablyTyped.R.`react-contrib`,
@@ -136,8 +137,8 @@ lazy val `semantic-ui-react` = project
     Compile / npmDependencies ++= Seq(
       "redux" -> "4.0.1",
       "redux-devtools-extension" -> "2.13.8",
-      "react-dom" -> "16.7.0",
-      "react" -> "16.7.0",
+      "react-dom" -> "16.8",
+      "react" -> "16.8",
       "react-redux" -> "6.0.1",
       "semantic-ui-react" -> "0.86.0",
     ),
@@ -150,7 +151,7 @@ lazy val reveal = project
     libraryDependencies ++= Seq(
       "com.github.japgolly.scalajs-react" %%% "core" % "1.3.1",
       ScalablyTyped.H.highlight_dot_js,
-      ScalablyTyped.R.`react-contrib`,
+      ScalablyTyped.R.`react-japgolly-contrib`,
       ScalablyTyped.R.`reveal`,
     ),
     Compile / npmDependencies ++= Seq(
@@ -175,6 +176,14 @@ lazy val p5 = project
     webpackDevServerPort := 8014,
     libraryDependencies ++= Seq(ScalablyTyped.P.p5),
     Compile / npmDependencies ++= Seq("p5" -> "0.7")
+  )
+
+lazy val leaflet = project
+  .configure(baseSettings, bundlerSettings, browserProject)
+  .settings(
+    webpackDevServerPort := 8015,
+    libraryDependencies ++= Seq(ScalablyTyped.L.leaflet),
+    Compile / npmDependencies ++= Seq("leaflet" -> "1.4")
   )
 
 lazy val angular = project

@@ -11,7 +11,7 @@ import typings.reactDashNavigationLib.reactDashNavigationMod.{
   NavigationScreenProps
 }
 import typings.reactLib.dsl._
-import typings.reactLib.reactMod.ReactNs.{FC, ReactNode}
+import typings.reactLib.reactMod.{FC, ReactNode}
 import typings.stdLib.^.console
 
 import scala.scalajs.js

@@ -6,8 +6,7 @@ import typings.materialDashUiLib.stylesMod.MuiTheme
 import typings.materialDashUiLib.stylesMod.^.getMuiTheme
 import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
 import typings.mobxDashReactLib.mobxDashReactMod.^.observer
-import typings.reactLib.reactMod.Component
-import typings.reactLib.reactMod.ReactNs._
+import typings.reactLib.reactMod._
 import typings.stdLib.^.console
 
 import scala.scalajs.js

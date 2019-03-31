@@ -2,7 +2,7 @@ package demo
 
 import org.scalablytyped.runtime.StringDictionary
 import typings.reactDashReduxLib.ReduxFacade.Extractor
-import typings.reactLib.reactMod.ReactNs.AnchorHTMLAttributes
+import typings.reactLib.reactMod.AnchorHTMLAttributes
 import typings.reduxLib.reduxMod.{Action, Dispatch, Reducer}
 import typings.semanticDashUiDashReactLib.{
   semanticDashUiDashReactLibStrings,
