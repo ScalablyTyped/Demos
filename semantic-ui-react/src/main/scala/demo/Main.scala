@@ -2,7 +2,7 @@ package demo
 
 import typings.reactDashDomLib.reactDashDomMod.^.render
 import typings.reactDashReduxLib.reactDashReduxLibComponents.Provider
-import typings.reactDashReduxLib.{ReduxFacade, reactDashReduxMod}
+import typings.reactDashReduxLib.{reactDashReduxMod, ReduxFacade}
 import typings.reactLib.reactMod.ReactNs.{Dispatch => _, _}
 import typings.reduxDashDevtoolsDashExtensionLib.reduxDashDevtoolsDashExtensionMod.EnhancerOptions
 import typings.reduxDashDevtoolsDashExtensionLib.reduxDashDevtoolsDashExtensionMod.^.devToolsEnhancer
@@ -17,9 +17,8 @@ object Main {
 
   def main(argv: Array[String]): Unit =
     Knowledge.asOption(window.document.getElementById("container")) match {
-      case None =>
+      case None            =>
       case Some(container) =>
-
         /* set up redux store with devtools*/
         val Store: Store[GithubSearch.State, GithubSearch.SearchAction] =
           createStore(GithubSearch.Reducer, devToolsEnhancer(EnhancerOptions(name = "github search store")))

@@ -5,6 +5,7 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 
 package object demo {
+
   /**
     * Get the Type[T] of a Class, by calling js.constructorOf
     */

@@ -4,7 +4,10 @@ import org.scalablytyped.runtime.StringDictionary
 import typings.reactDashReduxLib.ReduxFacade.Extractor
 import typings.reactLib.reactMod.ReactNs.AnchorHTMLAttributes
 import typings.reduxLib.reduxMod.{Action, Dispatch, Reducer}
-import typings.semanticDashUiDashReactLib.{semanticDashUiDashReactLibStrings, semanticDashUiDashReactLibComponents => Sui}
+import typings.semanticDashUiDashReactLib.{
+  semanticDashUiDashReactLibStrings,
+  semanticDashUiDashReactLibComponents => Sui
+}
 import typings.stdLib.ThenableOps.ThenableOps
 import typings.stdLib.^.{console, fetch}
 import typings.stdLib.{Record, RequestInit}

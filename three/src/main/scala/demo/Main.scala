@@ -3,7 +3,7 @@ package demo
 import typings.stdLib.^.{document, requestAnimationFrame, window, Date}
 import typings.stdLib.{stdLibStrings, FrameRequestCallback, HTMLDivElement, UIEvent, Window}
 import typings.threeLib.threeDashCoreMod.{Geometry, Material, MeshLambertMaterialParameters}
-import typings.threeLib.threeMod.{MathNs => ThreeMath, Material => _, _}
+import typings.threeLib.threeMod.{MathNs => ThreeMath, Material => _, ^ => Three, _}
 
 import scala.scalajs.js
 
@@ -45,7 +45,7 @@ object Main {
       "https://raw.githubusercontent.com/Retyped/Demos/master/ThreeJsDemo/ThreeJsDemo/dist/models/horse.js",
       (geometry: Geometry, _: js.Array[Material]) => {
         val parameters = MeshLambertMaterialParameters(
-          vertexColors = "FaceColors".asInstanceOf[Colors],
+          vertexColors = Three.FaceColors,
           morphTargets = true
         )
         val mesh = new Mesh(geometry, new MeshLambertMaterial(parameters))

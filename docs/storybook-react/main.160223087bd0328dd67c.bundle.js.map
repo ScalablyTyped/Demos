@@ -1,0 +1,1 @@
+{"version":3,"file":"main.160223087bd0328dd67c.bundle.js","sources":["webpack:///./.storybook-dist/config.js"],"sourcesContent":["import { configure } from '@storybook/react';\n\nfunction loadStories() {\n    require('../target/scala-2.12/storybook-react-opt.js');\n}\n\nconfigure(loadStories, module);\n"],"mappings":"AAAA","sourceRoot":""}

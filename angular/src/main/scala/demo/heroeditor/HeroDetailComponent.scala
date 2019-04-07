@@ -38,7 +38,7 @@ final class HeroDetailComponent(
 object HeroDetailComponent {
   @JSExportStatic
   val annotations = js.Array(
-     new ComponentCls(
+    new ComponentCls(
       Component(
         selector = "app-hero-detail",
         inputs   = js.Array("hero"),

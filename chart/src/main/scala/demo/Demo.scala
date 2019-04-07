@@ -29,7 +29,7 @@ object Demo {
 
   def chartConfig(tpe: ChartType, Data: js.Array[js.UndefOr[Double | Null]]): ChartConfiguration =
     ChartConfiguration(
-      `type` = tpe.asInstanceOf[String], // note, this cast avoids a compiler bug!? typer never finishes
+      `type` = tpe,
       data = ChartData(
         labels = Labels,
         datasets = js.Array(

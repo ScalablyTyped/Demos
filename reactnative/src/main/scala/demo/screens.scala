@@ -4,7 +4,12 @@ import demo.Knowledge.Force
 import typings.reactDashNativeDashVectorDashIconsLib.{reactDashNativeDashVectorDashIconsLibComponents => Icons}
 import typings.reactDashNativeLib.reactDashNativeMod.StatusBar
 import typings.reactDashNativeLib.{reactDashNativeLibComponents => RN}
-import typings.reactDashNavigationLib.reactDashNavigationMod.{NavigationComponent, NavigationRoute, NavigationScreenProp, NavigationScreenProps}
+import typings.reactDashNavigationLib.reactDashNavigationMod.{
+  NavigationComponent,
+  NavigationRoute,
+  NavigationScreenProp,
+  NavigationScreenProps
+}
 import typings.reactLib.dsl._
 import typings.reactLib.reactMod.ReactNs.{FC, ReactNode}
 import typings.stdLib.^.console

@@ -34,10 +34,10 @@ lazy val `react-mobx` =
       Compile / npmDependencies ++= Seq(
         "axios" -> "0.18.0",
         "material-ui" -> "0.20.1",
-        "mobx" -> "5.8.0",
+        "mobx" -> "5.9.4",
         "mobx-react" -> "5.4.3",
-        "react" -> "16.7.0",
-        "react-dom" -> "16.7.0",
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
       )
     )
 
@@ -54,8 +54,8 @@ lazy val `react-slick` =
         ScalablyTyped.R.`react-japgolly-contrib`,
       ),
       Compile / npmDependencies ++= Seq(
-        "react" -> "16.5.1",
-        "react-dom" -> "16.5.1",
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
         "react-slick" -> "0.23",
       )
     )
@@ -66,7 +66,7 @@ lazy val vue =
     .settings(
       webpackDevServerPort := 8006,
       libraryDependencies ++= Seq(ScalablyTyped.V.vue),
-      Compile / npmDependencies ++= Seq("vue" -> "2.5.21")
+      Compile / npmDependencies ++= Seq("vue" -> "2.6.10")
     )
 
 lazy val `react-big-calendar` =
@@ -81,9 +81,9 @@ lazy val `react-big-calendar` =
         ScalablyTyped.R.`react-contrib`,
       ),
       Compile / npmDependencies ++= Seq(
-        "moment" -> "2.23.0",
-        "react" -> "16.5.1",
-        "react-dom" -> "16.5.1",
+        "moment" -> "2.24.0",
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
         "react-big-calendar" -> "0.20",
       )
     )
@@ -102,7 +102,7 @@ lazy val d3 = project
   .settings(
     webpackDevServerPort := 8002,
     libraryDependencies ++= Seq(ScalablyTyped.D.d3),
-    Compile / npmDependencies ++= Seq("d3" -> "5.5.0"),
+    Compile / npmDependencies ++= Seq("d3" -> "5.7"),
   )
 
 lazy val jquery = project
@@ -135,11 +135,11 @@ lazy val `semantic-ui-react` = project
     ),
     Compile / npmDependencies ++= Seq(
       "redux" -> "4.0.1",
-      "redux-devtools-extension" -> "2.13.7",
+      "redux-devtools-extension" -> "2.13.8",
       "react-dom" -> "16.7.0",
       "react" -> "16.7.0",
-      "react-redux" -> "6.0",
-      "semantic-ui-react" -> "0.84.0",
+      "react-redux" -> "6.0.1",
+      "semantic-ui-react" -> "0.86.0",
     ),
   )
 
@@ -156,8 +156,8 @@ lazy val reveal = project
     Compile / npmDependencies ++= Seq(
       "highlight.js" -> "9.12",
       "reveal.js" -> "3.7.0",
-      "react-dom" -> "16.7.0",
-      "react" -> "16.7.0",
+      "react-dom" -> "16.8",
+      "react" -> "16.8",
     ),
   )
 
@@ -189,15 +189,15 @@ lazy val angular = project
     Compile / npmDependencies ++= Seq(
       "core-js" -> "2.5",
       "tslib" -> "1.9.3",
-      "zone.js" -> "0.8.28",
-      "rxjs" -> "6.3.3",
-      "@angular/core" -> "7.2.1",
-      "@angular/common" -> "7.2.1",
-      "@angular/compiler" -> "7.2.1",
-      "@angular/router" -> "7.2.1",
-      "@angular/platform-browser" -> "7.2.1",
-      "@angular/platform-browser-dynamic" -> "7.2.1",
-      "@angular/forms" -> "7.2.1",
+      "zone.js" -> "0.9.0",
+      "rxjs" -> "6.4.0",
+      "@angular/core" -> "7.2.12",
+      "@angular/common" -> "7.2.12",
+      "@angular/compiler" -> "7.2.12",
+      "@angular/router" -> "7.2.12",
+      "@angular/platform-browser" -> "7.2.12",
+      "@angular/platform-browser-dynamic" -> "7.2.12",
+      "@angular/forms" -> "7.2.12",
     )
   )
 
@@ -281,7 +281,7 @@ lazy val typescript =
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       libraryDependencies ++= Seq(ScalablyTyped.N.node, ScalablyTyped.T.typescript),
-      Compile / npmDependencies ++= Seq("typescript" -> "3.2.2")
+      Compile / npmDependencies ++= Seq("typescript" -> "3.4.2")
     )
 
 lazy val baseSettings: Project => Project =

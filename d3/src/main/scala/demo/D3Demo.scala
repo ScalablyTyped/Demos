@@ -4,40 +4,31 @@ import typings.d3DashGeoLib.d3DashGeoMod.{GeoContext, GeoPath, GeoPermissibleObj
 import typings.d3Lib.d3Mod.{^ => d3}
 import typings.geojsonLib.geojsonLibStrings
 import typings.geojsonLib.geojsonMod.{LineString, Position}
-import typings.stdLib.^.{document, window}
-import typings.stdLib.{
-  stdLibStrings,
-  ArrayLike,
-  CanvasRenderingContext2D,
-  FrameRequestCallback,
-  HTMLCanvasElement,
-  HTMLCollectionOf
-}
+import typings.stdLib.^.{console, document, window}
+import typings.stdLib.{stdLibStrings, CanvasRenderingContext2D, FrameRequestCallback, HTMLCanvasElementCls}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
 
 object D3Demo {
+  def main(argv: scala.Array[String]): Unit =
+    document.getElementsByTagName_canvas(stdLibStrings.canvas).item(0) match {
+      case canvas: HTMLCanvasElementCls =>
+        Knowledge.asOption(canvas.getContext_2d(stdLibStrings.`2d`)) match {
+          case Some(ctx) => run(ctx)
+          case None      => console.warn("Cannot get 2d context for", canvas)
+        }
+      case _ => console.warn("Cannot find canvas element")
+    }
 
-  def main(argv: scala.Array[String]): Unit = {
-    val canvases: HTMLCollectionOf[HTMLCanvasElement] =
-      document.getElementsByTagName_canvas(stdLibStrings.canvas)
-
-    if (canvases.length == 1)
-      Knowledge.asOption(canvases.item(0).asInstanceOf[HTMLCanvasElement].getContext_2d(stdLibStrings.`2d`)) match {
-        case Some(ctx) => apply(ctx)
-        case None      => throw new Error("No 2d context for canvas found")
-      } else throw new Error("No canvas found")
-  }
-
-  def apply(context: CanvasRenderingContext2D) = {
+  def run(context: CanvasRenderingContext2D): Double = {
 
     context.lineWidth   = 0.4
     context.strokeStyle = "rgba(255, 255, 255, 0.6)"
 
     val width  = window.innerWidth
     val height = window.innerHeight
-    val size: Double = d3.min_TNumeric(Knowledge.isArrayLike(js.Array(width, height))).getOrElse(width)
+    val size: Double = width min height
 
     d3.select("#content")
       .attr("width", width + "px")
@@ -82,8 +73,6 @@ object D3Demo {
 }
 
 object Knowledge {
-  def isArrayLike[T](ts: js.Array[T]): ArrayLike[T] =
-    ts.asInstanceOf[ArrayLike[T]]
   def isGeoContext(ctx: CanvasRenderingContext2D): GeoContext =
     ctx.asInstanceOf[GeoContext]
   def asOption[T](t: T | Null): Option[T] =
