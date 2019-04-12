@@ -169,6 +169,14 @@ lazy val chart = project
     Compile / npmDependencies ++= Seq("chart.js" -> "2.7")
   )
 
+lazy val p5 = project
+  .configure(baseSettings, bundlerSettings, browserProject)
+  .settings(
+    webpackDevServerPort := 8014,
+    libraryDependencies ++= Seq(ScalablyTyped.P.p5),
+    Compile / npmDependencies ++= Seq("p5" -> "0.7")
+  )
+
 lazy val angular = project
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(

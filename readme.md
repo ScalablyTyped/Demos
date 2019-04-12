@@ -125,6 +125,12 @@ Storybook is a pretty great prototyping and demo tool. It does a lot of webpack 
  it comes with hot module reloading out of the box, even with Scala.js
  
 `sbt> storybook-react/run` starts a webpack-dev-server at http://localhost:8013 .
+
+### P5
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/p5/index.html)
+
+Demo adapted from [documentation](https://p5js.org/examples/instance-mode-instantiation.html)
+`sbt> p5/start` starts a webpack-dev-server at http://localhost:8014 .
  
 ### Electron
 Implements the backend/mainprocess part of an Electron app in Scala.js,
