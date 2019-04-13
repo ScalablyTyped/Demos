@@ -25,6 +25,7 @@ object Main {
 }
 
 object P5Facade {
+
   /**
     * We need this because the function `sketch` provided to `P5` has not been specified well in typescript
     *
