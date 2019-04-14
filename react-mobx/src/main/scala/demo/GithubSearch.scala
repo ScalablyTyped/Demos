@@ -8,7 +8,6 @@ import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
 import typings.mobxDashReactLib.mobxDashReactMod.^.observer
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
 import typings.mobxLib.{mobxMod => MobX}
-import typings.reactLib.reactMod.ReactNs.{ComponentClass, ReactNode}
 import typings.reactLib.reactMod._
 import typings.stdLib.^.{console, window}
 

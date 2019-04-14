@@ -2,7 +2,7 @@ package demo
 
 import typings.nodeLib.{processMod => process}
 import typings.stdLib.^.console
-import typings.typescriptLib.typescriptMod.tsNs.{CompilerOptions, DiagnosticMessageChain, Program}
+import typings.typescriptLib.typescriptMod.{CompilerOptions, DiagnosticMessageChain, Program}
 import typings.typescriptLib.typescriptMod.{^ => ts}
 
 import scala.scalajs.js

@@ -5,7 +5,6 @@ import typings.mobxDashReactLib.mobxDashReactMod.^.observer
 import typings.mobxLib.libCoreComputedvalueMod.IComputedValue
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
 import typings.mobxLib.mobxMod.{^ => MobX}
-import typings.reactLib.reactMod.ReactNs.{Component => _, _}
 import typings.reactLib.reactMod._
 import typings.stdLib.^.console
 

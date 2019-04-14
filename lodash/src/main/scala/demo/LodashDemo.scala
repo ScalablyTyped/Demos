@@ -1,8 +1,7 @@
 package demo
 
 import typings.lodashLib.fpMod.{^ => Fp}
-import typings.lodashLib.lodashMod.underscoreNs.{ArrayIterator, MemoListIterator}
-import typings.lodashLib.lodashMod.{^ => L}
+import typings.lodashLib.lodashMod.{ArrayIterator, MemoListIterator, ^ => L}
 import typings.stdLib.ArrayLike
 import typings.stdLib.^.console
 

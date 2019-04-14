@@ -1,4 +1,5 @@
 package demo
+
 import demo.Knowledge.{Vue, VueClass}
 import org.scalablytyped.runtime.StringDictionary
 import typings.vueLib
@@ -140,7 +141,7 @@ object Knowledge {
     * Needs the same custom import as above (it's the same object)
     *
     * In the ScalablyTyped encoding the constructor ended up as an `Instantiable`,
-    *  which means it lost it's type parameters. We recreate it here to avoid casting.
+    *  which means it has lost its type parameters. We recreate it here to avoid casting.
     *
     * Finally, the shape of the Vue object is hard to rewrite into a Scala class,
     * because the return type is an intersection type (can't extend from that).

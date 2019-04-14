@@ -1,7 +1,7 @@
 package demo
 
 import typings.reactDashReduxLib.ReduxFacade.Connected
-import typings.reactLib.reactMod.ReactNs.ReactElement
+import typings.reactLib.reactMod.ReactElement
 import typings.semanticDashUiDashReactLib.{
   Anon_MenuItem => TabStructure,
   semanticDashUiDashReactLibComponents => Sui,
