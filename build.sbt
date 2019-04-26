@@ -28,7 +28,7 @@ lazy val `react-mobx` =
         ScalablyTyped.M.`material-ui`,
         ScalablyTyped.M.mobx,
         ScalablyTyped.M.`mobx-react`,
-        ScalablyTyped.R.`react-contrib`,
+        ScalablyTyped.R.`react-facade`,
         ScalablyTyped.R.`react-dom`,
       ),
       Compile / npmDependencies ++= Seq(
@@ -50,8 +50,8 @@ lazy val `react-slick` =
         "com.github.japgolly.scalajs-react" %%% "core" % "1.3.1",
         ScalablyTyped.R.`react-dom`,
         ScalablyTyped.R.`react-slick`,
-        ScalablyTyped.R.`react-contrib`,
-        ScalablyTyped.R.`react-japgolly-contrib`,
+        ScalablyTyped.R.`react-facade`,
+        ScalablyTyped.R.`react-japgolly-facade`,
       ),
       Compile / npmDependencies ++= Seq(
         "react" -> "16.8",
@@ -78,7 +78,7 @@ lazy val `react-big-calendar` =
         ScalablyTyped.M.moment,
         ScalablyTyped.R.`react-dom`,
         ScalablyTyped.R.`react-big-calendar`,
-        ScalablyTyped.R.`react-contrib`,
+        ScalablyTyped.R.`react-facade`,
       ),
       Compile / npmDependencies ++= Seq(
         "moment" -> "2.24.0",
@@ -129,10 +129,10 @@ lazy val `semantic-ui-react` = project
       ScalablyTyped.R.`redux-devtools-extension`,
       ScalablyTyped.R.`react-dom`,
       ScalablyTyped.R.`react-redux`,
-      ScalablyTyped.R.`react-redux-contrib`,
-      ScalablyTyped.R.`react-contrib`,
+      ScalablyTyped.R.`react-redux-facade`,
+      ScalablyTyped.R.`react-facade`,
       ScalablyTyped.S.`semantic-ui-react`,
-      ScalablyTyped.S.`std-contrib`,
+      ScalablyTyped.S.`std-facade`,
     ),
     Compile / npmDependencies ++= Seq(
       "redux" -> "4.0.1",
@@ -151,7 +151,7 @@ lazy val reveal = project
     libraryDependencies ++= Seq(
       "com.github.japgolly.scalajs-react" %%% "core" % "1.3.1",
       ScalablyTyped.H.highlight_dot_js,
-      ScalablyTyped.R.`react-japgolly-contrib`,
+      ScalablyTyped.R.`react-japgolly-facade`,
       ScalablyTyped.R.`reveal`,
     ),
     Compile / npmDependencies ++= Seq(
@@ -224,7 +224,7 @@ lazy val `storybook-react` = project
     libraryDependencies ++= Seq(
       ScalablyTyped.N.node,
       ScalablyTyped.R.react,
-      ScalablyTyped.R.`react-contrib`,
+      ScalablyTyped.R.`react-facade`,
       ScalablyTyped.S.storybook__react,
     ),
     /** This is not suitable for development, but effective for demo.
@@ -263,7 +263,7 @@ lazy val reactnative = project
       ScalablyTyped.R.`react-native`,
       ScalablyTyped.R.`react-navigation`,
       ScalablyTyped.R.`react-native-vector-icons`,
-      ScalablyTyped.R.`react-contrib`
+      ScalablyTyped.R.`react-facade`
     ),
     clean := {
       val _   = clean.value
