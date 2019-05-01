@@ -8,12 +8,12 @@ Some of the projects run in the browser, while some run on node.
 [Demo](https://oyvindberg.github.io/ScalablyTypedDemos/react-mobx/)
 
 ScalablyTyped supports that users contribute their own "sugar" on top
- of the generated typings. These projects are called `contrib` projects, 
- and this project uses `react-contrib` to make it smoother to work with react.
+ of the generated typings. These projects are called `facade` projects, 
+ and this project uses `react-facade` to make it smoother to work with react.
  
 #### Libraries used
 
-- react and react-dom for rendering with react-contrib helpers
+- react and react-dom for rendering with react-facade helpers
 - csstypes for a fully typed definition of css
 - MobX for state management
 - Axios to fetch a json resource
