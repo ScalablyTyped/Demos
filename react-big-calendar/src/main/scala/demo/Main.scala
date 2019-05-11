@@ -41,7 +41,7 @@ object Main {
         reactDashDomMod.^.render(
           BC.ReactDashBigDashCalendar[Event, js.Object]
             .props(
-              BC.BigCalendarProps[Event, js.Object](
+              BC.ReactDashBigDashCalendarProps[Event, js.Object](
                 localizer   = Localizer,
                 events      = js.Array(someEvent),
                 defaultDate = new DateCls,
