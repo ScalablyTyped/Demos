@@ -243,6 +243,25 @@ lazy val `storybook-react` = project
     }
   )
 
+lazy val `material-ui` =
+  project
+    .configure(baseSettings, bundlerSettings, browserProject)
+    .settings(
+      webpackDevServerPort := 8016,
+      libraryDependencies ++= Seq(
+        ScalablyTyped.M.`material-ui__core`,
+        ScalablyTyped.M.`material-ui__icons`,
+        ScalablyTyped.R.`react-facade`,
+        ScalablyTyped.R.`react-dom`,
+      ),
+      Compile / npmDependencies ++= Seq(
+        "@material-ui/core" -> "3.9.3",
+        "@material-ui/icons" -> "3.0.2",
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
+      )
+    )
+
 lazy val electron = project
   .configure(baseSettings, outputModule)
   .settings(

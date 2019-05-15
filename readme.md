@@ -138,6 +138,11 @@ Demo adapted from [documentation](https://p5js.org/examples/instance-mode-instan
 Demo adapted from [scalajs-leaflet](https://github.com/fancellu/scalajs-leaflet/blob/master/example/src/main/scala/example/QuickStartLeaflet.scala)
 `sbt> leaflet/start` starts a webpack-dev-server at http://localhost:8015 .
  
+### Material-ui
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/material-ui/index.html)
+
+`sbt> material-ui/start` starts a webpack-dev-server at http://localhost:8016 .
+ 
 ### Electron
 Implements the backend/mainprocess part of an Electron app in Scala.js,
  though it would be easy to do the frontend as well (in another module).
