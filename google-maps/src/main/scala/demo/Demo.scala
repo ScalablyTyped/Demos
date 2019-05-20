@@ -33,7 +33,7 @@ object Demo {
         beaches.foreach {
           case (beach, pos) =>
             val marker = new GMaps.Marker(
-              GMaps.MarkerOptions(
+              GMaps.ReadonlyMarkerOptions(
                 position = pos,
                 title    = beach,
                 map      = m
