@@ -1,22 +1,24 @@
 package demo
 
+import typings.atMaterialDashUiCoreLib.buttonButtonMod.ButtonProps
 import typings.atMaterialDashUiCoreLib.stylesCreateMuiThemeMod.Theme
+import typings.atMaterialDashUiCoreLib.stylesWithStylesMod.CSSProperties
 import typings.atMaterialDashUiCoreLib.{
   atMaterialDashUiCoreLibComponents => Mui,
   atMaterialDashUiCoreLibStrings => MuiStrings
 }
 import typings.atMaterialDashUiIconsLib.{atMaterialDashUiIconsLibComponents => MuiIcons}
 import typings.reactDashDomLib.reactDashDomMod.^.render
+import typings.reactLib.Anon_Children
 import typings.reactLib.dsl._
-import typings.reactLib.reactMod.{FC, FunctionComponent}
 import typings.reactLib.reactMod.^.useState
+import typings.reactLib.reactMod.{FC, ReactElement, ReactNode}
 import typings.stdLib.^.window
 
 import scala.scalajs.js
-import scala.scalajs.js.Dynamic.{literal => obj}
+import scala.scalajs.js.|
 
 object Demo {
-  import typings.reactLib.dsl._
 
   class ButtonTestProps(val name: String) extends js.Object
 
@@ -24,22 +26,25 @@ object Demo {
     /* use a hook to keep state */
     val js.Tuple2(state, setState) = useState(1)
 
-    div.noprops(
-      /* a cake icon to celebrate */
-      MuiIcons.CakeOutlined.props(MuiIcons.CakeOutlinedProps(color = MuiStrings.action)),
-      /* text field controlled by the value of the state hook above*/
-      Mui.TextField.props(new Mui.TextFieldProps {
-        value    = state
-        disabled = true
-      }),
-      /* a button which calls the `setState` function*/
+    val incrementButton: ReactElement[ButtonProps] =
       Mui.Button.props(
         Mui.ButtonProps(
-          action  = null, // todo: check what this should be and why it's required
           onClick = _ => setState(state + 1)
         ),
         s"Increment it, ${props.name}"
       )
+
+    div.noprops(
+      /* a cake icon to celebrate */
+      MuiIcons.CakeOutlined.props(MuiIcons.CakeOutlinedProps(color = MuiStrings.action)),
+      /* text field controlled by the value of the state hook above*/
+      Mui.TextField.props(
+        Mui.TextFieldProps(
+          value    = state,
+          disabled = true
+        )
+      ),
+      incrementButton
     )
   }
 
@@ -47,7 +52,7 @@ object Demo {
     render(
       div.noprops(
         ButtonTest.props(new ButtonTestProps("dear user")),
-        SimpleBadge.Component.props(obj())
+        SimpleBadge.Component.props(new SimpleBadge.Props("yey"))
       ),
       window.document.body
     )
@@ -60,15 +65,19 @@ object SimpleBadge {
     val padding: T
   }
 
-  val styles: js.Function1[Theme, StyleOverrides[js.Dynamic]] = theme =>
-    new StyleOverrides[js.Dynamic] {
-      override val margin  = obj(margin  = theme.spacing.unit * 2)
-      override val padding = obj(padding = s"0 ${theme.spacing.unit * 2}px")
+  val styles: js.Function1[Theme, StyleOverrides[CSSProperties]] = theme =>
+    new StyleOverrides[CSSProperties] {
+      override val margin = new CSSProperties {
+        margin = theme.spacing.unit * 2
+      }
+      override val padding = new CSSProperties {
+        padding = s"0 ${theme.spacing.unit * 2}px"
+      }
   }
 
-  class Props(val classes: StyleOverrides[String]) extends js.Object
+  class Props(val message: String) extends js.Object
 
-  val Base: FC[Props] = define.fc[Props] { props =>
+  val Component: FC[Props] = StyledFC[StyleOverrides, Props](styles) { props =>
     div.noprops(
       div.noprops(
         Mui.Badge.props(
@@ -89,8 +98,7 @@ object SimpleBadge {
         ),
         Mui.IconButton.props(
           Mui.IconButtonProps(
-            action       = null,
-            `aria-label` = "4 pending messages",
+            `aria-label` = s"4 pending messages",
             className    = props.classes.margin,
             children = Mui.Badge.props(
               Mui.BadgeProps(badgeContent = 4, color = MuiStrings.primary, children = MuiIcons.MailOutline.noprops())
@@ -101,15 +109,16 @@ object SimpleBadge {
       Mui.AppBar.props(
         Mui.AppBarProps(position = MuiStrings.static, className = props.classes.margin),
         Mui.Tabs.props(
-          obj(value = 0).asInstanceOf[Mui.TabsProps], // new Mui.TabsProps { value = 0 },
+          Mui.TabsProps(value = 0),
           Mui.Tab.props(
             Mui.TabProps(
-              action = null,
               label = Mui.Badge.props(
-                Mui.BadgeProps(children     = "Item One",
-                               className    = props.classes.padding,
-                               color        = MuiStrings.secondary,
-                               badgeContent = 4)
+                Mui.BadgeProps(
+                  children     = s"Item One, ${props.message}",
+                  className    = props.classes.padding,
+                  color        = MuiStrings.secondary,
+                  badgeContent = 4
+                )
               )
             )
           )
@@ -125,7 +134,7 @@ object SimpleBadge {
       ),
       Mui.Badge.props(
         Mui.BadgeProps(
-          children     = Mui.Button.props(obj(variant = MuiStrings.contained).asInstanceOf[Mui.ButtonProps], "Button"),
+          children     = Mui.Button.props(Mui.ButtonProps(variant = MuiStrings.contained), "Button"),
           color        = MuiStrings.primary,
           badgeContent = 4,
           className    = props.classes.margin
@@ -133,10 +142,20 @@ object SimpleBadge {
       ),
     )
   }
+}
 
-  // todo: we'll need a facade here...
-  val Component = typings.atMaterialDashUiCoreLib.stylesMod.^.asInstanceOf[js.Dynamic]
-    .withStyles(styles)(Base)
-    .asInstanceOf[FunctionComponent[js.Object]]
+/* A facade to define functional components making use of `withStyles` */
+object StyledFC {
+  import scala.language.higherKinds
 
+  @inline private def stylesMod = typings.atMaterialDashUiCoreLib.stylesMod.^.asInstanceOf[js.Dynamic]
+
+  trait GeneratedClassNames[Styles[_] <: js.Object] extends js.Object {
+    val classes: Styles[String]
+  }
+
+  @inline def apply[Styles[_] <: js.Object, P <: js.Object](
+      styles: Styles[CSSProperties] | js.Function1[Theme, Styles[CSSProperties]]
+  )(f:        js.Function1[P with Anon_Children with GeneratedClassNames[Styles], ReactNode]): FC[P] =
+    stylesMod.withStyles(styles.asInstanceOf[js.Any])(f).asInstanceOf[FC[P]]
 }
