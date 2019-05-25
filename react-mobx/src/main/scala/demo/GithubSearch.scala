@@ -52,7 +52,7 @@ object GithubSearch {
             .`then`[Unit]({ res =>
               console.warn("got data", res.data)
               result.set(res.data.items)
-          }, js.defined(err => console.warn("request rejected", err.toString)))
+            }, js.defined(err => console.warn("request rejected", err.toString)))
       )
   }
 

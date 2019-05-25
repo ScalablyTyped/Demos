@@ -35,7 +35,7 @@ lazy val `react-mobx` =
         "axios" -> "0.18.0",
         "material-ui" -> "0.20.1",
         "mobx" -> "5.9.4",
-        "mobx-react" -> "5.4.3",
+        "mobx-react" -> "6.0.2",
         "react" -> "16.8",
         "react-dom" -> "16.8",
       )
@@ -140,7 +140,7 @@ lazy val `semantic-ui-react` = project
       "react-dom" -> "16.8",
       "react" -> "16.8",
       "react-redux" -> "6.0.1",
-      "semantic-ui-react" -> "0.86.0",
+      "semantic-ui-react" -> "0.87.1",
     ),
   )
 
@@ -206,15 +206,15 @@ lazy val angular = project
     Compile / npmDependencies ++= Seq(
       "core-js" -> "2.5",
       "tslib" -> "1.9.3",
-      "zone.js" -> "0.9.0",
-      "rxjs" -> "6.4.0",
-      "@angular/core" -> "7.2.12",
-      "@angular/common" -> "7.2.12",
-      "@angular/compiler" -> "7.2.12",
-      "@angular/router" -> "7.2.12",
-      "@angular/platform-browser" -> "7.2.12",
-      "@angular/platform-browser-dynamic" -> "7.2.12",
-      "@angular/forms" -> "7.2.12",
+      "zone.js" -> "0.9.1",
+      "rxjs" -> "6.5.2",
+      "@angular/core" -> "8.0.0",
+      "@angular/common" -> "8.0.0",
+      "@angular/compiler" -> "8.0.0",
+      "@angular/router" -> "8.0.0",
+      "@angular/platform-browser" -> "8.0.0",
+      "@angular/platform-browser-dynamic" -> "8.0.0",
+      "@angular/forms" -> "8.0.0",
     )
   )
 
@@ -317,7 +317,7 @@ lazy val typescript =
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       libraryDependencies ++= Seq(ScalablyTyped.N.node, ScalablyTyped.T.typescript),
-      Compile / npmDependencies ++= Seq("typescript" -> "3.4.2")
+      Compile / npmDependencies ++= Seq("typescript" -> "3.5.1")
     )
 
 lazy val baseSettings: Project => Project =
@@ -368,12 +368,8 @@ lazy val withCssLoading: Project => Project =
   */
 lazy val browserProject: Project => Project =
   _.settings(
-    start := {
-      (Compile / fastOptJS / startWebpackDevServer).value
-      val indexFrom = baseDirectory.value / "assets/index.html"
-      val indexTo   = (Compile / fastOptJS / crossTarget).value / "index.html"
-      Files.copy(indexFrom.toPath, indexTo.toPath, REPLACE_EXISTING)
-    },
+    Compile / jsSourceDirectories += baseDirectory.value / "assets",
+    start := (Compile / fastOptJS / startWebpackDevServer).value,
     dist := {
       val artifacts      = (Compile / fullOptJS / webpack).value
       val artifactFolder = (Compile / fullOptJS / crossTarget).value

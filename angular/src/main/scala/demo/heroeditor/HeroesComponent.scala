@@ -1,9 +1,7 @@
 package demo
 package heroeditor
 
-import typings.atAngularCoreLib.atAngularCoreMod.ComponentCls
-import typings.atAngularCoreLib.srcMetadataDirectivesMod.Component
-import typings.atAngularCoreLib.srcMetadataLifecycleUnderscoreHooksMod.OnInit
+import typings.atAngularCoreLib.atAngularCoreMod.{Component, ComponentCls, OnInit}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic

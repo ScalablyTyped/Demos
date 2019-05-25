@@ -1,7 +1,7 @@
 package demo
+
 import demo.heroeditor._
-import typings.atAngularCoreLib.atAngularCoreMod.NgModuleCls
-import typings.atAngularCoreLib.srcMetadataNgUnderscoreModuleMod.NgModule
+import typings.atAngularCoreLib.atAngularCoreMod.{NgModule, NgModuleCls}
 import typings.atAngularFormsLib.atAngularFormsMod.FormsModule
 import typings.atAngularPlatformDashBrowserLib.atAngularPlatformDashBrowserMod.BrowserModule
 

@@ -2,10 +2,7 @@ package demo
 package heroeditor
 
 import typings.atAngularCommonLib.atAngularCommonMod.Location
-import typings.atAngularCoreLib.atAngularCoreMod.ComponentCls
-import typings.atAngularCoreLib.srcMetadataDirectivesMod.Component
-import typings.atAngularCoreLib.srcMetadataLifecycleUnderscoreHooksMod.OnInit
-import typings.atAngularCoreLib.srcTypeMod.Type
+import typings.atAngularCoreLib.atAngularCoreMod.{Component, ComponentCls, OnInit, Type}
 import typings.atAngularRouterLib.atAngularRouterMod.ActivatedRoute
 
 import scala.scalajs.js

@@ -25,7 +25,7 @@ object Demo {
     document.body.append(section)
   }
 
-  def chartConfig(tpe: ChartType, Data: js.Array[js.UndefOr[Double | Null]]): ChartConfiguration =
+  def chartConfig(tpe: ChartType, Data: js.Array[js.UndefOr[ChartPoint | Double | Null]]): ChartConfiguration =
     ChartConfiguration(
       `type` = tpe,
       data = ChartData(
@@ -88,9 +88,9 @@ object Demo {
     btn
   }
 
-  def randomData(max: Int, seed: Int): js.Array[js.UndefOr[Double | scala.Null]] = {
+  def randomData(max: Int, seed: Int): js.Array[js.UndefOr[ChartPoint | Double | scala.Null]] = {
     val random = new Random(seed)
-    js.Array[js.UndefOr[Double | Null]](
+    js.Array[js.UndefOr[ChartPoint | Double | Null]](
       random.nextInt(max),
       random.nextInt(max),
       random.nextInt(max),
