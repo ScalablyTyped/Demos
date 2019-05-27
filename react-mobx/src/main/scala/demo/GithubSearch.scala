@@ -49,10 +49,10 @@ object GithubSearch {
                 headers = js.Dynamic.literal(Accept = "application/vnd.github.v3+json"),
               )
             )
-            .`then`[Unit] { res =>
+            .`then`[Unit]({ res =>
               console.warn("got data", res.data)
               result.set(res.data.items)
-          }
+          }, js.defined(err => console.warn("request rejected", err.toString)))
       )
   }
 
