@@ -5,7 +5,7 @@ import org.scalablytyped.runtime.StringDictionary
 import typings.reactDashNativeDashVectorDashIconsLib.{reactDashNativeDashVectorDashIconsLibComponents => Icons}
 import typings.reactDashNativeLib.{reactDashNativeLibComponents => RN}
 import typings.reactDashNavigationLib._
-import typings.reactDashNavigationLib.reactDashNavigationMod.^.{DrawerItems, createAppContainer, createDrawerNavigator}
+import typings.reactDashNavigationLib.reactDashNavigationMod.^.{createAppContainer, createDrawerNavigator, DrawerItems}
 import typings.reactDashNavigationLib.reactDashNavigationMod._
 import typings.reactLib.reactMod.{FC, ReactElement}
 import typings.stdLib.^.Object
