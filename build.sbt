@@ -262,6 +262,42 @@ lazy val `material-ui` =
       )
     )
 
+lazy val antd =
+  project
+    .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
+    .settings(
+      webpackDevServerPort := 8017,
+      libraryDependencies ++= Seq(
+        ScalablyTyped.A.antd,
+        ScalablyTyped.R.`react`,
+        ScalablyTyped.R.`react-dom`,
+        ScalablyTyped.R.`react-facade`
+      ),
+      Compile / npmDependencies ++= Seq(
+        "antd" -> "3.19.2",
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
+      )
+    )
+
+lazy val `react-router-dom` =
+  project
+    .configure(baseSettings, bundlerSettings, browserProject)
+    .settings(
+      webpackDevServerPort := 8018,
+      libraryDependencies ++= Seq(
+        ScalablyTyped.R.`react`,
+        ScalablyTyped.R.`react-dom`,
+        ScalablyTyped.R.`react-router-dom`,
+        ScalablyTyped.R.`react-facade`
+      ),
+      Compile / npmDependencies ++= Seq(
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
+        "react-router-dom" -> "4.3",
+      )
+    )
+
 lazy val electron = project
   .configure(baseSettings, outputModule)
   .settings(

@@ -108,7 +108,7 @@ Simple charting using canvas elements. Shows off how to work with the DOM as wel
  as how to use chart.js. Heavily adapted from the [retyped demo](https://github.com/Retyped/Demos/tree/master/ChartJsDemo),
 `sbt> chart/start` starts a webpack-dev-server at http://localhost:8011 .
 
-### Angular 7 
+### Angular 8 
 [Demo](https://oyvindberg.github.io/ScalablyTypedDemos/angular/)
 
 Let's be nice and say that Angular is a reasonable alternative for creating a frontend app.
@@ -142,6 +142,18 @@ Demo adapted from [scalajs-leaflet](https://github.com/fancellu/scalajs-leaflet/
 [Demo](https://oyvindberg.github.io/ScalablyTypedDemos/material-ui/index.html)
 
 `sbt> material-ui/start` starts a webpack-dev-server at http://localhost:8016 .
+ 
+### Antd
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/antd/index.html)
+Adapted from [mcallisto](https://github.com/mcallisto/slinky-antd.g8/blob/master/src/main/g8/src/main/scala/%24package%24/App.scala)
+ 
+`sbt> antd/start` starts a webpack-dev-server at http://localhost:8017 .
+
+### React-router-dom
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/react-router-dom/index.html)
+Adapted from [mcallisto](https://gist.github.com/mcallisto/5a15d2f9567e084da055e14c8bb4b084)
+ 
+`sbt> react-router-dom/start` starts a webpack-dev-server at http://localhost:8018 .
  
 ### Electron
 Implements the backend/mainprocess part of an Electron app in Scala.js,

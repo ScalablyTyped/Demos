@@ -3,7 +3,6 @@ package demo
 import typings.axiosLib.axiosMod.AxiosRequestConfig
 import typings.axiosLib.axiosMod.^.{default => Axios}
 import typings.csstypeLib.csstypeLibStrings
-import typings.csstypeLib.csstypeMod.{Properties, StandardLonghandProperties, StandardProperties}
 import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
 import typings.mobxDashReactLib.mobxDashReactMod.^.observer
 import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
@@ -50,7 +49,7 @@ object GithubSearch {
               )
             )
             .`then`[Unit]({ res =>
-              console.warn("got data", res.data)
+              console.warn("got data", res.data.items)
               result.set(res.data.items)
             }, js.defined(err => console.warn("request rejected", err.toString)))
       )
@@ -80,16 +79,12 @@ object GithubSearch {
       div.noprops(
         Mui.Paper.props(
           Mui.PaperProps(
-            style = Properties(
-              StandardProperties = StandardProperties(
-                StandardLonghandProperties = StandardLonghandProperties(
-                  height         = "100px",
-                  display        = csstypeLibStrings.flex,
-                  alignItems     = csstypeLibStrings.center,
-                  justifyContent = csstypeLibStrings.center
-                )
-              )
-            ),
+            style = new CSSProperties {
+              height         = "100px"
+              display        = csstypeLibStrings.flex
+              alignItems     = csstypeLibStrings.center
+              justifyContent = csstypeLibStrings.center
+            },
             rounded = true
           )
         ),

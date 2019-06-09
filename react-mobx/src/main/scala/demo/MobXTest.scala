@@ -67,4 +67,5 @@ object MobXTest {
 
   val Component: ComponentClass[Props, js.Any] =
     observer(js.constructorOf[C].asInstanceOf[ComponentClass[Props, js.Any]])
+
 }
