@@ -68,6 +68,6 @@ object MainProcess {
     */
   def main(args: Array[String]): Unit = {
     app.on_ready(electronLibStrings.ready, _ => createWindow())
-    app.`on_window-all-closed`(electronLibStrings.`window-all-closed`, () => app.quit())
+    app.on_windowallclosed(electronLibStrings.`window-all-closed`, () => app.quit())
   }
 }
