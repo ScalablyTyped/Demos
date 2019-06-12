@@ -404,8 +404,12 @@ lazy val withCssLoading: Project => Project =
   */
 lazy val browserProject: Project => Project =
   _.settings(
-    Compile / jsSourceDirectories += baseDirectory.value / "assets",
-    start := (Compile / fastOptJS / startWebpackDevServer).value,
+    start := {
+      (Compile / fastOptJS / startWebpackDevServer).value
+      val indexFrom = baseDirectory.value / "assets/index.html"
+      val indexTo   = (Compile / fastOptJS / crossTarget).value / "index.html"
+      Files.copy(indexFrom.toPath, indexTo.toPath, REPLACE_EXISTING)
+    },
     dist := {
       val artifacts      = (Compile / fullOptJS / webpack).value
       val artifactFolder = (Compile / fullOptJS / crossTarget).value
