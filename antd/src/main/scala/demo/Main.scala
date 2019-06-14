@@ -174,7 +174,11 @@ object App {
           renderIcon,
           renderInput,
           renderPassword,
-          renderSpin
+          renderSpin,
+          section.noprops(
+            h2.noprops("Validation"),
+            ValidationDemo.Component.noprops()
+          )
         ),
         Col.props(ColProps(span = 2))
       )
