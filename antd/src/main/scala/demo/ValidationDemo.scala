@@ -23,11 +23,9 @@ object ValidationDemo {
 
     val handleSubmit: FormEventHandler[js.Any] = e => {
       e.preventDefault()
-      props.form.validateFields((err, values) => {
-        if (js.isUndefined(err)) {
-          console.log(s"Received values of form: $values")
-        }
-      })
+      props.form.validateFields(
+        (err, values) => if (js.isUndefined(err)) console.log(s"Received values of form: $values")
+      )
     }
 
     def handleSelectChange(value: String, option: Any): Unit = {

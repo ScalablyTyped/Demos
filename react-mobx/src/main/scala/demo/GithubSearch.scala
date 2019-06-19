@@ -1,6 +1,6 @@
 package demo
 
-import typings.axiosLib.axiosMod.AxiosRequestConfig
+import typings.axiosLib.axiosMod.{AxiosRequestConfig, AxiosResponse}
 import typings.axiosLib.axiosMod.^.{default => Axios}
 import typings.csstypeLib.csstypeLibStrings
 import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}

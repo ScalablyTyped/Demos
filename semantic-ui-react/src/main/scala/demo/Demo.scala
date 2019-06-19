@@ -15,7 +15,7 @@ object Demo {
 
   class Props(val title: String) extends js.Object
 
-  val CardDemo: ReactElement[Sui.CardProps] =
+  val CardDemo: ReactElement =
     Sui.Card.props(
       Sui.CardProps(color = SuiStrings.orange),
       Sui.CardHeader.noprops("CardHeader"),
@@ -24,7 +24,7 @@ object Demo {
       Sui.Search.props(Sui.SearchProps(minCharacters = 1)),
     )
 
-  val ProgressDemo: ReactElement[Sui.CardProps] =
+  val ProgressDemo: ReactElement =
     Sui.Card.noprops(
       Sui.Progress.props(Sui.ProgressProps(percent = 70, warning  = true)),
       Sui.Progress.props(Sui.ProgressProps(percent = 100, warning = false))

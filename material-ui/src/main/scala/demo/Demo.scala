@@ -26,7 +26,7 @@ object Demo {
     /* use a hook to keep state */
     val js.Tuple2(state, setState) = useState(1)
 
-    val incrementButton: ReactElement[ButtonProps] =
+    val incrementButton: ReactElement =
       Mui.Button.props(
         Mui.ButtonProps(
           onClick = _ => setState(state + 1)
