@@ -17,9 +17,13 @@ import scala.scalajs.js
 object ValidationDemo {
   import typings.reactLib.dsl._
 
-  class Props(val form: WrappedFormUtils[js.Object]) extends js.Object
+  class Props(val noteTitle: js.UndefOr[String]) extends js.Object
 
-  class App extends Component[Props, js.Object, js.Any] {
+  trait WithForm extends js.Object {
+    val form: WrappedFormUtils[js.Object]
+  }
+
+  class App extends Component[Props with WithForm, js.Object, js.Any] {
 
     val handleSubmit: FormEventHandler[js.Any] = e => {
       e.preventDefault()
@@ -41,7 +45,7 @@ object ValidationDemo {
                        wrapperCol = Antd.ColProps(span = 12),
                        onSubmit   = handleSubmit),
         Antd.FormItem.props(
-          Antd.FormItemProps(label = "Note"),
+          Antd.FormItemProps(label = props.noteTitle.getOrElse[String]("Note")),
           props.form
             .getFieldDecorator(
               "note",
@@ -83,9 +87,14 @@ object ValidationDemo {
       )
   }
 
-  val Component = Form
-    .create(FormCreateOption(name = "coordinated"))(
-      js.constructorOf[App] // grab the javascript value of the class itself, this would be easier with functional component
-    )
-    .asInstanceOf[ComponentType[js.Object]] // drop too complex type
+  val Component: ComponentType[Props] = {
+    /* grab the javascript value of the class itself (this would be easier with functional component) */
+    val originalComponent = js.constructorOf[App]
+
+    /* `Form.create` returns a new component with the `form` prop already filled */
+    val newComponent = Form.create(FormCreateOption[Props](name = "coordinated"))(originalComponent)
+
+    /* The type returned from `Form.create` is complicated, but effectively it's just the original component without `form` */
+    newComponent.asInstanceOf[ComponentType[Props]]
+  }
 }

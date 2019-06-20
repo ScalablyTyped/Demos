@@ -177,7 +177,7 @@ object App {
           renderSpin,
           section.noprops(
             h2.noprops("Validation"),
-            ValidationDemo.Component.noprops()
+            ValidationDemo.Component.props(new ValidationDemo.Props(noteTitle = "Input note here"))
           )
         ),
         Col.props(ColProps(span = 2))
