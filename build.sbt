@@ -280,6 +280,27 @@ lazy val antd =
       )
     )
 
+lazy val `antd-slinky` =
+  project
+    .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
+    .settings(
+      webpackDevServerPort := 8018,
+      addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
+      libraryDependencies ++= Seq(
+        ScalablyTyped.A.antd,
+        ScalablyTyped.R.`react`,
+        ScalablyTyped.R.`react-dom`,
+        ScalablyTyped.R.`react-facade`,
+        "me.shadaj" %%% "slinky-web" % "0.6.0",
+        "me.shadaj" %%% "slinky-hot" % "0.6.0"
+      ),
+      Compile / npmDependencies ++= Seq(
+        "antd" -> "3.19.2",
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
+      )
+    )
+
 lazy val `react-router-dom` =
   project
     .configure(baseSettings, bundlerSettings, browserProject)
