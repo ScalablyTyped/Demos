@@ -11,8 +11,16 @@ import typings.antdLib.esFormFormMod.FormProps
 import typings.reactLib.reactMod.{FormEvent, MouseEvent}
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
+
+@JSImport("antd/dist/antd.css", JSImport.Default)
+@js.native
+object CSS extends js.Any
 
 object App {
+
+  private val css = CSS
+
   val component = FunctionalComponent[Unit] { _ =>
     val (isModalVisible, updateIsModalVisible) = useState(false)
     val (selectValue, updateSelectValue)       = useState("lucy")

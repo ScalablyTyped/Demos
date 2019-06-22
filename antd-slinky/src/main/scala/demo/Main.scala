@@ -8,7 +8,7 @@ import scala.scalajs.js.annotation.JSImport
 
 object Main {
   def main(args: Array[String]): Unit = {
-    CSS
+    IndexCSS
     val container = Option(dom.document.getElementById("root")).getOrElse {
       val elem = dom.document.createElement("div")
       elem.id = "root"
@@ -20,6 +20,6 @@ object Main {
   }
 }
 
-@JSImport("antd/dist/antd.css", JSImport.Default)
+@JSImport("../../../../src/main/resources/index.css", JSImport.Namespace)
 @js.native
-object CSS extends js.Any
+object IndexCSS extends js.Object
