@@ -4,6 +4,7 @@ import demo.ScalableSlinky._
 import org.scalajs.dom.console
 import slinky.core._
 import slinky.core.facade.Hooks._
+import slinky.core.annotations.react
 import slinky.web.html._
 import typings.antdLib.antdLibComponents.{List => _, _}
 import typings.antdLib.antdLibStrings
@@ -17,11 +18,13 @@ import scala.scalajs.js.annotation.JSImport
 @js.native
 object CSS extends js.Any
 
-object App {
+@react object App {
+
+  type Props = Unit
 
   private val css = CSS
 
-  val component = FunctionalComponent[Unit] { _ =>
+  val component = FunctionalComponent[Props] { _ =>
     val (isModalVisible, updateIsModalVisible) = useState(false)
     val (selectValue, updateSelectValue)       = useState("lucy")
 

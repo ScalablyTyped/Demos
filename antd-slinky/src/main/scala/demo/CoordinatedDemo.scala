@@ -2,6 +2,7 @@ package demo
 
 import demo.ScalableSlinky._
 import slinky.core.{ExternalComponent, FunctionalComponent, ReactComponentClass}
+import slinky.core.annotations.react
 import typings.antdLib.antdLibComponents.{Button, FormItem, Input, Option, Select, Form => FormAlt}
 import typings.antdLib.antdLibStrings
 import typings.antdLib.esButtonButtonMod.ButtonProps
@@ -22,10 +23,10 @@ import typings.stdLib.^.console
 import scala.scalajs.js
 import scala.scalajs.js.JSON
 
-object CoordinatedDemo extends ExternalComponent {
+@react object CoordinatedDemo extends ExternalComponent {
 
   // case class won't work because `Form.create` will rewrite the props object
-  class Props(val noteTitle: js.UndefOr[String]) extends js.Object
+  class Props(val noteTitle: String) extends js.Object
 
   trait WithForm extends js.Object {
     val form: WrappedFormUtils[js.Object]
@@ -78,12 +79,10 @@ object CoordinatedDemo extends ExternalComponent {
           .toST
       )
 
-    val noteTitle = props.noteTitle.getOrElse[String]("Note")
-
     FormAlt.props(
       FormProps(labelCol = ColProps(span = 5), wrapperCol = ColProps(span = 12), onSubmit = handleSubmit)
     )(
-      FormItem.props(FormItemProps(label      = noteTitle))(noteInput.fromST),
+      FormItem.props(FormItemProps(label      = props.noteTitle))(noteInput.fromST),
       FormItem.props(FormItemProps(label      = "Gender"))(genderInput.fromST),
       FormItem.props(FormItemProps(wrapperCol = ColProps(span = 12, offset = 5)))(
         Button.props(ButtonProps(`type` = antdLibStrings.primary, htmlType = antdLibStrings.submit))("Submit")
