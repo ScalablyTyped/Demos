@@ -290,7 +290,6 @@ lazy val `antd-slinky` =
         ScalablyTyped.A.antd,
         ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
-        ScalablyTyped.R.`react-facade`,
         "me.shadaj" %%% "slinky-web" % "0.6.0",
         "me.shadaj" %%% "slinky-hot" % "0.6.0"
       ),
