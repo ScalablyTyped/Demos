@@ -318,6 +318,27 @@ lazy val `react-router-dom` =
       )
     )
 
+lazy val `react-router-dom-slinky` =
+  project
+    .configure(baseSettings, bundlerSettings, browserProject)
+    .settings(
+      webpackDevServerPort := 8019,
+      addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
+      libraryDependencies ++= Seq(
+        ScalablyTyped.R.`react`,
+        ScalablyTyped.R.`react-dom`,
+        ScalablyTyped.R.`react-router-dom`,
+        ScalablyTyped.R.`react-slinky-facade`,
+        "me.shadaj" %%% "slinky-web" % "0.6.0",
+        "me.shadaj" %%% "slinky-hot" % "0.6.0"
+      ),
+      Compile / npmDependencies ++= Seq(
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
+        "react-router-dom" -> "5.0.0",
+      )
+    )
+
 lazy val electron = project
   .configure(baseSettings, outputModule)
   .settings(
