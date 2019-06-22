@@ -8,8 +8,16 @@ import typings.reactLib.reactMod.{HTMLAttributes, MouseEvent}
 import typings.reactLib.reactMod.^.useState
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
+
+@JSImport("antd/dist/antd.css", JSImport.Default)
+@js.native
+object CSS extends js.Any
 
 object App {
+
+  private val css = CSS
+
   val Component = define.fc[js.Object] { _ =>
     val js.Tuple2(isModalVisible, updateIsModalVisible) = useState(false)
     val js.Tuple2(selectValue, updateSelectValue)       = useState("lucy")

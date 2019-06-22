@@ -9,11 +9,11 @@ import scala.scalajs.js.annotation.JSImport
 
 object Main {
   def main(argv: Array[String]): Unit = {
-    CSS // touch to load
+    IndexCSS // touch to load
     render(App.Component.noprops(), window.document.body)
   }
 }
 
-@JSImport("antd/dist/antd.css", JSImport.Default)
+@JSImport("../../../../src/main/resources/index.css", JSImport.Namespace)
 @js.native
-object CSS extends js.Any
+object IndexCSS extends js.Object
