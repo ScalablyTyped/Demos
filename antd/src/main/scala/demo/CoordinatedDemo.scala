@@ -10,6 +10,7 @@ import typings.antdLib.esFormFormMod.{
 import typings.antdLib.{antdLibStrings, antdLibComponents => Antd}
 import typings.reactLib.dsl._
 import typings.reactLib.reactMod._
+import typings.stdLib.HTMLElement
 import typings.stdLib.^.console
 
 import scala.scalajs.js
@@ -24,7 +25,7 @@ object CoordinatedDemo {
   }
 
   val Base = define.fc[Props with WithForm] { props =>
-    val handleSubmit: FormEventHandler[js.Any] = e => {
+    val handleSubmit: FormEventHandler[HTMLElement] = e => {
       e.preventDefault()
       props.form.validateFields(
         (err, values) => if (js.isUndefined(err)) console.log(s"Received values of form: $values")

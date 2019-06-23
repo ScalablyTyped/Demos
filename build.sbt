@@ -219,7 +219,7 @@ lazy val angular = project
   )
 
 lazy val `storybook-react` = project
-  .configure(baseSettings)
+  .configure(baseSettings, application)
   .settings(
     libraryDependencies ++= Seq(
       ScalablyTyped.N.node,
@@ -298,7 +298,7 @@ lazy val `antd-slinky` =
         "react" -> "16.8",
         "react-dom" -> "16.8",
       )
-    )
+    ).dependsOn(experimental)
 
 lazy val `react-router-dom` =
   project
@@ -328,19 +328,17 @@ lazy val `react-router-dom-slinky` =
         ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
         ScalablyTyped.R.`react-router-dom`,
-        ScalablyTyped.R.`react-slinky-facade`,
         "me.shadaj" %%% "slinky-web" % "0.6.0",
-        "me.shadaj" %%% "slinky-hot" % "0.6.0"
       ),
       Compile / npmDependencies ++= Seq(
         "react" -> "16.8",
         "react-dom" -> "16.8",
         "react-router-dom" -> "5.0.0",
       )
-    )
+    ).dependsOn(experimental)
 
 lazy val electron = project
-  .configure(baseSettings, outputModule)
+  .configure(baseSettings, outputModule, application)
   .settings(
     libraryDependencies ++= Seq(ScalablyTyped.E.electron),
     /* run with globally installed electron */
@@ -353,7 +351,7 @@ lazy val electron = project
   )
 
 lazy val reactnative = project
-  .configure(baseSettings, outputModule)
+  .configure(baseSettings, outputModule, application)
   .settings(
     libraryDependencies ++= Seq(
       ScalablyTyped.R.`react-native`,
@@ -397,24 +395,37 @@ lazy val typescript =
       Compile / npmDependencies ++= Seq("typescript" -> "3.5.1")
     )
 
+lazy val experimental = project.configure(baseSettings).settings(
+  libraryDependencies ++= Seq(
+    ScalablyTyped.R.`react`,
+    ScalablyTyped.R.`react-dom`,
+    "me.shadaj" %%% "slinky-web" % "0.6.0",
+  )
+)
+
 lazy val baseSettings: Project => Project =
   _.enablePlugins(ScalaJSPlugin)
     .settings(
       scalaVersion := "2.12.8",
       version := "0.1-SNAPSHOT",
       scalacOptions ++= ScalacOptions.flags,
-      scalaJSUseMainModuleInitializer := true,
-      scalaJSModuleKind := ModuleKind.CommonJSModule,
-      /* disabled because it somehow triggers many warnings */
-      emitSourceMaps := false,
       /* in preparation for scala.js 1.0 */
       scalacOptions += "-P:scalajs:sjsDefinedByDefault",
       /* for ScalablyTyped */
       resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped"),
     )
 
+lazy val application: Project => Project =
+  _.settings(
+    scalaJSUseMainModuleInitializer := true,
+    /* disabled because it somehow triggers many warnings */
+    emitSourceMaps := false,
+    scalaJSModuleKind := ModuleKind.CommonJSModule,
+  )
+
 lazy val bundlerSettings: Project => Project =
   _.enablePlugins(ScalaJSBundlerPlugin)
+    .configure(application)
     .settings(
       /* Specify current versions and modes */
       startWebpackDevServer / version := "3.1.10",
