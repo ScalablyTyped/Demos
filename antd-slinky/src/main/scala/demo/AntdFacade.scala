@@ -75,7 +75,7 @@ object AntdFacade {
   def formComponent[Props <: js.Object](
       options: FormCreateOption[Props]
   )(f:         js.Function1[Props with WithForm, ReactElement]): ExternalComponentP[Props] =
-    importSTComponent(createForm(FormCreateOption[Props](name = "coordinated"))(f).asInstanceOf[ComponentType[Props]])
+    importSTComponent(createForm(options)(f).asInstanceOf[ComponentType[Props]])
 
   trait WithForm extends js.Object {
     val form: WrappedFormUtils[js.Object]
