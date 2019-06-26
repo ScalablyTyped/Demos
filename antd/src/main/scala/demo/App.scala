@@ -3,9 +3,11 @@ package demo
 import org.scalajs.dom.console
 import typings.antdLib.antdLibComponents._
 import typings.antdLib.antdLibStrings
+import typings.antdLib.esNotificationMod.ArgsProps
 import typings.reactLib.dsl._
 import typings.reactLib.reactMod.{HTMLAttributes, MouseEvent}
 import typings.reactLib.reactMod.^.useState
+import typings.antdLib.esNotificationMod.^.{default => Notification}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -161,6 +163,24 @@ object App {
       )
     )
 
+    def renderNotification = section.noprops(
+      h2.noprops("Notification"),
+      Button.props(
+        ButtonProps(
+          onClick = (_: MouseEvent[_, _]) =>
+            Notification.open(
+              ArgsProps(
+                message = "Notification Title",
+                description =
+                  "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+                `type` = antdLibStrings.success
+              )
+          )
+        ),
+        "Show notification"
+      )
+    )
+
     div.props(
       HTMLAttributes(className = "App"),
       renderIntro,
@@ -182,7 +202,8 @@ object App {
           section.noprops(
             h2.noprops("Validation"),
             CoordinatedDemo.Component.props(new CoordinatedDemo.Props(noteTitle = "Input note here"))
-          )
+          ),
+          renderNotification
         ),
         Col.props(ColProps(span = 2))
       )

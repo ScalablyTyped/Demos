@@ -9,6 +9,7 @@ import slinky.web.html._
 import typings.antdLib.antdLibStrings
 import typings.reactLib.ScalableSlinky._
 import typings.reactLib.reactMod.{FormEvent, MouseEvent}
+import typings.antdLib.esNotificationMod.^.{default => Notification}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -191,6 +192,23 @@ object CSS extends js.Any
     val renderCoordinated =
       section(h2("Form coordinated controls"), CoordinatedDemo.Component(new CoordinatedDemo.Props("write note here")))
 
+    val renderNotification = section(
+      h2("Notification"),
+      Button(
+        ButtonProps(
+          onClick = (_: MouseEvent[_, _]) =>
+            Notification.open(
+              NotificationArgsProps(
+                message = "Notification Title",
+                description =
+                  "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
+                `type` = antdLibStrings.success
+              )
+          )
+        )
+      )("Show notification"),
+    )
+
     div(className := "App")(
       renderIntro,
       Row(RowProps())(
@@ -208,7 +226,8 @@ object CSS extends js.Any
           renderPassword,
           renderSpin,
           renderForm,
-          renderCoordinated
+          renderCoordinated,
+          renderNotification
         ),
         Col(ColProps(span = 2))
       )
