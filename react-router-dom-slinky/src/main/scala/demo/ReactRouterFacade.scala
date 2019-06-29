@@ -3,8 +3,7 @@ package demo
 import slinky.core.facade.ReactElement
 import slinky.core.{BuildingComponent, ReactComponentClass}
 import typings.historyLib.historyMod.{Location, LocationState}
-import typings.reactDashRouterDashDomLib
-import typings.reactDashRouterDashDomLib.{reactDashRouterDashDomLibComponents => RRD}
+import typings.reactDashRouterDashDomLib.{reactDashRouterDashDomLibProps, reactDashRouterDashDomLibComponents => RRD}
 import typings.reactDashRouterLib.reactDashRouterMod.{
   RouteChildrenProps,
   RouteComponentProps,
@@ -21,15 +20,10 @@ import scala.scalajs.js.|
   *
   * It would obviously need to be completed, right now it just has what the demo needs.
   */
-object ReactRouterFacade {
+object ReactRouterFacade extends reactDashRouterDashDomLibProps {
 
   val BrowserRouter: ExternalComponentP[BrowserRouterProps] = importSTComponent(RRD.BrowserRouter)
   val Link:          ExternalComponentP[LinkProps]          = importSTComponent(RRD.Link)
-
-  @inline def BrowserRouterProps = reactDashRouterDashDomLib.reactDashRouterDashDomMod.BrowserRouterProps
-  type BrowserRouterProps = reactDashRouterDashDomLib.reactDashRouterDashDomMod.BrowserRouterProps
-  @inline def LinkProps = typings.reactDashRouterDashDomLib.reactDashRouterDashDomMod.LinkProps
-  type LinkProps = typings.reactDashRouterDashDomLib.reactDashRouterDashDomMod.LinkProps
 
   /** The description of the `Route` component is somewhat rough, so this is a somewhat better slinky wrapper.
     *

@@ -30,12 +30,13 @@ lazy val `react-mobx` =
         ScalablyTyped.M.`mobx-react`,
         ScalablyTyped.R.`react-facade`,
         ScalablyTyped.R.`react-dom`,
+        ScalablyTyped.S.`std-facade`,
       ),
       Compile / npmDependencies ++= Seq(
-        "axios" -> "0.18.0",
+        "axios" -> "0.18.1",
         "material-ui" -> "0.20.1",
-        "mobx" -> "5.9.4",
-        "mobx-react" -> "6.0.2",
+        "mobx" -> "5.10.1",
+        "mobx-react" -> "6.1.1",
         "react" -> "16.8",
         "react-dom" -> "16.8",
       )
@@ -84,7 +85,7 @@ lazy val `react-big-calendar` =
         "moment" -> "2.24.0",
         "react" -> "16.8",
         "react-dom" -> "16.8",
-        "react-big-calendar" -> "0.20",
+        "react-big-calendar" -> "0.22",
       )
     )
 
@@ -139,8 +140,8 @@ lazy val `semantic-ui-react` = project
       "redux-devtools-extension" -> "2.13.8",
       "react-dom" -> "16.8",
       "react" -> "16.8",
-      "react-redux" -> "6.0.1",
-      "semantic-ui-react" -> "0.87.1",
+      "react-redux" -> "7.1",
+      "semantic-ui-react" -> "0.87.2",
     ),
   )
 
@@ -208,13 +209,13 @@ lazy val angular = project
       "tslib" -> "1.9.3",
       "zone.js" -> "0.9.1",
       "rxjs" -> "6.5.2",
-      "@angular/core" -> "8.0.0",
-      "@angular/common" -> "8.0.0",
-      "@angular/compiler" -> "8.0.0",
-      "@angular/router" -> "8.0.0",
-      "@angular/platform-browser" -> "8.0.0",
-      "@angular/platform-browser-dynamic" -> "8.0.0",
-      "@angular/forms" -> "8.0.0",
+      "@angular/core" -> "8.1.0",
+      "@angular/common" -> "8.1.0",
+      "@angular/compiler" -> "8.1.0",
+      "@angular/router" -> "8.1.0",
+      "@angular/platform-browser" -> "8.1.0",
+      "@angular/platform-browser-dynamic" -> "8.1.0",
+      "@angular/forms" -> "8.1.0",
     )
   )
 
@@ -274,7 +275,7 @@ lazy val antd =
         ScalablyTyped.R.`react-facade`
       ),
       Compile / npmDependencies ++= Seq(
-        "antd" -> "3.19.2",
+        "antd" -> "3.20.0",
         "react" -> "16.8",
         "react-dom" -> "16.8",
       )
@@ -290,21 +291,21 @@ lazy val `antd-slinky` =
         ScalablyTyped.A.antd,
         ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
-        "me.shadaj" %%% "slinky-web" % "0.6.0",
-        "me.shadaj" %%% "slinky-hot" % "0.6.0"
+        ScalablyTyped.R.`react-slinky-facade`,
+        "me.shadaj" %%% "slinky-web" % "0.6.2",
       ),
       Compile / npmDependencies ++= Seq(
-        "antd" -> "3.19.2",
+        "antd" -> "3.20.0",
         "react" -> "16.8",
         "react-dom" -> "16.8",
       )
-    ).dependsOn(experimental)
+    )
 
 lazy val `react-router-dom` =
   project
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
-      webpackDevServerPort := 8018,
+      webpackDevServerPort := 8019,
       libraryDependencies ++= Seq(
         ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
@@ -314,7 +315,7 @@ lazy val `react-router-dom` =
       Compile / npmDependencies ++= Seq(
         "react" -> "16.8",
         "react-dom" -> "16.8",
-        "react-router-dom" -> "4.3",
+        "react-router-dom" -> "5.0.0",
       )
     )
 
@@ -322,20 +323,21 @@ lazy val `react-router-dom-slinky` =
   project
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
-      webpackDevServerPort := 8019,
+      webpackDevServerPort := 8020,
       addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
       libraryDependencies ++= Seq(
         ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
         ScalablyTyped.R.`react-router-dom`,
-        "me.shadaj" %%% "slinky-web" % "0.6.0",
+        ScalablyTyped.R.`react-slinky-facade`,
+        "me.shadaj" %%% "slinky-web" % "0.6.2",
       ),
       Compile / npmDependencies ++= Seq(
         "react" -> "16.8",
         "react-dom" -> "16.8",
         "react-router-dom" -> "5.0.0",
       )
-    ).dependsOn(experimental)
+    )
 
 lazy val electron = project
   .configure(baseSettings, outputModule, application)
@@ -394,14 +396,6 @@ lazy val typescript =
       libraryDependencies ++= Seq(ScalablyTyped.N.node, ScalablyTyped.T.typescript),
       Compile / npmDependencies ++= Seq("typescript" -> "3.5.1")
     )
-
-lazy val experimental = project.configure(baseSettings).settings(
-  libraryDependencies ++= Seq(
-    ScalablyTyped.R.`react`,
-    ScalablyTyped.R.`react-dom`,
-    "me.shadaj" %%% "slinky-web" % "0.6.0",
-  )
-)
 
 lazy val baseSettings: Project => Project =
   _.enablePlugins(ScalaJSPlugin)
