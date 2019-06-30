@@ -9,7 +9,7 @@ import typings.semanticDashUiDashReactLib.{
   semanticDashUiDashReactLibComponents => Sui
 }
 import typings.stdLib.RequestInit
-import typings.stdLib.^.{console, fetch}
+import typings.stdLib.^.fetch
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -47,22 +47,25 @@ object GithubSearch {
         case errorRes =>
           errorRes.json().toFuture.map(data => Left(data.asInstanceOf[GithubError]))
       }
+
   }
 
   trait State extends js.Object {
     val search: String
-    val repos: js.UndefOr[js.Array[api.Repository]] = js.undefined
+    val repos:  js.UndefOr[js.Array[api.Repository]]
+    val error:  js.UndefOr[api.GithubError]
   }
 
   object State {
-    val initial: State = new State {
-      val search = "ScalablyTyped"
-    }
+    val initial = State("ScalablyTyped", js.undefined, js.undefined)
 
-    def apply(_search: String, _repos: js.UndefOr[js.Array[api.Repository]]): State =
+    def apply(_search: String,
+              _repos:  js.UndefOr[js.Array[api.Repository]],
+              _error:  js.UndefOr[api.GithubError]): State =
       new State {
-        val search         = _search
-        override val repos = _repos
+        val search = _search
+        val repos  = _repos
+        val error  = _error
       }
   }
 
@@ -96,11 +99,26 @@ object GithubSearch {
       }
   }
 
+  trait SearchReposFailure extends SearchAction {
+    val error: api.GithubError
+  }
+
+  object SearchReposFailure extends Extractor[SearchReposFailure] {
+    protected val _type = "SEARCH_REPOS_FAILURE"
+
+    def apply(_error: api.GithubError): SearchReposFailure =
+      new SearchReposFailure {
+        var `type` = _type
+        val error  = _error
+      }
+  }
+
   val Reducer: Reducer[State, SearchAction] = (stateOpt, action) => {
     val state = stateOpt.getOrElse(State.initial)
     action match {
-      case SearchTextChanged(x)  => State(x.value, state.repos)
-      case SearchReposSuccess(x) => State(state.search, x.repos)
+      case SearchTextChanged(x)  => State(x.value, state.repos, js.undefined)
+      case SearchReposSuccess(x) => State(state.search, x.repos, js.undefined)
+      case SearchReposFailure(x) => State(state.search, js.undefined, x.error)
       case _                     => state
     }
   }
@@ -116,10 +134,14 @@ object GithubSearch {
         Sui.Button.props(
           Sui.ButtonProps(
             onClick = (e, data) =>
-              api.doSearch(props.state.search).foreach(res => props.dispatch(SearchReposSuccess(res.items)))
+              api.doSearch(props.state.search).foreach {
+                case Right(res)        => props.dispatch(SearchReposSuccess(res.items))
+                case Left(githubError) => props.dispatch(SearchReposFailure(githubError))
+            }
           )
         )
       ),
+      props.state.error.map(e => div.noprops(e.message)),
       props.state.repos.map(
         repos =>
           Sui.List.props(
