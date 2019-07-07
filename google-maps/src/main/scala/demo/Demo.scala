@@ -1,6 +1,5 @@
 package demo
 
-import org.scalajs.dom.Event
 import typings.googlemapsLib.googleNs.{mapsNs => GMaps}
 import typings.stdLib.^.document
 
@@ -40,7 +39,7 @@ object Demo {
               )
             )
 
-            GMaps.event.addListener(marker, "click", (_: Event) => {
+            GMaps.event.addListener(marker, "click", () => {
               info.setContent(s"<h3>This is $beach </h3>")
               info.open(m, marker)
             })

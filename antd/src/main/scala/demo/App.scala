@@ -1,13 +1,13 @@
 package demo
 
-import org.scalajs.dom.console
 import typings.antdLib.antdLibComponents._
 import typings.antdLib.antdLibStrings
 import typings.antdLib.esNotificationMod.ArgsProps
-import typings.reactLib.dsl._
-import typings.reactLib.reactMod.{HTMLAttributes, MouseEvent}
-import typings.reactLib.reactMod.^.useState
 import typings.antdLib.esNotificationMod.^.{default => Notification}
+import typings.reactLib.dsl._
+import typings.reactLib.reactMod.^.useState
+import typings.reactLib.reactMod.{HTMLAttributes, MouseEvent}
+import typings.stdLib.^.console
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport

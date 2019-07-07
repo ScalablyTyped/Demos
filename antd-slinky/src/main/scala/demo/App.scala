@@ -1,6 +1,6 @@
 package demo
 
-import demo.AntdFacade._
+import typings.antdLib.AntdFacade.{List => _, _}
 import org.scalajs.dom.console
 import slinky.core._
 import slinky.core.annotations.react

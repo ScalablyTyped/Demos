@@ -1,9 +1,9 @@
 package demo
 
-import demo.ReactRouterFacade._
 import slinky.core._
 import slinky.core.annotations.react
 import slinky.web.html._
+import typings.reactDashRouterDashDomLib.ReactRouterFacade._
 import typings.reactDashRouterLib.reactDashRouterMod._
 
 import scala.scalajs.js

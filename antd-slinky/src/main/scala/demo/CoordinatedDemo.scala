@@ -1,6 +1,6 @@
 package demo
 
-import demo.AntdFacade._
+import typings.antdLib.AntdFacade._
 import typings.antdLib.antdLibStrings
 import typings.antdLib.esFormFormMod.{FormCreateOption, GetFieldDecoratorOptions, ValidationRule}
 import typings.reactLib.ScalableSlinky.ExternalComponentP

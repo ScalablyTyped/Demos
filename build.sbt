@@ -289,9 +289,9 @@ lazy val `antd-slinky` =
       addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
       libraryDependencies ++= Seq(
         ScalablyTyped.A.antd,
+        ScalablyTyped.A.`antd-slinky-facade`,
         ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
-        ScalablyTyped.R.`react-slinky-facade`,
         "me.shadaj" %%% "slinky-web" % "0.6.2",
       ),
       Compile / npmDependencies ++= Seq(
@@ -329,7 +329,7 @@ lazy val `react-router-dom-slinky` =
         ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
         ScalablyTyped.R.`react-router-dom`,
-        ScalablyTyped.R.`react-slinky-facade`,
+        ScalablyTyped.R.`react-router-dom-slinky-facade`,
         "me.shadaj" %%% "slinky-web" % "0.6.2",
       ),
       Compile / npmDependencies ++= Seq(

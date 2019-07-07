@@ -1,7 +1,7 @@
 package demo
 
-import typings.axiosLib.axiosMod.{AxiosError, AxiosRequestConfig}
 import typings.axiosLib.axiosMod.^.{default => Axios}
+import typings.axiosLib.axiosMod.{AxiosError, AxiosRequestConfig}
 import typings.csstypeLib.csstypeLibStrings
 import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
 import typings.mobxDashReactLib.mobxDashReactMod.^.observer
@@ -10,9 +10,9 @@ import typings.mobxLib.{mobxMod => MobX}
 import typings.reactLib.reactMod._
 import typings.stdLib.^.{console, window}
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.scalajs.js
 import scala.util.{Failure, Success}
-import scala.concurrent.ExecutionContext.Implicits.global
 
 object GithubSearch {
   import typings.reactLib.dsl._

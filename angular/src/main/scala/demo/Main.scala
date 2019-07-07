@@ -1,8 +1,9 @@
 package demo
 
-import org.scalajs.dom
 import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
 import typings.atAngularPlatformDashBrowserDashDynamicLib.atAngularPlatformDashBrowserDashDynamicMod.^.platformBrowserDynamic
+import typings.stdLib.EventListenerObject
+import typings.stdLib.^.document
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -27,10 +28,9 @@ object Main {
     /**
       * Waiting the DOM to be loaded otherwise the CSS selectors won't exist.
       */
-    dom.document.addEventListener(
+    document.addEventListener(
       "DOMContentLoaded",
-      (_: dom.Event) => {
-
+      EventListenerObject { _ =>
         if (!scala.scalajs.LinkingInfo.developmentMode) {
 
           /**
