@@ -3,7 +3,7 @@ package demo
 import typings.momentLib.momentLibStrings
 import typings.momentLib.momentMod.{^ => Moment}
 import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.View
-import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.default.momentLocalizer
+import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.^.momentLocalizer
 import typings.reactDashBigDashCalendarLib.{
   reactDashBigDashCalendarLibComponents => BC,
   reactDashBigDashCalendarLibStrings => calStrings
@@ -39,9 +39,9 @@ object Main {
     Knowledge.asOption(document.getElementById("container")) match {
       case Some(container) =>
         reactDashDomMod.^.render(
-          BC.ReactDashBigDashCalendar[Event, js.Object]
+          BC.Calendar[Event, js.Object]
             .props(
-              BC.ReactDashBigDashCalendarProps[Event, js.Object](
+              BC.CalendarProps(
                 localizer   = Localizer,
                 events      = js.Array(someEvent),
                 defaultDate = new DateCls,

@@ -1,7 +1,7 @@
 package demo
 
-import typings.axiosLib.axiosMod.{AxiosRequestConfig, AxiosResponse}
 import typings.axiosLib.axiosMod.^.{default => Axios}
+import typings.axiosLib.axiosMod.{AxiosError, AxiosRequestConfig}
 import typings.csstypeLib.csstypeLibStrings
 import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
 import typings.mobxDashReactLib.mobxDashReactMod.^.observer
@@ -10,7 +10,9 @@ import typings.mobxLib.{mobxMod => MobX}
 import typings.reactLib.reactMod._
 import typings.stdLib.^.{console, window}
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.scalajs.js
+import scala.util.{Failure, Success}
 
 object GithubSearch {
   import typings.reactLib.dsl._
@@ -48,10 +50,17 @@ object GithubSearch {
                 headers = js.Dynamic.literal(Accept = "application/vnd.github.v3+json"),
               )
             )
-            .`then`[Unit]({ res =>
-              console.warn("got data", res.data.items)
-              result.set(res.data.items)
-            }, js.defined(err => console.warn("request rejected", err.toString)))
+            .toFuture
+            .onComplete {
+              case Failure(js.JavaScriptException(err)) =>
+                val axiosError = err.asInstanceOf[AxiosError]
+                console.warn("request rejected", axiosError.response)
+              case Failure(other) =>
+                console.warn("request failed", other.getMessage)
+              case Success(res) =>
+                console.warn("got data", res.data.items)
+                result.set(res.data.items)
+          }
       )
   }
 

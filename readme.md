@@ -149,11 +149,23 @@ Adapted from [mcallisto](https://github.com/mcallisto/slinky-antd.g8/blob/master
  
 `sbt> antd/start` starts a webpack-dev-server at http://localhost:8017 .
 
+### Antd (with Slinky)
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/antd-slinky/index.html)
+A version of the `antd` demo made using slinky.
+ 
+`sbt> antd-slinky/start` starts a webpack-dev-server at http://localhost:8018 .
+
 ### React-router-dom
 [Demo](https://oyvindberg.github.io/ScalablyTypedDemos/react-router-dom/index.html)
 Adapted from [mcallisto](https://gist.github.com/mcallisto/5a15d2f9567e084da055e14c8bb4b084)
  
-`sbt> react-router-dom/start` starts a webpack-dev-server at http://localhost:8018 .
+`sbt> react-router-dom/start` starts a webpack-dev-server at http://localhost:8019 .
+
+### React-router-dom (with Slinky)
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/react-router-dom-slinky/index.html)
+A version of the `react-router-dom` demo made using slinky.
+ 
+`sbt> react-router-dom-slinky/start` starts a webpack-dev-server at http://localhost:8020 .
  
 ### Electron
 Implements the backend/mainprocess part of an Electron app in Scala.js,

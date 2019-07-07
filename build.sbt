@@ -30,12 +30,13 @@ lazy val `react-mobx` =
         ScalablyTyped.M.`mobx-react`,
         ScalablyTyped.R.`react-facade`,
         ScalablyTyped.R.`react-dom`,
+        ScalablyTyped.S.`std-facade`,
       ),
       Compile / npmDependencies ++= Seq(
-        "axios" -> "0.18.0",
+        "axios" -> "0.18.1",
         "material-ui" -> "0.20.1",
-        "mobx" -> "5.9.4",
-        "mobx-react" -> "6.0.2",
+        "mobx" -> "5.10.1",
+        "mobx-react" -> "6.1.1",
         "react" -> "16.8",
         "react-dom" -> "16.8",
       )
@@ -84,7 +85,7 @@ lazy val `react-big-calendar` =
         "moment" -> "2.24.0",
         "react" -> "16.8",
         "react-dom" -> "16.8",
-        "react-big-calendar" -> "0.20",
+        "react-big-calendar" -> "0.22",
       )
     )
 
@@ -139,8 +140,8 @@ lazy val `semantic-ui-react` = project
       "redux-devtools-extension" -> "2.13.8",
       "react-dom" -> "16.8",
       "react" -> "16.8",
-      "react-redux" -> "6.0.1",
-      "semantic-ui-react" -> "0.87.1",
+      "react-redux" -> "7.1",
+      "semantic-ui-react" -> "0.87.2",
     ),
   )
 
@@ -208,18 +209,18 @@ lazy val angular = project
       "tslib" -> "1.9.3",
       "zone.js" -> "0.9.1",
       "rxjs" -> "6.5.2",
-      "@angular/core" -> "8.0.0",
-      "@angular/common" -> "8.0.0",
-      "@angular/compiler" -> "8.0.0",
-      "@angular/router" -> "8.0.0",
-      "@angular/platform-browser" -> "8.0.0",
-      "@angular/platform-browser-dynamic" -> "8.0.0",
-      "@angular/forms" -> "8.0.0",
+      "@angular/core" -> "8.1.0",
+      "@angular/common" -> "8.1.0",
+      "@angular/compiler" -> "8.1.0",
+      "@angular/router" -> "8.1.0",
+      "@angular/platform-browser" -> "8.1.0",
+      "@angular/platform-browser-dynamic" -> "8.1.0",
+      "@angular/forms" -> "8.1.0",
     )
   )
 
 lazy val `storybook-react` = project
-  .configure(baseSettings)
+  .configure(baseSettings, application)
   .settings(
     libraryDependencies ++= Seq(
       ScalablyTyped.N.node,
@@ -274,7 +275,27 @@ lazy val antd =
         ScalablyTyped.R.`react-facade`
       ),
       Compile / npmDependencies ++= Seq(
-        "antd" -> "3.19.2",
+        "antd" -> "3.20.0",
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
+      )
+    )
+
+lazy val `antd-slinky` =
+  project
+    .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
+    .settings(
+      webpackDevServerPort := 8018,
+      addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
+      libraryDependencies ++= Seq(
+        ScalablyTyped.A.antd,
+        ScalablyTyped.A.`antd-slinky-facade`,
+        ScalablyTyped.R.`react`,
+        ScalablyTyped.R.`react-dom`,
+        "me.shadaj" %%% "slinky-web" % "0.6.2",
+      ),
+      Compile / npmDependencies ++= Seq(
+        "antd" -> "3.20.0",
         "react" -> "16.8",
         "react-dom" -> "16.8",
       )
@@ -284,7 +305,7 @@ lazy val `react-router-dom` =
   project
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
-      webpackDevServerPort := 8018,
+      webpackDevServerPort := 8019,
       libraryDependencies ++= Seq(
         ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
@@ -294,12 +315,32 @@ lazy val `react-router-dom` =
       Compile / npmDependencies ++= Seq(
         "react" -> "16.8",
         "react-dom" -> "16.8",
-        "react-router-dom" -> "4.3",
+        "react-router-dom" -> "5.0.0",
+      )
+    )
+
+lazy val `react-router-dom-slinky` =
+  project
+    .configure(baseSettings, bundlerSettings, browserProject)
+    .settings(
+      webpackDevServerPort := 8020,
+      addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
+      libraryDependencies ++= Seq(
+        ScalablyTyped.R.`react`,
+        ScalablyTyped.R.`react-dom`,
+        ScalablyTyped.R.`react-router-dom`,
+        ScalablyTyped.R.`react-router-dom-slinky-facade`,
+        "me.shadaj" %%% "slinky-web" % "0.6.2",
+      ),
+      Compile / npmDependencies ++= Seq(
+        "react" -> "16.8",
+        "react-dom" -> "16.8",
+        "react-router-dom" -> "5.0.0",
       )
     )
 
 lazy val electron = project
-  .configure(baseSettings, outputModule)
+  .configure(baseSettings, outputModule, application)
   .settings(
     libraryDependencies ++= Seq(ScalablyTyped.E.electron),
     /* run with globally installed electron */
@@ -312,7 +353,7 @@ lazy val electron = project
   )
 
 lazy val reactnative = project
-  .configure(baseSettings, outputModule)
+  .configure(baseSettings, outputModule, application)
   .settings(
     libraryDependencies ++= Seq(
       ScalablyTyped.R.`react-native`,
@@ -362,18 +403,23 @@ lazy val baseSettings: Project => Project =
       scalaVersion := "2.12.8",
       version := "0.1-SNAPSHOT",
       scalacOptions ++= ScalacOptions.flags,
-      scalaJSUseMainModuleInitializer := true,
-      scalaJSModuleKind := ModuleKind.CommonJSModule,
-      /* disabled because it somehow triggers many warnings */
-      emitSourceMaps := false,
       /* in preparation for scala.js 1.0 */
       scalacOptions += "-P:scalajs:sjsDefinedByDefault",
       /* for ScalablyTyped */
       resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped"),
     )
 
+lazy val application: Project => Project =
+  _.settings(
+    scalaJSUseMainModuleInitializer := true,
+    /* disabled because it somehow triggers many warnings */
+    emitSourceMaps := false,
+    scalaJSModuleKind := ModuleKind.CommonJSModule,
+  )
+
 lazy val bundlerSettings: Project => Project =
   _.enablePlugins(ScalaJSBundlerPlugin)
+    .configure(application)
     .settings(
       /* Specify current versions and modes */
       startWebpackDevServer / version := "3.1.10",
