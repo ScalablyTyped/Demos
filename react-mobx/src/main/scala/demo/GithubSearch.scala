@@ -1,7 +1,7 @@
 package demo
 
 import typings.axiosLib.axiosMod.^.{default => Axios}
-import typings.axiosLib.axiosMod.{AxiosError, AxiosRequestConfig}
+import typings.axiosLib.axiosMod.{AxiosError, AxiosRequestConfig, AxiosResponse}
 import typings.csstypeLib.csstypeLibStrings
 import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
 import typings.mobxDashReactLib.mobxDashReactMod.^.observer
@@ -43,7 +43,7 @@ object GithubSearch {
         "searchForRepos",
         () =>
           Axios
-            .get[Response](
+            .get[Response, AxiosResponse[Response]](
               "https://api.github.com/search/repositories",
               AxiosRequestConfig(
                 params  = js.Dynamic.literal(q      = search.get(), sort = "stars"),
@@ -53,7 +53,7 @@ object GithubSearch {
             .toFuture
             .onComplete {
               case Failure(js.JavaScriptException(err)) =>
-                val axiosError = err.asInstanceOf[AxiosError]
+                val axiosError = err.asInstanceOf[AxiosError[js.Any]]
                 console.warn("request rejected", axiosError.response)
               case Failure(other) =>
                 console.warn("request failed", other.getMessage)

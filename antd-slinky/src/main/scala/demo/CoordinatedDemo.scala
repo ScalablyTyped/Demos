@@ -5,7 +5,7 @@ import typings.antdLib.antdLibStrings
 import typings.antdLib.esFormFormMod.{FormCreateOption, GetFieldDecoratorOptions, ValidationRule}
 import typings.reactLib.ScalableSlinky.ExternalComponentP
 import typings.reactLib.reactMod.FormEventHandler
-import typings.stdLib.HTMLElement
+import typings.stdLib.HTMLFormElement
 import typings.stdLib.^.console
 
 import scala.scalajs.js
@@ -18,7 +18,7 @@ object CoordinatedDemo {
 
   val Component: ExternalComponentP[Props] =
     formComponent(FormCreateOption[Props](name = "coordinated")) { props =>
-      val handleSubmit: FormEventHandler[HTMLElement] = e => {
+      val handleSubmit: FormEventHandler[HTMLFormElement] = e => {
         e.preventDefault()
         props.form.validateFields((err, values) => {
           if (err == null) {

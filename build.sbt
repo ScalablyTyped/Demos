@@ -30,7 +30,6 @@ lazy val `react-mobx` =
         ScalablyTyped.M.`mobx-react`,
         ScalablyTyped.R.`react-facade`,
         ScalablyTyped.R.`react-dom`,
-        ScalablyTyped.S.`std-facade`,
       ),
       Compile / npmDependencies ++= Seq(
         "axios" -> "0.18.1",
@@ -48,10 +47,8 @@ lazy val `react-slick` =
     .settings(
       webpackDevServerPort := 8005,
       libraryDependencies ++= Seq(
-        "com.github.japgolly.scalajs-react" %%% "core" % "1.3.1",
         ScalablyTyped.R.`react-dom`,
         ScalablyTyped.R.`react-slick`,
-        ScalablyTyped.R.`react-facade`,
         ScalablyTyped.R.`react-japgolly-facade`,
       ),
       Compile / npmDependencies ++= Seq(
@@ -126,14 +123,11 @@ lazy val `semantic-ui-react` = project
   .settings(
     webpackDevServerPort := 8009,
     libraryDependencies ++= Seq(
-      ScalablyTyped.R.`redux`,
       ScalablyTyped.R.`redux-devtools-extension`,
       ScalablyTyped.R.`react-dom`,
-      ScalablyTyped.R.`react-redux`,
       ScalablyTyped.R.`react-redux-facade`,
       ScalablyTyped.R.`react-facade`,
       ScalablyTyped.S.`semantic-ui-react`,
-      ScalablyTyped.S.`std-facade`,
     ),
     Compile / npmDependencies ++= Seq(
       "redux" -> "4.0.1",
@@ -150,7 +144,6 @@ lazy val reveal = project
   .settings(
     webpackDevServerPort := 8010,
     libraryDependencies ++= Seq(
-      "com.github.japgolly.scalajs-react" %%% "core" % "1.3.1",
       ScalablyTyped.H.highlight_dot_js,
       ScalablyTyped.R.`react-japgolly-facade`,
       ScalablyTyped.R.`reveal`,
@@ -224,7 +217,6 @@ lazy val `storybook-react` = project
   .settings(
     libraryDependencies ++= Seq(
       ScalablyTyped.N.node,
-      ScalablyTyped.R.react,
       ScalablyTyped.R.`react-facade`,
       ScalablyTyped.S.storybook__react,
     ),
@@ -270,12 +262,11 @@ lazy val antd =
       webpackDevServerPort := 8017,
       libraryDependencies ++= Seq(
         ScalablyTyped.A.antd,
-        ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
         ScalablyTyped.R.`react-facade`
       ),
       Compile / npmDependencies ++= Seq(
-        "antd" -> "3.20.0",
+        "antd" -> "3.20.1",
         "react" -> "16.8",
         "react-dom" -> "16.8",
       )
@@ -288,14 +279,11 @@ lazy val `antd-slinky` =
       webpackDevServerPort := 8018,
       addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
       libraryDependencies ++= Seq(
-        ScalablyTyped.A.antd,
         ScalablyTyped.A.`antd-slinky-facade`,
-        ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
-        "me.shadaj" %%% "slinky-web" % "0.6.2",
       ),
       Compile / npmDependencies ++= Seq(
-        "antd" -> "3.20.0",
+        "antd" -> "3.20.1",
         "react" -> "16.8",
         "react-dom" -> "16.8",
       )
@@ -307,7 +295,6 @@ lazy val `react-router-dom` =
     .settings(
       webpackDevServerPort := 8019,
       libraryDependencies ++= Seq(
-        ScalablyTyped.R.`react`,
         ScalablyTyped.R.`react-dom`,
         ScalablyTyped.R.`react-router-dom`,
         ScalablyTyped.R.`react-facade`
@@ -325,13 +312,7 @@ lazy val `react-router-dom-slinky` =
     .settings(
       webpackDevServerPort := 8020,
       addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
-      libraryDependencies ++= Seq(
-        ScalablyTyped.R.`react`,
-        ScalablyTyped.R.`react-dom`,
-        ScalablyTyped.R.`react-router-dom`,
-        ScalablyTyped.R.`react-router-dom-slinky-facade`,
-        "me.shadaj" %%% "slinky-web" % "0.6.2",
-      ),
+      libraryDependencies ++= Seq(ScalablyTyped.R.`react-router-dom-slinky-facade`),
       Compile / npmDependencies ++= Seq(
         "react" -> "16.8",
         "react-dom" -> "16.8",
