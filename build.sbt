@@ -474,4 +474,4 @@ val nodeProject: Project => Project =
 
 /* turn the javascript artifact into a module. */
 val outputModule: Project => Project =
-  _.settings(scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) })
+  _.settings(scalaJSModuleKind := ModuleKind.CommonJSModule)
