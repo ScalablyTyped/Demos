@@ -1,7 +1,7 @@
 package demo
 
-import PresentationUtil._
-import Enumeration._
+import demo.PresentationUtil.Enumeration._
+import demo.PresentationUtil._
 import japgolly.scalajs.react.ScalaComponent
 import japgolly.scalajs.react.vdom.html_<^._
 

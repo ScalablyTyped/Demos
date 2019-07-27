@@ -1,22 +1,19 @@
 package demo
 
 import org.scalablytyped.runtime.StringDictionary
-import typings.reactDashReduxLib.ReduxFacade.Extractor
-import typings.reactLib.reactMod.AnchorHTMLAttributes
-import typings.reduxLib.reduxMod.{Action, Dispatch, Reducer}
-import typings.semanticDashUiDashReactLib.{
-  semanticDashUiDashReactLibStrings,
-  semanticDashUiDashReactLibComponents => Sui
-}
-import typings.stdLib.RequestInit
-import typings.stdLib.^.fetch
+import typings.react.reactMod.AnchorHTMLAttributes
+import typings.reactDashRedux.ReduxFacade.Extractor
+import typings.redux.reduxMod.{Action, Dispatch, Reducer}
+import typings.semanticDashUiDashReact.{semanticDashUiDashReactStrings, semanticDashUiDashReactComponents => Sui}
+import typings.std.RequestInit
+import typings.std.^.fetch
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.scalajs.js
 
 object GithubSearch {
-  import typings.reactLib.dsl._
+  import typings.react.dsl._
 
   object api {
     trait Repository extends js.Object {
@@ -152,9 +149,9 @@ object GithubSearch {
                   .withKey(repo.name)
                   .noprops(
                     Sui.ListIcon.props(
-                      Sui.ListIconProps(name          = semanticDashUiDashReactLibStrings.github,
-                                        size          = semanticDashUiDashReactLibStrings.large,
-                                        verticalAlign = semanticDashUiDashReactLibStrings.middle)
+                      Sui.ListIconProps(name          = semanticDashUiDashReactStrings.github,
+                                        size          = semanticDashUiDashReactStrings.large,
+                                        verticalAlign = semanticDashUiDashReactStrings.middle)
                     ),
                     Sui.ListContent.noprops(
                       Sui.ListHeader.props(

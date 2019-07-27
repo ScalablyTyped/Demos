@@ -1,7 +1,7 @@
 package demo
 
-import typings.reactDashNativeLib.reactDashNativeMod.{TextStyle, ViewStyle}
-import typings.reactDashNativeLib.{reactDashNativeLibStrings, Anon_Height}
+import typings.reactDashNative.reactDashNativeMod.{TextStyle, ViewStyle}
+import typings.reactDashNative.{reactDashNativeStrings, Anon_Height}
 
 object styles {
   @inline def red500 = "#f44336"
@@ -12,13 +12,13 @@ object styles {
 
   val drawerHeader = ViewStyle(
     height          = 200,
-    justifyContent  = reactDashNativeLibStrings.center,
-    alignItems      = reactDashNativeLibStrings.center,
+    justifyContent  = reactDashNativeStrings.center,
+    alignItems      = reactDashNativeStrings.center,
     backgroundColor = red500,
   )
 
   val drawerHeaderLogo = TextStyle(
-    fontWeight = reactDashNativeLibStrings.bold,
+    fontWeight = reactDashNativeStrings.bold,
     fontSize   = 20,
     color      = "white",
   )

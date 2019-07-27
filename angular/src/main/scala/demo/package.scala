@@ -1,4 +1,4 @@
-import typings.atAngularCoreLib.atAngularCoreMod.Type
+import typings.atAngularCore.atAngularCoreMod.Type
 
 import scala.language.higherKinds
 import scala.scalajs.js

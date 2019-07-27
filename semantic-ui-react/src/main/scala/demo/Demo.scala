@@ -1,17 +1,17 @@
 package demo
 
-import typings.reactDashReduxLib.ReduxFacade.Connected
-import typings.reactLib.reactMod.ReactElement
-import typings.semanticDashUiDashReactLib.{
+import typings.react.reactMod.ReactElement
+import typings.reactDashRedux.ReduxFacade.Connected
+import typings.semanticDashUiDashReact.{
   Anon_MenuItem => TabStructure,
-  semanticDashUiDashReactLibComponents => Sui,
-  semanticDashUiDashReactLibStrings => SuiStrings
+  semanticDashUiDashReactComponents => Sui,
+  semanticDashUiDashReactStrings => SuiStrings
 }
 
 import scala.scalajs.js
 
 object Demo {
-  import typings.reactLib.dsl._
+  import typings.react.dsl._
 
   class Props(val title: String) extends js.Object
 

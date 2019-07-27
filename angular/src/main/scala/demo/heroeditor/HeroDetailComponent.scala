@@ -1,9 +1,9 @@
 package demo
 package heroeditor
 
-import typings.atAngularCommonLib.atAngularCommonMod.Location
-import typings.atAngularCoreLib.atAngularCoreMod.{Component, ComponentCls, OnInit, Type}
-import typings.atAngularRouterLib.atAngularRouterMod.ActivatedRoute
+import typings.atAngularCommon.atAngularCommonMod.Location
+import typings.atAngularCore.atAngularCoreMod.{Component, ComponentCls, OnInit, Type}
+import typings.atAngularRouter.atAngularRouterMod.ActivatedRoute
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic

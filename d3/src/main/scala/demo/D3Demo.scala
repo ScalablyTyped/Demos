@@ -1,20 +1,20 @@
 package demo
 
-import typings.d3DashGeoLib.d3DashGeoMod.{GeoContext, GeoPath, GeoPermissibleObjects, GeoProjection}
-import typings.d3Lib.d3Mod.{^ => d3}
-import typings.geojsonLib.geojsonLibStrings
-import typings.geojsonLib.geojsonMod.{LineString, Position}
-import typings.stdLib.^.{console, document, window}
-import typings.stdLib.{stdLibStrings, CanvasRenderingContext2D, FrameRequestCallback, HTMLCanvasElementCls}
+import typings.d3.d3Mod.{^ => d3}
+import typings.d3DashGeo.d3DashGeoMod.{GeoContext, GeoPath, GeoPermissibleObjects, GeoProjection}
+import typings.geojson.geojsonMod.{LineString, Position}
+import typings.geojson.geojsonStrings
+import typings.std.^.{console, document, window}
+import typings.std.{stdStrings, CanvasRenderingContext2D, FrameRequestCallback, HTMLCanvasElementCls}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
 
 object D3Demo {
   def main(argv: scala.Array[String]): Unit =
-    document.getElementsByTagName_canvas(stdLibStrings.canvas).item(0) match {
+    document.getElementsByTagName_canvas(stdStrings.canvas).item(0) match {
       case canvas: HTMLCanvasElementCls =>
-        Knowledge.asOption(canvas.getContext_2d(stdLibStrings.`2d`)) match {
+        Knowledge.asOption(canvas.getContext_2d(stdStrings.`2d`)) match {
           case Some(ctx) => run(ctx)
           case None      => console.warn("Cannot get 2d context for", canvas)
         }
@@ -40,11 +40,11 @@ object D3Demo {
         .translate(js.Tuple2(0.5 * width, 0.5 * height))
 
     val geoGenerator: GeoPath[GeoPermissibleObjects, Null] =
-      d3.geoPath_ThisDatumObjectGeoPermissibleObjects(projection, Knowledge.isGeoContext(context))
+      d3.geoPath_ThisDatumObject_GeoPermissibleObjects(projection, Knowledge.isGeoContext(context))
 
     val geometry = LineString(
       coordinates = js.Array[Position](),
-      `type`      = geojsonLibStrings.LineString
+      `type`      = geojsonStrings.LineString
     )
 
     def rndLon = -180 + Math.random() * 360

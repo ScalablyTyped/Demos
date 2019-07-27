@@ -1,9 +1,9 @@
 package demo
 
-import typings.chartDotJsLib.chartDotJsLibStrings
-import typings.chartDotJsLib.chartDotJsMod.{^ => Chart, _}
-import typings.stdLib.^.document
-import typings.stdLib.{stdLibStrings, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
+import typings.chartDotJs.chartDotJsMod.{^ => Chart, _}
+import typings.chartDotJs.chartDotJsStrings
+import typings.std.^.document
+import typings.std.{stdStrings, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -13,13 +13,13 @@ object Demo {
   val random = new Random()
 
   def main(argv: scala.Array[String]): Unit = {
-    val section = document.createElement_section(stdLibStrings.section)
+    val section = document.createElement_section(stdStrings.section)
     section.className = "w"
     section.append(
-      chart(chartConfig(chartDotJsLibStrings.bar, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartDotJsLibStrings.pie, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartDotJsLibStrings.polarArea, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartDotJsLibStrings.line, randomData(100, random.nextInt()))),
+      chart(chartConfig(chartDotJsStrings.bar, randomData(100, random.nextInt()))),
+      chart(chartConfig(chartDotJsStrings.pie, randomData(100, random.nextInt()))),
+      chart(chartConfig(chartDotJsStrings.polarArea, randomData(100, random.nextInt()))),
+      chart(chartConfig(chartDotJsStrings.line, randomData(100, random.nextInt()))),
     )
 
     document.body.append(section)
@@ -44,8 +44,8 @@ object Demo {
     )
 
   def chart(config: ChartConfiguration): HTMLDivElement = {
-    val div:    HTMLDivElement    = document.createElement_div(stdLibStrings.div)
-    val canvas: HTMLCanvasElement = document.createElement_canvas(stdLibStrings.canvas)
+    val div:    HTMLDivElement    = document.createElement_div(stdStrings.div)
+    val canvas: HTMLCanvasElement = document.createElement_canvas(stdStrings.canvas)
     val c:      Chart             = new Chart(canvas, config)
 
     def dataSetsU: js.UndefOr[js.Array[ChartDataSets]] =
@@ -82,9 +82,9 @@ object Demo {
   }
 
   def button(title: String, onClick: js.ThisFunction1[HTMLButtonElement, MouseEvent, Unit]): HTMLButtonElement = {
-    val btn = document.createElement_button(stdLibStrings.button)
+    val btn = document.createElement_button(stdStrings.button)
     btn.textContent = title
-    btn.addEventListener_click(stdLibStrings.click, onClick)
+    btn.addEventListener_click(stdStrings.click, onClick)
     btn
   }
 

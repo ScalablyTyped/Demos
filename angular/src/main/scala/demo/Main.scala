@@ -1,9 +1,9 @@
 package demo
 
-import typings.atAngularCoreLib.atAngularCoreMod.{^ => Core}
-import typings.atAngularPlatformDashBrowserDashDynamicLib.atAngularPlatformDashBrowserDashDynamicMod.^.platformBrowserDynamic
-import typings.stdLib.EventListenerObject
-import typings.stdLib.^.document
+import typings.atAngularCore.atAngularCoreMod.{^ => Core}
+import typings.atAngularPlatformDashBrowserDashDynamic.atAngularPlatformDashBrowserDashDynamicMod.^.platformBrowserDynamic
+import typings.std.EventListenerObject
+import typings.std.^.document
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -21,8 +21,8 @@ object Main {
   def main(args: Array[String]): Unit = {
     /* touch to require */
     coreJsCustomRequire
-    typings.tslibLib.tslibLibRequire
-    typings.zoneDotJsLib.zoneDotJsLibRequire
+    typings.tslib.tslibRequire
+    typings.zoneDotJs.zoneDotJsRequire
     Style
 
     /**

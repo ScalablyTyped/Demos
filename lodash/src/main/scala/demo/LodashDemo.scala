@@ -1,9 +1,9 @@
 package demo
 
-import typings.lodashLib.fpMod.{^ => Fp}
-import typings.lodashLib.lodashMod.{ArrayIterator, MemoListIterator, ^ => L}
-import typings.stdLib.ArrayLike
-import typings.stdLib.^.console
+import typings.lodash.fpMod.{^ => Fp}
+import typings.lodash.lodashMod.{ArrayIterator, MemoListIterator, ^ => L}
+import typings.std.ArrayLike
+import typings.std.^.console
 
 import scala.scalajs.js
 

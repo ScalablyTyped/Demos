@@ -1,10 +1,10 @@
 package demo
 
-import typings.reactDashDomLib.reactDashDomMod.^.render
-import typings.stdLib.^.window
+import typings.reactDashDom.reactDashDomMod.^.render
+import typings.std.^.window
 
 object Main {
-  import typings.reactLib.dsl._
+  import typings.react.dsl._
 
   def main(argv: Array[String]): Unit =
     render(

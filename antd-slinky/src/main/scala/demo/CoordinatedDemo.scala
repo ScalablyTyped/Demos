@@ -1,12 +1,12 @@
 package demo
 
-import typings.antdLib.AntdFacade._
-import typings.antdLib.antdLibStrings
-import typings.antdLib.esFormFormMod.{FormCreateOption, GetFieldDecoratorOptions, ValidationRule}
-import typings.reactLib.ScalableSlinky.ExternalComponentP
-import typings.reactLib.reactMod.FormEventHandler
-import typings.stdLib.HTMLFormElement
-import typings.stdLib.^.console
+import typings.antd.AntdFacade._
+import typings.antd.antdStrings
+import typings.antd.esFormFormMod.{FormCreateOption, GetFieldDecoratorOptions, ValidationRule}
+import typings.react.ScalableSlinky.ExternalComponentP
+import typings.react.reactMod.FormEventHandler
+import typings.std.HTMLFormElement
+import typings.std.^.console
 
 import scala.scalajs.js
 import scala.scalajs.js.JSON
@@ -62,7 +62,7 @@ object CoordinatedDemo {
         FormItem(FormItemProps(label      = props.noteTitle))(noteInput),
         FormItem(FormItemProps(label      = "Gender"))(genderInput),
         FormItem(FormItemProps(wrapperCol = ColProps(span = 12, offset = 5)))(
-          Button(ButtonProps(`type` = antdLibStrings.primary, htmlType = antdLibStrings.submit))("Submit")
+          Button(ButtonProps(`type` = antdStrings.primary, htmlType = antdStrings.submit))("Submit")
         )
       )
     }

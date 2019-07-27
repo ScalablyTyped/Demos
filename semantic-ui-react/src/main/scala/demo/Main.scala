@@ -1,20 +1,19 @@
 package demo
 
-import typings.reactDashDomLib.reactDashDomMod.^.render
-import typings.reactDashReduxLib.reactDashReduxLibComponents.Provider
-import typings.reactDashReduxLib.{reactDashReduxMod, ReduxFacade}
-import typings.reactLib.reactMod._
-import typings.reactDashReduxLib.{reactDashReduxMod, ReduxFacade}
-import typings.reduxDashDevtoolsDashExtensionLib.reduxDashDevtoolsDashExtensionMod.EnhancerOptions
-import typings.reduxDashDevtoolsDashExtensionLib.reduxDashDevtoolsDashExtensionMod.^.devToolsEnhancer
-import typings.reduxLib.reduxMod.Store
-import typings.reduxLib.reduxMod.^.createStore
-import typings.stdLib.^.window
+import typings.react.reactMod._
+import typings.reactDashDom.reactDashDomMod.^.render
+import typings.reactDashRedux.reactDashReduxComponents.Provider
+import typings.reactDashRedux.{reactDashReduxMod, ReduxFacade}
+import typings.redux.reduxMod.Store
+import typings.redux.reduxMod.^.createStore
+import typings.reduxDashDevtoolsDashExtension.reduxDashDevtoolsDashExtensionMod.EnhancerOptions
+import typings.reduxDashDevtoolsDashExtension.reduxDashDevtoolsDashExtensionMod.^.devToolsEnhancer
+import typings.std.^.window
 
 import scala.scalajs.js.|
 
 object Main {
-  import typings.reactLib.dsl._
+  import typings.react.dsl._
 
   def main(argv: Array[String]): Unit =
     Knowledge.asOption(window.document.getElementById("container")) match {

@@ -1,19 +1,15 @@
 package demo
 
-import typings.atMaterialDashUiCoreLib.buttonButtonMod.ButtonProps
-import typings.atMaterialDashUiCoreLib.stylesCreateMuiThemeMod.Theme
-import typings.atMaterialDashUiCoreLib.stylesWithStylesMod.CSSProperties
-import typings.atMaterialDashUiCoreLib.{
-  atMaterialDashUiCoreLibComponents => Mui,
-  atMaterialDashUiCoreLibStrings => MuiStrings
-}
-import typings.atMaterialDashUiIconsLib.{atMaterialDashUiIconsLibComponents => MuiIcons}
-import typings.reactDashDomLib.reactDashDomMod.^.render
-import typings.reactLib.Anon_Children
-import typings.reactLib.dsl._
-import typings.reactLib.reactMod.^.useState
-import typings.reactLib.reactMod.{FC, ReactElement, ReactNode}
-import typings.stdLib.^.window
+import typings.atMaterialDashUiCore.stylesCreateMuiThemeMod.Theme
+import typings.atMaterialDashUiCore.stylesWithStylesMod.CSSProperties
+import typings.atMaterialDashUiCore.{atMaterialDashUiCoreComponents => Mui, atMaterialDashUiCoreStrings => MuiStrings}
+import typings.atMaterialDashUiIcons.{atMaterialDashUiIconsComponents => MuiIcons}
+import typings.react.Anon_Children
+import typings.react.dsl._
+import typings.react.reactMod.^.useState
+import typings.react.reactMod.{FC, ReactElement, ReactNode}
+import typings.reactDashDom.reactDashDomMod.^.render
+import typings.std.^.window
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -148,7 +144,7 @@ object SimpleBadge {
 object StyledFC {
   import scala.language.higherKinds
 
-  @inline private def stylesMod = typings.atMaterialDashUiCoreLib.stylesMod.^.asInstanceOf[js.Dynamic]
+  @inline private def stylesMod = typings.atMaterialDashUiCore.stylesMod.^.asInstanceOf[js.Dynamic]
 
   trait GeneratedClassNames[Styles[_] <: js.Object] extends js.Object {
     val classes: Styles[String]

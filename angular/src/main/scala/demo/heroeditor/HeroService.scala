@@ -1,9 +1,9 @@
 package demo
 package heroeditor
 
-import typings.atAngularCoreLib.atAngularCoreMod.InjectableCls
-import typings.rxjsLib.internalObservableMod.Observable
-import typings.rxjsLib.rxjsMod.{^ => rxjs}
+import typings.atAngularCore.atAngularCoreMod.InjectableCls
+import typings.rxjs.internalObservableMod.Observable
+import typings.rxjs.rxjsMod.{^ => rxjs}
 
 import scala.scalajs.js
 import scala.scalajs.js.JSConverters._
