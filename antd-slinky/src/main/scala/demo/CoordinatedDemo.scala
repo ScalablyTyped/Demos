@@ -5,8 +5,7 @@ import typings.antd.antdStrings
 import typings.antd.esFormFormMod.{FormCreateOption, GetFieldDecoratorOptions, ValidationRule}
 import typings.react.ScalableSlinky.ExternalComponentP
 import typings.react.reactMod.FormEventHandler
-import typings.std.HTMLFormElement
-import typings.std.^.console
+import typings.std.{console, HTMLFormElement}
 
 import scala.scalajs.js
 import scala.scalajs.js.JSON

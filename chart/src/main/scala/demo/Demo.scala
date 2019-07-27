@@ -2,8 +2,7 @@ package demo
 
 import typings.chartDotJs.chartDotJsMod.{^ => Chart, _}
 import typings.chartDotJs.chartDotJsStrings
-import typings.std.^.document
-import typings.std.{stdStrings, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
+import typings.std.{document, stdStrings, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
 
 import scala.scalajs.js
 import scala.scalajs.js.|

@@ -84,7 +84,7 @@ lazy val `react-big-calendar` =
 
 lazy val three =
   project
-    .configure(baseSettings, bundlerSettings, browserProject)
+    .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
       webpackDevServerPort := 8008,
       libraryDependencies ++= Seq(ScalablyTyped.T.three),

@@ -2,12 +2,10 @@ package demo
 
 import typings.antd.antdComponents._
 import typings.antd.antdStrings
-import typings.antd.esNotificationMod.ArgsProps
-import typings.antd.esNotificationMod.^.{default => Notification}
+import typings.antd.esNotificationMod.{ArgsProps, default => Notification}
 import typings.react.dsl._
-import typings.react.reactMod.^.useState
-import typings.react.reactMod.{HTMLAttributes, MouseEvent}
-import typings.std.^.console
+import typings.react.reactMod.{useState, HTMLAttributes, MouseEvent}
+import typings.std.console
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport

@@ -14,10 +14,10 @@ object AppRoutingModule {
   val annotations =
     js.Array(
       new NgModuleCls(
-        NgModule(
-          imports = js.Array(unspecify(RouterModule.forRoot(routes))),
-          exports = js.Array(typeOf[RouterModule])
-        )
+        new NgModule {
+          imports = js.defined(js.Array(unspecify(RouterModule.forRoot(routes))))
+          exports = js.defined(js.Array(typeOf[RouterModule]))
+        }
       )
     )
 

@@ -17,7 +17,7 @@ object Demo {
     Includes.ZoomJs
 
     /* initialize highlight.js */
-    highlightDotJsMod.^.initHighlightingOnLoad()
+    highlightDotJsMod.initHighlightingOnLoad()
 
     /* render talk before we initialize Reveal */
     MyTalk.Talk().renderIntoDOM(dom.document.body)

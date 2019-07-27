@@ -5,8 +5,7 @@ import typings.react.reactMod.AnchorHTMLAttributes
 import typings.reactDashRedux.ReduxFacade.Extractor
 import typings.redux.reduxMod.{Action, Dispatch, Reducer}
 import typings.semanticDashUiDashReact.{semanticDashUiDashReactStrings, semanticDashUiDashReactComponents => Sui}
-import typings.std.RequestInit
-import typings.std.^.fetch
+import typings.std.{fetch, RequestInit}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

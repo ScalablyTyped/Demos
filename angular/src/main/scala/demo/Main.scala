@@ -1,9 +1,8 @@
 package demo
 
-import typings.atAngularCore.atAngularCoreMod.{^ => Core}
-import typings.atAngularPlatformDashBrowserDashDynamic.atAngularPlatformDashBrowserDashDynamicMod.^.platformBrowserDynamic
-import typings.std.EventListenerObject
-import typings.std.^.document
+import typings.atAngularCore.{atAngularCoreMod => Core}
+import typings.atAngularPlatformDashBrowserDashDynamic.atAngularPlatformDashBrowserDashDynamicMod.platformBrowserDynamic
+import typings.std.{document, EventListenerObject}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport

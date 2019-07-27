@@ -2,8 +2,7 @@ package demo
 
 import typings.jquery.{JQuery, JQueryEventObject, jqueryMod => $}
 import typings.jqueryui.jqueryuiRequire
-import typings.std.^.document
-import typings.std.{Element, HTMLButtonElement, HTMLLabelElement}
+import typings.std.{document, Element, HTMLButtonElement, HTMLLabelElement}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport

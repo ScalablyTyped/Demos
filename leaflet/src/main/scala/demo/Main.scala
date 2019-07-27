@@ -1,8 +1,7 @@
 package demo
 
-import typings.leaflet.leafletMod.{CircleMarkerOptions, MarkerOptions, TileLayerOptions, ^ => L}
-import typings.std.HTMLElementCls
-import typings.std.^.{console, document}
+import typings.leaflet.{leafletMod => L}
+import typings.std.{console, document, HTMLElementCls}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -18,32 +17,30 @@ object Main {
 
         L.tileLayer(
             TileLayerUri,
-            Knowledge.patchId(
-              TileLayerOptions(
-                maxZoom     = 19,
-                attribution = """Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,
+            L.TileLayerOptions(
+              id          = "mapbox.streets",
+              maxZoom     = 19,
+              attribution = """Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,
               |<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,
               |Imagery © <a href="http://mapbox.com">Mapbox</a>""".stripMargin
-              ),
-              "mapbox.streets"
             )
           )
           .addTo(map)
 
-        L.marker(js.Tuple2(51.5, -0.09), MarkerOptions(title = "I am a marker"))
+        L.marker(js.Tuple2(51.5, -0.09), L.MarkerOptions(title = "I am a marker"))
           .bindPopup("I am a popup")
           .addTo(map)
 
         L.circle(
             js.Tuple2(51.508, -0.11),
-            CircleMarkerOptions(color = "red", fillColor = "#f03", fillOpacity = 0.5, radius = 500)
+            L.CircleMarkerOptions(color = "red", fillColor = "#f03", fillOpacity = 0.5, radius = 500)
           )
           .bindPopup("I am a circle")
           .addTo(map)
 
         L.circle(
             js.Tuple2(51.516, -0.11),
-            CircleMarkerOptions(color = "green", fillColor = "#f03", fillOpacity = 0.5, radius = 200)
+            L.CircleMarkerOptions(color = "green", fillColor = "#f03", fillOpacity = 0.5, radius = 200)
           )
           .addTo(map)
 
@@ -63,11 +60,4 @@ object Main {
 object Knowledge {
   def asOption[T](t: T | Null): Option[T] =
     Option(t.asInstanceOf[T])
-
-  /* Somehow `id` is missing from `TileLayerOptions`, and it is required */
-  def patchId[T <: js.Object](t: T, id: String): T = {
-    val d = t.asInstanceOf[js.Dynamic]
-    d.id = id
-    d.asInstanceOf[T]
-  }
 }

@@ -1,9 +1,8 @@
 package demo
 
-import typings.lodash.fpMod.{^ => Fp}
 import typings.lodash.lodashMod.{ArrayIterator, MemoListIterator, ^ => L}
-import typings.std.ArrayLike
-import typings.std.^.console
+import typings.lodash.{fpMod => Fp}
+import typings.std.{console, ArrayLike}
 
 import scala.scalajs.js
 
@@ -36,7 +35,7 @@ object LodashDemo {
 
     console.log("fields for Fiona", L.entriesIn(Fiona))
 
-    console.log("Dropped first", Fp.drop(1, Knowledge.isArrayLike(Persons)))
+    console.log("Dropped first", Fp.^.drop(1, Knowledge.isArrayLike(Persons)))
   }
 }
 

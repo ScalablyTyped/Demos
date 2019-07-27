@@ -1,17 +1,17 @@
 package demo
 
-import typings.googlemaps.googleNs.{mapsNs => GMaps}
-import typings.std.^.document
+import typings.googlemaps.google.maps
+import typings.std.document
 
 import scala.scalajs.js.|
 
 object Demo {
-  val beaches: Map[String, GMaps.LatLng] =
+  val beaches: Map[String, maps.LatLng] =
     Map(
-      "Bondi Beach" -> new GMaps.LatLng(-33.890542, 151.274856),
-      "Coogee Beach" -> new GMaps.LatLng(-33.923036, 151.259052),
-      "Cronulla Beach" -> new GMaps.LatLng(-34.028249, 151.157507),
-      "Manly Beach" -> new GMaps.LatLng(-33.80010128657071, 151.28747820854187)
+      "Bondi Beach" -> new maps.LatLng(-33.890542, 151.274856),
+      "Coogee Beach" -> new maps.LatLng(-33.923036, 151.259052),
+      "Cronulla Beach" -> new maps.LatLng(-34.028249, 151.157507),
+      "Manly Beach" -> new maps.LatLng(-33.80010128657071, 151.28747820854187)
     )
 
   def main(argv: scala.Array[String]): Unit = {
@@ -19,27 +19,27 @@ object Demo {
 
     Knowledge.asOption(document.getElementById(containerId)) match {
       case Some(container) =>
-        val m = new GMaps.Map(
+        val m = new maps.Map(
           container,
-          GMaps.MapOptions(
-            center = new GMaps.LatLng(-33.9, 151.2),
+          maps.MapOptions(
+            center = new maps.LatLng(-33.9, 151.2),
             zoom   = 4
           )
         )
 
-        val info = new GMaps.InfoWindow
+        val info = new maps.InfoWindow
 
         beaches.foreach {
           case (beach, pos) =>
-            val marker = new GMaps.Marker(
-              GMaps.ReadonlyMarkerOptions(
+            val marker = new maps.Marker(
+              maps.ReadonlyMarkerOptions(
                 position = pos,
                 title    = beach,
                 map      = m
               )
             )
 
-            GMaps.eventNs.addListener(marker, "click", _ => {
+            maps.event.addListener(marker, "click", _ => {
               info.setContent(s"<h3>This is $beach </h3>")
               info.open(m, marker)
             })

@@ -10,8 +10,7 @@ import typings.antd.esFormFormMod.{
 import typings.antd.{antdStrings, antdComponents => Antd}
 import typings.react.dsl._
 import typings.react.reactMod._
-import typings.std.HTMLFormElement
-import typings.std.^.console
+import typings.std.{console, HTMLFormElement}
 
 import scala.scalajs.js
 
