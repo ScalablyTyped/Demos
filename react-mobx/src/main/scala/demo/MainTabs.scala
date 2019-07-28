@@ -1,18 +1,18 @@
 package demo
 
-import typings.csstypeLib.csstypeMod.BackgroundColorProperty
-import typings.materialDashUiLib.stylesBaseThemesLightBaseThemeMod.{default => theme}
-import typings.materialDashUiLib.stylesMod.MuiTheme
-import typings.materialDashUiLib.stylesMod.^.getMuiTheme
-import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
-import typings.mobxDashReactLib.mobxDashReactMod.^.observer
-import typings.reactLib.reactMod._
-import typings.stdLib.^.console
+import typings.csstype.csstypeMod.BackgroundColorProperty
+import typings.materialDashUi.stylesBaseThemesLightBaseThemeMod.{default => theme}
+import typings.materialDashUi.stylesMod.MuiTheme
+import typings.materialDashUi.stylesMod.^.getMuiTheme
+import typings.materialDashUi.{materialDashUiComponents => Mui}
+import typings.mobxDashReact.mobxDashReactMod.^.observer
+import typings.react.reactMod._
+import typings.std.^.console
 
 import scala.scalajs.js
 
 object MainTabs {
-  import typings.reactLib.dsl._
+  import typings.react.dsl._
 
   class Props(val testStore: MobXTest.Store, val githubStore: GithubSearch.Store) extends js.Object
 

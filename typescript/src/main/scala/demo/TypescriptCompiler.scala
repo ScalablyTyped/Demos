@@ -1,9 +1,8 @@
 package demo
 
-import typings.nodeLib.{processMod => process}
-import typings.stdLib.^.console
-import typings.typescriptLib.typescriptMod.{CompilerOptions, DiagnosticMessageChain, Program}
-import typings.typescriptLib.typescriptMod.{^ => ts}
+import typings.node.{processMod => process}
+import typings.std.^.console
+import typings.typescript.typescriptMod.{CompilerOptions, DiagnosticMessageChain, Program, ^ => ts}
 
 import scala.scalajs.js
 import scala.scalajs.js.|

@@ -1,12 +1,12 @@
 package demo
 
-import typings.historyLib.historyMod.LocationState
-import typings.reactDashDomLib.reactDashDomMod.^.render
-import typings.reactDashRouterDashDomLib.reactDashRouterDashDomLibComponents._
-import typings.reactDashRouterLib.reactDashRouterMod.{RouteComponentProps, RouteProps, StaticContext}
-import typings.reactLib.dsl._
-import typings.reactLib.reactMod.{ComponentType, FunctionComponent}
-import typings.stdLib.^.window
+import typings.history.historyMod.LocationState
+import typings.react.dsl._
+import typings.react.reactMod.{ComponentType, FunctionComponent}
+import typings.reactDashDom.reactDashDomMod.^.render
+import typings.reactDashRouter.reactDashRouterMod.{RouteComponentProps, RouteProps, StaticContext}
+import typings.reactDashRouterDashDom.reactDashRouterDashDomComponents._
+import typings.std.^.window
 
 import scala.scalajs.js
 import scala.scalajs.js.|

@@ -1,9 +1,9 @@
 package demo
 
-import typings.stdLib.^.{document, requestAnimationFrame, window, Date}
-import typings.stdLib.{stdLibStrings, FrameRequestCallback, HTMLDivElement, UIEvent, Window}
-import typings.threeLib.srcMaterialsMeshLambertMaterialMod.MeshLambertMaterialParameters
-import typings.threeLib.threeMod.{MathNs => ThreeMath, ^ => Three, _}
+import typings.std.^.{document, requestAnimationFrame, window, Date}
+import typings.std.{stdStrings, FrameRequestCallback, HTMLDivElement, UIEvent, Window}
+import typings.three.srcMaterialsMeshLambertMaterialMod.MeshLambertMaterialParameters
+import typings.three.threeMod.{MathNs => ThreeMath, ^ => Three, _}
 
 import scala.scalajs.js
 
@@ -12,10 +12,10 @@ object Main {
 
   def main(argv: Array[String]): Unit = {
 
-    val container = document.createElement_div(stdLibStrings.div)
+    val container = document.createElement_div(stdStrings.div)
     document.body.appendChild(container)
 
-    val info: HTMLDivElement = document.createElement_div(stdLibStrings.div)
+    val info: HTMLDivElement = document.createElement_div(stdStrings.div)
     info.style.position  = "absolute"
     info.style.top       = "10px"
     info.style.width     = "100%"
@@ -71,7 +71,7 @@ object Main {
       renderer.setSize(window.innerWidth, window.innerHeight)
     }
 
-    window.addEventListener_resize(stdLibStrings.resize, onWindowResize, false)
+    window.addEventListener_resize(stdStrings.resize, onWindowResize, false)
 
     var prevTime = Date.now()
     var theta    = 0.0

@@ -1,21 +1,21 @@
 package demo
 
-import typings.axiosLib.axiosMod.^.{default => Axios}
-import typings.axiosLib.axiosMod.{AxiosError, AxiosRequestConfig, AxiosResponse}
-import typings.csstypeLib.csstypeLibStrings
-import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
-import typings.mobxDashReactLib.mobxDashReactMod.^.observer
-import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
-import typings.mobxLib.{mobxMod => MobX}
-import typings.reactLib.reactMod._
-import typings.stdLib.^.{console, window}
+import typings.axios.axiosMod.^.{default => Axios}
+import typings.axios.axiosMod.{AxiosError, AxiosRequestConfig, AxiosResponse}
+import typings.csstype.csstypeStrings
+import typings.materialDashUi.{materialDashUiComponents => Mui}
+import typings.mobx.libTypesObservablevalueMod.IObservableValue
+import typings.mobx.{mobxMod => MobX}
+import typings.mobxDashReact.mobxDashReactMod.^.observer
+import typings.react.reactMod._
+import typings.std.^.{console, window}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.scalajs.js
 import scala.util.{Failure, Success}
 
 object GithubSearch {
-  import typings.reactLib.dsl._
+  import typings.react.dsl._
 
   class Props(val store: Store) extends js.Object
 
@@ -90,9 +90,9 @@ object GithubSearch {
           Mui.PaperProps(
             style = new CSSProperties {
               height         = "100px"
-              display        = csstypeLibStrings.flex
-              alignItems     = csstypeLibStrings.center
-              justifyContent = csstypeLibStrings.center
+              display        = csstypeStrings.flex
+              alignItems     = csstypeStrings.center
+              justifyContent = csstypeStrings.center
             },
             rounded = true
           )

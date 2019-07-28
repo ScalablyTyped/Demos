@@ -1,9 +1,9 @@
 package demo
 
 import demo.heroeditor._
-import typings.atAngularCoreLib.atAngularCoreMod.{NgModule, NgModuleCls}
-import typings.atAngularFormsLib.atAngularFormsMod.FormsModule
-import typings.atAngularPlatformDashBrowserLib.atAngularPlatformDashBrowserMod.BrowserModule
+import typings.atAngularCore.atAngularCoreMod.{NgModule, NgModuleCls}
+import typings.atAngularForms.atAngularFormsMod.FormsModule
+import typings.atAngularPlatformDashBrowser.atAngularPlatformDashBrowserMod.BrowserModule
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic

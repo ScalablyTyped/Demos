@@ -1,9 +1,9 @@
 package demo
 
-import typings.jqueryLib.{JQuery, JQueryEventObject, jqueryMod => $}
-import typings.jqueryuiLib.jqueryuiLibRequire
-import typings.stdLib.^.document
-import typings.stdLib.{Element, HTMLButtonElement, HTMLLabelElement}
+import typings.jquery.{JQuery, JQueryEventObject, jqueryMod => $}
+import typings.jqueryui.jqueryuiRequire
+import typings.std.^.document
+import typings.std.{Element, HTMLButtonElement, HTMLLabelElement}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -11,8 +11,8 @@ import scala.scalajs.js.|
 
 object JQueryDemo {
   def main(args: Array[String]): Unit = {
-    // trigger loading of global library and CSS
-    jqueryuiLibRequire
+    // trigger loading of global rary and CSS
+    jqueryuiRequire
     Knowledge.JqueryUiCss
 
     Knowledge.asOption(document.getElementById("container")) match {
@@ -46,6 +46,6 @@ object Knowledge {
     Option(t.asInstanceOf[T])
 
   /* fake interface augmentation. This is done automatically in typescript. */
-  def isJQueryUi[T](x: JQuery[T]): typings.jqueryuiLib.JQuery =
-    x.asInstanceOf[typings.jqueryuiLib.JQuery]
+  def isJQueryUi[T](x: JQuery[T]): typings.jqueryui.JQuery =
+    x.asInstanceOf[typings.jqueryui.JQuery]
 }

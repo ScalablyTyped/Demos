@@ -1,12 +1,12 @@
 package demo
 
-import typings.materialDashUiLib.{materialDashUiLibComponents => Mui}
-import typings.mobxDashReactLib.mobxDashReactMod.^.observer
-import typings.mobxLib.libCoreComputedvalueMod.IComputedValue
-import typings.mobxLib.libTypesObservablevalueMod.IObservableValue
-import typings.mobxLib.mobxMod.{^ => MobX}
-import typings.reactLib.reactMod._
-import typings.stdLib.^.console
+import typings.materialDashUi.{materialDashUiComponents => Mui}
+import typings.mobx.libCoreComputedvalueMod.IComputedValue
+import typings.mobx.libTypesObservablevalueMod.IObservableValue
+import typings.mobx.mobxMod.{^ => MobX}
+import typings.mobxDashReact.mobxDashReactMod.^.observer
+import typings.react.reactMod._
+import typings.std.^.console
 
 import scala.scalajs.js
 
@@ -28,7 +28,7 @@ object MobXTest {
 
   class Props(val store: Store) extends js.Object
 
-  import typings.reactLib.dsl._
+  import typings.react.dsl._
 
   private class C extends Component[Props, js.Any, js.Any] {
     val increaseNum: MouseEventHandler[js.Object] = _ => {

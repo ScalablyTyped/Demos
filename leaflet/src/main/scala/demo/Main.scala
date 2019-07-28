@@ -1,8 +1,8 @@
 package demo
 
-import typings.leafletLib.leafletMod.{CircleMarkerOptions, MarkerOptions, TileLayerOptions, ^ => L}
-import typings.stdLib.HTMLElementCls
-import typings.stdLib.^.{console, document}
+import typings.leaflet.leafletMod.{CircleMarkerOptions, MarkerOptions, TileLayerOptions, ^ => L}
+import typings.std.HTMLElementCls
+import typings.std.^.{console, document}
 
 import scala.scalajs.js
 import scala.scalajs.js.|

@@ -5,7 +5,7 @@ import japgolly.scalajs.react.raw.SyntheticMouseEvent
 import japgolly.scalajs.react.vdom.html_<^._
 import org.scalajs.dom
 import org.scalajs.dom.document
-import typings.reactDashSlickLib.reactDashSlickMod.{Settings, default => ReactSlick}
+import typings.reactDashSlick.reactDashSlickMod.{Settings, default => ReactSlick}
 
 import scala.scalajs.js
 

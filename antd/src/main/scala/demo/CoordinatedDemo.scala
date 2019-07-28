@@ -1,17 +1,17 @@
 package demo
 
-import typings.antdLib.esFormFormMod.{
+import typings.antd.esFormFormMod.{
   FormCreateOption,
   GetFieldDecoratorOptions,
   ValidationRule,
   WrappedFormUtils,
   default => Form
 }
-import typings.antdLib.{antdLibStrings, antdLibComponents => Antd}
-import typings.reactLib.dsl._
-import typings.reactLib.reactMod._
-import typings.stdLib.HTMLFormElement
-import typings.stdLib.^.console
+import typings.antd.{antdStrings, antdComponents => Antd}
+import typings.react.dsl._
+import typings.react.reactMod._
+import typings.std.HTMLFormElement
+import typings.std.^.console
 
 import scala.scalajs.js
 
@@ -79,7 +79,7 @@ object CoordinatedDemo {
       Antd.FormItem.props(
         Antd.FormItemProps(wrapperCol = Antd.ColProps(span = 12, offset = 5)),
         Antd.Button.props(
-          Antd.ButtonProps(`type` = antdLibStrings.primary, htmlType = antdLibStrings.submit),
+          Antd.ButtonProps(`type` = antdStrings.primary, htmlType = antdStrings.submit),
           "Submit"
         )
       )

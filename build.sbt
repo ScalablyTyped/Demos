@@ -2,6 +2,7 @@ import java.nio.file.Files
 import java.nio.file.StandardCopyOption.REPLACE_EXISTING
 
 import org.scalajs.jsenv.nodejs.NodeJSEnv
+
 import scala.sys.process.Process
 
 /**
@@ -474,4 +475,4 @@ val nodeProject: Project => Project =
 
 /* turn the javascript artifact into a module. */
 val outputModule: Project => Project =
-  _.settings(scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) })
+  _.settings(scalaJSModuleKind := ModuleKind.CommonJSModule)

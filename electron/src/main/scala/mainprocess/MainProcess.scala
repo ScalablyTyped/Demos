@@ -1,12 +1,12 @@
 package mainprocess
 
-import typings.electronLib.ElectronNs.BrowserWindowConstructorOptions
-import typings.electronLib.electronLibStrings
-import typings.electronLib.electronMod.BrowserWindow
-import typings.electronLib.electronMod.^.app
-import typings.nodeLib.pathMod.^.join
-import typings.nodeLib.urlMod
-import typings.nodeLib.urlMod.UrlObject
+import typings.electron.ElectronNs.BrowserWindowConstructorOptions
+import typings.electron.electronMod.BrowserWindow
+import typings.electron.electronMod.^.app
+import typings.electron.electronStrings
+import typings.node.pathMod.^.join
+import typings.node.urlMod
+import typings.node.urlMod.UrlObject
 
 import scala.collection.mutable
 
@@ -56,7 +56,7 @@ object MainProcess {
     if (scala.scalajs.LinkingInfo.developmentMode)
       window.webContents.openDevTools()
 
-    window.on_closed(electronLibStrings.closed, () => windows -= window)
+    window.on_closed(electronStrings.closed, () => windows -= window)
 
     windows += window
   }
@@ -67,7 +67,7 @@ object MainProcess {
     * in the build.sbt file. Removing this method will fail at compile time.
     */
   def main(args: Array[String]): Unit = {
-    app.on_ready(electronLibStrings.ready, _ => createWindow())
-    app.on_windowallclosed(electronLibStrings.`window-all-closed`, () => app.quit())
+    app.on_ready(electronStrings.ready, _ => createWindow())
+    app.on_windowallclosed(electronStrings.`window-all-closed`, () => app.quit())
   }
 }

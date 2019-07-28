@@ -1,15 +1,15 @@
 package demo
 
-import typings.atStorybookReactLib.atStorybookReactMod.RenderFunction
-import typings.atStorybookReactLib.atStorybookReactMod.^.storiesOf
-import typings.nodeLib.^.module
-import typings.reactLib.reactMod.{ButtonHTMLAttributes, HTMLAttributes}
-import typings.stdLib.^.window
+import typings.atStorybookReact.atStorybookReactMod.RenderFunction
+import typings.atStorybookReact.atStorybookReactMod.^.storiesOf
+import typings.node.^.module
+import typings.react.reactMod.{ButtonHTMLAttributes, HTMLAttributes}
+import typings.std.^.window
 
 import scala.scalajs.js
 
 object Demo {
-  import typings.reactLib.dsl._
+  import typings.react.dsl._
 
   /* This is really just translating P to js.Any, since ReactElement is not covariant in scala */
   def fn[P](f: js.Function0[P]): RenderFunction =

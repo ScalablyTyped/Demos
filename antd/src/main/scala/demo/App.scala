@@ -1,13 +1,13 @@
 package demo
 
-import typings.antdLib.antdLibComponents._
-import typings.antdLib.antdLibStrings
-import typings.antdLib.esNotificationMod.ArgsProps
-import typings.antdLib.esNotificationMod.^.{default => Notification}
-import typings.reactLib.dsl._
-import typings.reactLib.reactMod.^.useState
-import typings.reactLib.reactMod.{HTMLAttributes, MouseEvent}
-import typings.stdLib.^.console
+import typings.antd.antdComponents._
+import typings.antd.antdStrings
+import typings.antd.esNotificationMod.ArgsProps
+import typings.antd.esNotificationMod.^.{default => Notification}
+import typings.react.dsl._
+import typings.react.reactMod.^.useState
+import typings.react.reactMod.{HTMLAttributes, MouseEvent}
+import typings.std.^.console
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -92,14 +92,14 @@ object App {
       Alert.props(
         AlertProps(message     = "Success Tips",
                    description = "Detailed description and advice about successful copywriting.",
-                   `type`      = antdLibStrings.success,
+                   `type`      = antdStrings.success,
                    showIcon    = true)
       )
     )
 
     def renderButton = section.noprops(
       h2.noprops("Button"),
-      Button.props(ButtonProps(icon = "download", `type` = antdLibStrings.primary), "Download")
+      Button.props(ButtonProps(icon = "download", `type` = antdStrings.primary), "Download")
     )
 
     def renderModal = section.noprops(
@@ -153,11 +153,11 @@ object App {
     def renderSpin = section.noprops(
       h2.noprops("Spin"),
       Spin.props(
-        SpinProps(size = antdLibStrings.large, spinning = true),
+        SpinProps(size = antdStrings.large, spinning = true),
         Alert.props(
           AlertProps(message     = "Alert message title",
                      description = "Further details about the context of this alert.",
-                     `type`      = antdLibStrings.info,
+                     `type`      = antdStrings.info,
                      showIcon    = true)
         )
       )
@@ -173,7 +173,7 @@ object App {
                 message = "Notification Title",
                 description =
                   "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
-                `type` = antdLibStrings.success
+                `type` = antdStrings.success
               )
           )
         ),

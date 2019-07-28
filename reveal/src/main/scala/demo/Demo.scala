@@ -1,8 +1,8 @@
 package demo
 
 import org.scalajs.dom
-import typings.highlightDotJsLib.highlightDotJsMod
-import typings.revealLib.{RevealOptions, RevealStatic}
+import typings.highlightDotJs.highlightDotJsMod
+import typings.reveal.{RevealOptions, RevealStatic}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport

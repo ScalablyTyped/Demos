@@ -1,16 +1,16 @@
 package demo
 
-import typings.momentLib.momentLibStrings
-import typings.momentLib.momentMod.{^ => Moment}
-import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.View
-import typings.reactDashBigDashCalendarLib.reactDashBigDashCalendarMod.^.momentLocalizer
-import typings.reactDashBigDashCalendarLib.{
-  reactDashBigDashCalendarLibComponents => BC,
-  reactDashBigDashCalendarLibStrings => calStrings
+import typings.moment.momentMod.{^ => Moment}
+import typings.moment.momentStrings
+import typings.reactDashBigDashCalendar.reactDashBigDashCalendarMod.View
+import typings.reactDashBigDashCalendar.reactDashBigDashCalendarMod.^.momentLocalizer
+import typings.reactDashBigDashCalendar.{
+  reactDashBigDashCalendarComponents => BC,
+  reactDashBigDashCalendarStrings => calStrings
 }
-import typings.reactDashDomLib.reactDashDomMod
-import typings.stdLib.^.{console, document}
-import typings.stdLib.{Date, DateCls}
+import typings.reactDashDom.reactDashDomMod
+import typings.std.^.{console, document}
+import typings.std.{Date, DateCls}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -23,7 +23,7 @@ object BigCalendarCss extends js.Object
 class Event(val start: Date, val end: Date, val title: js.UndefOr[String]) extends js.Object
 
 object Main {
-  import typings.reactLib.dsl._
+  import typings.react.dsl._
 
   BigCalendarCss // touch to load css
 
@@ -31,7 +31,7 @@ object Main {
 
   val someEvent = new Event(
     start = new DateCls,
-    end   = Moment(new DateCls).add(1, momentLibStrings.day).toDate(),
+    end   = Moment(new DateCls).add(1, momentStrings.day).toDate(),
     title = "My amazing event"
   )
 

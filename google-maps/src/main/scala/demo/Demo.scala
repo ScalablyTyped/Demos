@@ -1,7 +1,7 @@
 package demo
 
-import typings.googlemapsLib.googleNs.{mapsNs => GMaps}
-import typings.stdLib.^.document
+import typings.googlemaps.googleNs.{mapsNs => GMaps}
+import typings.std.^.document
 
 import scala.scalajs.js.|
 
