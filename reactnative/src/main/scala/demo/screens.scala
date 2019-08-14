@@ -22,14 +22,14 @@ object screens {
       MyNavScreen.props(
         new MyNavScreenProps("Drafts screen", props.navigation),
         RN.Text.noprops("Your collection of email drafts goes here")
-    )
+      )
   )
   val Inbox: NavigationComponent = define.fc[NavigationScreenProps[js.Any, js.Any]](
     props =>
       MyNavScreen.props(
         new MyNavScreenProps("Inbox screen", props.navigation),
         RN.Text.noprops("Pretend there is an email inbox here")
-    )
+      )
   )
 
   class MyNavScreenProps(

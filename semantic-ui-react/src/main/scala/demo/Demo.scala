@@ -21,7 +21,7 @@ object Demo {
       Sui.CardHeader.noprops("CardHeader"),
       Sui.CardMeta.noprops("CardMeta"),
       Sui.Divider.noprops(),
-      Sui.Search.props(Sui.SearchProps(minCharacters = 1)),
+      Sui.Search.props(Sui.SearchProps(minCharacters = 1))
     )
 
   val ProgressDemo: ReactElement =
@@ -46,6 +46,6 @@ object Demo {
             )
           )
         )
-    )
+      )
   )
 }

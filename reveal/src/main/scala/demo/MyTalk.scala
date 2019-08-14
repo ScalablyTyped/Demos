@@ -11,7 +11,7 @@ object MyTalk {
     chapterSlide(
       <.h2("Build your presentations with ScalaJS + reveal.js"),
       <.br,
-      <.h4("move down (down-arrow)"),
+      <.h4("move down (down-arrow)")
     ),
     headerSlide(
       "reveal.js commands",
@@ -51,7 +51,7 @@ object MyTalk {
 
   val chapter2 = chapter(
     chapterSlide(
-      <.h2("Where can I find more information?"),
+      <.h2("Where can I find more information?")
     ),
     headerSlide(
       "about reveal.js",

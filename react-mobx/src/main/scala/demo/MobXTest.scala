@@ -43,7 +43,7 @@ object MobXTest {
             icon = Mui.ActionAlarm.props(
               Mui.SvgIconProps(
                 SVGAttributes = SVGAttributes(
-                  DOMAttributes = DOMAttributes(onClick = e => console.warn(s"icon clicked ${e.nativeEvent}")),
+                  DOMAttributes = DOMAttributes(onClick = e => console.warn(s"icon clicked ${e.nativeEvent}"))
                 ),
                 hoverColor = "blue"
               )

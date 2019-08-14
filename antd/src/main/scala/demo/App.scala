@@ -28,12 +28,16 @@ object App {
       Col.props(ColProps(span = 7)),
       Col.props(
         ColProps(span = 10),
-        header.props(HTMLAttributes(className = "App-header"),
-                     h1.props(HTMLAttributes(className = "App-title"), "Welcome to React (with Scala.js!)")),
-        p.props(HTMLAttributes(className = "App-intro"),
-                "To get started, edit ",
-                code.noprops("App.scala"),
-                " and save to reload.")
+        header.props(
+          HTMLAttributes(className = "App-header"),
+          h1.props(HTMLAttributes(className = "App-title"), "Welcome to React (with Scala.js!)")
+        ),
+        p.props(
+          HTMLAttributes(className = "App-intro"),
+          "To get started, edit ",
+          code.noprops("App.scala"),
+          " and save to reload."
+        )
       ),
       Col.props(ColProps(span = 7))
     )
@@ -90,10 +94,12 @@ object App {
     def renderAlert = section.noprops(
       h2.noprops("Alert"),
       Alert.props(
-        AlertProps(message     = "Success Tips",
-                   description = "Detailed description and advice about successful copywriting.",
-                   `type`      = antdStrings.success,
-                   showIcon    = true)
+        AlertProps(
+          message     = "Success Tips",
+          description = "Detailed description and advice about successful copywriting.",
+          `type`      = antdStrings.success,
+          showIcon    = true
+        )
       )
     )
 
@@ -155,10 +161,12 @@ object App {
       Spin.props(
         SpinProps(size = antdStrings.large, spinning = true),
         Alert.props(
-          AlertProps(message     = "Alert message title",
-                     description = "Further details about the context of this alert.",
-                     `type`      = antdStrings.info,
-                     showIcon    = true)
+          AlertProps(
+            message     = "Alert message title",
+            description = "Further details about the context of this alert.",
+            `type`      = antdStrings.info,
+            showIcon    = true
+          )
         )
       )
     )
@@ -175,7 +183,7 @@ object App {
                   "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
                 `type` = antdStrings.success
               )
-          )
+            )
         ),
         "Show notification"
       )

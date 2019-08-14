@@ -56,9 +56,11 @@ object GithubSearch {
   object State {
     val initial = State("ScalablyTyped", js.undefined, js.undefined)
 
-    def apply(_search: String,
-              _repos:  js.UndefOr[js.Array[api.Repository]],
-              _error:  js.UndefOr[api.GithubError]): State =
+    def apply(
+        _search: String,
+        _repos:  js.UndefOr[js.Array[api.Repository]],
+        _error:  js.UndefOr[api.GithubError]
+    ): State =
       new State {
         val search = _search
         val repos  = _repos
@@ -125,8 +127,10 @@ object GithubSearch {
   val C = define.fc[Props] { props =>
     div.noprops(
       Sui.Input.props(
-        Sui.InputProps(StringDictionary("defaultValue" -> props.state.search),
-                       onChange = (_, data) => props.dispatch(SearchTextChanged(data.value))),
+        Sui.InputProps(
+          StringDictionary("defaultValue" -> props.state.search),
+          onChange = (_, data) => props.dispatch(SearchTextChanged(data.value))
+        ),
         input.noprops(),
         Sui.Button.props(
           Sui.ButtonProps(
@@ -134,7 +138,7 @@ object GithubSearch {
               api.doSearch(props.state.search).foreach {
                 case Right(res)        => props.dispatch(SearchReposSuccess(res.items))
                 case Left(githubError) => props.dispatch(SearchReposFailure(githubError))
-            }
+              }
           )
         )
       ),
@@ -149,9 +153,11 @@ object GithubSearch {
                   .withKey(repo.name)
                   .noprops(
                     Sui.ListIcon.props(
-                      Sui.ListIconProps(name          = semanticDashUiDashReactStrings.github,
-                                        size          = semanticDashUiDashReactStrings.large,
-                                        verticalAlign = semanticDashUiDashReactStrings.middle)
+                      Sui.ListIconProps(
+                        name          = semanticDashUiDashReactStrings.github,
+                        size          = semanticDashUiDashReactStrings.large,
+                        verticalAlign = semanticDashUiDashReactStrings.middle
+                      )
                     ),
                     Sui.ListContent.noprops(
                       Sui.ListHeader.props(
@@ -161,9 +167,9 @@ object GithubSearch {
                       ),
                       Sui.ListDescription.noprops(repo.description)
                     )
-                )
+                  )
             )
-        )
+          )
       )
     )
   }

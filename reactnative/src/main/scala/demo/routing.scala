@@ -25,7 +25,7 @@ object routing {
           ),
           DrawerItems.props(p)
         )
-    )
+      )
   )
 
   def drawerRoute(label: String, muiIcon: String, component: NavigationComponent): NavigationRouteConfig =
@@ -43,7 +43,7 @@ object routing {
                     size  = 24,
                     color = props.tintColor.force[String]
                   )
-              )
+                )
             )
             .force[ReactElement]
         ): NavigationScreenConfig[NavigationDrawerScreenOptions]

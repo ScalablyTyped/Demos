@@ -11,7 +11,7 @@ object Demo {
       "Bondi Beach" -> new GMaps.LatLng(-33.890542, 151.274856),
       "Coogee Beach" -> new GMaps.LatLng(-33.923036, 151.259052),
       "Cronulla Beach" -> new GMaps.LatLng(-34.028249, 151.157507),
-      "Manly Beach" -> new GMaps.LatLng(-33.80010128657071, 151.28747820854187),
+      "Manly Beach" -> new GMaps.LatLng(-33.80010128657071, 151.28747820854187)
     )
 
   def main(argv: scala.Array[String]): Unit = {
@@ -39,7 +39,7 @@ object Demo {
               )
             )
 
-            GMaps.event.addListener(marker, "click", () => {
+            GMaps.eventNs.addListener(marker, "click", _ => {
               info.setContent(s"<h3>This is $beach </h3>")
               info.open(m, marker)
             })

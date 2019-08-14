@@ -47,7 +47,7 @@ object GithubSearch {
               "https://api.github.com/search/repositories",
               AxiosRequestConfig(
                 params  = js.Dynamic.literal(q      = search.get(), sort = "stars"),
-                headers = js.Dynamic.literal(Accept = "application/vnd.github.v3+json"),
+                headers = js.Dynamic.literal(Accept = "application/vnd.github.v3+json")
               )
             )
             .toFuture
@@ -60,7 +60,7 @@ object GithubSearch {
               case Success(res) =>
                 console.warn("got data", res.data.items)
                 result.set(res.data.items)
-          }
+            }
       )
   }
 
@@ -79,8 +79,8 @@ object GithubSearch {
             ),
             "Go to project"
           )
-        ),
-    )
+        )
+      )
   )
 
   private class C extends Component[Props, js.Any, js.Any] {
@@ -118,13 +118,13 @@ object GithubSearch {
                     Mui.TableRowColumn.noprops("name"),
                     Mui.TableRowColumn.noprops("forks_count"),
                     Mui.TableRowColumn.noprops("stargazers_count"),
-                    Mui.TableRowColumn.noprops("link"),
+                    Mui.TableRowColumn.noprops("link")
                   )
                 ),
                 Mui.TableBody.noprops(
                   repos.map(repo => RepoRow.withKey(repo.name).props(repo))
                 )
-            )
+              )
           )
       )
   }

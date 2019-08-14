@@ -30,7 +30,7 @@ object Demo {
         progress   = false,
         history    = false,
         center     = true,
-        transition = "none",
+        transition = "none"
       )
     )
   }

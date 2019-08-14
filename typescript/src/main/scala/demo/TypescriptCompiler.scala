@@ -38,7 +38,7 @@ object TypescriptCompiler {
         case empty if empty.length == 0 =>
           js.Array(
             "typescript/src/main/resources/good.ts",
-            "typescript/src/main/resources/bad.ts",
+            "typescript/src/main/resources/bad.ts"
           )
         case nonEmpty => nonEmpty
       }

@@ -81,11 +81,11 @@ object Todo {
                 new DemoVueTodo {
                   var done    = c == tasks.head
                   val content = c
-              }
+                }
             )
             val barValue = 100
             val n        = 0
-        },
+          },
         methods = new Methods {
           val clickHandler = demoVue => demoVue.n -= 1
 

@@ -40,9 +40,8 @@ object CoordinatedDemo {
     }
 
     Antd.Form.props(
-      Antd.FormProps(labelCol   = Antd.ColProps(span = 5),
-                     wrapperCol = Antd.ColProps(span = 12),
-                     onSubmit   = handleSubmit),
+      Antd
+        .FormProps(labelCol = Antd.ColProps(span = 5), wrapperCol = Antd.ColProps(span = 12), onSubmit = handleSubmit),
       Antd.FormItem.props(
         Antd.FormItemProps(label = props.noteTitle.getOrElse[String]("Note")),
         props.form
@@ -72,7 +71,7 @@ object CoordinatedDemo {
                   onChange    = handleSelectChange
                 ),
                 Antd.Option.props(Antd.OptionProps(value = "male"), "male"),
-                Antd.Option.props(Antd.OptionProps(value = "female"), "female"),
+                Antd.Option.props(Antd.OptionProps(value = "female"), "female")
               )
           )
       ),

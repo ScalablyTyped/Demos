@@ -41,7 +41,7 @@ object Main {
             dots          = true,
             autoplay      = true,
             autoplaySpeed = 1000,
-            slidesToShow  = 2,
+            slidesToShow  = 2
           )
         )(images: _*)
       )
@@ -62,6 +62,6 @@ object Main {
             "https://img.buzzfeed.com/buzzfeed-static/static/2014-04/enhanced/webdr07/9/12/enhanced-buzz-28527-1397060122-10.jpg?downsize=800:*&output-format=auto&output-quality=auto"
           )
         )
-      ),
+      )
     ).renderIntoDOM(document.body)
 }

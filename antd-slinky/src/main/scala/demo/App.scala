@@ -104,10 +104,12 @@ object CSS extends js.Any
       h2("Modal"),
       Button(ButtonProps(onClick = (_: MouseEvent[_, _]) => updateIsModalVisible(true)))("Open modal"),
       Modal(
-        ModalProps(visible  = isModalVisible,
-                   title    = "Basic modal",
-                   onCancel = _ => updateIsModalVisible(false),
-                   onOk     = _ => updateIsModalVisible(false))
+        ModalProps(
+          visible  = isModalVisible,
+          title    = "Basic modal",
+          onCancel = _ => updateIsModalVisible(false),
+          onOk     = _ => updateIsModalVisible(false)
+        )
       )(p("Some contents..."), p("Some contents..."), p("Some contents..."))
     )
 
@@ -148,10 +150,12 @@ object CSS extends js.Any
       h2("Spin"),
       Spin(SpinProps(size = antdStrings.large, spinning = true))(
         Alert(
-          AlertProps(message     = "Alert message title",
-                     description = "Further details about the context of this alert.",
-                     `type`      = antdStrings.info,
-                     showIcon    = true)
+          AlertProps(
+            message     = "Alert message title",
+            description = "Further details about the context of this alert.",
+            `type`      = antdStrings.info,
+            showIcon    = true
+          )
         )
       )
     )
@@ -166,7 +170,7 @@ object CSS extends js.Any
           Input(
             InputProps(
               placeholder = "input email",
-              addonBefore = Icon(IconProps(`type` = "mail", theme = antdStrings.twoTone)).toST,
+              addonBefore = Icon(IconProps(`type` = "mail", theme = antdStrings.twoTone)).toST
             )
           )
         ),
@@ -174,7 +178,7 @@ object CSS extends js.Any
           Password(
             PasswordProps(
               placeholder = "input password",
-              addonBefore = Icon(IconProps(`type` = "lock", theme = antdStrings.twoTone)).toST,
+              addonBefore = Icon(IconProps(`type` = "lock", theme = antdStrings.twoTone)).toST
             )
           )
         ),
@@ -204,9 +208,9 @@ object CSS extends js.Any
                   "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
                 `type` = antdStrings.success
               )
-          )
+            )
         )
-      )("Show notification"),
+      )("Show notification")
     )
 
     div(className := "App")(

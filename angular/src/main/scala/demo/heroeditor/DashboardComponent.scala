@@ -100,7 +100,7 @@ object DashboardComponent {
           |}
         """.stripMargin)
       )
-    ),
+    )
   )
 
   @JSExportStatic

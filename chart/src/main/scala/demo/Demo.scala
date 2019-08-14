@@ -19,7 +19,7 @@ object Demo {
       chart(chartConfig(chartDotJsStrings.bar, randomData(100, random.nextInt()))),
       chart(chartConfig(chartDotJsStrings.pie, randomData(100, random.nextInt()))),
       chart(chartConfig(chartDotJsStrings.polarArea, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartDotJsStrings.line, randomData(100, random.nextInt()))),
+      chart(chartConfig(chartDotJsStrings.line, randomData(100, random.nextInt())))
     )
 
     document.body.append(section)
@@ -64,7 +64,7 @@ object Demo {
           data            = randomData(100, random.nextInt()),
           borderWidth     = 1,
           backgroundColor = BackgroundColor,
-          borderColor     = BorderColor,
+          borderColor     = BorderColor
         )
 
         dataSetsU.foreach(_.push(newDataset))

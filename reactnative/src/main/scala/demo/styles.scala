@@ -14,13 +14,13 @@ object styles {
     height          = 200,
     justifyContent  = reactDashNativeStrings.center,
     alignItems      = reactDashNativeStrings.center,
-    backgroundColor = red500,
+    backgroundColor = red500
   )
 
   val drawerHeaderLogo = TextStyle(
     fontWeight = reactDashNativeStrings.bold,
     fontSize   = 20,
-    color      = "white",
+    color      = "white"
   )
 
   val navScreenContainer = ViewStyle(flex = 1)

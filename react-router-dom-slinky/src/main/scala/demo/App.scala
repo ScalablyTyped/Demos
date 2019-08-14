@@ -34,7 +34,7 @@ import scala.scalajs.js
           hr(),
           Route[Unit](exact = true, path        = "/", render = _ => home),
           Route[Unit](path  = "/about", render  = _ => about),
-          Route[Unit](path  = "/topics", render = props => Topics(props.`match`)),
+          Route[Unit](path  = "/topics", render = props => Topics(props.`match`))
         )
       )
     )
@@ -55,7 +55,7 @@ import scala.scalajs.js
       ),
       hr(),
       Route[Topic.Param](path = props.`match`.path + "/:topicId", render = props => Topic(props.`match`)),
-      Route[Unit](exact       = true, path                               = props.`match`.path, render = _ => h3("Please select a topic")),
+      Route[Unit](exact       = true, path                               = props.`match`.path, render = _ => h3("Please select a topic"))
     )
   }
 }

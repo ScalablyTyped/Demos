@@ -27,11 +27,11 @@ object Demo {
                 HTMLAttributes(
                   onClick      = e => window.alert(s"x: ${e.pageX}, y: ${e.pageY}"),
                   `aria-label` = "so cool",
-                  role         = "img",
-                ),
+                  role         = "img"
+                )
               ),
               span.noprops("😀😎")
-          )
+            )
         )
       )
 }

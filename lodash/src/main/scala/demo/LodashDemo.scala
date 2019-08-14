@@ -21,7 +21,7 @@ object LodashDemo {
       (prevU, curr, idx, all) =>
         prevU.fold(curr.name) { prev =>
           prev + " and " + curr.name
-      }
+        }
 
     val value2 = L.reduce(Persons, summarizeNames, js.undefined)
     console.log("Summarized names of two persons", value2)

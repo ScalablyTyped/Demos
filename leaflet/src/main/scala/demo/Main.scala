@@ -34,13 +34,17 @@ object Main {
           .bindPopup("I am a popup")
           .addTo(map)
 
-        L.circle(js.Tuple2(51.508, -0.11),
-                  CircleMarkerOptions(color = "red", fillColor = "#f03", fillOpacity = 0.5, radius = 500))
+        L.circle(
+            js.Tuple2(51.508, -0.11),
+            CircleMarkerOptions(color = "red", fillColor = "#f03", fillOpacity = 0.5, radius = 500)
+          )
           .bindPopup("I am a circle")
           .addTo(map)
 
-        L.circle(js.Tuple2(51.516, -0.11),
-                  CircleMarkerOptions(color = "green", fillColor = "#f03", fillOpacity = 0.5, radius = 200))
+        L.circle(
+            js.Tuple2(51.516, -0.11),
+            CircleMarkerOptions(color = "green", fillColor = "#f03", fillOpacity = 0.5, radius = 200)
+          )
           .addTo(map)
 
         L.polygon(js.Array(js.Tuple2(51.509, -0.08), js.Tuple2(51.503, -0.06), js.Tuple2(51.51, -0.047)))

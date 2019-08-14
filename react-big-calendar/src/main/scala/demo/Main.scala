@@ -49,7 +49,7 @@ object Main {
                 views       = js.Array[View](calStrings.agenda, calStrings.day, calStrings.week)
               )
             ),
-          container,
+          container
         )
       case None => console.error("Could not find #container")
     }

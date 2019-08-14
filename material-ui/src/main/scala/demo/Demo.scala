@@ -69,7 +69,7 @@ object SimpleBadge {
       override val padding = new CSSProperties {
         padding = s"0 ${theme.spacing.unit * 2}px"
       }
-  }
+    }
 
   class Props(val message: String) extends js.Object
 
@@ -99,7 +99,7 @@ object SimpleBadge {
             children = Mui.Badge.props(
               Mui.BadgeProps(badgeContent = 4, color = MuiStrings.primary, children = MuiIcons.MailOutline.noprops())
             )
-          ),
+          )
         )
       ),
       Mui.AppBar.props(
@@ -135,7 +135,7 @@ object SimpleBadge {
           badgeContent = 4,
           className    = props.classes.margin
         )
-      ),
+      )
     )
   }
 }

@@ -40,7 +40,7 @@ object App {
         /* pass a function to the `render` prop */
         Route[RouteProps].props(RouteProps(path = "/topics", render = topics)),
         /* pass a `ReactNode` as `children`. This will always render */
-        Route[RouteProps].props(RouteProps(path = "/about"), div.noprops(h2.noprops("Always render"))),
+        Route[RouteProps].props(RouteProps(path = "/about"), div.noprops(h2.noprops("Always render")))
       )
     )
 

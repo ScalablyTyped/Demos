@@ -45,7 +45,7 @@ object MainTabs {
             Mui.Tab.props(
               Mui.TabProps(label = "MobX"),
               MobXTest.Component.props(new MobXTest.Props(props.testStore))
-            ),
+            )
           )
         )
       )

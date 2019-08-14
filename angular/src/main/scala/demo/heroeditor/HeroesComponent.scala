@@ -93,7 +93,7 @@ object HeroesComponent {
           |}
         """.stripMargin)
       )
-    ),
+    )
   )
 
   @JSExportStatic
