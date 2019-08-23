@@ -27,9 +27,9 @@ import scala.scalajs.js
       BrowserRouter(BrowserRouterProps())(
         div(
           ul(
-            li(Link(LinkProps(to = "/"))("Home")),
-            li(Link(LinkProps(to = "/about"))("About")),
-            li(Link(LinkProps(to = "/topics"))("Topics"))
+            li(Link[js.Object](LinkProps(to = "/"))("Home")),
+            li(Link[js.Object](LinkProps(to = "/about"))("About")),
+            li(Link[js.Object](LinkProps(to = "/topics"))("Topics"))
           ),
           hr(),
           Route[Unit](exact = true, path        = "/", render = _ => home),
@@ -49,9 +49,9 @@ import scala.scalajs.js
     div(
       h2("Topics"),
       ul(
-        li(Link(LinkProps(to = props.`match`.url + "/rendering"))("Rendering with React")),
-        li(Link(LinkProps(to = props.`match`.url + "/components"))("Components")),
-        li(Link(LinkProps(to = props.`match`.url + "/props-v-state"))("Props v. State"))
+        li(Link[js.Object](LinkProps(to = props.`match`.url + "/rendering"))("Rendering with React")),
+        li(Link[js.Object](LinkProps(to = props.`match`.url + "/components"))("Components")),
+        li(Link[js.Object](LinkProps(to = props.`match`.url + "/props-v-state"))("Props v. State"))
       ),
       hr(),
       Route[Topic.Param](path = props.`match`.path + "/:topicId", render = props => Topic(props.`match`)),
