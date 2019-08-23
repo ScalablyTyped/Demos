@@ -334,28 +334,18 @@ lazy val electron = project
     ),
   )
 
-lazy val reactnative = project
+lazy val `react-native` = project
   .configure(baseSettings, outputModule, application)
   .settings(
+    scalaJSUseMainModuleInitializer := false,
     libraryDependencies ++= Seq(
+      ScalablyTyped.E.`expo-font`,
       ScalablyTyped.R.`react-native`,
       ScalablyTyped.R.`react-navigation`,
+      ScalablyTyped.R.`react-native-gesture-handler`,
       ScalablyTyped.R.`react-native-vector-icons`,
       ScalablyTyped.R.`react-facade`
     ),
-    clean := {
-      val _   = clean.value
-      val dir = baseDirectory.value / "android"
-      Process("./gradlew clean", dir).!
-    },
-    /** This is not suitable for development, but effective for demo.
-      * Run `yarn` and `react-native run-android` commands yourself, and run `~reactnative/fastOptJS` from sbt
-      */
-    run := {
-      Process("yarn", baseDirectory.value).!
-      (Compile / fastOptJS).value
-      Process(s"${baseDirectory.value}/node_modules/.bin/react-native run-android", baseDirectory.value).!
-    }
   )
 
 lazy val lodash =

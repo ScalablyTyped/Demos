@@ -186,21 +186,22 @@ Again adapted from [sherpal's work](https://github.com/sherpal/Scala.js-Electron
 
 ### React-native (android)
 
-This demo is adapted from [sri](https://github.com/scalajs-react-interface/sri), namely the 
+The setup is based on the [slinky react native expo template](https://github.com/shadaj/expo-template-scala).
+The code heavily adapted from [sri](https://github.com/scalajs-react-interface/sri), namely the 
 [App with drawer navigation](https://github.com/scalajs-react-interface/sri/blob/master/docs/GettingStarted.md#drawer-navigation) 
-example. 
+example.  
 
-To run this you'll need to follow the 
-[getting started guide](https://facebook.github.io/react-native/docs/getting-started.html) 
-for react-native. 
+This example is a bit more involved to run. By following the instructions in the [readme](react-native/README.md), you should be able to get expo and an android/ios emulator running. 
 
-When you have an emulator running, you can start the demo like this:
+Afterwards, start the demo like this:
 
 ```
-sbt>reactnative/run
+sbt> ~react-native/fastOptJS
 
+(in another shell)
+shell>cd react-native
+shell>expo start # (push 'a' do deploy to android, for instance)
 ``` 
-Note that to we keep things simple here: no production build, no iOS version, etc. 
 
 ### lodash
 This is a very simple app which uses a few functions from lodash.
