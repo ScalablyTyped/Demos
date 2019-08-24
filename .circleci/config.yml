@@ -41,6 +41,6 @@ jobs:
             - ~/.ivy2/cache
           key: v1-dependencies--{{ checksum "build.sbt" }}
 
-      # run scalafmt!
-      - run: cat /dev/null | sbt scalafmtCheck
+#      # run scalafmt!
+#      - run: cat /dev/null | sbt scalafmtCheck
 
