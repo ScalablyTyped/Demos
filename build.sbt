@@ -33,10 +33,7 @@ lazy val `react-mobx` =
         ScalablyTyped.R.`react-dom`,
       ),
       Compile / npmDependencies ++= Seq(
-        "axios" -> "0.19.0",
         "material-ui" -> "0.20.1",
-        "mobx" -> "5.13.0",
-        "mobx-react" -> "6.1.3",
         "react" -> "16.9",
         "react-dom" -> "16.9",
       )
@@ -64,8 +61,7 @@ lazy val vue =
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       webpackDevServerPort := 8006,
-      libraryDependencies ++= Seq(ScalablyTyped.V.vue),
-      Compile / npmDependencies ++= Seq("vue" -> "2.6.10")
+      libraryDependencies ++= Seq(ScalablyTyped.V.vue)
     )
 
 lazy val `react-big-calendar` =
@@ -80,7 +76,6 @@ lazy val `react-big-calendar` =
         ScalablyTyped.R.`react-facade`,
       ),
       Compile / npmDependencies ++= Seq(
-        "moment" -> "2.24.0",
         "react" -> "16.9",
         "react-dom" -> "16.9",
         "react-big-calendar" -> "0.22",
@@ -93,7 +88,6 @@ lazy val three =
     .settings(
       webpackDevServerPort := 8008,
       libraryDependencies ++= Seq(ScalablyTyped.T.three),
-      Compile / npmDependencies ++= Seq("three" -> "0.93")
     )
 
 lazy val d3 = project
@@ -131,12 +125,9 @@ lazy val `semantic-ui-react` = project
       ScalablyTyped.S.`semantic-ui-react`,
     ),
     Compile / npmDependencies ++= Seq(
-      "redux" -> "4.0.4",
-      "redux-devtools-extension" -> "2.13.8",
       "react-dom" -> "16.9",
       "react" -> "16.9",
       "react-redux" -> "7.1",
-      "semantic-ui-react" -> "0.87.3",
     ),
   )
 
@@ -199,17 +190,7 @@ lazy val angular = project
       ScalablyTyped.A.angular__forms,
     ),
     Compile / npmDependencies ++= Seq(
-      "core-js" -> "2.5",
-      "tslib" -> "1.10.0",
-      "zone.js" -> "0.9.1",
-      "rxjs" -> "6.5.2",
-      "@angular/core" -> "8.2.2",
-      "@angular/common" -> "8.2.2",
-      "@angular/compiler" -> "8.2.2",
-      "@angular/router" -> "8.2.2",
-      "@angular/platform-browser" -> "8.2.2",
-      "@angular/platform-browser-dynamic" -> "8.2.2",
-      "@angular/forms" -> "8.2.2",
+      "core-js" -> "2.6.8",
     )
   )
 
@@ -249,8 +230,6 @@ lazy val `material-ui` =
         ScalablyTyped.R.`react-dom`,
       ),
       Compile / npmDependencies ++= Seq(
-        "@material-ui/core" -> "3.9.3",
-        "@material-ui/icons" -> "3.0.2",
         "react" -> "16.9",
         "react-dom" -> "16.9",
       )
@@ -267,7 +246,6 @@ lazy val antd =
         ScalablyTyped.R.`react-facade`
       ),
       Compile / npmDependencies ++= Seq(
-        "antd" -> "3.21.4",
         "react" -> "16.9",
         "react-dom" -> "16.9",
       )
@@ -284,7 +262,6 @@ lazy val `antd-slinky` =
         ScalablyTyped.R.`react-dom`,
       ),
       Compile / npmDependencies ++= Seq(
-        "antd" -> "3.21.4",
         "react" -> "16.9",
         "react-dom" -> "16.9",
       )
@@ -334,28 +311,18 @@ lazy val electron = project
     ),
   )
 
-lazy val reactnative = project
+lazy val `react-native` = project
   .configure(baseSettings, outputModule, application)
   .settings(
+    scalaJSUseMainModuleInitializer := false,
     libraryDependencies ++= Seq(
+      ScalablyTyped.E.`expo-font`,
       ScalablyTyped.R.`react-native`,
       ScalablyTyped.R.`react-navigation`,
+      ScalablyTyped.R.`react-native-gesture-handler`,
       ScalablyTyped.R.`react-native-vector-icons`,
       ScalablyTyped.R.`react-facade`
     ),
-    clean := {
-      val _   = clean.value
-      val dir = baseDirectory.value / "android"
-      Process("./gradlew clean", dir).!
-    },
-    /** This is not suitable for development, but effective for demo.
-      * Run `yarn` and `react-native run-android` commands yourself, and run `~reactnative/fastOptJS` from sbt
-      */
-    run := {
-      Process("yarn", baseDirectory.value).!
-      (Compile / fastOptJS).value
-      Process(s"${baseDirectory.value}/node_modules/.bin/react-native run-android", baseDirectory.value).!
-    }
   )
 
 lazy val lodash =
@@ -376,7 +343,6 @@ lazy val typescript =
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       libraryDependencies ++= Seq(ScalablyTyped.N.node, ScalablyTyped.T.typescript),
-      Compile / npmDependencies ++= Seq("typescript" -> "3.5.3")
     )
 
 lazy val baseSettings: Project => Project =
@@ -387,8 +353,6 @@ lazy val baseSettings: Project => Project =
       scalacOptions ++= ScalacOptions.flags,
       /* in preparation for scala.js 1.0 */
       scalacOptions += "-P:scalajs:sjsDefinedByDefault",
-      /* for ScalablyTyped */
-      resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped"),
     )
 
 lazy val application: Project => Project =
