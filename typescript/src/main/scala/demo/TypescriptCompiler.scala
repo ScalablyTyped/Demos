@@ -1,15 +1,15 @@
 package demo
 
-import typings.node.{processMod => process}
-import typings.std.^.console
-import typings.typescript.typescriptMod.{CompilerOptions, DiagnosticMessageChain, Program, ^ => ts}
+import typings.node.processMod.{^ => process}
+import typings.std.console
+import typings.typescript.{typescriptMod => ts}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
 
 object TypescriptCompiler {
-  def compile(fileNames: js.Array[String], options: CompilerOptions): Unit = {
-    val program: Program = ts.createProgram(fileNames, options)
+  def compile(fileNames: js.Array[String], options: ts.CompilerOptions): Unit = {
+    val program: ts.Program = ts.createProgram(fileNames, options)
     val emitResult = program.emit()
 
     val allDiagnostics = ts
@@ -43,11 +43,11 @@ object TypescriptCompiler {
         case nonEmpty => nonEmpty
       }
 
-    compile(files, CompilerOptions(noEmitOnError = true, noImplicitAny = true, outDir = "typescript/target/temp"))
+    compile(files, ts.CompilerOptions(noEmitOnError = true, noImplicitAny = true, outDir = "typescript/target/temp"))
   }
 }
 
 object Knowledge {
-  def force(a: String | DiagnosticMessageChain): DiagnosticMessageChain =
-    a.asInstanceOf[DiagnosticMessageChain]
+  def force(a: String | ts.DiagnosticMessageChain): ts.DiagnosticMessageChain =
+    a.asInstanceOf[ts.DiagnosticMessageChain]
 }

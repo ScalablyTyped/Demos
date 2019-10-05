@@ -1,7 +1,7 @@
 package demo
 
 import org.scalablytyped.runtime.TopLevel
-import typings.expoDashFont.expoDashFontMod.{FontSource, ^ => Font}
+import typings.expoDashFont.{expoDashFontMod => Font}
 import typings.react.dsl._
 import typings.react.reactMod.{Component, ReactNode}
 import typings.reactDashNative.{reactDashNativeComponents => RN}
@@ -15,7 +15,7 @@ import scala.util.{Failure, Success}
 object Demo {
   @JSImport("../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf", JSImport.Namespace)
   @js.native
-  object LoadIcon extends TopLevel[FontSource]
+  object LoadIcon extends TopLevel[Font.FontSource]
 
   class MainState(val result: Option[Either[String, Unit]]) extends js.Object
 

@@ -1,14 +1,12 @@
 package demo
 
 import typings.react.reactMod._
-import typings.reactDashDom.reactDashDomMod.^.render
+import typings.reactDashDom.reactDashDomMod.render
 import typings.reactDashRedux.reactDashReduxComponents.Provider
 import typings.reactDashRedux.{reactDashReduxMod, ReduxFacade}
-import typings.redux.reduxMod.Store
-import typings.redux.reduxMod.^.createStore
-import typings.reduxDashDevtoolsDashExtension.reduxDashDevtoolsDashExtensionMod.EnhancerOptions
-import typings.reduxDashDevtoolsDashExtension.reduxDashDevtoolsDashExtensionMod.^.devToolsEnhancer
-import typings.std.^.window
+import typings.redux.reduxMod.{createStore, Store}
+import typings.reduxDashDevtoolsDashExtension.reduxDashDevtoolsDashExtensionMod.{devToolsEnhancer, EnhancerOptions}
+import typings.std.window
 
 import scala.scalajs.js.|
 

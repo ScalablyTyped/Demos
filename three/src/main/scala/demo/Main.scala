@@ -1,11 +1,22 @@
 package demo
 
-import typings.std.^.{document, requestAnimationFrame, window, Date}
-import typings.std.{stdStrings, FrameRequestCallback, HTMLDivElement, UIEvent, Window}
-import typings.three.srcMaterialsMeshLambertMaterialMod.MeshLambertMaterialParameters
-import typings.three.threeMod.{MathNs => ThreeMath, ^ => Three, _}
+import org.scalablytyped.runtime.TopLevel
+import typings.std.{
+  document,
+  requestAnimationFrame,
+  stdStrings,
+  window,
+  Date,
+  FrameRequestCallback,
+  HTMLDivElement,
+  UIEvent,
+  Window
+}
+import typings.three.srcLoadersLoaderMod.Loader
+import typings.three.threeMod.{Math => ThreeMath, _}
 
 import scala.scalajs.js
+import scala.scalajs.js.annotation.JSImport
 
 object Main {
   val radius = 600
@@ -41,25 +52,18 @@ object Main {
 
     var mixerOpt: js.UndefOr[AnimationMixer] = js.undefined
 
-    new JSONLoader().load(
-      "https://raw.githubusercontent.com/Retyped/Demos/master/ThreeJsDemo/ThreeJsDemo/dist/models/horse.js",
-      (geometry, material) => {
-        val parameters = MeshLambertMaterialParameters(
-          vertexColors = Three.FaceColors,
-          morphTargets = true
-        )
-        val mesh = new Mesh(geometry, new MeshLambertMaterial(parameters))
+    new GLTFLoader().load(
+      HorseModel,
+      gltf => {
+        val mesh = gltf.scene.children(0)
         mesh.scale.set(1.5, 1.5, 1.5)
         scene.add(mesh)
-
         val mixer = new AnimationMixer(mesh)
-
-        val clip = AnimationClip.CreateFromMorphTargetSequence("gallop", geometry.morphTargets, 30, false)
-        mixer.clipAction(clip).setDuration(1).play()
+        mixer.clipAction(gltf.animations(0)).setDuration(1).play()
         mixerOpt = mixer
-
       }
     )
+
     val renderer = new WebGLRenderer()
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(window.innerWidth, window.innerHeight)
@@ -96,3 +100,22 @@ object Main {
     animate(0)
   }
 }
+
+/* Somewhat awkward that a bunch of the needed code live in `examples/`, which we don't currently convert */
+@JSImport("three/examples/jsm/loaders/GLTFLoader", "GLTFLoader")
+@js.native
+class GLTFLoader() extends Loader {
+  def load(url: String, onLoad: js.Function1[GLTF, Unit]): Unit = js.native
+}
+
+trait GLTF extends js.Object {
+  val animations: js.Array[AnimationClip]
+  val scene:      Scene
+  val scenes:     js.Array[Scene]
+  val cameras:    js.Array[Camera]
+  val asset:      js.Object
+}
+
+@JSImport("../../../../src/main/resources/Horse.glb", JSImport.Namespace)
+@js.native
+object HorseModel extends TopLevel[String]

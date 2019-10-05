@@ -6,9 +6,8 @@ import typings.react.reactMod.{FC, ReactElement}
 import typings.reactDashNative.{reactDashNativeComponents => RN}
 import typings.reactDashNativeDashVectorDashIcons.{reactDashNativeDashVectorDashIconsComponents => Icons}
 import typings.reactDashNavigation._
-import typings.reactDashNavigation.reactDashNavigationMod.^.{createAppContainer, createDrawerNavigator, DrawerItems}
 import typings.reactDashNavigation.reactDashNavigationMod._
-import typings.std.^.Object
+import typings.std.Object
 
 object routing {
   import typings.react.dsl._
@@ -23,7 +22,7 @@ object routing {
             RN.ViewProps(style = styles.drawerHeaderLogo),
             RN.Text.noprops("Scala.js")
           ),
-          DrawerItems.props(p)
+          fromComponentType(DrawerItems).props(p)
         )
       )
   )

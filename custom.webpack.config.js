@@ -9,7 +9,7 @@ var local = {
                 use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(ttf|eot|woff|png)$/,
+                test: /\.(ttf|eot|woff|png|glb)$/,
                 use: 'file-loader'
             },
             {

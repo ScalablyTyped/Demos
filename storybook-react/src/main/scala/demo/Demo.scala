@@ -1,10 +1,9 @@
 package demo
 
-import typings.atStorybookReact.atStorybookReactMod.RenderFunction
-import typings.atStorybookReact.atStorybookReactMod.^.storiesOf
-import typings.node.^.module
+import typings.atStorybookReact.atStorybookReactMod.{storiesOf, RenderFunction}
+import typings.node.module
 import typings.react.reactMod.{ButtonHTMLAttributes, HTMLAttributes}
-import typings.std.^.window
+import typings.std.window
 
 import scala.scalajs.js
 

@@ -90,8 +90,7 @@ Implements the same github repository search as in the react-mobx demo,
 ### Three.js
 [Demo](https://oyvindberg.github.io/ScalablyTypedDemos/three/)
 
-A fancy animation of a horse, stolen from [three.js demos](https://github.com/mrdoob/three.js/blob/master/examples/webgl_morphtargets_horse.html),
- with a change of loaders from [retyped demos](https://github.com/Retyped/Demos/tree/master/ThreeJsDemo)
+A fancy animation of a horse, stolen from [three.js demos](https://github.com/mrdoob/three.js/blob/master/examples/webgl_morphtargets_horse.html).
 `sbt> three/start` starts a webpack-dev-server at http://localhost:8008 .
 
 ### Reveal.js

@@ -2,15 +2,13 @@ package demo
 
 import typings.moment.momentMod.{^ => Moment}
 import typings.moment.momentStrings
-import typings.reactDashBigDashCalendar.reactDashBigDashCalendarMod.View
-import typings.reactDashBigDashCalendar.reactDashBigDashCalendarMod.^.momentLocalizer
+import typings.reactDashBigDashCalendar.reactDashBigDashCalendarMod.{momentLocalizer, View}
 import typings.reactDashBigDashCalendar.{
   reactDashBigDashCalendarComponents => BC,
   reactDashBigDashCalendarStrings => calStrings
 }
 import typings.reactDashDom.reactDashDomMod
-import typings.std.^.{console, document}
-import typings.std.{Date, DateCls}
+import typings.std.{console, document, Date, DateCls}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -38,7 +36,7 @@ object Main {
   def main(argv: Array[String]): Unit =
     Knowledge.asOption(document.getElementById("container")) match {
       case Some(container) =>
-        reactDashDomMod.^.render(
+        reactDashDomMod.render(
           BC.Calendar[Event, js.Object]
             .props(
               BC.CalendarProps(

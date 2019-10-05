@@ -1,7 +1,7 @@
 package demo
 
 import typings.p5.p5Mod.{p5InstanceExtensions, ^ => P5}
-import typings.std.^.console
+import typings.std.console
 
 import scala.scalajs.js
 

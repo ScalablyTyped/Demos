@@ -2,10 +2,9 @@ package demo
 
 import demo.Knowledge.{Vue, VueClass}
 import org.scalablytyped.runtime.StringDictionary
-import typings.vue
-import typings.vue.typesOptionsMod.{DefaultProps, PropsDefinition, _}
+import typings.vue.typesOptionsMod._
 import typings.vue.typesVnodeMod.VNodeDirective
-import typings.vue.typesVueMod.{CombinedVueInstance, Vue}
+import typings.vue.typesVueMod.CombinedVueInstance
 
 import scala.scalajs.js
 import scala.scalajs.js.ThisFunction0
@@ -125,6 +124,7 @@ object Todo {
 }
 
 object Knowledge {
+  type Vue = typings.vue.typesVueMod.Vue
 
   /**
     * We need a custom import because the normal module doesn't include
@@ -135,7 +135,7 @@ object Knowledge {
     */
   @JSImport("vue/dist/vue", JSImport.Namespace)
   @js.native
-  object Vue extends vue.typesVueMod.VueConstructor[vue.typesVueMod.Vue]
+  object Vue extends typings.vue.typesVueMod.VueConstructor[typings.vue.typesVueMod.Vue]
 
   /**
     * Needs the same custom import as above (it's the same object)

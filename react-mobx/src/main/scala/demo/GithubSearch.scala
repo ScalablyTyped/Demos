@@ -1,14 +1,13 @@
 package demo
 
-import typings.axios.axiosMod.^.{default => Axios}
-import typings.axios.axiosMod.{AxiosError, AxiosRequestConfig, AxiosResponse}
+import typings.axios.axiosMod.{AxiosError, AxiosRequestConfig, AxiosResponse, default => Axios}
 import typings.csstype.csstypeStrings
 import typings.materialDashUi.{materialDashUiComponents => Mui}
 import typings.mobx.libTypesObservablevalueMod.IObservableValue
 import typings.mobx.{mobxMod => MobX}
-import typings.mobxDashReact.mobxDashReactMod.^.observer
+import typings.mobxDashReact.mobxDashReactMod.observer
 import typings.react.reactMod._
-import typings.std.^.{console, window}
+import typings.std.{console, window}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.scalajs.js
@@ -33,13 +32,13 @@ object GithubSearch {
 
   class Store() extends js.Object {
     val search: IObservableValue[String] =
-      MobX.^.observable.box("ScalablyTyped")
+      MobX.observable.box("ScalablyTyped")
 
     val result: IObservableValue[js.UndefOr[js.Array[Repository]]] =
-      MobX.^.observable.box(js.undefined)
+      MobX.observable.box(js.undefined)
 
     def searchForRepos: js.Function0[Unit] =
-      MobX.^.action(
+      MobX.action(
         "searchForRepos",
         () =>
           Axios

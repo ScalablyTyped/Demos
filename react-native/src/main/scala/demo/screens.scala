@@ -12,7 +12,7 @@ import typings.reactDashNavigation.reactDashNavigationMod.{
   NavigationScreenProp,
   NavigationScreenProps
 }
-import typings.std.^.console
+import typings.std.console
 
 import scala.scalajs.js
 

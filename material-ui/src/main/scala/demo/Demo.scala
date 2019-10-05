@@ -6,10 +6,9 @@ import typings.atMaterialDashUiCore.{atMaterialDashUiCoreComponents => Mui, atMa
 import typings.atMaterialDashUiIcons.{atMaterialDashUiIconsComponents => MuiIcons}
 import typings.react.Anon_Children
 import typings.react.dsl._
-import typings.react.reactMod.^.useState
-import typings.react.reactMod.{FC, ReactElement, ReactNode}
-import typings.reactDashDom.reactDashDomMod.^.render
-import typings.std.^.window
+import typings.react.reactMod.{useState, FC, ReactElement, ReactNode}
+import typings.reactDashDom.reactDashDomMod.render
+import typings.std.window
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -144,7 +143,7 @@ object SimpleBadge {
 object StyledFC {
   import scala.language.higherKinds
 
-  @inline private def stylesMod = typings.atMaterialDashUiCore.stylesMod.^.asInstanceOf[js.Dynamic]
+  @inline private def stylesMod = typings.atMaterialDashUiCore.stylesMod.asInstanceOf[js.Dynamic]
 
   trait GeneratedClassNames[Styles[_] <: js.Object] extends js.Object {
     val classes: Styles[String]

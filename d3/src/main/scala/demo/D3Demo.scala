@@ -1,11 +1,18 @@
 package demo
 
-import typings.d3.d3Mod.{^ => d3}
+import typings.d3.d3Mod
 import typings.d3DashGeo.d3DashGeoMod.{GeoContext, GeoPath, GeoPermissibleObjects, GeoProjection}
 import typings.geojson.geojsonMod.{LineString, Position}
 import typings.geojson.geojsonStrings
-import typings.std.^.{console, document, window}
-import typings.std.{stdStrings, CanvasRenderingContext2D, FrameRequestCallback, HTMLCanvasElementCls}
+import typings.std.{
+  console,
+  document,
+  stdStrings,
+  window,
+  CanvasRenderingContext2D,
+  FrameRequestCallback,
+  HTMLCanvasElementCls
+}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -30,17 +37,19 @@ object D3Demo {
     val height = window.innerHeight
     val size: Double = width min height
 
-    d3.select("#content")
+    d3Mod
+      .select("#content")
       .attr("width", width + "px")
       .attr("height", height + "px")
 
     val projection: GeoProjection =
-      d3.geoOrthographic()
+      d3Mod
+        .geoOrthographic()
         .scale(0.45 * size)
         .translate(js.Tuple2(0.5 * width, 0.5 * height))
 
-    val geoGenerator: GeoPath[GeoPermissibleObjects, Null] =
-      d3.geoPath_ThisDatumObject_GeoPermissibleObjects(projection, Knowledge.isGeoContext(context))
+    val geoGenerator =
+      d3Mod.geoPath(projection, Knowledge.isGeoContext(context)).asInstanceOf[GeoPath[GeoPermissibleObjects, Null]]
 
     val geometry = LineString(
       coordinates = js.Array[Position](),

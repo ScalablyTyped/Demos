@@ -1,7 +1,7 @@
 package demo
 
-import typings.reactDashDom.reactDashDomMod.^.render
-import typings.std.^.window
+import typings.reactDashDom.reactDashDomMod.render
+import typings.std.window
 
 object Main {
   import typings.react.dsl._

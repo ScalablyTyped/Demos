@@ -3,10 +3,10 @@ package demo
 import typings.materialDashUi.{materialDashUiComponents => Mui}
 import typings.mobx.libCoreComputedvalueMod.IComputedValue
 import typings.mobx.libTypesObservablevalueMod.IObservableValue
-import typings.mobx.mobxMod.{^ => MobX}
-import typings.mobxDashReact.mobxDashReactMod.^.observer
+import typings.mobx.{mobxMod => MobX}
+import typings.mobxDashReact.mobxDashReactMod.observer
 import typings.react.reactMod._
-import typings.std.^.console
+import typings.std.console
 
 import scala.scalajs.js
 
