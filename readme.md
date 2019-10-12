@@ -165,6 +165,12 @@ Adapted from [mcallisto](https://gist.github.com/mcallisto/5a15d2f9567e084da055e
 A version of the `react-router-dom` demo made using slinky.
  
 `sbt> react-router-dom-slinky/start` starts a webpack-dev-server at http://localhost:8020 .
+
+### Onsenui 
+[Demo](https://oyvindberg.github.io/ScalablyTypedDemos/onsenui/index.html)
+Adapted from [documentation](https://onsen.io/v2/guide/jquery/)
+ 
+`sbt> onsenui/start` starts a webpack-dev-server at http://localhost:8021 .
  
 ### Electron
 Implements the backend/mainprocess part of an Electron app in Scala.js,

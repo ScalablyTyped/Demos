@@ -298,6 +298,15 @@ lazy val `react-router-dom-slinky` =
       )
     )
 
+lazy val onsenui =
+  project
+    .configure(baseSettings, bundlerSettings, browserProject)
+    .settings(
+      webpackDevServerPort := 8021,
+      libraryDependencies ++= Seq(ScalablyTyped.J.jquery, ScalablyTyped.O.onsenui),
+      Compile / npmDependencies ++= Seq("jquery" -> "3.3")
+    )
+
 lazy val electron = project
   .configure(baseSettings, outputModule, application)
   .settings(
