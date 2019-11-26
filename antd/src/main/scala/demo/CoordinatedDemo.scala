@@ -1,6 +1,6 @@
 package demo
 
-import typings.antd.esFormFormMod.{
+import typings.antd.libFormFormMod.{
   FormCreateOption,
   GetFieldDecoratorOptions,
   ValidationRule,

@@ -1,11 +1,12 @@
 package demo
 
-import org.scalablytyped.runtime.StringDictionary
 import typings.react.reactMod.AnchorHTMLAttributes
 import typings.reactDashRedux.ReduxFacade.Extractor
 import typings.redux.reduxMod.{Action, Dispatch, Reducer}
-import typings.semanticDashUiDashReact.{semanticDashUiDashReactStrings, semanticDashUiDashReactComponents => Sui}
-import typings.std.{fetch, RequestInit}
+import typings.semanticDashUiDashReact.distCommonjsElementsIconIconMod.IconSizeProp
+import typings.semanticDashUiDashReact.distCommonjsGenericMod.{SemanticICONS, SemanticVERTICALALIGNMENTS}
+import typings.semanticDashUiDashReact.{semanticDashUiDashReactComponents => Sui}
+import typings.std.{RequestInit, fetch}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -127,8 +128,8 @@ object GithubSearch {
     div.noprops(
       Sui.Input.props(
         Sui.InputProps(
-          StringDictionary("defaultValue" -> props.state.search),
-          onChange = (_, data) => props.dispatch(SearchTextChanged(data.value))
+          defaultValue = props.state.search,
+          onChange     = (_, data) => props.dispatch(SearchTextChanged(data.value_InputOnChangeData))
         ),
         input.noprops(),
         Sui.Button.props(
@@ -153,9 +154,9 @@ object GithubSearch {
                   .noprops(
                     Sui.ListIcon.props(
                       Sui.ListIconProps(
-                        name          = semanticDashUiDashReactStrings.github,
-                        size          = semanticDashUiDashReactStrings.large,
-                        verticalAlign = semanticDashUiDashReactStrings.middle
+                        name          = SemanticICONS.github,
+                        size          = IconSizeProp.large,
+                        verticalAlign = SemanticVERTICALALIGNMENTS.middle
                       )
                     ),
                     Sui.ListContent.noprops(

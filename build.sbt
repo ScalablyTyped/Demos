@@ -137,6 +137,7 @@ lazy val reveal = project
     webpackDevServerPort := 8010,
     libraryDependencies ++= Seq(
       ScalablyTyped.H.highlight_dot_js,
+      ScalablyTyped.R.`react-redux-facade`,
       ScalablyTyped.R.`react-japgolly-facade`,
       ScalablyTyped.R.`reveal`,
     ),
@@ -320,19 +321,22 @@ lazy val electron = project
     ),
   )
 
-lazy val `react-native` = project
-  .configure(baseSettings, outputModule, application)
-  .settings(
-    scalaJSUseMainModuleInitializer := false,
-    libraryDependencies ++= Seq(
-      ScalablyTyped.E.`expo-font`,
-      ScalablyTyped.R.`react-native`,
-      ScalablyTyped.R.`react-navigation`,
-      ScalablyTyped.R.`react-native-gesture-handler`,
-      ScalablyTyped.R.`react-native-vector-icons`,
-      ScalablyTyped.R.`react-facade`
-    ),
-  )
+// todo: disabled since they changed everything in react-navigation and I'm lazy.
+//  We'll wait for the next version or replace it altogether.
+//
+//lazy val `react-native` = project
+//  .configure(baseSettings, outputModule, application)
+//  .settings(
+//    scalaJSUseMainModuleInitializer := false,
+//    libraryDependencies ++= Seq(
+//      ScalablyTyped.E.`expo-font`,
+//      ScalablyTyped.R.`react-native`,
+//      ScalablyTyped.R.`react-navigation`,
+//      ScalablyTyped.R.`react-native-gesture-handler`,
+//      ScalablyTyped.R.`react-native-vector-icons`,
+//      ScalablyTyped.R.`react-facade`
+//    ),
+//  )
 
 lazy val lodash =
   project
