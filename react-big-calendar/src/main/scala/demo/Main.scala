@@ -43,8 +43,8 @@ object Main {
                 localizer   = Localizer,
                 events      = js.Array(someEvent),
                 defaultDate = new DateCls,
-                defaultView = calStrings.week,
-                views       = js.Array[View](calStrings.agenda, calStrings.day, calStrings.week)
+                defaultView = View.week,
+                views       = js.Array(View.agenda, View.day, View.week)
               )
             ),
           container

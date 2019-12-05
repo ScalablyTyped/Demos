@@ -2,11 +2,12 @@ package demo
 
 import typings.atMaterialDashUiCore.stylesCreateMuiThemeMod.Theme
 import typings.atMaterialDashUiCore.stylesWithStylesMod.CSSProperties
+import typings.atMaterialDashUiCore.textFieldTextFieldMod.StandardTextFieldProps
 import typings.atMaterialDashUiCore.{atMaterialDashUiCoreComponents => Mui, atMaterialDashUiCoreStrings => MuiStrings}
 import typings.atMaterialDashUiIcons.{atMaterialDashUiIconsComponents => MuiIcons}
 import typings.react.Anon_Children
 import typings.react.dsl._
-import typings.react.reactMod.{useState, FC, ReactElement, ReactNode}
+import typings.react.reactMod.{FC, ReactElement, ReactNode, useState}
 import typings.reactDashDom.reactDashDomMod.render
 import typings.std.window
 
@@ -34,7 +35,7 @@ object Demo {
       MuiIcons.CakeOutlined.props(MuiIcons.CakeOutlinedProps(color = MuiStrings.action)),
       /* text field controlled by the value of the state hook above*/
       Mui.TextField.props(
-        Mui.TextFieldProps(
+        StandardTextFieldProps(
           value    = state,
           disabled = true
         )

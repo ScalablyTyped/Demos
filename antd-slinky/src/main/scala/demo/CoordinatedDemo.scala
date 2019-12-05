@@ -2,7 +2,7 @@ package demo
 
 import typings.antd.AntdFacade._
 import typings.antd.antdStrings
-import typings.antd.esFormFormMod.{FormCreateOption, GetFieldDecoratorOptions, ValidationRule}
+import typings.antd.libFormFormMod.{FormCreateOption, GetFieldDecoratorOptions, ValidationRule}
 import typings.react.ScalableSlinky.ExternalComponentP
 import typings.react.reactMod.FormEventHandler
 import typings.std.{console, HTMLFormElement}

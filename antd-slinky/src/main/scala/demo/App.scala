@@ -7,7 +7,7 @@ import slinky.core.facade.Hooks._
 import slinky.web.html._
 import typings.antd.AntdFacade.{List => _, _}
 import typings.antd.antdStrings
-import typings.antd.esNotificationMod.{default => Notification}
+import typings.antd.libNotificationMod.{default => Notification}
 import typings.react.ScalableSlinky._
 import typings.react.reactMod.{FormEvent, MouseEvent}
 
@@ -36,7 +36,7 @@ object CSS extends js.Any
       Col(ColProps(span = 7))
     )
 
-    val renderGrid = section(
+    def renderGrid = section(
       h2("Grid"),
       Row(RowProps())(
         Col(ColProps(span = 12))(div(className := "block blue1")("col-12")),
@@ -55,7 +55,7 @@ object CSS extends js.Any
       )
     )
 
-    val renderTag = section(
+    def renderTag = section(
       h2("Tag"),
       Tag(TagProps())("Tag 1"),
       Tag(TagProps(color = "red"))("red")
@@ -63,7 +63,7 @@ object CSS extends js.Any
 
     class TableItem(val key: Int, val name: String, val age: Int, val address: String) extends js.Object
 
-    val renderTable = section(
+    def renderTable = section(
       h2("Table"),
       Table[TableItem](
         TableProps(
