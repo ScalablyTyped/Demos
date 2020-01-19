@@ -1,6 +1,6 @@
 package demo
 
-import typings.leaflet.{leafletMod => L}
+import typings.leaflet.{mod => L}
 import typings.std.{console, document, HTMLElementCls}
 
 import scala.scalajs.js

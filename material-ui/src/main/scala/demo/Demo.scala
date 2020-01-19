@@ -1,14 +1,15 @@
 package demo
 
-import typings.atMaterialDashUiCore.stylesCreateMuiThemeMod.Theme
-import typings.atMaterialDashUiCore.stylesWithStylesMod.CSSProperties
-import typings.atMaterialDashUiCore.textFieldTextFieldMod.StandardTextFieldProps
-import typings.atMaterialDashUiCore.{atMaterialDashUiCoreComponents => Mui, atMaterialDashUiCoreStrings => MuiStrings}
-import typings.atMaterialDashUiIcons.{atMaterialDashUiIconsComponents => MuiIcons}
-import typings.react.Anon_Children
+import typings.csstype.mod.StandardShorthandProperties
+import typings.materialUiCore.createMuiThemeMod.Theme
+import typings.materialUiCore.textFieldTextFieldMod.StandardTextFieldProps
+import typings.materialUiCore.withStylesMod.CSSProperties
+import typings.materialUiCore.{materialUiCoreComponents => Mui, materialUiCoreStrings => MuiStrings}
+import typings.materialUiIcons.{materialUiIconsComponents => MuiIcons}
+import typings.react.AnonChildren
 import typings.react.dsl._
-import typings.react.reactMod.{FC, ReactElement, ReactNode, useState}
-import typings.reactDashDom.reactDashDomMod.render
+import typings.react.mod.{FC, ReactElement, ReactNode, useState}
+import typings.reactDom.mod.render
 import typings.std.window
 
 import scala.scalajs.js
@@ -63,12 +64,18 @@ object SimpleBadge {
 
   val styles: js.Function1[Theme, StyleOverrides[CSSProperties]] = theme =>
     new StyleOverrides[CSSProperties] {
-      override val margin = new CSSProperties {
-        margin = theme.spacing.unit * 2
-      }
-      override val padding = new CSSProperties {
-        padding = s"0 ${theme.spacing.unit * 2}px"
-      }
+
+      override val margin: CSSProperties = CSSProperties(
+        StandardShorthandProperties = StandardShorthandProperties(
+          margin = theme.spacing.unit * 2
+        )
+      )
+
+      override val padding: CSSProperties = CSSProperties(
+        StandardShorthandProperties = StandardShorthandProperties(
+          padding = s"0 ${theme.spacing.unit * 2}px"
+        )
+      )
     }
 
   class Props(val message: String) extends js.Object
@@ -144,7 +151,7 @@ object SimpleBadge {
 object StyledFC {
   import scala.language.higherKinds
 
-  @inline private def stylesMod = typings.atMaterialDashUiCore.stylesMod.asInstanceOf[js.Dynamic]
+  @inline private def stylesMod = typings.materialUiCore.stylesMod.asInstanceOf[js.Dynamic]
 
   trait GeneratedClassNames[Styles[_] <: js.Object] extends js.Object {
     val classes: Styles[String]
@@ -152,6 +159,6 @@ object StyledFC {
 
   @inline def apply[Styles[_] <: js.Object, P <: js.Object](
       styles: Styles[CSSProperties] | js.Function1[Theme, Styles[CSSProperties]]
-  )(f:        js.Function1[P with Anon_Children with GeneratedClassNames[Styles], ReactNode]): FC[P] =
+  )(f:        js.Function1[P with AnonChildren with GeneratedClassNames[Styles], ReactNode]): FC[P] =
     stylesMod.withStyles(styles.asInstanceOf[js.Any])(f).asInstanceOf[FC[P]]
 }

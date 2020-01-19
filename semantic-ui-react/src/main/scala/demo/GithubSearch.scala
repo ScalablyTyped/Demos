@@ -1,12 +1,12 @@
 package demo
 
-import typings.react.reactMod.AnchorHTMLAttributes
-import typings.reactDashRedux.ReduxFacade.Extractor
-import typings.redux.reduxMod.{Action, Dispatch, Reducer}
-import typings.semanticDashUiDashReact.distCommonjsElementsIconIconMod.IconSizeProp
-import typings.semanticDashUiDashReact.distCommonjsGenericMod.{SemanticICONS, SemanticVERTICALALIGNMENTS}
-import typings.semanticDashUiDashReact.{semanticDashUiDashReactComponents => Sui}
-import typings.std.{RequestInit, fetch}
+import typings.react.mod.AnchorHTMLAttributes
+import typings.reactRedux.ReduxFacade.Extractor
+import typings.redux.mod.{Action, Dispatch, Reducer}
+import typings.semanticUiReact.iconIconMod.IconSizeProp
+import typings.semanticUiReact.genericMod.{SemanticICONS, SemanticVERTICALALIGNMENTS}
+import typings.semanticUiReact.{semanticUiReactComponents => Sui}
+import typings.std.{fetch, RequestInit}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

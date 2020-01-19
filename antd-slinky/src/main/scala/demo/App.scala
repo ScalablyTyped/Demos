@@ -7,9 +7,9 @@ import slinky.core.facade.Hooks._
 import slinky.web.html._
 import typings.antd.AntdFacade.{List => _, _}
 import typings.antd.antdStrings
-import typings.antd.libNotificationMod.{default => Notification}
+import typings.antd.notificationMod.{default => Notification}
 import typings.react.ScalableSlinky._
-import typings.react.reactMod.{FormEvent, MouseEvent}
+import typings.react.mod.{FormEvent, MouseEvent}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport

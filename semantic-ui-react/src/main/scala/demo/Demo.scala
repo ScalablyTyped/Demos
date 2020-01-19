@@ -1,11 +1,11 @@
 package demo
 
-import typings.react.reactMod.ReactElement
-import typings.reactDashRedux.ReduxFacade.Connected
-import typings.semanticDashUiDashReact.{
-  Anon_MenuItem => TabStructure,
-  semanticDashUiDashReactComponents => Sui,
-  semanticDashUiDashReactStrings => SuiStrings
+import typings.react.mod.ReactElement
+import typings.reactRedux.ReduxFacade.Connected
+import typings.semanticUiReact.{
+  AnonMenuItem => TabStructure,
+  semanticUiReactComponents => Sui,
+  semanticUiReactStrings => SuiStrings
 }
 
 import scala.scalajs.js

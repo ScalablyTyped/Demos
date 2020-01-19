@@ -1,11 +1,11 @@
 package demo
 
-import typings.materialDashUi.{materialDashUiComponents => Mui}
-import typings.mobx.libCoreComputedvalueMod.IComputedValue
-import typings.mobx.libTypesObservablevalueMod.IObservableValue
-import typings.mobx.{mobxMod => MobX}
-import typings.mobxDashReact.mobxDashReactMod.observer
-import typings.react.reactMod._
+import typings.materialUi.{materialUiComponents => Mui}
+import typings.mobx.computedvalueMod.IComputedValue
+import typings.mobx.observablevalueMod.IObservableValue
+import typings.mobx.{mod => MobX}
+import typings.mobxReact.mod.observer
+import typings.react.mod._
 import typings.std.console
 
 import scala.scalajs.js
@@ -42,9 +42,9 @@ object MobXTest {
           Mui.AvatarProps(
             icon = Mui.ActionAlarm.props(
               Mui.SvgIconProps(
-                SVGAttributes = SVGAttributes(
-                  DOMAttributes = DOMAttributes(onClick = e => console.warn(s"icon clicked ${e.nativeEvent}"))
-                ),
+//                SVGAttributes = SVGAttributes(
+//                  DOMAttributes = DOMAttributes(onClick = e => console.warn(s"icon clicked ${e.nativeEvent}"))
+//                ),
                 hoverColor = "blue"
               )
             ),

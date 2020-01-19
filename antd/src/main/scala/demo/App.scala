@@ -2,9 +2,9 @@ package demo
 
 import typings.antd.antdComponents._
 import typings.antd.antdStrings
-import typings.antd.libNotificationMod.{ArgsProps, default => Notification}
+import typings.antd.notificationMod.{ArgsProps, default => Notification}
 import typings.react.dsl._
-import typings.react.reactMod.{useState, HTMLAttributes, MouseEvent}
+import typings.react.mod.{useState, HTMLAttributes, MouseEvent}
 import typings.std.console
 
 import scala.scalajs.js

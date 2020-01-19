@@ -1,7 +1,7 @@
 package demo
 
 import org.scalajs.dom
-import typings.highlightDotJs.highlightDotJsMod
+import typings.highlightJs.mod.initHighlightingOnLoad
 import typings.reveal.{RevealOptions, RevealStatic}
 
 import scala.scalajs.js
@@ -17,7 +17,7 @@ object Demo {
     Includes.ZoomJs
 
     /* initialize highlight.js */
-    highlightDotJsMod.initHighlightingOnLoad()
+    initHighlightingOnLoad()
 
     /* render talk before we initialize Reveal */
     MyTalk.Talk().renderIntoDOM(dom.document.body)

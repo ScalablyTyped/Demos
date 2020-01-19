@@ -10,10 +10,10 @@ import typings.std.{
   FrameRequestCallback,
   HTMLDivElement,
   UIEvent,
-  Window
+  Window_
 }
-import typings.three.srcLoadersLoaderMod.Loader
-import typings.three.threeMod.{Math => ThreeMath, _}
+import typings.three.loaderMod.Loader
+import typings.three.mod.{Math => ThreeMath, _}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -69,7 +69,7 @@ object Main {
     renderer.setSize(window.innerWidth, window.innerHeight)
     container.appendChild(renderer.domElement)
 
-    val onWindowResize: js.ThisFunction1[Window, UIEvent, Unit] = (window, _) => {
+    val onWindowResize: js.ThisFunction1[Window_, UIEvent, Unit] = (window, _) => {
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
       renderer.setSize(window.innerWidth, window.innerHeight)

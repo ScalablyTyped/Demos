@@ -1,6 +1,6 @@
 package demo
 
-import typings.antd.libFormFormMod.{
+import typings.antd.formFormMod.{
   FormCreateOption,
   GetFieldDecoratorOptions,
   ValidationRule,
@@ -9,7 +9,7 @@ import typings.antd.libFormFormMod.{
 }
 import typings.antd.{antdStrings, antdComponents => Antd}
 import typings.react.dsl._
-import typings.react.reactMod._
+import typings.react.mod._
 import typings.std.{console, HTMLFormElement}
 
 import scala.scalajs.js

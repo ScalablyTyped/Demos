@@ -1,12 +1,12 @@
 package demo
 
-import typings.axios.axiosMod.{AxiosError, AxiosRequestConfig, AxiosResponse, default => Axios}
+import typings.axios.mod.{AxiosError, AxiosRequestConfig, AxiosResponse, default => Axios}
 import typings.csstype.csstypeStrings
-import typings.materialDashUi.{materialDashUiComponents => Mui}
-import typings.mobx.libTypesObservablevalueMod.IObservableValue
-import typings.mobx.{mobxMod => MobX}
-import typings.mobxDashReact.mobxDashReactMod.observer
-import typings.react.reactMod._
+import typings.materialUi.{materialUiComponents => Mui}
+import typings.mobx.observablevalueMod.IObservableValue
+import typings.mobx.{mod => MobX}
+import typings.mobxReact.mod.observer
+import typings.react.mod._
 import typings.std.{console, window}
 
 import scala.concurrent.ExecutionContext.Implicits.global

@@ -1,9 +1,9 @@
 package mainprocess
 
 import typings.electron.Electron.BrowserWindowConstructorOptions
-import typings.electron.electronMod.{app, BrowserWindow}
+import typings.electron.mod.{app, BrowserWindow}
 import typings.electron.electronStrings
-import typings.node.pathMod.join
+import typings.node.pathMod.{^ => path}
 import typings.node.urlMod
 import typings.node.urlMod.UrlObject
 
@@ -35,7 +35,7 @@ object MainProcess {
     window.loadURL(
       urlMod.format(
         UrlObject(
-          pathname = join(app.getAppPath(), "index.html"),
+          pathname = path.join(app.getAppPath(), "index.html"),
           protocol = "file:",
           slashes  = true
         )
