@@ -1,6 +1,6 @@
 package demo.heroeditor
 
-import typings.atAngularCore.atAngularCoreMod.InjectableCls
+import typings.angularCore.mod.InjectableCls
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic

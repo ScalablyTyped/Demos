@@ -1,6 +1,6 @@
 package demo
 
-import typings.lodash.lodashMod.{ArrayIterator, MemoListIterator, ^ => L}
+import typings.lodash.mod.{ArrayIterator, MemoListIterator, ^ => L}
 import typings.lodash.{fpMod => Fp}
 import typings.std.{console, ArrayLike}
 

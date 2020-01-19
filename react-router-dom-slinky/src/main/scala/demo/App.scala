@@ -3,8 +3,8 @@ package demo
 import slinky.core._
 import slinky.core.annotations.react
 import slinky.web.html._
-import typings.reactDashRouter.reactDashRouterMod._
-import typings.reactDashRouterDashDom.ReactRouterFacade._
+import typings.reactRouter.mod._
+import typings.reactRouterDom.ReactRouterFacade._
 
 import scala.scalajs.js
 

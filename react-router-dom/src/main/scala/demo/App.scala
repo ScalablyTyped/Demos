@@ -1,10 +1,10 @@
 package demo
 
-import typings.history.historyMod.{Location, LocationState}
+import typings.history.mod.{Location, LocationState}
 import typings.react.dsl._
-import typings.react.reactMod.{ComponentType, HTMLAttributes, ReactElement}
-import typings.reactDashRouter.reactDashRouterMod.{RouteComponentProps, RouteProps, StaticContext, _}
-import typings.reactDashRouterDashDom.reactDashRouterDashDomComponents.{Route => RouteAlt, _}
+import typings.react.mod.{ComponentType, HTMLAttributes, ReactElement}
+import typings.reactRouter.mod.{RouteComponentProps, RouteProps, StaticContext, _}
+import typings.reactRouterDom.reactRouterDomComponents.{Route => RouteAlt, _}
 
 import scala.scalajs.js
 import scala.scalajs.js.|

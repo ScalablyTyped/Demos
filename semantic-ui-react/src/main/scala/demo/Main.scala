@@ -1,11 +1,11 @@
 package demo
 
-import typings.react.reactMod._
-import typings.reactDashDom.reactDashDomMod.render
-import typings.reactDashRedux.reactDashReduxComponents.Provider
-import typings.reactDashRedux.{reactDashReduxMod, ReduxFacade}
-import typings.redux.reduxMod.{createStore, Store}
-import typings.reduxDashDevtoolsDashExtension.reduxDashDevtoolsDashExtensionMod.{devToolsEnhancer, EnhancerOptions}
+import typings.react.mod._
+import typings.reactDom.mod.render
+import typings.reactRedux.reactReduxComponents.Provider
+import typings.reactRedux.{mod => reactReduxMod, ReduxFacade}
+import typings.redux.mod.{createStore, Store}
+import typings.reduxDevtoolsExtension.mod.{devToolsEnhancer, EnhancerOptions}
 import typings.std.window
 
 import scala.scalajs.js.|
@@ -28,7 +28,7 @@ object Main {
         /* And use `Provider` instead of just passing a normal, goddamn parameter */
         render(
           Provider[GithubSearch.SearchAction].props(
-            reactDashReduxMod.ProviderProps[GithubSearch.SearchAction](store = Store),
+            reactReduxMod.ProviderProps[GithubSearch.SearchAction](store = Store),
             ConnectedDemo.props(new Demo.Props("Welcome"))
           ),
           container

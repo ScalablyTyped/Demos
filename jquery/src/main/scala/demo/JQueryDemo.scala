@@ -1,6 +1,6 @@
 package demo
 
-import typings.jquery.{JQuery, JQueryEventObject, jqueryMod => $}
+import typings.jquery.{JQuery_, JQueryEventObject, mod => $}
 import typings.jqueryui.jqueryuiRequire
 import typings.std.{document, Element, HTMLButtonElement, HTMLLabelElement}
 
@@ -19,7 +19,7 @@ object JQueryDemo {
         sys.error("Could not find #container")
 
       case Some(container) =>
-        val $container: JQuery[Element] = $(container)
+        val $container: JQuery_[Element] = $(container)
 
         var counter = 1
         val renderLabel: js.Function1[ /* event */ JQueryEventObject, scala.Unit] = eo => {
@@ -45,6 +45,6 @@ object Knowledge {
     Option(t.asInstanceOf[T])
 
   /* fake interface augmentation. This is done automatically in typescript. */
-  def isJQueryUi[T](x: JQuery[T]): typings.jqueryui.JQuery =
+  def isJQueryUi[T](x: JQuery_[T]): typings.jqueryui.JQuery =
     x.asInstanceOf[typings.jqueryui.JQuery]
 }

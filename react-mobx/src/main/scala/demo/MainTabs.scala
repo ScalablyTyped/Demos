@@ -1,11 +1,11 @@
 package demo
 
-import typings.csstype.csstypeMod.BackgroundColorProperty
-import typings.materialDashUi.stylesBaseThemesLightBaseThemeMod.{default => theme}
-import typings.materialDashUi.stylesMod.{getMuiTheme, MuiTheme}
-import typings.materialDashUi.{materialDashUiComponents => Mui}
-import typings.mobxDashReact.mobxDashReactMod.observer
-import typings.react.reactMod._
+import typings.csstype.mod.BackgroundColorProperty
+import typings.materialUi.lightBaseThemeMod.{default => theme}
+import typings.materialUi.stylesMod.{getMuiTheme, MuiTheme}
+import typings.materialUi.{materialUiComponents => Mui}
+import typings.mobxReact.mod.observer
+import typings.react.mod._
 import typings.std.console
 
 import scala.scalajs.js

@@ -1,7 +1,7 @@
 package demo
 
-import typings.atAngularCore.{atAngularCoreMod => Core}
-import typings.atAngularPlatformDashBrowserDashDynamic.atAngularPlatformDashBrowserDashDynamicMod.platformBrowserDynamic
+import typings.angularCore.{mod => Core}
+import typings.angularPlatformBrowserDynamic.mod.platformBrowserDynamic
 import typings.std.{document, EventListenerObject}
 
 import scala.scalajs.js
@@ -21,7 +21,7 @@ object Main {
     /* touch to require */
     coreJsCustomRequire
     typings.tslib.tslibRequire
-    typings.zoneDotJs.zoneDotJsRequire
+    typings.zoneJs.zoneJsRequire
     Style
 
     /**
