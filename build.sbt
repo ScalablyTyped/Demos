@@ -257,7 +257,7 @@ lazy val `antd-slinky` =
     .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
       webpackDevServerPort := 8018,
-      addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
+      scalacOptions += "-Ymacro-annotations",
       libraryDependencies ++= Seq(
         ScalablyTyped.A.`antd-slinky-facade`,
         ScalablyTyped.R.`react-dom`,
@@ -290,7 +290,7 @@ lazy val `react-router-dom-slinky` =
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       webpackDevServerPort := 8020,
-      addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
+      scalacOptions += "-Ymacro-annotations",
       libraryDependencies ++= Seq(ScalablyTyped.R.`react-router-dom-slinky-facade`),
       Compile / npmDependencies ++= Seq(
         "react" -> "16.9",
@@ -361,7 +361,7 @@ lazy val typescript =
 lazy val baseSettings: Project => Project =
   _.enablePlugins(ScalaJSPlugin)
     .settings(
-      scalaVersion := "2.12.9",
+      scalaVersion := "2.13.1",
       version := "0.1-SNAPSHOT",
       scalacOptions ++= ScalacOptions.flags,
       /* in preparation for scala.js 1.0 */

@@ -24,7 +24,7 @@ object Main {
       def onClick(idx: Int): SyntheticMouseEvent[dom.Node] => Callback =
         e => Callback.warn(s"clicked image $idx") >> $.setState(State(Some(idx)))
 
-      val images = $.props.images.zipWithIndex.map {
+      val images = $.props.images.zipWithIndex.toSeq.map {
         case (source, idx) =>
           <.img(^.key := idx, ^.src := source, ^.onClick ==> onClick(idx)).render
       }
