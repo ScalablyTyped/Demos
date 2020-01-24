@@ -1,21 +1,14 @@
 package demo
 
 import org.scalablytyped.runtime.TopLevel
-import typings.std.{
-  document,
-  requestAnimationFrame,
-  stdStrings,
-  window,
-  Date,
-  FrameRequestCallback,
-  HTMLDivElement,
-  UIEvent,
-  Window_
-}
+import org.scalajs.dom.UIEvent
+import org.scalajs.dom.raw.HTMLDivElement
+import typings.std.{FrameRequestCallback, Window_, document, requestAnimationFrame, stdStrings, window}
 import typings.three.loaderMod.Loader
 import typings.three.mod.{Math => ThreeMath, _}
 
 import scala.scalajs.js
+import scala.scalajs.js.Date
 import scala.scalajs.js.annotation.JSImport
 
 object Main {

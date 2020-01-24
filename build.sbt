@@ -5,6 +5,19 @@ import org.scalajs.jsenv.nodejs.NodeJSEnv
 
 import scala.sys.process.Process
 
+onLoad in Global := {
+  println(
+    """*
+            |* Welcome to ScalablyTyped demos!
+            |*
+            |* For documentation see https://scalablytyped.org .
+            |*
+            |* Note that compiling all the demos at once can be computationally quite expensive, so you might have a better experience running `<project>/start` than starting all with `start` (though you can!)
+            |*""".stripMargin
+  )
+  (onLoad in Global).value
+}
+
 /**
   * Custom task to start demo with webpack-dev-server, use as `<project>/start`.
   * Just `start` also works, and starts all frontend demos
@@ -19,376 +32,288 @@ lazy val start = TaskKey[Unit]("start")
   */
 lazy val dist = TaskKey[File]("dist")
 
-lazy val `react-mobx` =
-  project
-    .configure(baseSettings, bundlerSettings, browserProject)
+lazy val baseSettings: Project => Project =
+  _.enablePlugins(ScalaJSPlugin)
     .settings(
-      webpackDevServerPort := 8001,
-      libraryDependencies ++= Seq(
-        ScalablyTyped.A.axios,
-        ScalablyTyped.M.`material-ui`,
-        ScalablyTyped.M.mobx,
-        ScalablyTyped.M.`mobx-react`,
-        ScalablyTyped.R.`react-facade`,
-        ScalablyTyped.R.`react-dom`,
-      ),
-      Compile / npmDependencies ++= Seq(
-        "material-ui" -> "0.20.1",
-        "react" -> "16.9",
-        "react-dom" -> "16.9",
-      )
+      scalaVersion := "2.13.1",
+      version := "0.1-SNAPSHOT",
+      scalacOptions ++= ScalacOptions.flags,
+      scalaJSUseMainModuleInitializer := true,
+      scalaJSLinkerConfig ~= (_
+        /* disabled because it somehow triggers many warnings */
+        .withSourceMap(false)
+        .withModuleKind(ModuleKind.CommonJSModule))
     )
 
-lazy val `react-slick` =
-  project
-    .configure(baseSettings, bundlerSettings, browserProject)
+lazy val bundlerSettings: Project => Project =
+  _.enablePlugins(ScalablyTypedConverterPlugin)
     .settings(
-      webpackDevServerPort := 8005,
-      libraryDependencies ++= Seq(
-        ScalablyTyped.R.`react-dom`,
-        ScalablyTyped.R.`react-slick`,
-        ScalablyTyped.R.`react-japgolly-facade`,
-      ),
-      Compile / npmDependencies ++= Seq(
-        "react" -> "16.9",
-        "react-dom" -> "16.9",
-        "react-slick" -> "0.23",
-      )
+      Compile / fastOptJS / webpackExtraArgs += "--mode=development",
+      Compile / fullOptJS / webpackExtraArgs += "--mode=production",
+      Compile / fastOptJS / webpackDevServerExtraArgs += "--mode=development",
+      Compile / fullOptJS / webpackDevServerExtraArgs += "--mode=production",
+      useYarn := true
     )
 
 lazy val vue =
   project
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
-      webpackDevServerPort := 8006,
-      libraryDependencies ++= Seq(ScalablyTyped.V.vue)
-    )
-
-lazy val `react-big-calendar` =
-  project
-    .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
-    .settings(
-      webpackDevServerPort := 8007,
-      libraryDependencies ++= Seq(
-        ScalablyTyped.M.moment,
-        ScalablyTyped.R.`react-dom`,
-        ScalablyTyped.R.`react-big-calendar`,
-        ScalablyTyped.R.`react-facade`,
-      ),
-      Compile / npmDependencies ++= Seq(
-        "react" -> "16.9",
-        "react-dom" -> "16.9",
-        "react-big-calendar" -> "0.22",
-      )
+      webpackDevServerPort := 8004,
+      Compile / stMinimize := Selection.AllExcept("vue"),
+      Compile / npmDependencies ++= Seq("vue" -> "2.6.11")
     )
 
 lazy val three =
   project
     .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
-      webpackDevServerPort := 8008,
-      libraryDependencies ++= Seq(ScalablyTyped.T.three),
+      webpackDevServerPort := 8005,
+      Compile / stMinimize := Selection.AllExcept("three"),
+      Compile / stMinimizeKeep ++= List(
+        "std.document",
+        "std.requestAnimationFrame",
+        "std.window"
+      ),
+      Compile / npmDependencies ++= Seq("three" -> "0.112.1")
     )
 
 lazy val d3 = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8002,
-    libraryDependencies ++= Seq(ScalablyTyped.D.d3),
-    Compile / npmDependencies ++= Seq("d3" -> "5.7"),
+    webpackDevServerPort := 8001,
+    Compile / stMinimize := Selection.AllExcept("d3"),
+    /* we use a bit of functionality which can't be found in scala-js-dom */
+    Compile / stUseScalaJsDom := false,
+    Compile / stMinimizeKeep ++= List(
+      "std.console",
+      "std.document",
+      "std.window",
+      "std.HTMLCanvasElementCls"
+    ),
+    Compile / npmDependencies ++= Seq(
+      "d3" -> "5.15",
+      "@types/d3" -> "5.7.2"
+    )
   )
 
 lazy val jquery = project
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
     webpackDevServerPort := 8003,
-    libraryDependencies ++= Seq(ScalablyTyped.J.jquery, ScalablyTyped.J.jqueryui),
-    Compile / npmDependencies ++= Seq("jquery" -> "3.3", "jqueryui" -> "1.11.1")
+    Compile / stMinimize := Selection.AllExcept("jquery", "jqueryui"),
+    Compile / npmDependencies ++= Seq(
+      "jquery" -> "3.3",
+      "@types/jquery" -> "3.3.31",
+      "jqueryui" -> "1.11.1",
+      "@types/jqueryui" -> "1.12.10"
+    )
   )
 
 lazy val `google-maps` = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8004,
-    libraryDependencies ++= Seq(ScalablyTyped.G.googlemaps),
-  )
-
-lazy val `semantic-ui-react` = project
-  .configure(baseSettings, bundlerSettings, browserProject)
-  .settings(
-    webpackDevServerPort := 8009,
-    libraryDependencies ++= Seq(
-      ScalablyTyped.R.`redux-devtools-extension`,
-      ScalablyTyped.R.`react-dom`,
-      ScalablyTyped.R.`react-redux-facade`,
-      ScalablyTyped.R.`react-facade`,
-      ScalablyTyped.S.`semantic-ui-react`,
-    ),
+    webpackDevServerPort := 8002,
+    Compile / stMinimize := Selection.AllExcept("googlemaps"),
     Compile / npmDependencies ++= Seq(
-      "react-dom" -> "16.9",
-      "react" -> "16.9",
-      "react-redux" -> "7.1",
-    ),
+      "@types/googlemaps" -> "3.39.2"
+    )
   )
 
 lazy val reveal = project
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
-    webpackDevServerPort := 8010,
-    libraryDependencies ++= Seq(
-      ScalablyTyped.H.highlight_dot_js,
-      ScalablyTyped.R.`react-redux-facade`,
-      ScalablyTyped.R.`react-japgolly-facade`,
-      ScalablyTyped.R.`reveal`,
-    ),
+    webpackDevServerPort := 8006,
+    Compile / stFlavour := Flavour.Japgolly,
+    Compile / stMinimize := Selection.AllExcept("reveal", "highlight.js"),
     Compile / npmDependencies ++= Seq(
+      "@types/highlight.js" -> "9.12.3",
+      "@types/reveal" -> "3.3.33",
       "highlight.js" -> "9.12",
       "reveal.js" -> "3.7.0",
-      "react-dom" -> "16.9",
       "react" -> "16.9",
-    ),
+      "react-dom" -> "16.9"
+    )
   )
 
 lazy val chart = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8011,
-    libraryDependencies ++= Seq(ScalablyTyped.C.chart_dot_js),
-    Compile / npmDependencies ++= Seq("chart.js" -> "2.8")
+    webpackDevServerPort := 8007,
+    Compile / stMinimize := Selection.AllExcept("chart.js"),
+    Compile / stUseScalaJsDom := false,
+    Compile / stMinimizeKeep ++= List(
+      "std.document",
+      "std.window",
+      "std.HTMLButtonElement",
+      "std.HTMLCanvasElement",
+      "std.HTMLDivElement",
+      "std.MouseEvent",
+      "std.Date"
+    ),
+    Compile / npmDependencies ++= Seq(
+      "@types/chart.js" -> "2.9.11",
+      "chart.js" -> "2.9.3"
+    )
   )
 
 lazy val p5 = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8014,
-    libraryDependencies ++= Seq(ScalablyTyped.P.p5),
-    Compile / npmDependencies ++= Seq("p5" -> "0.9")
+    webpackDevServerPort := 8009,
+    Compile / stMinimize := Selection.AllExcept("p5"),
+    Compile / npmDependencies ++= Seq(
+      "@types/p5" -> "0.9.0",
+      "p5" -> "0.9"
+    )
   )
 
 lazy val leaflet = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8015,
-    libraryDependencies ++= Seq(ScalablyTyped.L.leaflet),
-    Compile / npmDependencies ++= Seq("leaflet" -> "1.5")
+    webpackDevServerPort := 8010,
+    Compile / stMinimize := Selection.AllExcept("leaflet"),
+    Compile / npmDependencies ++= Seq(
+      "leaflet" -> "1.5.1",
+      "@types/leaflet" -> "1.5.8"
+    )
   )
 
 lazy val angular = project
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
-    webpackDevServerPort := 8012,
-    libraryDependencies ++= Seq(
-      ScalablyTyped.C.`core-js`,
-      ScalablyTyped.T.tslib,
-      ScalablyTyped.Z.zone_dot_js,
-      ScalablyTyped.R.rxjs,
-      ScalablyTyped.A.angular__core,
-      ScalablyTyped.A.angular__common,
-      ScalablyTyped.A.angular__compiler,
-      ScalablyTyped.A.angular__router,
-      ScalablyTyped.A.`angular__platform-browser`,
-      ScalablyTyped.A.`angular__platform-browser-dynamic`,
-      ScalablyTyped.A.angular__forms,
+    webpackDevServerPort := 8008,
+    Compile / stEnableScalaJsDefined := Selection.NoneExcept("@angular/core"),
+    Compile / stMinimize := Selection.AllExcept("@angular/core", "@angular/common"),
+    Compile / stMinimizeKeep ++= List(
+      "angularForms.mod.FormsModule",
+      "angularPlatformBrowser.mod.BrowserModule",
+      "angularPlatformBrowserDynamic.mod.platformBrowserDynamic",
+      "angularRouter.mod",
+      "angularRouter.mod.RouterModule.forRoot",
+      "rxjs.mod.of",
+      "tslib.tslibRequire",
+      "zoneJs.zoneJsRequire"
+    ),
+    /* this is just used behind the scenes*/
+    Compile / stIgnore := List(
+      "@angular/compiler"
     ),
     Compile / npmDependencies ++= Seq(
+      "@angular/common" -> "8.2.14",
+      "@angular/compiler" -> "8.2.14",
+      "@angular/core" -> "8.2.14",
+      "@angular/forms" -> "8.2.14",
+      "@angular/platform-browser-dynamic" -> "8.2.14",
+      "@angular/platform-browser" -> "8.2.14",
+      "@angular/router" -> "8.2.14",
       "core-js" -> "2.6.8",
+      "rxjs" -> "6.5.4",
+      "tslib" -> "1.10.0",
+      "zone.js" -> "0.9.1"
     )
   )
-
-lazy val `storybook-react` = project
-  .configure(baseSettings, application)
-  .settings(
-    libraryDependencies ++= Seq(
-      ScalablyTyped.N.node,
-      ScalablyTyped.R.`react-facade`,
-      ScalablyTyped.S.storybook__react,
-    ),
-    /** This is not suitable for development, but effective for demo.
-      * Run `yarn` and `yarn storybook` commands yourself, and run `~storybook-react/fastOptJS` from sbt
-      */
-    run := {
-      Process("yarn", baseDirectory.value).!
-      (Compile / fastOptJS).value
-      Process("yarn storybook", baseDirectory.value).!
-    },
-    dist := {
-      val distFolder = (ThisBuild / baseDirectory).value / "docs" / moduleName.value
-      (Compile / fullOptJS).value
-      Process("yarn dist", baseDirectory.value).!
-      distFolder
-    }
-  )
-
-lazy val `material-ui` =
-  project
-    .configure(baseSettings, bundlerSettings, browserProject)
-    .settings(
-      webpackDevServerPort := 8016,
-      libraryDependencies ++= Seq(
-        ScalablyTyped.M.`material-ui__core`,
-        ScalablyTyped.M.`material-ui__icons`,
-        ScalablyTyped.R.`react-facade`,
-        ScalablyTyped.R.`react-dom`,
-      ),
-      Compile / npmDependencies ++= Seq(
-        "react" -> "16.9",
-        "react-dom" -> "16.9",
-      )
-    )
-
-lazy val antd =
-  project
-    .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
-    .settings(
-      webpackDevServerPort := 8017,
-      libraryDependencies ++= Seq(
-        ScalablyTyped.A.antd,
-        ScalablyTyped.R.`react-dom`,
-        ScalablyTyped.R.`react-facade`
-      ),
-      Compile / npmDependencies ++= Seq(
-        "react" -> "16.9",
-        "react-dom" -> "16.9",
-      )
-    )
-
-lazy val `antd-slinky` =
-  project
-    .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
-    .settings(
-      webpackDevServerPort := 8018,
-      addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
-      libraryDependencies ++= Seq(
-        ScalablyTyped.A.`antd-slinky-facade`,
-        ScalablyTyped.R.`react-dom`,
-      ),
-      Compile / npmDependencies ++= Seq(
-        "react" -> "16.9",
-        "react-dom" -> "16.9",
-      )
-    )
-
-lazy val `react-router-dom` =
-  project
-    .configure(baseSettings, bundlerSettings, browserProject)
-    .settings(
-      webpackDevServerPort := 8019,
-      libraryDependencies ++= Seq(
-        ScalablyTyped.R.`react-dom`,
-        ScalablyTyped.R.`react-router-dom`,
-        ScalablyTyped.R.`react-facade`
-      ),
-      Compile / npmDependencies ++= Seq(
-        "react" -> "16.9",
-        "react-dom" -> "16.9",
-        "react-router-dom" -> "5.0.0",
-      )
-    )
-
-lazy val `react-router-dom-slinky` =
-  project
-    .configure(baseSettings, bundlerSettings, browserProject)
-    .settings(
-      webpackDevServerPort := 8020,
-      addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
-      libraryDependencies ++= Seq(ScalablyTyped.R.`react-router-dom-slinky-facade`),
-      Compile / npmDependencies ++= Seq(
-        "react" -> "16.9",
-        "react-dom" -> "16.9",
-        "react-router-dom" -> "5.0.0",
-      )
-    )
 
 lazy val onsenui =
   project
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
-      webpackDevServerPort := 8021,
-      libraryDependencies ++= Seq(ScalablyTyped.J.jquery, ScalablyTyped.O.onsenui),
-      Compile / npmDependencies ++= Seq("jquery" -> "3.3")
+      webpackDevServerPort := 8011,
+      Compile / stMinimize := Selection.AllExcept("onsenui", "jquery"),
+      Compile / npmDependencies ++= Seq(
+        "@types/jquery" -> "3.3.31",
+        "jquery" -> "3.3",
+        "onsenui" -> "2.10.10"
+      )
     )
 
 lazy val electron = project
-  .configure(baseSettings, outputModule, application)
+/* ScalablyTypedConverterExternalNpmPlugin requires that we define how to install node dependencies and where they are */
+  .enablePlugins(ScalablyTypedConverterExternalNpmPlugin)
+  .configure(baseSettings, outputModule)
   .settings(
-    libraryDependencies ++= Seq(ScalablyTyped.E.electron),
-    /* run with globally installed electron */
+    Compile / stStdlib := List("es5"), // doesn't include DOM
+    Compile / stMinimize := Selection.AllExcept("electron"),
+    Compile / stMinimizeKeep ++= List(
+      "node.pathMod.^",
+      "node.urlMod",
+      "node.urlMod.format"
+    ),
+    externalNpm := {
+      /* since we run yarn ourselves the dependencies live in electron/package.json */
+      Process("yarn", baseDirectory.value).!
+      baseDirectory.value
+    },
     jsEnv := new NodeJSEnv(
       NodeJSEnv
         .Config()
-        .withExecutable("electron")
+        .withExecutable("electron/node_modules/.bin/electron")
         .withArgs(List((Compile / classDirectory).value.toString))
-    ),
+    )
   )
-
-// todo: disabled since they changed everything in react-navigation and I'm lazy.
-//  We'll wait for the next version or replace it altogether.
-//
-//lazy val `react-native` = project
-//  .configure(baseSettings, outputModule, application)
-//  .settings(
-//    scalaJSUseMainModuleInitializer := false,
-//    libraryDependencies ++= Seq(
-//      ScalablyTyped.E.`expo-font`,
-//      ScalablyTyped.R.`react-native`,
-//      ScalablyTyped.R.`react-navigation`,
-//      ScalablyTyped.R.`react-native-gesture-handler`,
-//      ScalablyTyped.R.`react-native-vector-icons`,
-//      ScalablyTyped.R.`react-facade`
-//    ),
-//  )
 
 lazy val lodash =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
-      libraryDependencies ++= Seq(ScalablyTyped.L.lodash),
-      Compile / npmDependencies ++= Seq("lodash" -> "4.17.11")
+      Compile / stMinimize := Selection.AllExcept("lodash"),
+      Compile / stMinimizeKeep ++= List(
+        "node.console"
+      ),
+      Compile / npmDependencies ++= Seq(
+        "@types/lodash" -> "4.14.149",
+        "@types/node" -> "13.5.0",
+        "lodash" -> "4.17.11"
+      )
     )
 
 lazy val `node-express` =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
-    .settings(libraryDependencies ++= Seq(ScalablyTyped.E.express))
+    .settings(
+      Compile / stMinimize := Selection.AllExcept("express"),
+      Compile / stMinimizeKeep ++= List(
+        "node.console",
+        "node.processMod",
+        "node.processMod.^"
+      ),
+      Compile / npmDependencies ++= Seq(
+        "@types/express" -> "4.17.2",
+        "@types/node" -> "13.5.0",
+        "express" -> "4.17.1"
+      )
+    )
 
 lazy val typescript =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
-      libraryDependencies ++= Seq(ScalablyTyped.N.node, ScalablyTyped.T.typescript),
+      Compile / stMinimize := Selection.AllExcept("typescript"),
+      Compile / stMinimizeKeep ++= List(
+        "node.processMod.^",
+        "node.console"
+      ),
+      /* typescript is implicitly added by the plugin since that's where we get the files for stdlib, and also implicitly ignored */
+      Compile / stIgnore ~= (_.filterNot(_ == "typescript"))
     )
 
-lazy val baseSettings: Project => Project =
-  _.enablePlugins(ScalaJSPlugin)
-    .settings(
-      scalaVersion := "2.12.9",
-      version := "0.1-SNAPSHOT",
-      scalacOptions ++= ScalacOptions.flags,
-      /* in preparation for scala.js 1.0 */
-      scalacOptions += "-P:scalajs:sjsDefinedByDefault",
-    )
 
-lazy val application: Project => Project =
+val nodeProject: Project => Project =
   _.settings(
-    scalaJSUseMainModuleInitializer := true,
-    /* disabled because it somehow triggers many warnings */
-    emitSourceMaps := false,
-    scalaJSModuleKind := ModuleKind.CommonJSModule,
+    jsEnv := new org.scalajs.jsenv.nodejs.NodeJSEnv,
+    // es5 doesn't include DOM, which we don't have access to in node
+    Compile / stStdlib := List("es5"),
+    Compile / stUseScalaJsDom := false,
+    Compile / npmDependencies ++= Seq(
+      "@types/node" -> "13.5.0"
+    )
   )
 
-lazy val bundlerSettings: Project => Project =
-  _.enablePlugins(ScalaJSBundlerPlugin)
-    .configure(application)
-    .settings(
-      /* Specify current versions and modes */
-      startWebpackDevServer / version := "3.1.10",
-      webpack / version := "4.26.1",
-      Compile / fastOptJS / webpackExtraArgs += "--mode=development",
-      Compile / fullOptJS / webpackExtraArgs += "--mode=production",
-      Compile / fastOptJS / webpackDevServerExtraArgs += "--mode=development",
-      Compile / fullOptJS / webpackDevServerExtraArgs += "--mode=production",
-      useYarn := true,
-    )
+/* turn the javascript artifact into a module. */
+val outputModule: Project => Project =
+  _.settings(
+    scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
+  )
 
 lazy val withCssLoading: Project => Project =
   _.settings(
@@ -399,7 +324,7 @@ lazy val withCssLoading: Project => Project =
       "css-loader" -> "2.1.0",
       "style-loader" -> "0.23.1",
       "file-loader" -> "3.0.1",
-      "url-loader" -> "1.1.2",
+      "url-loader" -> "1.1.2"
     )
   )
 
@@ -446,10 +371,3 @@ lazy val browserProject: Project => Project =
       distFolder
     }
   )
-
-val nodeProject: Project => Project =
-  _.settings(jsEnv := new org.scalajs.jsenv.nodejs.NodeJSEnv)
-
-/* turn the javascript artifact into a module. */
-val outputModule: Project => Project =
-  _.settings(scalaJSModuleKind := ModuleKind.CommonJSModule)
