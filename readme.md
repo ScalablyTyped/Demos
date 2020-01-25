@@ -98,6 +98,12 @@ Demo adapted from [scalajs-leaflet](https://github.com/fancellu/scalajs-leaflet/
 Adapted from [documentation](https://onsen.io/v2/guide/jquery/)
  
 `sbt> onsenui/start` starts a webpack-dev-server at http://localhost:8011 .
+
+### phaser 
+[Demo](https://scalablytyped.github.io/ScalablyTypedDemos/phaser/index.html)
+Adapted from [animation/create-from-sprite-config example](http://phaser.io/examples/v3/view/animation/create-from-sprite-config)
+ 
+`sbt> phaser/start` starts a webpack-dev-server at http://localhost:8012 .
  
 ## Electron
 Implements the backend/mainprocess part of an Electron app in Scala.js,

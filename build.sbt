@@ -227,6 +227,16 @@ lazy val onsenui =
       )
     )
 
+lazy val phaser =
+  project
+    .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
+    .settings(
+      webpackDevServerPort := 8012,
+      Compile / stEnableScalaJsDefined := Selection.NoneExcept("phaser"),
+      Compile / stMinimize := Selection.AllExcept("phaser"),
+      Compile / npmDependencies ++= Seq("phaser" -> "3.22.0")
+    )
+
 lazy val electron = project
 /* ScalablyTypedConverterExternalNpmPlugin requires that we define how to install node dependencies and where they are */
   .enablePlugins(ScalablyTypedConverterExternalNpmPlugin)
