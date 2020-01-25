@@ -1,6 +1,6 @@
 package demo
 
-import typings.atAngularCore.atAngularCoreMod.{Component, ComponentCls, OnInit}
+import typings.angularCore.mod.{Component, ComponentCls, OnInit}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic

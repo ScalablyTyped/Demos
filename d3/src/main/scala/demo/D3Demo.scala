@@ -1,8 +1,8 @@
 package demo
 
-import typings.d3.d3Mod
-import typings.d3DashGeo.d3DashGeoMod.{GeoContext, GeoPath, GeoPermissibleObjects, GeoProjection}
-import typings.geojson.geojsonMod.{LineString, Position}
+import typings.d3.{mod => d3Mod}
+import typings.d3Geo.mod.{GeoContext, GeoPath_, GeoPermissibleObjects, GeoProjection_}
+import typings.geojson.mod.{LineString, Position}
 import typings.geojson.geojsonStrings
 import typings.std.{
   console,
@@ -42,14 +42,14 @@ object D3Demo {
       .attr("width", width + "px")
       .attr("height", height + "px")
 
-    val projection: GeoProjection =
+    val projection: GeoProjection_ =
       d3Mod
         .geoOrthographic()
         .scale(0.45 * size)
         .translate(js.Tuple2(0.5 * width, 0.5 * height))
 
     val geoGenerator =
-      d3Mod.geoPath(projection, Knowledge.isGeoContext(context)).asInstanceOf[GeoPath[GeoPermissibleObjects, Null]]
+      d3Mod.geoPath(projection, Knowledge.isGeoContext(context))
 
     val geometry = LineString(
       coordinates = js.Array[Position](),

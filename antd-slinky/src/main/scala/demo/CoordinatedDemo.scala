@@ -2,9 +2,9 @@ package demo
 
 import typings.antd.AntdFacade._
 import typings.antd.antdStrings
-import typings.antd.libFormFormMod.{FormCreateOption, GetFieldDecoratorOptions, ValidationRule}
+import typings.antd.formFormMod.{FormCreateOption, GetFieldDecoratorOptions, ValidationRule}
 import typings.react.ScalableSlinky.ExternalComponentP
-import typings.react.reactMod.FormEventHandler
+import typings.react.mod.FormEventHandler
 import typings.std.{console, HTMLFormElement}
 
 import scala.scalajs.js

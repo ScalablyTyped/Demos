@@ -1,8 +1,8 @@
 package demo
 
-import typings.atStorybookReact.atStorybookReactMod.storiesOf
+import typings.storybookReact.mod.storiesOf
 import typings.node.module
-import typings.react.reactMod.ButtonHTMLAttributes
+import typings.react.mod.ButtonHTMLAttributes
 import typings.std.window
 
 object Demo {
@@ -13,14 +13,14 @@ object Demo {
       .add("with text", ctx => button.noprops("Hello Button"))
       .add(
         "with some emoji",
-          ctx =>
-            button.props(
-              ButtonHTMLAttributes(
-                onClick      = e => window.alert(s"x: ${e.pageX}, y: ${e.pageY}"),
-                `aria-label` = "so cool",
-                role         = "img"
-              ),
-              span.noprops("😀😎")
-            )
+        ctx =>
+          button.props(
+            ButtonHTMLAttributes(
+              onClick      = e => window.alert(s"x: ${e.pageX}, y: ${e.pageY}"),
+              `aria-label` = "so cool",
+              role         = "img"
+            ),
+            span.noprops("😀😎")
+          )
       )
 }

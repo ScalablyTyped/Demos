@@ -1,7 +1,7 @@
 package demo
 
-import typings.chartDotJs.chartDotJsMod.{^ => Chart, _}
-import typings.chartDotJs.chartDotJsStrings
+import typings.chartJs.mod.{^ => Chart, _}
+import typings.chartJs.chartJsStrings
 import typings.std.{document, stdStrings, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
 
 import scala.scalajs.js
@@ -15,10 +15,10 @@ object Demo {
     val section = document.createElement_section(stdStrings.section)
     section.className = "w"
     section.append(
-      chart(chartConfig(chartDotJsStrings.bar, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartDotJsStrings.pie, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartDotJsStrings.polarArea, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartDotJsStrings.line, randomData(100, random.nextInt())))
+      chart(chartConfig(chartJsStrings.bar, randomData(100, random.nextInt()))),
+      chart(chartConfig(chartJsStrings.pie, randomData(100, random.nextInt()))),
+      chart(chartConfig(chartJsStrings.polarArea, randomData(100, random.nextInt()))),
+      chart(chartConfig(chartJsStrings.line, randomData(100, random.nextInt())))
     )
 
     document.body.append(section)

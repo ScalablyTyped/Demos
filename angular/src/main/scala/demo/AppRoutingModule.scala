@@ -1,7 +1,7 @@
 package demo
 
-import typings.atAngularCore.atAngularCoreMod.{NgModule, NgModuleCls}
-import typings.atAngularRouter.atAngularRouterMod.{Route, RouterModule, Routes}
+import typings.angularCore.mod.{NgModule, NgModuleCls}
+import typings.angularRouter.mod.{Route, RouterModule, Routes}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic

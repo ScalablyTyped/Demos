@@ -1,7 +1,7 @@
 package demo
 
 import typings.react.dsl._
-import typings.reactDashDom.reactDashDomMod.render
+import typings.reactDom.mod.render
 import typings.std.document
 
 import scala.scalajs.js.|

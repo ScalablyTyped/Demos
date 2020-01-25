@@ -1,7 +1,7 @@
 package demo
 
-import typings.express.expressMod
-import typings.expressDashServeDashStaticDashCore.expressDashServeDashStaticDashCoreMod._
+import typings.express.{mod => expressMod}
+import typings.expressServeStaticCore.mod._
 import typings.node.processMod
 import typings.std.console
 

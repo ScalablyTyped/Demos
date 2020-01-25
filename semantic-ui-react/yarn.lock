@@ -5139,10 +5139,10 @@ redux-devtools-extension@2.13.8:
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
   integrity sha512-8qlpooP2QqPtZHQZRhx3x3OP5skEV1py/zUdMY28WNAocbafxdG2tRD1MWE7sp8obGMNYuLWanhhQ7EQvT1FBg==
 
-redux@4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.4.tgz#4ee1aeb164b63d6a1bcc57ae4aa0b6e6fa7a3796"
-  integrity sha512-vKv4WdiJxOWKxK0yRoaK3Y4pxxB0ilzVx6dszU2W8wLxlb2yikRph4iV/ymtdJ6ZxpBLFbyrxklnT5yBbQSl3Q==
+redux@4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.5.tgz#4db5de5816e17891de8a80c424232d06f051d93f"
+  integrity sha512-VSz1uMAH24DM6MF72vcojpYPtrTUu3ByVWfPL1nPfVRb5mZVTve5GnNCUV53QM/BZ66xfWrm0CTWoM+Xlz8V1w==
   dependencies:
     loose-envify "^1.4.0"
     symbol-observable "^1.2.0"
@@ -5439,10 +5439,10 @@ selfsigned@^1.9.1:
   dependencies:
     node-forge "0.7.5"
 
-semantic-ui-react@0.88.1:
-  version "0.88.1"
-  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.88.1.tgz#006d63f838b651370d68e73510327308f19ff6fd"
-  integrity sha512-fCCDnRXiVJUJ9icFVSu0n0pZ2cg2QssiLM2nP4pz6aODQpPZTPtXVI6V/hFciwJ+GPkV6WZAmEmFLxR7nRVF4Q==
+semantic-ui-react@0.88.2:
+  version "0.88.2"
+  resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.88.2.tgz#3d4b54f8b799769b412435c8531475fd34aa4149"
+  integrity sha512-+02kN2z8PuA/cMdvDUsHhbJmBzxxgOXVHMFr9XK7zGb0wkW9A6OPQMFokWz7ozlVtKjN6r7zsb+Qvjk/qq1OWw==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "@semantic-ui-react/event-stack" "^3.1.0"
