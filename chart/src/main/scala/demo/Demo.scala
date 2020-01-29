@@ -2,7 +2,8 @@ package demo
 
 import typings.chartJs.mod.{^ => Chart, _}
 import typings.chartJs.chartJsStrings
-import typings.std.{document, stdStrings, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
+import typings.moment.mod.Moment
+import typings.std.{document, stdStrings, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent, Date}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -99,7 +100,7 @@ object Demo {
     )
   }
 
-  val Labels: js.Array[java.lang.String | js.Array[java.lang.String]] =
+  val Labels: js.Array[String | js.Array[Date | Double | Moment | String] | Double | Date | Moment] =
     js.Array("Red", "Blue", "Yellow", "Green", "Purple", "Orange")
 
   val BackgroundColor: ChartColor =

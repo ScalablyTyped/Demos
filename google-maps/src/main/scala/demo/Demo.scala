@@ -1,9 +1,7 @@
 package demo
 
+import org.scalajs.dom.document
 import typings.googlemaps.google.maps
-import typings.std.document
-
-import scala.scalajs.js.|
 
 object Demo {
   val beaches: Map[String, maps.LatLng] =
@@ -15,41 +13,31 @@ object Demo {
     )
 
   def main(argv: scala.Array[String]): Unit = {
-    val containerId = "content"
+    val container = document.getElementById("content")
+    val m = new maps.Map(
+      container,
+      maps.MapOptions(
+        center = new maps.LatLng(-33.9, 151.2),
+        zoom   = 4
+      )
+    )
 
-    Knowledge.asOption(document.getElementById(containerId)) match {
-      case Some(container) =>
-        val m = new maps.Map(
-          container,
-          maps.MapOptions(
-            center = new maps.LatLng(-33.9, 151.2),
-            zoom   = 4
+    val info = new maps.InfoWindow
+
+    beaches.foreach {
+      case (beach, pos) =>
+        val marker = new maps.Marker(
+          maps.ReadonlyMarkerOptions(
+            position = pos,
+            title    = beach,
+            map      = m
           )
         )
 
-        val info = new maps.InfoWindow
-
-        beaches.foreach {
-          case (beach, pos) =>
-            val marker = new maps.Marker(
-              maps.ReadonlyMarkerOptions(
-                position = pos,
-                title    = beach,
-                map      = m
-              )
-            )
-
-            maps.event.addListener(marker, "click", _ => {
-              info.setContent(s"<h3>This is $beach </h3>")
-              info.open(m, marker)
-            })
-        }
-
-      case _ => sys.error(s"Could not find $containerId")
+        maps.event.addListener(marker, "click", _ => {
+          info.setContent(s"<h3>This is $beach </h3>")
+          info.open(m.asInstanceOf[maps.Map[typings.std.Element]], marker)
+        })
     }
   }
-}
-
-object Knowledge {
-  def asOption[T](ot: T | Null): Option[T] = Option(ot.asInstanceOf[T])
 }

@@ -119,7 +119,7 @@ object Todo {
 
     val demo = new VueClass(demoOpt).value
 
-    demo.$watch("title", (_, newValue: js.Any, _: js.Any) => println("changed " + newValue))
+    demo.$watch("title", (_: demo.type, newValue: js.Any, _: js.Any) => println("changed " + newValue))
   }
 }
 

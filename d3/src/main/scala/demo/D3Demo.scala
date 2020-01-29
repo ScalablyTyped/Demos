@@ -39,8 +39,8 @@ object D3Demo {
 
     d3Mod
       .select("#content")
-      .attr("width", width + "px")
-      .attr("height", height + "px")
+      .attr("width", s"${width}px")
+      .attr("height", s"${height}px")
 
     val projection: GeoProjection_ =
       d3Mod
