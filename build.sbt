@@ -8,12 +8,12 @@ import scala.sys.process.Process
 onLoad in Global := {
   println(
     """*
-            |* Welcome to ScalablyTyped demos!
-            |*
-            |* For documentation see https://scalablytyped.org .
-            |*
-            |* Note that compiling all the demos at once can be computationally quite expensive, so you might have a better experience running `<project>/start` than starting all with `start` (though you can!)
-            |*""".stripMargin
+      |* Welcome to ScalablyTyped demos!
+      |*
+      |* For documentation see https://scalablytyped.org .
+      |*
+      |* Note that the first time you import/compile the projects it'll take a while for the dependencies to build
+      |*""".stripMargin
   )
   (onLoad in Global).value
 }
@@ -40,7 +40,7 @@ lazy val baseSettings: Project => Project =
       scalacOptions ++= ScalacOptions.flags,
       scalaJSUseMainModuleInitializer := true,
       scalaJSLinkerConfig ~= (_
-        /* disabled because it somehow triggers many warnings */
+      /* disabled because it somehow triggers many warnings */
         .withSourceMap(false)
         .withModuleKind(ModuleKind.CommonJSModule))
     )
@@ -241,7 +241,6 @@ lazy val typescript =
       /* typescript is implicitly added by the plugin since that's where we get the files for stdlib, and also implicitly ignored */
       Compile / stIgnore ~= (_.filterNot(_ == "typescript"))
     )
-
 
 val nodeProject: Project => Project =
   _.settings(
