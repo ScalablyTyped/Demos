@@ -60,7 +60,6 @@ lazy val vue =
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       webpackDevServerPort := 8004,
-      Compile / stMinimize := Selection.AllExcept("vue"),
       Compile / npmDependencies ++= Seq("vue" -> "2.6.11")
     )
 
@@ -69,12 +68,6 @@ lazy val three =
     .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
       webpackDevServerPort := 8005,
-      Compile / stMinimize := Selection.AllExcept("three"),
-      Compile / stMinimizeKeep ++= List(
-        "std.document",
-        "std.requestAnimationFrame",
-        "std.window"
-      ),
       Compile / npmDependencies ++= Seq("three" -> "0.112.1")
     )
 
@@ -82,15 +75,8 @@ lazy val d3 = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8001,
-    Compile / stMinimize := Selection.AllExcept("d3"),
     /* we use a bit of functionality which can't be found in scala-js-dom */
     Compile / stUseScalaJsDom := false,
-    Compile / stMinimizeKeep ++= List(
-      "std.console",
-      "std.document",
-      "std.window",
-      "std.HTMLCanvasElementCls"
-    ),
     Compile / npmDependencies ++= Seq(
       "d3" -> "5.15",
       "@types/d3" -> "5.7.2"
@@ -101,7 +87,6 @@ lazy val jquery = project
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
     webpackDevServerPort := 8003,
-    Compile / stMinimize := Selection.AllExcept("jquery", "jqueryui"),
     Compile / npmDependencies ++= Seq(
       "jquery" -> "3.3",
       "@types/jquery" -> "3.3.31",
@@ -114,7 +99,6 @@ lazy val `google-maps` = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8002,
-    Compile / stMinimize := Selection.AllExcept("googlemaps"),
     Compile / npmDependencies ++= Seq(
       "@types/googlemaps" -> "3.39.2"
     )
@@ -125,7 +109,6 @@ lazy val reveal = project
   .settings(
     webpackDevServerPort := 8006,
     Compile / stFlavour := Flavour.Japgolly,
-    Compile / stMinimize := Selection.AllExcept("reveal", "highlight.js"),
     Compile / npmDependencies ++= Seq(
       "@types/highlight.js" -> "9.12.3",
       "@types/reveal" -> "3.3.33",
@@ -140,17 +123,7 @@ lazy val chart = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8007,
-    Compile / stMinimize := Selection.AllExcept("chart.js"),
     Compile / stUseScalaJsDom := false,
-    Compile / stMinimizeKeep ++= List(
-      "std.document",
-      "std.window",
-      "std.HTMLButtonElement",
-      "std.HTMLCanvasElement",
-      "std.HTMLDivElement",
-      "std.MouseEvent",
-      "std.Date"
-    ),
     Compile / npmDependencies ++= Seq(
       "@types/chart.js" -> "2.9.11",
       "chart.js" -> "2.9.3"
@@ -161,7 +134,6 @@ lazy val p5 = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8009,
-    Compile / stMinimize := Selection.AllExcept("p5"),
     Compile / npmDependencies ++= Seq(
       "@types/p5" -> "0.9.0",
       "p5" -> "0.9"
@@ -172,7 +144,6 @@ lazy val leaflet = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8010,
-    Compile / stMinimize := Selection.AllExcept("leaflet"),
     Compile / npmDependencies ++= Seq(
       "leaflet" -> "1.5.1",
       "@types/leaflet" -> "1.5.8"
@@ -184,21 +155,8 @@ lazy val angular = project
   .settings(
     webpackDevServerPort := 8008,
     Compile / stEnableScalaJsDefined := Selection.NoneExcept("@angular/core"),
-    Compile / stMinimize := Selection.AllExcept("@angular/core", "@angular/common"),
-    Compile / stMinimizeKeep ++= List(
-      "angularForms.mod.FormsModule",
-      "angularPlatformBrowser.mod.BrowserModule",
-      "angularPlatformBrowserDynamic.mod.platformBrowserDynamic",
-      "angularRouter.mod",
-      "angularRouter.mod.RouterModule.forRoot",
-      "rxjs.mod.of",
-      "tslib.tslibRequire",
-      "zoneJs.zoneJsRequire"
-    ),
-    /* this is just used behind the scenes*/
-    Compile / stIgnore := List(
-      "@angular/compiler"
-    ),
+    /* this shouldnæt be used directly */
+    Compile / stIgnore := List("@angular/compiler"),
     Compile / npmDependencies ++= Seq(
       "@angular/common" -> "8.2.14",
       "@angular/compiler" -> "8.2.14",
@@ -219,7 +177,6 @@ lazy val onsenui =
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       webpackDevServerPort := 8011,
-      Compile / stMinimize := Selection.AllExcept("onsenui", "jquery"),
       Compile / npmDependencies ++= Seq(
         "@types/jquery" -> "3.3.31",
         "jquery" -> "3.3",
@@ -233,7 +190,6 @@ lazy val phaser =
     .settings(
       webpackDevServerPort := 8012,
       Compile / stEnableScalaJsDefined := Selection.NoneExcept("phaser"),
-      Compile / stMinimize := Selection.AllExcept("phaser"),
       Compile / npmDependencies ++= Seq("phaser" -> "3.22.0")
     )
 
@@ -243,12 +199,6 @@ lazy val electron = project
   .configure(baseSettings, outputModule)
   .settings(
     Compile / stStdlib := List("es5"), // doesn't include DOM
-    Compile / stMinimize := Selection.AllExcept("electron"),
-    Compile / stMinimizeKeep ++= List(
-      "node.pathMod.^",
-      "node.urlMod",
-      "node.urlMod.format"
-    ),
     externalNpm := {
       /* since we run yarn ourselves the dependencies live in electron/package.json */
       Process("yarn", baseDirectory.value).!
@@ -266,10 +216,6 @@ lazy val lodash =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
-      Compile / stMinimize := Selection.AllExcept("lodash"),
-      Compile / stMinimizeKeep ++= List(
-        "node.console"
-      ),
       Compile / npmDependencies ++= Seq(
         "@types/lodash" -> "4.14.149",
         "@types/node" -> "13.5.0",
@@ -281,12 +227,6 @@ lazy val `node-express` =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
-      Compile / stMinimize := Selection.AllExcept("express"),
-      Compile / stMinimizeKeep ++= List(
-        "node.console",
-        "node.processMod",
-        "node.processMod.^"
-      ),
       Compile / npmDependencies ++= Seq(
         "@types/express" -> "4.17.2",
         "@types/node" -> "13.5.0",
@@ -298,11 +238,6 @@ lazy val typescript =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
-      Compile / stMinimize := Selection.AllExcept("typescript"),
-      Compile / stMinimizeKeep ++= List(
-        "node.processMod.^",
-        "node.console"
-      ),
       /* typescript is implicitly added by the plugin since that's where we get the files for stdlib, and also implicitly ignored */
       Compile / stIgnore ~= (_.filterNot(_ == "typescript"))
     )
