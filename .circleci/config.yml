@@ -39,6 +39,7 @@ jobs:
             - ~/.sbt
             - ~/.m2
             - ~/.ivy2/cache
+            - ~/.cache/scalablytyped
           key: v1-dependencies--{{ checksum "build.sbt" }}
 
 #      # run scalafmt!

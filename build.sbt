@@ -18,6 +18,11 @@ onLoad in Global := {
   (onLoad in Global).value
 }
 
+// both intellij and ci needs this to not OOM during initial import
+Global / concurrentRestrictions ++= Seq(
+  Tags.limit(ScalablyTypedTag, 2)
+)
+
 /**
   * Custom task to start demo with webpack-dev-server, use as `<project>/start`.
   * Just `start` also works, and starts all frontend demos
@@ -76,7 +81,7 @@ lazy val d3 = project
   .settings(
     webpackDevServerPort := 8001,
     /* we use a bit of functionality which can't be found in scala-js-dom */
-    Compile / stUseScalaJsDom := false,
+    stUseScalaJsDom := false,
     Compile / npmDependencies ++= Seq(
       "d3" -> "5.15",
       "@types/d3" -> "5.7.2"
@@ -108,7 +113,7 @@ lazy val reveal = project
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
     webpackDevServerPort := 8006,
-    Compile / stFlavour := Flavour.Japgolly,
+    stFlavour := Flavour.Japgolly,
     Compile / npmDependencies ++= Seq(
       "@types/highlight.js" -> "9.12.3",
       "@types/reveal" -> "3.3.33",
@@ -123,7 +128,7 @@ lazy val chart = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     webpackDevServerPort := 8007,
-    Compile / stUseScalaJsDom := false,
+    stUseScalaJsDom := false,
     Compile / npmDependencies ++= Seq(
       "@types/chart.js" -> "2.9.11",
       "chart.js" -> "2.9.3"
@@ -154,9 +159,9 @@ lazy val angular = project
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
     webpackDevServerPort := 8008,
-    Compile / stEnableScalaJsDefined := Selection.NoneExcept("@angular/core"),
+    stEnableScalaJsDefined := Selection.NoneExcept("@angular/core"),
     /* this shouldnæt be used directly */
-    Compile / stIgnore := List("@angular/compiler"),
+    stIgnore := List("@angular/compiler"),
     Compile / npmDependencies ++= Seq(
       "@angular/common" -> "8.2.14",
       "@angular/compiler" -> "8.2.14",
@@ -189,7 +194,7 @@ lazy val phaser =
     .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
       webpackDevServerPort := 8012,
-      Compile / stEnableScalaJsDefined := Selection.NoneExcept("phaser"),
+      stEnableScalaJsDefined := Selection.NoneExcept("phaser"),
       Compile / npmDependencies ++= Seq("phaser" -> "3.22.0")
     )
 
@@ -198,7 +203,7 @@ lazy val electron = project
   .enablePlugins(ScalablyTypedConverterExternalNpmPlugin)
   .configure(baseSettings, outputModule)
   .settings(
-    Compile / stStdlib := List("es5"), // doesn't include DOM
+    stStdlib := List("es5"), // doesn't include DOM
     externalNpm := {
       /* since we run yarn ourselves the dependencies live in electron/package.json */
       Process("yarn", baseDirectory.value).!
@@ -239,15 +244,15 @@ lazy val typescript =
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       /* typescript is implicitly added by the plugin since that's where we get the files for stdlib, and also implicitly ignored */
-      Compile / stIgnore ~= (_.filterNot(_ == "typescript"))
+      stIgnore ~= (_.filterNot(_ == "typescript"))
     )
 
 val nodeProject: Project => Project =
   _.settings(
     jsEnv := new org.scalajs.jsenv.nodejs.NodeJSEnv,
     // es5 doesn't include DOM, which we don't have access to in node
-    Compile / stStdlib := List("es5"),
-    Compile / stUseScalaJsDom := false,
+    stStdlib := List("es5"),
+    stUseScalaJsDom := false,
     Compile / npmDependencies ++= Seq(
       "@types/node" -> "13.5.0"
     )
