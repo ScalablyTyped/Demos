@@ -1,4 +1,4 @@
-package demo.filtersbasics
+package demo.filtersbasic
 
 import demo.assets.pixifilters.{DisplacementMapRepeat, FlagImage}
 import demo.pixi.PIXIExample
@@ -7,7 +7,7 @@ import demo.monkeypatching.PIXIPatching._
 
 import scala.scalajs.js
 
-object DisplacementMapFlag extends PIXIExample {
+case object DisplacementMapFlag extends PIXIExample {
   val name: String = "Displacement Map - Flag"
   val pixiUrl: String =
     "https://pixijs.io/examples/#/filters-basic/displacement-map-flag.js"

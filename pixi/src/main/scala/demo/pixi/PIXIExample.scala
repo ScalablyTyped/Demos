@@ -2,7 +2,7 @@ package demo.pixi
 
 import demo.demosbasic._
 import demo.demosadvanced._
-import demo.filtersbasics.DisplacementMapFlag
+import demo.filtersbasic.DisplacementMapFlag
 import demo.graphics.Simple
 import demo.interaction.Click
 import demo.meshandshaders.Uniform

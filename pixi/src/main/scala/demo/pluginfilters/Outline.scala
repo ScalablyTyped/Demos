@@ -8,7 +8,7 @@ import typings.pixiJs.mod.{Application, Sprite, Texture}
 
 import scala.scalajs.js
 
-object Outline extends PIXIExample {
+case object Outline extends PIXIExample {
   val name:    String = "Outline"
   val pixiUrl: String = "https://pixijs.io/examples/#/plugin-filters/outline.js"
 

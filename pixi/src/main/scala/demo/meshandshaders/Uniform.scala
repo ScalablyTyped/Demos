@@ -9,7 +9,7 @@ import demo.monkeypatching.PIXIPatching._
 import scala.scalajs.js
 import scala.scalajs.js.|
 
-object Uniform extends PIXIExample {
+case object Uniform extends PIXIExample {
   val name:    String = "Uniform"
   val pixiUrl: String = "https://pixijs.io/examples/#/mesh-and-shaders/uniforms.js"
 
