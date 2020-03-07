@@ -104,6 +104,12 @@ Adapted from [documentation](https://onsen.io/v2/guide/jquery/)
 Adapted from [animation/create-from-sprite-config example](http://phaser.io/examples/v3/view/animation/create-from-sprite-config)
  
 `sbt> phaser/start` starts a webpack-dev-server at http://localhost:8012 .
+
+### Pixi
+
+Sample of the [Pixi examples](https://pixijs.io/examples) translated into Scala.js.
+
+`sbt> pixi/start` starts a webpack-dev-server at http://localhost:8013 .
  
 ## Electron
 Implements the backend/mainprocess part of an Electron app in Scala.js,
