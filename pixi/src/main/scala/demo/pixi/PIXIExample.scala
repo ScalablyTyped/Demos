@@ -19,8 +19,8 @@ trait PIXIExample {
   val pixiUrl: String
 
   def githubUrl(pkg: String): String =
-    s"""https://raw.githubusercontent.com/sherpal/Demos/pixi/pixi/src/main/scala/demo/$pkg/$toString.scala"""
-//    s"""https://raw.githubusercontent.com/ScalablyTyped/Demos/master/pixi/src/main/scala/demo/$pkg/$toString.scala"""
+//    s"""https://raw.githubusercontent.com/sherpal/Demos/pixi/pixi/src/main/scala/demo/$pkg/$toString.scala"""
+    s"""https://raw.githubusercontent.com/ScalablyTyped/Demos/master/pixi/src/main/scala/demo/$pkg/$toString.scala"""
 
   private var pixiApp: Option[Application] = None
 
