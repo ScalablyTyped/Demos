@@ -18,10 +18,12 @@ onLoad in Global := {
   (onLoad in Global).value
 }
 
-// both intellij and ci needs this to not OOM during initial import
-Global / concurrentRestrictions ++= Seq(
-  Tags.limit(ScalablyTypedTag, 2)
-)
+// both intellij and ci needs this to not OOM during initial import since we have so many projects
+Global / concurrentRestrictions ++= {
+  val gigabytes = (java.lang.Runtime.getRuntime.maxMemory) / (1000 * 1000 * 1000)
+  val numParallel = Math.max(1, gigabytes.toInt)
+  List(Tags.limit(ScalablyTypedTag, numParallel))
+}
 
 /**
   * Custom task to start demo with webpack-dev-server, use as `<project>/start`.

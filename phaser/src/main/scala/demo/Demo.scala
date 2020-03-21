@@ -4,9 +4,10 @@ import org.scalablytyped.runtime.TopLevel
 import typings.phaser.Phaser.Types.Animations.{Animation, GenerateFrameNames}
 import typings.phaser.Phaser.Types.Core.GameConfig
 import typings.phaser.Phaser.Types.GameObjects.GameObjectConfig
+import typings.phaser.Phaser.Types.GameObjects.Sprite.SpriteConfig
 import typings.phaser.Phaser.Types.Scenes.CreateSceneFromObjectConfig
 import typings.phaser.phaserMod.{Game, Scene}
-import typings.phaser.{AnonFrame, phaserMod => Phaser}
+import typings.phaser.{phaserMod => Phaser}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
@@ -45,7 +46,7 @@ object Demo {
     //  Make 16 sprites using the config above
     0 to 16 foreach { _ =>
       //  The Sprite config
-      val config = new GameObjectConfig with AnonFrame {
+      val config = new SpriteConfig {
         key = "gems"
         x = Random.nextInt(800): Double
         y = Random.nextInt(300): Double
@@ -60,7 +61,7 @@ object Demo {
     0 to 16 foreach { _ =>
       //  A more complex animation config object.
       //  This time with a call to delayedPlay that's a function.
-      val config = new GameObjectConfig with AnonFrame {
+      val config = new SpriteConfig {
         key = "gems"
         x = Random.nextInt(800): Double
         y = Random.nextInt(300) + 300: Double
