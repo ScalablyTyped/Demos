@@ -1,0 +1,43 @@
+#menu {
+    position: fixed;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #000099;
+    color: white;
+    width: 200px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.menu-section {
+    border-bottom: 1px solid white;
+    margin-bottom: 10px;
+}
+
+.section-header {
+    font-weight: bold;
+    font-size: 16;
+}
+
+.example-option {
+    padding: 5px;
+    cursor: pointer;
+}
+
+pre code {
+    border: 1px solid black;
+}
+
+#code-container {
+    width: 800px;
+}
+
+#overall-container {
+    margin-left: 250px;
+    display: none
+}
+
+#welcome-message {
+    margin-left: 250px;
+}

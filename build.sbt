@@ -198,6 +198,18 @@ lazy val phaser =
       Compile / npmDependencies ++= Seq("phaser" -> "3.22.0")
     )
 
+lazy val pixi = project
+  .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
+  .settings(
+    webpackDevServerPort := 8013,
+    Compile / npmDependencies ++= Seq(
+      "pixi.js" -> "5.2.1",
+      "pixi-filters" -> "3.1.0",
+      "@types/highlight.js" -> "9.12.3",
+      "highlight.js" -> "9.12"
+    )
+  )
+
 lazy val electron = project
 /* ScalablyTypedConverterExternalNpmPlugin requires that we define how to install node dependencies and where they are */
   .enablePlugins(ScalablyTypedConverterExternalNpmPlugin)
