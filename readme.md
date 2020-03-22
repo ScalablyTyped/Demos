@@ -106,10 +106,14 @@ Adapted from [animation/create-from-sprite-config example](http://phaser.io/exam
 `sbt> phaser/start` starts a webpack-dev-server at http://localhost:8012 .
 
 ### Pixi
-[Demo](https://scalablytyped.github.io/Demos/pixi/index.html)
-Sample of the [Pixi examples](https://pixijs.io/examples) translated into Scala.js.
+[Demo](https://scalablytyped.github.io/Demos/pixi/index.html) 
+This is the translation of some of the [examples](https://pixijs.io/examples) into Scala.
+
+[Pixi.js](https://pixijs.io) is a library to render blazingly fast 2D animations on Canvas, using WebGL under the hood.
 
 `sbt> pixi/start` starts a webpack-dev-server at http://localhost:8013 .
+
+You will be presented with a menu that has the same structure as the examples from the Pixi website.
  
 ## Electron
 Implements the backend/mainprocess part of an Electron app in Scala.js,
