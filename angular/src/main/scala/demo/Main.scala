@@ -1,6 +1,6 @@
 package demo
 
-import org.scalajs.dom.{Event, document}
+import org.scalajs.dom.{document, Event}
 import typings.angularCore.{mod => Core}
 import typings.angularPlatformBrowserDynamic.mod.platformBrowserDynamic
 

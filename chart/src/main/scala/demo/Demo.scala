@@ -3,7 +3,7 @@ package demo
 import typings.chartJs.mod.{^ => Chart, _}
 import typings.chartJs.chartJsStrings
 import typings.moment.mod.Moment
-import typings.std.{document, stdStrings, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent, Date}
+import typings.std.{document, stdStrings, Date, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
 
 import scala.scalajs.js
 import scala.scalajs.js.|

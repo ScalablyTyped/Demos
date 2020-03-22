@@ -3,7 +3,7 @@ package demo
 import org.scalablytyped.runtime.TopLevel
 import org.scalajs.dom.UIEvent
 import org.scalajs.dom.raw.HTMLDivElement
-import typings.std.{FrameRequestCallback, Window_, document, requestAnimationFrame, stdStrings, window}
+import typings.std.{document, requestAnimationFrame, stdStrings, window, FrameRequestCallback, Window_}
 import typings.three.loaderMod.Loader
 import typings.three.mod.{Math => ThreeMath, _}
 
