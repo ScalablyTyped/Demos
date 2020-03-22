@@ -118,11 +118,10 @@ object ExampleSelector {
       div
     })
 
-  /* somewhat awkward, this is resolved from pixi/target/scala-2.12/scalajs-bundler/main */
-  @js.native @JSImport("../../../../assets/styles.css", JSImport.Namespace)
+  @js.native @JSImport("assets/styles.css", JSImport.Namespace)
   object Style extends js.Object
 
-  @js.native @JSImport("../../../../assets/a11y-light.css", JSImport.Namespace)
+  @js.native @JSImport("assets/a11y-light.css", JSImport.Namespace)
   object `a11y-light.css` extends js.Object
 
   def main(args: Array[String]): Unit = {

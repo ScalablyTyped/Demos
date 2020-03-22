@@ -109,6 +109,6 @@ trait GLTF extends js.Object {
   val asset:      js.Object
 }
 
-@JSImport("../../../../src/main/resources/Horse.glb", JSImport.Namespace)
+@JSImport("assets/Horse.glb", JSImport.Namespace)
 @js.native
 object HorseModel extends TopLevel[String]

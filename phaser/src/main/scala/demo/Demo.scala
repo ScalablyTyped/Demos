@@ -14,12 +14,12 @@ import scala.scalajs.js.annotation.JSImport
 import scala.util.Random
 
 object Demo {
-  @JSImport("../../../../src/main/resources/gems.png", JSImport.Namespace)
+  @JSImport("assets/gems.png", JSImport.Namespace)
   @js.native
   object GemsPng extends TopLevel[String]
 
   /* file renamed from .json because of https://github.com/webpack/webpack/issues/6586 */
-  @JSImport("!file-loader!../../../../src/main/resources/gems.jsn", JSImport.Namespace)
+  @JSImport("!file-loader!assets/gems.jsn", JSImport.Namespace)
   @js.native
   object GemsJson extends TopLevel[String]
 

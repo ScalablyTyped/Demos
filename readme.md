@@ -106,7 +106,7 @@ Adapted from [animation/create-from-sprite-config example](http://phaser.io/exam
 `sbt> phaser/start` starts a webpack-dev-server at http://localhost:8012 .
 
 ### Pixi
-
+[Demo](https://scalablytyped.github.io/Demos/pixi/index.html)
 Sample of the [Pixi examples](https://pixijs.io/examples) translated into Scala.js.
 
 `sbt> pixi/start` starts a webpack-dev-server at http://localhost:8013 .

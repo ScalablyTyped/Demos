@@ -1,6 +1,6 @@
 package demo.filtersbasic
 
-import demo.assets.pixifilters.{DisplacementMapRepeat, FlagImage}
+import demo.assets.pixiFilters.{DisplacementMapRepeat, FlagImage}
 import demo.pixi.PIXIExample
 import typings.pixiJs.mod.{filters, Application, Container, Sprite, WRAP_MODES}
 import demo.monkeypatching.PIXIPatching._
