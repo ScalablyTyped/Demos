@@ -257,6 +257,9 @@ lazy val typescript =
   project
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
+      Compile / npmDependencies ++= Seq(
+        "typescript" -> "3.8.3",
+      ),
       /* typescript is implicitly added by the plugin since that's where we get the files for stdlib, and also implicitly ignored */
       stIgnore ~= (_.filterNot(_ == "typescript"))
     )
