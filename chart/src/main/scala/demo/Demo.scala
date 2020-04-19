@@ -1,7 +1,7 @@
 package demo
 
+import typings.chartJs.chartJsStrings.{bar, line, pie, polarArea}
 import typings.chartJs.mod.{^ => Chart, _}
-import typings.chartJs.chartJsStrings
 import typings.moment.mod.Moment
 import typings.std.{document, stdStrings, Date, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
 
@@ -16,10 +16,10 @@ object Demo {
     val section = document.createElement_section(stdStrings.section)
     section.className = "w"
     section.append(
-      chart(chartConfig(chartJsStrings.bar, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartJsStrings.pie, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartJsStrings.polarArea, randomData(100, random.nextInt()))),
-      chart(chartConfig(chartJsStrings.line, randomData(100, random.nextInt())))
+      chart(chartConfig(bar, randomData(100, random.nextInt()))),
+      chart(chartConfig(pie, randomData(100, random.nextInt()))),
+      chart(chartConfig(polarArea, randomData(100, random.nextInt()))),
+      chart(chartConfig(line, randomData(100, random.nextInt())))
     )
 
     document.body.append(section)
@@ -46,42 +46,39 @@ object Demo {
   def chart(config: ChartConfiguration): HTMLDivElement = {
     val div:    HTMLDivElement    = document.createElement_div(stdStrings.div)
     val canvas: HTMLCanvasElement = document.createElement_canvas(stdStrings.canvas)
-    val c:      Chart             = new Chart(canvas, config)
+    val chart:  Chart             = new Chart(canvas, config)
 
     def dataSetsU: js.UndefOr[js.Array[ChartDataSets]] =
       config.data.flatMap(_.datasets)
 
-    val randomizeBtn = button("Randomize Data", (_, _) => {
+    val randomizeBtn = button("Randomize Data") { (_, _) =>
       dataSetsU.foreach(_.foreach(dataset => dataset.data = randomData(100, random.nextInt())))
-      c.update()
-    })
+      chart.update()
+    }
 
-    val addDataSet = button(
-      "Add Dataset",
-      (_, _) => {
-        val newDataset = ChartDataSets(
-          label           = "Dataset " + dataSetsU.fold(0)(_.length + 1),
-          data            = randomData(100, random.nextInt()),
-          borderWidth     = 1,
-          backgroundColor = BackgroundColor,
-          borderColor     = BorderColor
-        )
+    val addDataSet = button("Add Dataset") { (_, _) =>
+      val newDataset = ChartDataSets(
+        label           = "Dataset " + dataSetsU.fold(0)(_.length + 1),
+        data            = randomData(100, random.nextInt()),
+        borderWidth     = 1,
+        backgroundColor = BackgroundColor,
+        borderColor     = BorderColor
+      )
 
-        dataSetsU.foreach(_.push(newDataset))
-        c.update()
-      }
-    )
+      dataSetsU.foreach(_.push(newDataset))
+      chart.update()
+    }
 
-    val removeDataset = button("Remove dataset", (_, _) => {
+    val removeDataset = button("Remove dataset") { (_, _) =>
       dataSetsU.foreach(_.splice(0, 1))
-      c.update()
-    })
+      chart.update()
+    }
 
     div.append(canvas, randomizeBtn, addDataSet, removeDataset)
     div
   }
 
-  def button(title: String, onClick: js.ThisFunction1[HTMLButtonElement, MouseEvent, Unit]): HTMLButtonElement = {
+  def button(title: String)(onClick: js.ThisFunction1[HTMLButtonElement, MouseEvent, Unit]): HTMLButtonElement = {
     val btn = document.createElement_button(stdStrings.button)
     btn.textContent = title
     btn.addEventListener_click(stdStrings.click, onClick)

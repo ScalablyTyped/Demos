@@ -1,7 +1,8 @@
 package demo
 
+import org.scalajs.dom.{document, html}
 import typings.leaflet.{mod => L}
-import org.scalajs.dom.document
+
 import scala.scalajs.js
 
 object Main {
@@ -9,9 +10,8 @@ object Main {
     "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZmFuY2VsbHUiLCJhIjoiY2oxMHRzZm5zMDAyMDMycndyaTZyYnp6NSJ9.AJ3owakJtFAJaaRuYB7Ukw"
 
   def main(argv: Array[String]): Unit = {
-    val el = document.getElementById("content").asInstanceOf[typings.std.HTMLElement]
-
-    val map = L.map(el).setView(js.Tuple2(51.505, -0.09), zoom = 13)
+    val el  = document.getElementById("content").asInstanceOf[html.Element]
+    val map = L.map(el).setView(L.LatLngLiteral(51.505, -0.09), zoom = 13)
 
     L.tileLayer(
         TileLayerUri,
@@ -25,29 +25,29 @@ object Main {
       )
       .addTo(map)
 
-    L.marker(js.Tuple2(51.5, -0.09), L.MarkerOptions(title = "I am a marker"))
+    L.marker(L.LatLngLiteral(51.5, -0.09), L.MarkerOptions(title = "I am a marker"))
       .bindPopup("I am a popup")
       .addTo(map)
 
     L.circle(
-        js.Tuple2(51.508, -0.11),
+        L.LatLngLiteral(51.508, -0.11),
         L.CircleMarkerOptions(color = "red", fillColor = "#f03", fillOpacity = 0.5, radius = 500)
       )
       .bindPopup("I am a circle")
       .addTo(map)
 
     L.circle(
-        js.Tuple2(51.516, -0.11),
+        L.LatLngLiteral(51.516, -0.11),
         L.CircleMarkerOptions(color = "green", fillColor = "#f03", fillOpacity = 0.5, radius = 200)
       )
       .addTo(map)
 
-    L.polygon(js.Array(js.Tuple2(51.509, -0.08), js.Tuple2(51.503, -0.06), js.Tuple2(51.51, -0.047)))
+    L.polygon(js.Array(L.LatLngLiteral(51.509, -0.08), L.LatLngLiteral(51.503, -0.06), L.LatLngLiteral(51.51, -0.047)))
       .bindPopup("I am a polygon")
       .addTo(map)
 
     L.popup()
-      .setLatLng(js.Tuple2(51.5, -0.09))
+      .setLatLng(L.LatLngLiteral(51.5, -0.09))
       .setContent("I am a <b>standalone</b> popup.")
       .openOn(map)
   }

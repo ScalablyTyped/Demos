@@ -162,7 +162,7 @@ lazy val angular = project
   .settings(
     webpackDevServerPort := 8008,
     stEnableScalaJsDefined := Selection.NoneExcept("@angular/core"),
-    /* this shouldnæt be used directly */
+    /* this shouldn't be used directly */
     stIgnore := List("@angular/compiler"),
     Compile / npmDependencies ++= Seq(
       "@angular/common" -> "8.2.14",

@@ -1,9 +1,9 @@
 package demo
 
 import typings.d3.{mod => d3Mod}
-import typings.d3Geo.mod.{GeoContext, GeoPath_, GeoPermissibleObjects, GeoProjection_}
-import typings.geojson.mod.{LineString, Position}
+import typings.d3Geo.mod.{GeoContext, GeoProjection_}
 import typings.geojson.geojsonStrings
+import typings.geojson.mod.{LineString, Position}
 import typings.std.{
   console,
   document,
@@ -11,22 +11,24 @@ import typings.std.{
   window,
   CanvasRenderingContext2D,
   FrameRequestCallback,
-  HTMLCanvasElementCls
+  HTMLCanvasElement
 }
 
 import scala.scalajs.js
 import scala.scalajs.js.|
 
 object D3Demo {
-  def main(argv: scala.Array[String]): Unit =
-    document.getElementsByTagName_canvas(stdStrings.canvas).item(0) match {
-      case canvas: HTMLCanvasElementCls =>
-        Knowledge.asOption(canvas.getContext_2d(stdStrings.`2d`)) match {
-          case Some(ctx) => run(ctx)
-          case None      => console.warn("Cannot get 2d context for", canvas)
-        }
-      case _ => console.warn("Cannot find canvas element")
+  def main(argv: scala.Array[String]): Unit = {
+    val canvas: HTMLCanvasElement =
+      document
+        .getElementsByTagName_canvas(stdStrings.canvas)(0)
+        .getOrElse(sys.error("Cannot find canvas element"))
+
+    Knowledge.asOption(canvas.getContext_2d(stdStrings.`2d`)) match {
+      case Some(ctx) => run(ctx)
+      case None      => console.warn("Cannot get 2d context for", canvas)
     }
+  }
 
   def run(context: CanvasRenderingContext2D): Double = {
 

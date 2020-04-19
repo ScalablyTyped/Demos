@@ -16,7 +16,7 @@ object Main {
 
   def main(argv: Array[String]): Unit = {
 
-    val container = document.createElement_div(stdStrings.div)
+    val container: HTMLDivElement = document.createElement_div(stdStrings.div)
     document.body.appendChild(container)
 
     val info: HTMLDivElement = document.createElement_div(stdStrings.div)

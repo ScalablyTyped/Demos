@@ -1,6 +1,7 @@
 package demo
 
 import org.scalajs.dom.document
+import org.scalajs.dom.raw.Element
 import typings.googlemaps.google.maps
 
 object Demo {
@@ -14,7 +15,7 @@ object Demo {
 
   def main(argv: scala.Array[String]): Unit = {
     val container = document.getElementById("content")
-    val m = new maps.Map(
+    val m: maps.Map[Element] = new maps.Map(
       container,
       maps.MapOptions(
         center = new maps.LatLng(-33.9, 151.2),
@@ -36,7 +37,7 @@ object Demo {
 
         maps.event.addListener(marker, "click", _ => {
           info.setContent(s"<h3>This is $beach </h3>")
-          info.open(m.asInstanceOf[maps.Map[typings.std.Element]], marker)
+          info.open(m, marker)
         })
     }
   }
