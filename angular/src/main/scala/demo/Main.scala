@@ -9,7 +9,7 @@ import scala.scalajs.js.annotation.JSImport
 
 object Main {
 
-  @js.native @JSImport("assets/styling.css", JSImport.Namespace)
+  @js.native @JSImport("./styling.css", JSImport.Namespace)
   object Style extends js.Object
 
   /* rejoice this line, it took longer to write than the rest of the demo >: */

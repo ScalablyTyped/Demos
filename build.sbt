@@ -302,9 +302,6 @@ lazy val browserProject: Project => Project =
   _.settings(
     start := {
       (Compile / fastOptJS / startWebpackDevServer).value
-      val indexFrom = baseDirectory.value / "assets/index.html"
-      val indexTo   = (Compile / fastOptJS / crossTarget).value / "index.html"
-      Files.copy(indexFrom.toPath, indexTo.toPath, REPLACE_EXISTING)
     },
     dist := {
       val artifacts      = (Compile / fullOptJS / webpack).value
@@ -321,7 +318,7 @@ lazy val browserProject: Project => Project =
         Files.copy(artifact.data.toPath, target.toPath, REPLACE_EXISTING)
       }
 
-      val indexFrom = baseDirectory.value / "assets/index.html"
+      val indexFrom = baseDirectory.value / "src/main/js/index.html"
       val indexTo   = distFolder / "index.html"
 
       val indexPatchedContent = {

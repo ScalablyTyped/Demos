@@ -118,10 +118,10 @@ object ExampleSelector {
       div
     })
 
-  @js.native @JSImport("assets/styles.css", JSImport.Namespace)
+  @js.native @JSImport("./styles.css", JSImport.Namespace)
   object Style extends js.Object
 
-  @js.native @JSImport("assets/a11y-light.css", JSImport.Namespace)
+  @js.native @JSImport("./a11y-light.css", JSImport.Namespace)
   object `a11y-light.css` extends js.Object
 
   def main(args: Array[String]): Unit = {

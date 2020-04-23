@@ -3,12 +3,6 @@ var generated = require('./scalajs.webpack.config');
 var path = require('path');
 
 var local = {
-    resolve: {
-        alias: {
-            /* this is resolved from <project>/target/scala-2.12/scalajs-bundler/main */
-            assets: path.resolve(__dirname, '../../../../assets/'),
-        }
-    },
     module: {
         rules: [
             {
@@ -16,7 +10,7 @@ var local = {
                 use: ['style-loader', 'css-loader']
             },
             {
-                test: /\.(ttf|eot|woff|png|glb|jpeg|jpg|mp4)$/,
+                test: /\.(ttf|eot|woff|png|glb|jpeg|jpg|mp4|jsn)$/,
                 use: 'file-loader'
             },
             {
