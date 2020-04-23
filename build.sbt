@@ -20,7 +20,7 @@ onLoad in Global := {
 
 // both intellij and ci needs this to not OOM during initial import since we have so many projects
 Global / concurrentRestrictions ++= {
-  val gigabytes = (java.lang.Runtime.getRuntime.maxMemory) / (1000 * 1000 * 1000)
+  val gigabytes   = (java.lang.Runtime.getRuntime.maxMemory) / (1000 * 1000 * 1000)
   val numParallel = Math.max(1, gigabytes.toInt)
   List(Tags.limit(ScalablyTypedTag, numParallel))
 }
@@ -39,83 +39,69 @@ lazy val start = TaskKey[Unit]("start")
   */
 lazy val dist = TaskKey[File]("dist")
 
-lazy val baseSettings: Project => Project =
-  _.enablePlugins(ScalaJSPlugin)
-    .settings(
-      scalaVersion := "2.13.1",
-      version := "0.1-SNAPSHOT",
-      scalacOptions ++= ScalacOptions.flags,
-      scalaJSUseMainModuleInitializer := true,
-      scalaJSLinkerConfig ~= (_
-      /* disabled because it somehow triggers many warnings */
-        .withSourceMap(false)
-        .withModuleKind(ModuleKind.CommonJSModule))
-    )
-
-lazy val bundlerSettings: Project => Project =
-  _.enablePlugins(ScalablyTypedConverterPlugin)
-    .settings(
-      Compile / fastOptJS / webpackExtraArgs += "--mode=development",
-      Compile / fullOptJS / webpackExtraArgs += "--mode=production",
-      Compile / fastOptJS / webpackDevServerExtraArgs += "--mode=development",
-      Compile / fullOptJS / webpackDevServerExtraArgs += "--mode=production",
-      useYarn := true
-    )
-
 lazy val vue =
   project
+    .enablePlugins(ScalablyTypedConverterPlugin)
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
-      webpackDevServerPort := 8004,
-      Compile / npmDependencies ++= Seq("vue" -> "2.6.11")
+      Compile / npmDependencies ++= Seq("vue" -> "2.6.11"),
+      useYarn := true,
+      webpackDevServerPort := 8004
     )
 
 lazy val three =
   project
+    .enablePlugins(ScalablyTypedConverterPlugin)
     .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
+      Compile / npmDependencies ++= Seq("three" -> "0.112.1"),
       webpackDevServerPort := 8005,
-      Compile / npmDependencies ++= Seq("three" -> "0.112.1")
+      useYarn := true
     )
 
 lazy val d3 = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8001,
-    /* we use a bit of functionality which can't be found in scala-js-dom */
-    stUseScalaJsDom := false,
     Compile / npmDependencies ++= Seq(
       "d3" -> "5.15",
       "@types/d3" -> "5.7.2"
-    )
+    ),
+    /* we use a bit of functionality which can't be found in scala-js-dom */
+    stUseScalaJsDom := false,
+    useYarn := true,
+    webpackDevServerPort := 8001
   )
 
 lazy val jquery = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
-    webpackDevServerPort := 8003,
     Compile / npmDependencies ++= Seq(
       "jquery" -> "3.3",
       "@types/jquery" -> "3.3.31",
       "jqueryui" -> "1.11.1",
       "@types/jqueryui" -> "1.12.10"
-    )
+    ),
+    useYarn := true,
+    webpackDevServerPort := 8003
   )
 
 lazy val `google-maps` = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8002,
     Compile / npmDependencies ++= Seq(
       "@types/googlemaps" -> "3.39.2"
-    )
+    ),
+    webpackDevServerPort := 8002,
+    useYarn := true
   )
 
 lazy val reveal = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
-    webpackDevServerPort := 8006,
-    stFlavour := Flavour.Japgolly,
     Compile / npmDependencies ++= Seq(
       "@types/highlight.js" -> "9.12.3",
       "@types/reveal" -> "3.3.33",
@@ -123,47 +109,53 @@ lazy val reveal = project
       "reveal.js" -> "3.7.0",
       "react" -> "16.9",
       "react-dom" -> "16.9"
-    )
+    ),
+    stFlavour := Flavour.Japgolly,
+    useYarn := true,
+    webpackDevServerPort := 8006
   )
 
 lazy val chart = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8007,
-    stUseScalaJsDom := false,
     Compile / npmDependencies ++= Seq(
       "@types/chart.js" -> "2.9.11",
       "chart.js" -> "2.9.3"
-    )
+    ),
+    stUseScalaJsDom := false,
+    useYarn := true,
+    webpackDevServerPort := 8007
   )
 
 lazy val p5 = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8009,
     Compile / npmDependencies ++= Seq(
       "@types/p5" -> "0.9.0",
       "p5" -> "0.9"
-    )
+    ),
+    useYarn := true,
+    webpackDevServerPort := 8009
   )
 
 lazy val leaflet = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
-    webpackDevServerPort := 8010,
     Compile / npmDependencies ++= Seq(
       "leaflet" -> "1.5.1",
       "@types/leaflet" -> "1.5.8"
-    )
+    ),
+    useYarn := true,
+    webpackDevServerPort := 8010
   )
 
 lazy val angular = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
-    webpackDevServerPort := 8008,
-    stEnableScalaJsDefined := Selection.NoneExcept("@angular/core"),
-    /* this shouldn't be used directly */
-    stIgnore := List("@angular/compiler"),
     Compile / npmDependencies ++= Seq(
       "@angular/common" -> "8.2.14",
       "@angular/compiler" -> "8.2.14",
@@ -176,48 +168,59 @@ lazy val angular = project
       "rxjs" -> "6.5.4",
       "tslib" -> "1.10.0",
       "zone.js" -> "0.9.1"
-    )
+    ),
+    stEnableScalaJsDefined := Selection.NoneExcept("@angular/core"),
+    /* this shouldn't be used directly */
+    stIgnore := List("@angular/compiler"),
+    useYarn := true,
+    webpackDevServerPort := 8008
   )
 
 lazy val onsenui =
   project
+    .enablePlugins(ScalablyTypedConverterPlugin)
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
-      webpackDevServerPort := 8011,
       Compile / npmDependencies ++= Seq(
         "@types/jquery" -> "3.3.31",
         "jquery" -> "3.3",
         "onsenui" -> "2.10.10"
-      )
+      ),
+      useYarn := true,
+      webpackDevServerPort := 8011
     )
 
 lazy val phaser =
   project
+    .enablePlugins(ScalablyTypedConverterPlugin)
     .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
-      webpackDevServerPort := 8012,
+      Compile / npmDependencies ++= Seq("phaser" -> "3.22.0"),
       stEnableScalaJsDefined := Selection.NoneExcept("phaser"),
-      Compile / npmDependencies ++= Seq("phaser" -> "3.22.0")
+      useYarn := true,
+      webpackDevServerPort := 8012
     )
 
 lazy val pixi = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
   .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
   .settings(
-    webpackDevServerPort := 8013,
     Compile / npmDependencies ++= Seq(
       "pixi.js" -> "5.2.1",
       "pixi-filters" -> "3.1.0",
       "@types/highlight.js" -> "9.12.3",
       "highlight.js" -> "9.12"
-    )
+    ),
+    useYarn := true,
+    webpackDevServerPort := 8013
   )
 
 lazy val electron = project
-/* ScalablyTypedConverterExternalNpmPlugin requires that we define how to install node dependencies and where they are */
   .enablePlugins(ScalablyTypedConverterExternalNpmPlugin)
-  .configure(baseSettings, outputModule)
+  .configure(baseSettings)
   .settings(
     stStdlib := List("es5"), // doesn't include DOM
+    /* ScalablyTypedConverterExternalNpmPlugin requires that we define how to install node dependencies and where they are */
     externalNpm := {
       /* since we run yarn ourselves the dependencies live in electron/package.json */
       Process("yarn", baseDirectory.value).!
@@ -233,36 +236,63 @@ lazy val electron = project
 
 lazy val lodash =
   project
+    .enablePlugins(ScalablyTypedConverterPlugin)
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       Compile / npmDependencies ++= Seq(
         "@types/lodash" -> "4.14.149",
         "@types/node" -> "13.5.0",
         "lodash" -> "4.17.11"
-      )
+      ),
+      useYarn := true
     )
 
 lazy val `node-express` =
   project
+    .enablePlugins(ScalablyTypedConverterPlugin)
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       Compile / npmDependencies ++= Seq(
         "@types/express" -> "4.17.2",
         "@types/node" -> "13.5.0",
         "express" -> "4.17.1"
-      )
+      ),
+      useYarn := true
     )
 
 lazy val typescript =
   project
+    .enablePlugins(ScalablyTypedConverterPlugin)
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       Compile / npmDependencies ++= Seq(
-        "typescript" -> "3.8.3",
+        "typescript" -> "3.8.3"
       ),
       /* typescript is implicitly added by the plugin since that's where we get the files for stdlib, and also implicitly ignored */
-      stIgnore ~= (_.filterNot(_ == "typescript"))
+      stIgnore ~= (_.filterNot(_ == "typescript")),
+      useYarn := true
     )
+
+lazy val baseSettings: Project => Project =
+  _.enablePlugins(ScalaJSPlugin)
+    .settings(
+      scalaVersion := "2.13.1",
+      version := "0.1-SNAPSHOT",
+      scalacOptions ++= Seq("-deprecation", "-encoding", "utf-8", "-explaintypes", "-feature", "-unchecked"),
+      scalaJSUseMainModuleInitializer := true,
+      scalaJSLinkerConfig ~= (_
+      /* disabled because it somehow triggers many warnings */
+        .withSourceMap(false)
+        .withModuleKind(ModuleKind.CommonJSModule))
+    )
+
+lazy val bundlerSettings: Project => Project =
+  _.settings(
+    Compile / fastOptJS / webpackExtraArgs += "--mode=development",
+    Compile / fullOptJS / webpackExtraArgs += "--mode=production",
+    Compile / fastOptJS / webpackDevServerExtraArgs += "--mode=development",
+    Compile / fullOptJS / webpackDevServerExtraArgs += "--mode=production"
+  )
 
 val nodeProject: Project => Project =
   _.settings(
@@ -273,12 +303,6 @@ val nodeProject: Project => Project =
     Compile / npmDependencies ++= Seq(
       "@types/node" -> "13.5.0"
     )
-  )
-
-/* turn the javascript artifact into a module. */
-val outputModule: Project => Project =
-  _.settings(
-    scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.CommonJSModule))
   )
 
 lazy val withCssLoading: Project => Project =
