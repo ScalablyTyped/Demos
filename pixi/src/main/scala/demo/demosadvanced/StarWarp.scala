@@ -2,7 +2,7 @@ package demo.demosadvanced
 
 import demo.assets.StarImage
 import demo.pixi.PIXIExample
-import typings.pixiJs.{AnonAntialias => ApplicationOptions}
+import typings.pixiJs.anon.{Antialias => ApplicationOptions}
 
 import typings.pixiJs.mod.{Application, Sprite, Texture}
 

@@ -1,7 +1,7 @@
 package demo
 
+import typings.node.global.console
 import typings.node.processMod.{^ => process}
-import typings.node.console
 import typings.typescript.{mod => ts}
 
 import scala.scalajs.js

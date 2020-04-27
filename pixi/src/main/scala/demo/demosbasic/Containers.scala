@@ -2,7 +2,7 @@ package demo.demosbasic
 
 import demo.assets.BunnyImage
 import demo.pixi.PIXIExample
-import typings.pixiJs.{AnonAntialias => ApplicationOptions}
+import typings.pixiJs.anon.{Antialias => ApplicationOptions}
 import typings.pixiJs.mod.{Application, Container, Sprite, Texture}
 
 case object Containers extends PIXIExample {

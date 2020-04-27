@@ -2,7 +2,7 @@ package demo
 
 import typings.lodash.mod.{ArrayIterator, MemoListIterator, ^ => L}
 import typings.lodash.{fpMod => Fp}
-import typings.node.console
+import typings.node.global.console
 import typings.std.ArrayLike
 
 import scala.scalajs.js

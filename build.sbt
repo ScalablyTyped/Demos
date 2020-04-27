@@ -55,6 +55,7 @@ lazy val three =
     .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
       Compile / npmDependencies ++= Seq("three" -> "0.112.1"),
+      stUseScalaJsDom := false,
       webpackDevServerPort := 8005,
       useYarn := true
     )

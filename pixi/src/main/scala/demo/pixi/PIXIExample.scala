@@ -1,7 +1,7 @@
 package demo.pixi
 
-import demo.demosbasic._
 import demo.demosadvanced._
+import demo.demosbasic._
 import demo.filtersbasic.DisplacementMapFlag
 import demo.graphics.Simple
 import demo.interaction.Click
@@ -9,8 +9,8 @@ import demo.meshandshaders.Uniform
 import demo.pluginfilters.Outline
 import demo.sprite.{TilingSpriteExample, VideoExample}
 import org.scalajs.dom.html
+import typings.pixiJs.anon.{BaseTexture => StageOptions}
 import typings.pixiJs.mod.Application
-import typings.pixiJs.{AnonBaseTexture => StageOptions}
 
 trait PIXIExample {
 

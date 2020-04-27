@@ -2,7 +2,8 @@ package demo
 
 import org.scalajs.dom.document
 import org.scalajs.dom.raw.Element
-import typings.googlemaps.google.maps
+import typings.googlemaps.google.maps.{MapOptions, ReadonlyMarkerOptions}
+import typings.googlemaps.global.google.maps
 
 object Demo {
   val beaches: Map[String, maps.LatLng] =
@@ -17,7 +18,7 @@ object Demo {
     val container = document.getElementById("content")
     val m: maps.Map[Element] = new maps.Map(
       container,
-      maps.MapOptions(
+      MapOptions(
         center = new maps.LatLng(-33.9, 151.2),
         zoom   = 4
       )
@@ -28,7 +29,7 @@ object Demo {
     beaches.foreach {
       case (beach, pos) =>
         val marker = new maps.Marker(
-          maps.ReadonlyMarkerOptions(
+          ReadonlyMarkerOptions(
             position = pos,
             title    = beach,
             map      = m

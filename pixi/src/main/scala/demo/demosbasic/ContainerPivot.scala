@@ -1,10 +1,10 @@
 package demo.demosbasic
 
 import demo.assets.BunnyImage
-import demo.pixi.PIXIExample
-import typings.pixiJs.mod.{Application, Container, Sprite, Texture}
 import demo.monkeypatching.PIXIPatching._
-import typings.pixiJs.{AnonAntialias => ApplicationOptions}
+import demo.pixi.PIXIExample
+import typings.pixiJs.anon.{Antialias => ApplicationOptions}
+import typings.pixiJs.mod.{Application, Container, Sprite, Texture}
 
 case object ContainerPivot extends PIXIExample {
 

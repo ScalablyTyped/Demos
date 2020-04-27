@@ -4,15 +4,8 @@ import typings.d3.{mod => d3Mod}
 import typings.d3Geo.mod.{GeoContext, GeoProjection_}
 import typings.geojson.geojsonStrings
 import typings.geojson.mod.{LineString, Position}
-import typings.std.{
-  console,
-  document,
-  stdStrings,
-  window,
-  CanvasRenderingContext2D,
-  FrameRequestCallback,
-  HTMLCanvasElement
-}
+import typings.std.global.{console, document, window}
+import typings.std.{stdStrings, CanvasRenderingContext2D, FrameRequestCallback, HTMLCanvasElement}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
