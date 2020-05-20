@@ -13,7 +13,7 @@ case object ContainerPivot extends PIXIExample {
   val pixiUrl: String = "https://pixijs.io/examples/#/demos-basic/container.js"
 
   def newApplication(): Application = {
-    val app = new Application(ApplicationOptions(backgroundColor = 0x1099bb))
+    val app = new Application(ApplicationOptions().setBackgroundColor(0x1099bb))
 
     val container = new Container()
 

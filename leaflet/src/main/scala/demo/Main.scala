@@ -15,30 +15,31 @@ object Main {
 
     L.tileLayer(
         TileLayerUri,
-        L.TileLayerOptions(
-          id          = "mapbox.streets",
-          maxZoom     = 19,
-          attribution = """Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,
+        L.TileLayerOptions()
+          .setId("mapbox.streets")
+          .setMaxZoom(19)
+          .setAttribution(
+            """Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,
                         |<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,
                         |Imagery © <a href="http://mapbox.com">Mapbox</a>""".stripMargin
-        )
+          )
       )
       .addTo(map)
 
-    L.marker(L.LatLngLiteral(51.5, -0.09), L.MarkerOptions(title = "I am a marker"))
+    L.marker(L.LatLngLiteral(51.5, -0.09), L.MarkerOptions().setTitle("I am a marker"))
       .bindPopup("I am a popup")
       .addTo(map)
 
     L.circle(
         L.LatLngLiteral(51.508, -0.11),
-        L.CircleMarkerOptions(color = "red", fillColor = "#f03", fillOpacity = 0.5, radius = 500)
+        L.CircleMarkerOptions().setColor("red").setFillColor("#f03").setFillOpacity(0.5).setRadius(500)
       )
       .bindPopup("I am a circle")
       .addTo(map)
 
     L.circle(
         L.LatLngLiteral(51.516, -0.11),
-        L.CircleMarkerOptions(color = "green", fillColor = "#f03", fillOpacity = 0.5, radius = 200)
+        L.CircleMarkerOptions().setColor("green").setFillColor("#f03").setFillOpacity(0.5).setRadius(200)
       )
       .addTo(map)
 

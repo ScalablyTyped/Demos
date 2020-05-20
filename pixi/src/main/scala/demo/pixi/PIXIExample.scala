@@ -28,7 +28,7 @@ trait PIXIExample {
       case Some(app) =>
         app.destroy(
           removeView   = true,
-          stageOptions = StageOptions(baseTexture = true)
+          stageOptions = StageOptions().setBaseTexture(true)
         )
       case None =>
     }

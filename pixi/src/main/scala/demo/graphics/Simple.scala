@@ -15,7 +15,7 @@ case object Simple extends PIXIExample {
   val pixiUrl: String = "https://pixijs.io/examples/#/graphics/simple.js"
 
   override def newApplication(): Application = {
-    val app = new Application(ApplicationOptions(antialias = true))
+    val app = new Application(ApplicationOptions().setAntialias(true))
 
     val graphics = new Graphics()
 

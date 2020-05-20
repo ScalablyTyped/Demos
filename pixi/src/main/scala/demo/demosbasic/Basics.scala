@@ -13,7 +13,7 @@ case object Basics extends PIXIExample {
   val pixiUrl: String = "https://pixijs.io/examples/#/sprite/basic.js"
 
   def newApplication(): Application = {
-    val app = new Application(ApplicationOptions(backgroundColor = 0x1099bb))
+    val app = new Application(ApplicationOptions().setBackgroundColor(0x1099bb))
 
     val texture = Texture.from(BunnyImage)
 

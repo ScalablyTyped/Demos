@@ -43,7 +43,10 @@ object TypescriptCompiler {
         case nonEmpty => nonEmpty
       }
 
-    compile(files, ts.CompilerOptions(noEmitOnError = true, noImplicitAny = true, outDir = "typescript/target/temp"))
+    compile(
+      files,
+      ts.CompilerOptions().setNoEmitOnError(true).setNoImplicitAny(true).setOutDir("typescript/target/temp")
+    )
   }
 }
 

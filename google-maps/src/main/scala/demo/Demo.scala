@@ -18,23 +18,14 @@ object Demo {
     val container = document.getElementById("content")
     val m: maps.Map[Element] = new maps.Map(
       container,
-      MapOptions(
-        center = new maps.LatLng(-33.9, 151.2),
-        zoom   = 4
-      )
+      MapOptions().setCenter(new maps.LatLng(-33.9, 151.2)).setZoom(4)
     )
 
     val info = new maps.InfoWindow
 
     beaches.foreach {
       case (beach, pos) =>
-        val marker = new maps.Marker(
-          ReadonlyMarkerOptions(
-            position = pos,
-            title    = beach,
-            map      = m
-          )
-        )
+        val marker = new maps.Marker(ReadonlyMarkerOptions().setPosition(pos).setTitle(beach).setMap(m))
 
         maps.event.addListener(marker, "click", _ => {
           info.setContent(s"<h3>This is $beach </h3>")

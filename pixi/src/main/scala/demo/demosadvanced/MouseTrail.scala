@@ -19,7 +19,7 @@ case object MouseTrail extends PIXIExample {
     "https://pixijs.io/examples/#/demos-advanced/mouse-trail.js"
 
   def newApplication(): Application = {
-    val app = new Application(ApplicationOptions(backgroundColor = 0x1099bb))
+    val app = new Application(ApplicationOptions().setBackgroundColor(0x1099bb))
 
     //Get the texture for rope.
     val trailTexture = Texture.from(TrailImage)
