@@ -27,18 +27,11 @@ object MainProcess {
       * Creating the BrowserWindow object, with the desired options.
       */
     val window = new BrowserWindow(
-      BrowserWindowConstructorOptions(
-        height = 600,
-        width  = 800
-      )
+      BrowserWindowConstructorOptions().setHeight(600).setWidth(800)
     )
     window.loadURL(
       urlMod.format(
-        UrlObject(
-          pathname = path.join(app.getAppPath(), "index.html"),
-          protocol = "file:",
-          slashes  = true
-        )
+        UrlObject().setPathname(path.join(app.getAppPath(), "index.html")).setProtocol("file:").setSlashes(true)
       )
     )
 

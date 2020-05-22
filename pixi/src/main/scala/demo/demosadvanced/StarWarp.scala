@@ -2,7 +2,7 @@ package demo.demosadvanced
 
 import demo.assets.StarImage
 import demo.pixi.PIXIExample
-import typings.pixiJs.{AnonAntialias => ApplicationOptions}
+import typings.pixiJs.anon.{Antialias => ApplicationOptions}
 
 import typings.pixiJs.mod.{Application, Sprite, Texture}
 
@@ -18,7 +18,7 @@ case object StarWarp extends PIXIExample {
     "https://pixijs.io/examples/#/demos-advanced/star-warp.js"
 
   def newApplication(): Application = {
-    val app = new Application(ApplicationOptions(backgroundColor = 0x0))
+    val app = new Application(ApplicationOptions().setBackgroundColor(0))
 
     //Get the texture for rope.
     val starTexture = Texture.from(StarImage)

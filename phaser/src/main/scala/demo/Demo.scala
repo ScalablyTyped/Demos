@@ -1,6 +1,6 @@
 package demo
 
-import org.scalablytyped.runtime.TopLevel
+import org.scalablytyped.runtime.{StringDictionary, TopLevel}
 import typings.phaser.Phaser.Types.Animations.{Animation, GenerateFrameNames}
 import typings.phaser.Phaser.Types.Core.GameConfig
 import typings.phaser.Phaser.Types.GameObjects.GameObjectConfig
@@ -29,31 +29,32 @@ object Demo {
   val create: js.ThisFunction1[Scene, js.Object, Unit] = (scene, data) => {
     //  Define the animations first
     scene.anims.create(
-      Animation(
-        key    = "ruby",
-        frames = scene.anims.generateFrameNames("gems", GenerateFrameNames(prefix = "ruby_", end = 6, zeroPad = 4)),
-        repeat = -1
-      )
+      Animation()
+        .setKey("ruby")
+        .setFrames(
+          scene.anims.generateFrameNames("gems", GenerateFrameNames().setPrefix("ruby_").setEnd(6).setZeroPad(4))
+        )
+        .setRepeat(-1)
     );
     scene.anims.create(
-      Animation(
-        key    = "square",
-        frames = scene.anims.generateFrameNames("gems", GenerateFrameNames(prefix = "square_", end = 14, zeroPad = 4)),
-        repeat = -1
-      )
-    );
+      Animation()
+        .setKey("square")
+        .setFrames(
+          scene.anims.generateFrameNames("gems", GenerateFrameNames().setPrefix("square_").setEnd(14).setZeroPad(4))
+        )
+        .setRepeat(-1)
+    )
 
     //  Make 16 sprites using the config above
     0 to 16 foreach { _ =>
       //  The Sprite config
-      val config = new SpriteConfig {
-        key   = "gems"
-        x     = Random.nextInt(800): Double
-        y     = Random.nextInt(300): Double
-        scale = Random.between(0.5f, 1.5f): Double
+      val config = SpriteConfig()
+        .setKey("gems")
+        .setX(Random.nextInt(800))
+        .setY(Random.nextInt(300))
+        .setScale(Random.between(0.5, 1.5))
         /* add a member describing the annotation which is completely unchecked in typescript */
-        var anims = "ruby"
-      }
+        .set("anims", "ruby")
       scene.make.sprite(config)
     }
 
@@ -61,30 +62,30 @@ object Demo {
     0 to 16 foreach { _ =>
       //  A more complex animation config object.
       //  This time with a call to delayedPlay that's a function.
-      val config = new SpriteConfig {
-        key   = "gems"
-        x     = Random.nextInt(800): Double
-        y     = Random.nextInt(300) + 300: Double
-        scale = Random.between(0.5f, 1.5f): Double
-        val anims =
-          new js.Object {
-            val key         = "square"
-            val repeat      = -1
-            val repeatDelay = 1 + Random.nextInt(3)
-            val delayedPlay: js.Function0[Double] = () => Math.random() * 6
-          }
-      }
+      val config = SpriteConfig()
+        .setKey("gems")
+        .setX(Random.nextInt(800))
+        .setY(Random.nextInt(300) + 300)
+        .setScale(Random.between(0.5, 1.5))
+        .set(
+          "anims",
+          StringDictionary[js.Any](
+            "key" -> "square",
+            "repeat" -> -1,
+            "repeatDelay" -> (1 + Random.nextInt(3)),
+            "delayedPlay" -> (() => Math.random() * 6)
+          )
+        )
       scene.make.sprite(config);
     }
   }
 
-  val config = GameConfig(
-    `type` = Phaser.AUTO: Double,
-    parent = "phaser-example",
-    width  = 800,
-    height = 600,
-    scene  = createScene(preload = preload, create = create)
-  )
+  val config = GameConfig()
+    .setType(Phaser.AUTO: Double)
+    .setParent("phaser-example")
+    .setWidth(800)
+    .setHeight(600)
+    .setScene(createScene(preload = preload, create = create))
 
   def main(args: Array[String]): Unit =
     new Game(config)

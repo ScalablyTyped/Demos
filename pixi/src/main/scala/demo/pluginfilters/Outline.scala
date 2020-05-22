@@ -19,13 +19,12 @@ case object Outline extends PIXIExample {
 
     val outlineFilterBlue = new OutlineFilter(2, 0x99ff99)
     val outlineFilterRed = new GlowFilter(
-      GlowFilterOptions(
-        outerStrength = 15,
-        distance      = 2,
-        innerStrength = 1,
-        color         = 0xff9999,
-        quality       = 0.5
-      )
+      GlowFilterOptions()
+        .setOuterStrength(15)
+        .setDistance(2)
+        .setInnerStrength(1)
+        .setColor(0xff9999)
+        .setQuality(0.5)
     )
 
     def filterOn(sprite: Sprite): Unit =

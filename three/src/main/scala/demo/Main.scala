@@ -1,9 +1,8 @@
 package demo
 
 import org.scalablytyped.runtime.TopLevel
-import org.scalajs.dom.UIEvent
-import org.scalajs.dom.raw.HTMLDivElement
-import typings.std.{document, requestAnimationFrame, stdStrings, window, FrameRequestCallback, Window_}
+import typings.std.global.{document, requestAnimationFrame, window}
+import typings.std.{stdStrings, FrameRequestCallback, HTMLDivElement, UIEvent, Window}
 import typings.three.loaderMod.Loader
 import typings.three.mod.{Math => ThreeMath, _}
 
@@ -62,7 +61,7 @@ object Main {
     renderer.setSize(window.innerWidth, window.innerHeight)
     container.appendChild(renderer.domElement)
 
-    val onWindowResize: js.ThisFunction1[Window_, UIEvent, Unit] = (window, _) => {
+    val onWindowResize: js.ThisFunction1[Window, UIEvent, Unit] = (window, _) => {
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
       renderer.setSize(window.innerWidth, window.innerHeight)

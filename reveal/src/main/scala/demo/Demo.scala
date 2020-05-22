@@ -23,15 +23,14 @@ object Demo {
     MyTalk.Talk().renderIntoDOM(dom.document.body)
 
     Includes.Reveal.initialize(
-      RevealOptions(
-        width      = "80%",
-        height     = "100%",
-        controls   = false,
-        progress   = false,
-        history    = false,
-        center     = true,
-        transition = "none"
-      )
+      RevealOptions()
+        .setWidth("80%")
+        .setHeight("100%")
+        .setControls(false)
+        .setProgress(false)
+        .setHistory(false)
+        .setCenter(true)
+        .setTransition("none")
     )
   }
 }

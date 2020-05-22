@@ -2,7 +2,8 @@ package demo
 
 import typings.express.{mod => expressMod}
 import typings.expressServeStaticCore.mod._
-import typings.node.{console, processMod}
+import typings.node.global.console
+import typings.node.processMod
 
 import scala.scalajs.js
 

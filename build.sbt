@@ -18,13 +18,6 @@ onLoad in Global := {
   (onLoad in Global).value
 }
 
-// both intellij and ci needs this to not OOM during initial import since we have so many projects
-Global / concurrentRestrictions ++= {
-  val gigabytes   = (java.lang.Runtime.getRuntime.maxMemory) / (1000 * 1000 * 1000)
-  val numParallel = Math.max(1, gigabytes.toInt)
-  List(Tags.limit(ScalablyTypedTag, numParallel))
-}
-
 /**
   * Custom task to start demo with webpack-dev-server, use as `<project>/start`.
   * Just `start` also works, and starts all frontend demos
@@ -45,6 +38,7 @@ lazy val vue =
     .configure(baseSettings, bundlerSettings, browserProject)
     .settings(
       Compile / npmDependencies ++= Seq("vue" -> "2.6.11"),
+      stExperimentalEnableImplicitOps := true,
       useYarn := true,
       webpackDevServerPort := 8004
     )
@@ -55,6 +49,8 @@ lazy val three =
     .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
       Compile / npmDependencies ++= Seq("three" -> "0.112.1"),
+      stUseScalaJsDom := false,
+      stExperimentalEnableImplicitOps := true,
       webpackDevServerPort := 8005,
       useYarn := true
     )
@@ -69,6 +65,7 @@ lazy val d3 = project
     ),
     /* we use a bit of functionality which can't be found in scala-js-dom */
     stUseScalaJsDom := false,
+    stExperimentalEnableImplicitOps := true,
     useYarn := true,
     webpackDevServerPort := 8001
   )
@@ -83,6 +80,7 @@ lazy val jquery = project
       "jqueryui" -> "1.11.1",
       "@types/jqueryui" -> "1.12.10"
     ),
+    stExperimentalEnableImplicitOps := true,
     useYarn := true,
     webpackDevServerPort := 8003
   )
@@ -94,6 +92,7 @@ lazy val `google-maps` = project
     Compile / npmDependencies ++= Seq(
       "@types/googlemaps" -> "3.39.2"
     ),
+    stExperimentalEnableImplicitOps := true,
     webpackDevServerPort := 8002,
     useYarn := true
   )
@@ -111,6 +110,7 @@ lazy val reveal = project
       "react-dom" -> "16.9"
     ),
     stFlavour := Flavour.Japgolly,
+    stExperimentalEnableImplicitOps := true,
     useYarn := true,
     webpackDevServerPort := 8006
   )
@@ -124,6 +124,7 @@ lazy val chart = project
       "chart.js" -> "2.9.3"
     ),
     stUseScalaJsDom := false,
+    stExperimentalEnableImplicitOps := true,
     useYarn := true,
     webpackDevServerPort := 8007
   )
@@ -136,6 +137,7 @@ lazy val p5 = project
       "@types/p5" -> "0.9.0",
       "p5" -> "0.9"
     ),
+    stExperimentalEnableImplicitOps := true,
     useYarn := true,
     webpackDevServerPort := 8009
   )
@@ -148,6 +150,7 @@ lazy val leaflet = project
       "leaflet" -> "1.5.1",
       "@types/leaflet" -> "1.5.8"
     ),
+    stExperimentalEnableImplicitOps := true,
     useYarn := true,
     webpackDevServerPort := 8010
   )
@@ -186,6 +189,7 @@ lazy val onsenui =
         "jquery" -> "3.3",
         "onsenui" -> "2.10.10"
       ),
+      stExperimentalEnableImplicitOps := true,
       useYarn := true,
       webpackDevServerPort := 8011
     )
@@ -196,7 +200,7 @@ lazy val phaser =
     .configure(baseSettings, bundlerSettings, browserProject, withCssLoading)
     .settings(
       Compile / npmDependencies ++= Seq("phaser" -> "3.22.0"),
-      stEnableScalaJsDefined := Selection.NoneExcept("phaser"),
+      stExperimentalEnableImplicitOps := true,
       useYarn := true,
       webpackDevServerPort := 8012
     )
@@ -211,6 +215,7 @@ lazy val pixi = project
       "@types/highlight.js" -> "9.12.3",
       "highlight.js" -> "9.12"
     ),
+    stExperimentalEnableImplicitOps := true,
     useYarn := true,
     webpackDevServerPort := 8013
   )
@@ -220,6 +225,7 @@ lazy val electron = project
   .configure(baseSettings)
   .settings(
     stStdlib := List("es5"), // doesn't include DOM
+    stExperimentalEnableImplicitOps := true,
     /* ScalablyTypedConverterExternalNpmPlugin requires that we define how to install node dependencies and where they are */
     externalNpm := {
       /* since we run yarn ourselves the dependencies live in electron/package.json */
@@ -239,6 +245,7 @@ lazy val lodash =
     .enablePlugins(ScalablyTypedConverterPlugin)
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
+      stExperimentalEnableImplicitOps := true,
       Compile / npmDependencies ++= Seq(
         "@types/lodash" -> "4.14.149",
         "@types/node" -> "13.5.0",
@@ -252,6 +259,7 @@ lazy val `node-express` =
     .enablePlugins(ScalablyTypedConverterPlugin)
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
+      stExperimentalEnableImplicitOps := true,
       Compile / npmDependencies ++= Seq(
         "@types/express" -> "4.17.2",
         "@types/node" -> "13.5.0",
@@ -268,6 +276,7 @@ lazy val typescript =
       Compile / npmDependencies ++= Seq(
         "typescript" -> "3.8.3"
       ),
+      stExperimentalEnableImplicitOps := true,
       /* typescript is implicitly added by the plugin since that's where we get the files for stdlib, and also implicitly ignored */
       stIgnore ~= (_.filterNot(_ == "typescript")),
       useYarn := true

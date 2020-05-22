@@ -1,11 +1,13 @@
 package demo
 
+import org.scalablytyped.runtime.NumberDictionary
 import typings.lodash.mod.{ArrayIterator, MemoListIterator, ^ => L}
 import typings.lodash.{fpMod => Fp}
-import typings.node.console
+import typings.node.global.console
 import typings.std.ArrayLike
 
 import scala.scalajs.js
+import scala.scalajs.js.|
 
 object LodashDemo {
 
@@ -17,22 +19,23 @@ object LodashDemo {
 
   def main(args: Array[String]): Unit = {
 
-    val summarizeNames: MemoListIterator[Person, js.UndefOr[String], js.Array[Person]] =
+    val summarizeNames
+        : MemoListIterator[Person, js.UndefOr[String], js.Array[Person] | typings.lodash.mod.List[Person]] =
       (prevU, curr, idx, all) =>
         prevU.fold(curr.name) { prev =>
           prev + " and " + curr.name
         }
 
-    val value2 = L.reduce(Persons, summarizeNames, js.undefined)
+    val value2 = L.reduce[Person, js.UndefOr[String]](Persons, summarizeNames, js.undefined)
     console.log("Summarized names of two persons", value2)
 
-    val value3 = L.reduce(js.Array[Person](), summarizeNames, js.undefined)
+    val value3 = L.reduce[Person, js.UndefOr[String]](js.Array[Person](), summarizeNames, js.undefined)
     console.log("Summarized names of no persons", value3)
 
     val toAge: ArrayIterator[Person, Int] =
       (curr, _, _) => curr.age
 
-    console.log("Ages for persons", L.map(Persons, toAge))
+    console.log("Ages for persons", L.map(Persons.asInstanceOf[NumberDictionary[Double]], toAge))
 
     console.log("fields for Fiona", L.entriesIn(Fiona))
 

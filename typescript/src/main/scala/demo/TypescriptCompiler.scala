@@ -1,7 +1,7 @@
 package demo
 
+import typings.node.global.console
 import typings.node.processMod.{^ => process}
-import typings.node.console
 import typings.typescript.{mod => ts}
 
 import scala.scalajs.js
@@ -43,7 +43,10 @@ object TypescriptCompiler {
         case nonEmpty => nonEmpty
       }
 
-    compile(files, ts.CompilerOptions(noEmitOnError = true, noImplicitAny = true, outDir = "typescript/target/temp"))
+    compile(
+      files,
+      ts.CompilerOptions().setNoEmitOnError(true).setNoImplicitAny(true).setOutDir("typescript/target/temp")
+    )
   }
 }
 

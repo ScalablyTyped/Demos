@@ -2,7 +2,7 @@ package demo.interaction
 
 import demo.assets.BunnyImage
 import demo.pixi.PIXIExample
-import typings.pixiJs.{AnonAntialias => ApplicationOptions}
+import typings.pixiJs.anon.{Antialias => ApplicationOptions}
 import typings.pixiJs.mod._
 
 import scala.scalajs.js
@@ -15,7 +15,7 @@ case object Click extends PIXIExample {
 
   def newApplication(): Application = {
 
-    val app = new Application(ApplicationOptions(backgroundColor = 0x1099bb))
+    val app = new Application(ApplicationOptions().setBackgroundColor(0x1099bb))
 
     // Scale mode for all textures, will retain pixelation
     settings.SCALE_MODE = SCALE_MODES.NEAREST

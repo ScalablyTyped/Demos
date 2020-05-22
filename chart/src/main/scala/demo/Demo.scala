@@ -1,9 +1,9 @@
 package demo
 
-import typings.chartJs.chartJsStrings.{bar, line, pie, polarArea}
 import typings.chartJs.mod.{^ => Chart, _}
 import typings.moment.mod.Moment
-import typings.std.{document, stdStrings, Date, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
+import typings.std.global.document
+import typings.std.{stdStrings, Date, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -16,32 +16,33 @@ object Demo {
     val section = document.createElement_section(stdStrings.section)
     section.className = "w"
     section.append(
-      chart(chartConfig(bar, randomData(100, random.nextInt()))),
-      chart(chartConfig(pie, randomData(100, random.nextInt()))),
-      chart(chartConfig(polarArea, randomData(100, random.nextInt()))),
-      chart(chartConfig(line, randomData(100, random.nextInt())))
+      chart(chartConfig(ChartType.bar, randomData(100, random.nextInt()))),
+      chart(chartConfig(ChartType.pie, randomData(100, random.nextInt()))),
+      chart(chartConfig(ChartType.polarArea, randomData(100, random.nextInt()))),
+      chart(chartConfig(ChartType.line, randomData(100, random.nextInt())))
     )
 
     document.body.append(section)
   }
 
   def chartConfig(tpe: ChartType, Data: js.Array[js.UndefOr[ChartPoint | Double | Null]]): ChartConfiguration =
-    ChartConfiguration(
-      `type` = tpe,
-      data = ChartData(
-        labels = Labels,
-        datasets = js.Array(
-          ChartDataSets(
-            label           = "Dataset 1",
-            data            = Data,
-            borderWidth     = 1,
-            backgroundColor = BackgroundColor,
-            borderColor     = BorderColor
+    ChartConfiguration()
+      .setType(tpe)
+      .setData(
+        ChartData()
+          .setLabels(Labels)
+          .setDatasets(
+            js.Array(
+              ChartDataSets()
+                .setLabel("Dataset 1")
+                .setData(Data)
+                .setBorderWidth(1)
+                .setBackgroundColor(BackgroundColor)
+                .setBorderColor(BorderColor)
+            )
           )
-        )
-      ),
-      options = ChartOptions(responsive = true)
-    )
+      )
+      .setOptions(ChartOptions().setResponsive(true))
 
   def chart(config: ChartConfiguration): HTMLDivElement = {
     val div:    HTMLDivElement    = document.createElement_div(stdStrings.div)
@@ -57,13 +58,12 @@ object Demo {
     }
 
     val addDataSet = button("Add Dataset") { (_, _) =>
-      val newDataset = ChartDataSets(
-        label           = "Dataset " + dataSetsU.fold(0)(_.length + 1),
-        data            = randomData(100, random.nextInt()),
-        borderWidth     = 1,
-        backgroundColor = BackgroundColor,
-        borderColor     = BorderColor
-      )
+      val newDataset = ChartDataSets()
+        .setLabel("Dataset " + dataSetsU.fold(0)(_.length + 1))
+        .setData(randomData(100, random.nextInt()))
+        .setBorderWidth(1)
+        .setBackgroundColor(BackgroundColor)
+        .setBorderColor(BorderColor)
 
       dataSetsU.foreach(_.push(newDataset))
       chart.update()

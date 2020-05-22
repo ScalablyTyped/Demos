@@ -5,7 +5,7 @@ import demo.pixi.PIXIExample
 import typings.pixiJs.mod.interaction.InteractionManager
 import typings.pixiJs.mod.{Application, BLEND_MODES, Point, SimpleRope, Texture}
 import demo.monkeypatching.PIXIPatching._
-import typings.pixiJs.{AnonAntialias => ApplicationOptions}
+import typings.pixiJs.anon.{Antialias => ApplicationOptions}
 
 import scala.collection.mutable
 import scala.scalajs.js
@@ -19,7 +19,7 @@ case object MouseTrail extends PIXIExample {
     "https://pixijs.io/examples/#/demos-advanced/mouse-trail.js"
 
   def newApplication(): Application = {
-    val app = new Application(ApplicationOptions(backgroundColor = 0x1099bb))
+    val app = new Application(ApplicationOptions().setBackgroundColor(0x1099bb))
 
     //Get the texture for rope.
     val trailTexture = Texture.from(TrailImage)

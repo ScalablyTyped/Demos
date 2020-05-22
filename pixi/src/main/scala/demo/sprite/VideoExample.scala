@@ -2,7 +2,7 @@ package demo.sprite
 
 import demo.assets.TheVideo
 import demo.pixi.PIXIExample
-import typings.pixiJs.{AnonAntialias => ApplicationOptions}
+import typings.pixiJs.anon.{Antialias => ApplicationOptions}
 import typings.pixiJs.mod.{Application, Graphics, Sprite, Texture}
 
 import scala.scalajs.js
@@ -14,7 +14,7 @@ case object VideoExample extends PIXIExample {
   val pixiUrl: String = "https://pixijs.io/examples/#/sprite/video.js"
 
   override def newApplication(): Application = {
-    val app = new Application(ApplicationOptions(transparent = true))
+    val app = new Application(ApplicationOptions().setTransparent(true))
 
     // Create play button that can be used to trigger the video
     val button = new Graphics()

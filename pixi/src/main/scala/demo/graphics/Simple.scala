@@ -1,9 +1,9 @@
 package demo.graphics
 
 import demo.pixi.PIXIExample
-import typings.pixiJs.{AnonAntialias => ApplicationOptions}
-import typings.pixiJs.mod.{Application, Graphics}
 import typings.pixiJs.PIXI.Point
+import typings.pixiJs.anon.{Antialias => ApplicationOptions}
+import typings.pixiJs.mod.{Application, Graphics}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -15,7 +15,7 @@ case object Simple extends PIXIExample {
   val pixiUrl: String = "https://pixijs.io/examples/#/graphics/simple.js"
 
   override def newApplication(): Application = {
-    val app = new Application(ApplicationOptions(antialias = true))
+    val app = new Application(ApplicationOptions().setAntialias(true))
 
     val graphics = new Graphics()
 
