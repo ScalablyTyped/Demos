@@ -22,22 +22,9 @@ object AppRoutingModule {
     )
 
   def routes: Routes = js.Array(
-    Route(
-      path      = "heroes",
-      component = typeOf[heroeditor.HeroesComponent]
-    ),
-    Route(
-      path      = "dashboard",
-      component = typeOf[heroeditor.DashboardComponent]
-    ),
-    Route(
-      path       = "",
-      redirectTo = "/dashboard",
-      pathMatch  = "full"
-    ),
-    Route(
-      path      = "detail/:id",
-      component = typeOf[heroeditor.HeroDetailComponent]
-    )
+    Route().setPath("heroes").setComponent(typeOf[heroeditor.HeroesComponent]),
+    Route().setPath("dashboard").setComponent(typeOf[heroeditor.DashboardComponent]),
+    Route().setPath("").setRedirectTo("/dashboard").setPathMatch("full"),
+    Route().setPath("detail/:id").setComponent(typeOf[heroeditor.HeroDetailComponent])
   )
 }
