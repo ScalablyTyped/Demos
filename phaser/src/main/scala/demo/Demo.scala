@@ -16,15 +16,15 @@ import scala.util.Random
 object Demo {
   @JSImport("./gems.png", JSImport.Namespace)
   @js.native
-  object GemsPng extends TopLevel[String]
+  val GemsPng: String = js.native
 
   /* file renamed from .json because of https://github.com/webpack/webpack/issues/6586 */
   @JSImport("./gems.jsn", JSImport.Namespace)
   @js.native
-  object GemsJson extends TopLevel[String]
+  val GemsJson: String = js.native
 
   val preload: js.ThisFunction0[Scene, Unit] =
-    _.load.atlas("gems", GemsPng, GemsJson)
+    _.load.atlas("gems", GemsPng, GemsJson, js.undefined, js.undefined)
 
   val create: js.ThisFunction1[Scene, js.Object, Unit] = (scene, data) => {
     //  Define the animations first

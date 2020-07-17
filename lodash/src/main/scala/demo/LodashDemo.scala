@@ -19,17 +19,13 @@ object LodashDemo {
 
   def main(args: Array[String]): Unit = {
 
-    val summarizeNames
-        : MemoListIterator[Person, js.UndefOr[String], js.Array[Person] | typings.lodash.mod.List[Person]] =
-      (prevU, curr, idx, all) =>
-        prevU.fold(curr.name) { prev =>
-          prev + " and " + curr.name
-        }
+    val summarizeNames: MemoListIterator[Person, String, js.Array[Person]] =
+      (prev, curr, idx, all) => prev + " and " + curr.name
 
-    val value2 = L.reduce[Person, js.UndefOr[String]](Persons, summarizeNames, js.undefined)
+    val value2 = L.reduce(Persons, summarizeNames, "")
     console.log("Summarized names of two persons", value2)
 
-    val value3 = L.reduce[Person, js.UndefOr[String]](js.Array[Person](), summarizeNames, js.undefined)
+    val value3 = L.reduce(js.Array[Person](), summarizeNames, "")
     console.log("Summarized names of no persons", value3)
 
     val toAge: ArrayIterator[Person, Int] =
