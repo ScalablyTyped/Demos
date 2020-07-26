@@ -18,6 +18,11 @@ onLoad in Global := {
   (onLoad in Global).value
 }
 
+Global / stRemoteCache := RemoteCache.Rsync(
+  push = "tso@olvind.com:/usr/share/nginx/html/st-cache",
+  pull = new java.net.URI("https://olvind.com/st-cache")
+)
+
 /**
   * Custom task to start demo with webpack-dev-server, use as `<project>/start`.
   * Just `start` also works, and starts all frontend demos
