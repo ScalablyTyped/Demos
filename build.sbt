@@ -109,6 +109,8 @@ lazy val reveal = project
       "react" -> "16.9",
       "react-dom" -> "16.9"
     ),
+    // note: this demo is not a react demo. It doesn't use any typescript react components, it's just used to render
+    stIgnore ++= List("react", "react-dom", "reveal.js"),
     stFlavour := Flavour.Japgolly,
     useYarn := true,
     webpackDevServerPort := 8006
@@ -169,8 +171,12 @@ lazy val angular = project
       "zone.js" -> "0.9.1"
     ),
     stEnableScalaJsDefined := Selection.NoneExcept("@angular/core"),
-    /* this shouldn't be used directly */
-    stIgnore := List("@angular/compiler"),
+    stIgnore := List(
+      /* this shouldn't be used directly */
+      "@angular/compiler",
+      /* not very interesting */
+      "core-js",
+    ),
     useYarn := true,
     webpackDevServerPort := 8008
   )
