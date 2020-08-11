@@ -18,10 +18,7 @@ onLoad in Global := {
   (onLoad in Global).value
 }
 
-Global / stRemoteCache := RemoteCache.Rsync(
-  push = "tso@olvind.com:/usr/share/nginx/html/st-cache",
-  pull = new java.net.URI("https://olvind.com/st-cache")
-)
+Global / stRemoteCache := RemoteCache.S3Aws(bucket = "scalablytyped-demos", region = "eu-central-1", prefix = Some("st-cache"))
 
 /**
   * Custom task to start demo with webpack-dev-server, use as `<project>/start`.
