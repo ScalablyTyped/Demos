@@ -18,7 +18,11 @@ onLoad in Global := {
   (onLoad in Global).value
 }
 
-Global / stRemoteCache := RemoteCache.S3Aws(bucket = "scalablytyped-demos", region = "eu-central-1", prefix = Some("st-cache"))
+Global / stRemoteCache := RemoteCache.S3Aws(
+  bucket = "scalablytyped-demos",
+  region = "eu-central-1",
+  prefix = Some("st-cache")
+)
 
 /**
   * Custom task to start demo with webpack-dev-server, use as `<project>/start`.
@@ -172,7 +176,7 @@ lazy val angular = project
       /* this shouldn't be used directly */
       "@angular/compiler",
       /* not very interesting */
-      "core-js",
+      "core-js"
     ),
     useYarn := true,
     webpackDevServerPort := 8008
@@ -242,7 +246,6 @@ lazy val lodash =
     .settings(
       Compile / npmDependencies ++= Seq(
         "@types/lodash" -> "4.14.149",
-        "@types/node" -> "13.5.0",
         "lodash" -> "4.17.11"
       ),
       useYarn := true
@@ -254,8 +257,7 @@ lazy val `node-express` =
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       Compile / npmDependencies ++= Seq(
-        "@types/express" -> "4.17.2",
-        "@types/node" -> "13.5.0",
+        "@types/express" -> "4.17.8",
         "express" -> "4.17.1"
       ),
       useYarn := true
@@ -298,11 +300,11 @@ lazy val bundlerSettings: Project => Project =
 val nodeProject: Project => Project =
   _.settings(
     jsEnv := new org.scalajs.jsenv.nodejs.NodeJSEnv,
-    // es5 doesn't include DOM, which we don't have access to in node
-    stStdlib := List("es5"),
+    // this doesn't include DOM, which we don't have access to in node. It does, however use BigInt, which is needed
+    stStdlib := List("esnext"),
     stUseScalaJsDom := false,
     Compile / npmDependencies ++= Seq(
-      "@types/node" -> "13.5.0"
+      "@types/node" -> "14.10.2"
     )
   )
 
