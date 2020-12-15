@@ -18,21 +18,21 @@ object AppModule {
   @JSExportStatic
   val annotations = js.Array(
     new NgModuleCls(
-      new NgModule {
-        imports = js.defined(js.Array(typeOf[BrowserModule], typeOf[FormsModule], typeOf[AppRoutingModule]))
-        declarations = js.defined(
-          js.Array(
-            typeOf[AppComponent],
-            typeOf[HeroesComponent],
-            typeOf[HeroDetailComponent],
-            typeOf[MessagesComponent],
-            typeOf[DashboardComponent]
-          )
+      new NgModule{}
+        .setImportsVarargs(
+          typeOf.any[BrowserModule],
+          typeOf.any[FormsModule],
+          typeOf.any[AppRoutingModule]
         )
-        bootstrap = js.defined(js.Array(typeOf[AppComponent]))
-        providers = js.defined(js.Array(typeOf.any[HeroService], typeOf.any[MessageService]))
-        exports   = js.defined(js.Array())
-      }
+        .setDeclarationsVarargs(
+          typeOf.any[AppComponent],
+          typeOf.any[HeroesComponent],
+          typeOf.any[HeroDetailComponent],
+          typeOf.any[MessagesComponent],
+          typeOf.any[DashboardComponent]
+        )
+        .setBootstrapVarargs(typeOf.any[AppComponent])
+        .setProvidersVarargs(typeOf.any[HeroService], typeOf.any[MessageService])
     )
   )
 }

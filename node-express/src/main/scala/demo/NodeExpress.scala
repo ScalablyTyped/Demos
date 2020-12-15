@@ -1,16 +1,16 @@
 package demo
 
-import typings.express.{mod => expressMod}
+import typings.express.{mod => e}
 import typings.expressServeStaticCore.mod._
 import typings.node.global.console
-import typings.node.processMod
+import typings.node.{processMod => process}
 
 import scala.scalajs.js
 
 object WelcomeController {
 
   val Router: Router =
-    expressMod.Router()
+    e.Router()
 
   val Index: RequestHandler[Unit, String, Unit] =
     (_, res, _) => res.send("Hello, World!")
@@ -29,8 +29,8 @@ object WelcomeController {
 
 object NodeExpress {
   def main(args: Array[String]): Unit = {
-    val app  = expressMod.^()
-    val port = processMod.^.env.get("PORT").flatMap(_.toOption).fold(3000)(_.toInt)
+    val app  = e()
+    val port = process.env.get("PORT").flatMap(_.toOption).fold(3000)(_.toInt)
     app.use[ParamsDictionary, js.Any, js.Any]("/welcome", WelcomeController.Router)
 
     app.listen(port, () => console.log(s"Listening at http://localhost:$port/"))

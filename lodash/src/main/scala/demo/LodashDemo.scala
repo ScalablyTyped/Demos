@@ -7,7 +7,6 @@ import typings.node.global.console
 import typings.std.ArrayLike
 
 import scala.scalajs.js
-import scala.scalajs.js.|
 
 object LodashDemo {
 

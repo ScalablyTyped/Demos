@@ -1,7 +1,7 @@
 package demo
 
+import typings.node.{processMod => process}
 import typings.node.global.console
-import typings.node.processMod.{^ => process}
 import typings.typescript.{mod => ts}
 
 import scala.scalajs.js
@@ -12,9 +12,7 @@ object TypescriptCompiler {
     val program: ts.Program = ts.createProgram(fileNames, options)
     val emitResult = program.emit()
 
-    val allDiagnostics = ts
-      .getPreEmitDiagnostics(program)
-      .concat(emitResult.diagnostics)
+    val allDiagnostics = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics)
 
     allDiagnostics.foreach(diagnostic => {
       val baseMessage = ts.flattenDiagnosticMessageText(Knowledge.force(diagnostic.messageText), "\n")
@@ -23,7 +21,6 @@ object TypescriptCompiler {
         val pos = file.getLineAndCharacterOfPosition(diagnostic.start.get)
         s"${diagnostic.file.get.fileName} (${pos.line + 1},${pos.character + 1}): $baseMessage"
       }
-
       console.log(message)
     })
 

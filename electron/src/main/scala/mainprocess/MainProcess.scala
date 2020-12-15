@@ -3,7 +3,7 @@ package mainprocess
 import typings.electron.Electron.BrowserWindowConstructorOptions
 import typings.electron.mod.{app, BrowserWindow}
 import typings.electron.electronStrings
-import typings.node.pathMod.{^ => path}
+import typings.node.{pathMod => path}
 import typings.node.urlMod
 import typings.node.urlMod.UrlObject
 
