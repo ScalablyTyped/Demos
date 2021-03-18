@@ -46,10 +46,7 @@ object D3Demo {
     val geoGenerator =
       d3Mod.geoPath(projection, Knowledge.isGeoContext(context))
 
-    val geometry = LineString(
-      coordinates = js.Array[Position](),
-      `type`      = geojsonStrings.LineString
-    )
+    val geometry = LineString(coordinates = js.Array[Position]())
 
     def rndLon = -180 + Math.random() * 360
     def rndLat = -90 + Math.random() * 180
