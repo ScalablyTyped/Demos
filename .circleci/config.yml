@@ -26,21 +26,21 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.sbt" }}
+            - v1-dependencies-4-{{ checksum "build.sbt" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - v1-dependencies-4-
 
       # ideally we would bundle and run things, but the diversity of the demos makes it a bit difficult.
       # might revisit this later
-      - run: cat /dev/null | sbt fastOptJS
+      - run: cat /dev/null | sbt stPublishCache compile
 
       - save_cache:
           paths:
             - ~/.sbt
-            - ~/.m2
             - ~/.ivy2/cache
+            - ~/.ivy2/local
             - ~/.cache/scalablytyped
-          key: v1-dependencies--{{ checksum "build.sbt" }}
+          key: v1-dependencies-4-{{ checksum "build.sbt" }}
 
 #      # run scalafmt!
 #      - run: cat /dev/null | sbt scalafmtCheck
