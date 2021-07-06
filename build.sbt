@@ -279,9 +279,9 @@ lazy val typescript =
 lazy val baseSettings: Project => Project =
   _.enablePlugins(ScalaJSPlugin)
     .settings(
-      scalaVersion := "2.13.1",
+      scalaVersion := "3.0.0",
       version := "0.1-SNAPSHOT",
-      scalacOptions ++= Seq("-deprecation", "-encoding", "utf-8", "-explaintypes", "-feature", "-unchecked"),
+      scalacOptions ++= Seq("-deprecation", "-encoding", "utf-8", "-feature", "-unchecked"),
       scalaJSUseMainModuleInitializer := true,
       scalaJSLinkerConfig ~= (_
       /* disabled because it somehow triggers many warnings */

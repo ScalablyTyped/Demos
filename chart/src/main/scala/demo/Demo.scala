@@ -78,7 +78,7 @@ object Demo {
     div
   }
 
-  def button(title: String)(onClick: js.ThisFunction1[HTMLButtonElement, MouseEvent, Unit]): HTMLButtonElement = {
+  def button(title: String)(onClick: js.ThisFunction1[HTMLButtonElement, MouseEvent, js.Any]): HTMLButtonElement = {
     val btn = document.createElement_button(stdStrings.button)
     btn.textContent = title
     btn.addEventListener_click(stdStrings.click, onClick)

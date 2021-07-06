@@ -2,7 +2,8 @@ package demo
 
 import demo.PresentationUtil.Enumeration._
 import demo.PresentationUtil._
-import japgolly.scalajs.react.ScalaComponent
+import japgolly.scalajs.react.component.Scala.Component
+import japgolly.scalajs.react.{CtorType, ScalaComponent}
 import japgolly.scalajs.react.vdom.html_<^._
 
 object MyTalk {
@@ -69,7 +70,7 @@ object MyTalk {
     )
   )
 
-  val Talk = ScalaComponent
+  val Talk: Component[Unit, Unit, Unit, CtorType.Nullary] = ScalaComponent
     .builder[Unit]("Presentation")
     .renderStatic(
       <.div(
@@ -81,5 +82,5 @@ object MyTalk {
         )
       )
     )
-    .build
+    .build(CtorType.Summoner.summonN, implicitly)
 }

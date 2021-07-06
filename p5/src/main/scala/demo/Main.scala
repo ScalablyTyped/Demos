@@ -31,7 +31,7 @@ object P5Facade {
     * @param sketch a closure that can set optional preload(), setup(), and/or draw() properties on the given p5 instance
     */
   def apply(sketch: js.Function1[P5Config with p5InstanceExtensions, Unit]): P5 =
-    new P5(sketch.asInstanceOf[js.Function1[js.Any, _]])
+    new P5(sketch.asInstanceOf[js.Function1[js.Any, js.Any]])
 
   /**
     * We need this because in the `p5` trait, the functions have been translated to methods, so we can't change them

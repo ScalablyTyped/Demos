@@ -61,7 +61,7 @@ object Main {
     renderer.setSize(window.innerWidth, window.innerHeight)
     container.appendChild(renderer.domElement)
 
-    val onWindowResize: js.ThisFunction1[Window, UIEvent, Unit] = (window, _) => {
+    val onWindowResize: js.ThisFunction1[Window, UIEvent, js.Any] = (window, _) => {
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
       renderer.setSize(window.innerWidth, window.innerHeight)

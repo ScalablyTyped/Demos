@@ -8,7 +8,7 @@ import scala.scalajs.js
 object PIXIPatching {
 
   implicit class TickerWithDoubleAdd(ticker: Ticker) {
-    def add(fn: Double => Unit): Ticker = ticker.add(fn.asInstanceOf[js.Any => Unit])
+    def add(fn: Double => Unit): Ticker = ticker.add(fn.asInstanceOf[js.Any => js.Any])
 
     def add(fn: () => Unit): Ticker = ticker.add((_: js.Any) => fn())
   }

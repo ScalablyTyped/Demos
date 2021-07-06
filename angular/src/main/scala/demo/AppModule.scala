@@ -20,19 +20,19 @@ object AppModule {
     new NgModuleCls(
       new NgModule{}
         .setImportsVarargs(
-          typeOf.any[BrowserModule],
-          typeOf.any[FormsModule],
-          typeOf.any[AppRoutingModule]
+          typeOf[BrowserModule],
+          typeOf[FormsModule],
+          typeOf[AppRoutingModule]
         )
         .setDeclarationsVarargs(
-          typeOf.any[AppComponent],
-          typeOf.any[HeroesComponent],
-          typeOf.any[HeroDetailComponent],
-          typeOf.any[MessagesComponent],
-          typeOf.any[DashboardComponent]
+          typeOf[AppComponent],
+          typeOf[HeroesComponent],
+          typeOf[HeroDetailComponent],
+          typeOf[MessagesComponent],
+          typeOf[DashboardComponent]
         )
-        .setBootstrapVarargs(typeOf.any[AppComponent])
-        .setProvidersVarargs(typeOf.any[HeroService], typeOf.any[MessageService])
+        .setBootstrapVarargs(typeOf[AppComponent])
+        .setProvidersVarargs(typeOf[HeroService], typeOf[MessageService])
     )
   )
 }

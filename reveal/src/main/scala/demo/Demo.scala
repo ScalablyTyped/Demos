@@ -20,7 +20,7 @@ object Demo {
     initHighlightingOnLoad()
 
     /* render talk before we initialize Reveal */
-    MyTalk.Talk().renderIntoDOM(dom.document.body)
+    MyTalk.Talk.applyGeneric(())().renderIntoDOM(dom.document.body)
 
     Includes.Reveal.initialize(
       RevealOptions()
