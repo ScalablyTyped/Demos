@@ -1,12 +1,12 @@
 package demo
 
-import demo.PresentationUtil.Enumeration._
-import demo.PresentationUtil._
+import demo.PresentationUtil.Enumeration.*
+import demo.PresentationUtil.*
 import japgolly.scalajs.react.component.Scala.Component
 import japgolly.scalajs.react.{CtorType, ScalaComponent}
-import japgolly.scalajs.react.vdom.html_<^._
+import japgolly.scalajs.react.vdom.html_<^.*
 
-object MyTalk {
+object MyTalk:
 
   val chapter1 = chapter(
     chapterSlide(
@@ -83,4 +83,4 @@ object MyTalk {
       )
     )
     .build(CtorType.Summoner.summonN, implicitly)
-}
+end MyTalk

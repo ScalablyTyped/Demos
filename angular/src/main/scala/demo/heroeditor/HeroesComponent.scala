@@ -6,27 +6,25 @@ import typings.angularCore.mod.{Component, ComponentCls, OnInit}
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic
 
-final class HeroesComponent(heroService: HeroService) extends OnInit {
+final class HeroesComponent(heroService: HeroService) extends OnInit:
 
   var heroes: js.Array[Hero] = _
 
-  def getHeroes(): Unit = {
+  def getHeroes(): Unit =
     heroService.heroes.subscribe(hs => heroes = hs)
     heroes = MockHeroes.heroes
-  }
 
-  override def ngOnInit(): Unit = {
+  override def ngOnInit(): Unit =
     println("Heroes Component")
 
     getHeroes()
-  }
-}
+end HeroesComponent
 
-object HeroesComponent {
+object HeroesComponent:
   @JSExportStatic
   val annotations = js.Array(
     new ComponentCls(
-      new Component{}
+      new Component {}
         .setSelector("app-heroes")
         .setTemplate(
           """
@@ -101,4 +99,4 @@ object HeroesComponent {
 
   @JSExportStatic
   val parameters = js.Array(typeOf[HeroService])
-}
+end HeroesComponent

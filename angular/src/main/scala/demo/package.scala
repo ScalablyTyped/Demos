@@ -4,12 +4,12 @@ import scala.language.higherKinds
 import scala.scalajs.js
 import scala.scalajs.js.|
 
-package object demo {
+package object demo:
 
-  /**
-    * Get the Type[T] of a Class, by calling js.constructorOf
+  /** Get the Type[T] of a Class, by calling js.constructorOf
     */
-  @inline def typeOf[T <: js.Any](implicit tag: js.ConstructorTag[T]): Type[js.Any] = tag.constructor.asInstanceOf[Type[js.Any]]
+  @inline def typeOf[T <: js.Any](implicit tag: js.ConstructorTag[T]): Type[js.Any] =
+    tag.constructor.asInstanceOf[Type[js.Any]]
 
   /* pretend that the world is contravariant */
   @inline def unspecify[M[_], T <: js.Object](mt: M[T]): M[js.Object] =
@@ -17,4 +17,4 @@ package object demo {
 
   @inline def asOption[T](ot: T | Null): Option[T] =
     Option(ot.asInstanceOf[T])
-}
+end demo

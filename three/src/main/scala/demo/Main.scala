@@ -4,24 +4,24 @@ import org.scalablytyped.runtime.TopLevel
 import typings.std.global.{document, requestAnimationFrame, window}
 import typings.std.{stdStrings, FrameRequestCallback, HTMLDivElement, UIEvent, Window}
 import typings.three.loaderMod.Loader
-import typings.three.mod.{Math => ThreeMath, _}
+import typings.three.mod.{Math as ThreeMath, *}
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
 import scala.scalajs.js.annotation.JSImport
 
-object Main {
+object Main:
   val radius = 600
 
-  def main(argv: Array[String]): Unit = {
+  def main(argv: Array[String]): Unit =
 
     val container: HTMLDivElement = document.createElement_div(stdStrings.div)
     document.body.appendChild(container)
 
     val info: HTMLDivElement = document.createElement_div(stdStrings.div)
-    info.style.position  = "absolute"
-    info.style.top       = "10px"
-    info.style.width     = "100%"
+    info.style.position = "absolute"
+    info.style.top = "10px"
+    info.style.width = "100%"
     info.style.textAlign = "center"
     info.innerHTML =
       """<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> webgl - morph targets - horse. model by <a href="http://mirada.com/">mirada</a> from <a href="http://ro.me">rome</a>"""
@@ -46,14 +46,13 @@ object Main {
 
     new GLTFLoader().load(
       HorseModel,
-      gltf => {
+      gltf =>
         val mesh = gltf.scene.children(0)
         mesh.scale.set(1.5, 1.5, 1.5)
         scene.add(mesh)
         val mixer = new AnimationMixer(mesh)
         mixer.clipAction(gltf.animations(0)).setDuration(1).play()
         mixerOpt = mixer
-      }
     )
 
     val renderer = new WebGLRenderer()
@@ -61,18 +60,17 @@ object Main {
     renderer.setSize(window.innerWidth, window.innerHeight)
     container.appendChild(renderer.domElement)
 
-    val onWindowResize: js.ThisFunction1[Window, UIEvent, js.Any] = (window, _) => {
+    val onWindowResize: js.ThisFunction1[Window, UIEvent, js.Any] = (window, _) =>
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
       renderer.setSize(window.innerWidth, window.innerHeight)
-    }
 
     window.addEventListener_resize(stdStrings.resize, onWindowResize, false)
 
     var prevTime = Date.now()
     var theta    = 0.0
 
-    def animate: FrameRequestCallback = time => {
+    def animate: FrameRequestCallback = time =>
       theta += 0.1
 
       camera.position.x = radius * Math.sin(ThreeMath.degToRad(theta))
@@ -87,26 +85,24 @@ object Main {
 
       renderer.render(scene, camera)
       requestAnimationFrame(animate)
-    }
 
     animate(0)
-  }
-}
+  end main
+end Main
 
 /* Somewhat awkward that a bunch of the needed code live in `examples/`, which we don't currently convert */
 @JSImport("three/examples/jsm/loaders/GLTFLoader", "GLTFLoader")
 @js.native
-class GLTFLoader() extends Loader {
+class GLTFLoader() extends Loader:
   def load(url: String, onLoad: js.Function1[GLTF, Unit]): Unit = js.native
-}
 
-trait GLTF extends js.Object {
+trait GLTF extends js.Object:
   val animations: js.Array[AnimationClip]
   val scene:      Scene
   val scenes:     js.Array[Scene]
   val cameras:    js.Array[Camera]
   val asset:      js.Object
-}
+end GLTF
 
 @JSImport("./Horse.glb", JSImport.Namespace)
 @js.native

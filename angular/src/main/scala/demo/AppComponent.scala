@@ -5,28 +5,26 @@ import typings.angularCore.mod.{Component, ComponentCls, OnInit}
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic
 
-/**
-  * An example of a component. The @Component decorator is taken care of in the companion object, under annotations.
+/** An example of a component. The @Component decorator is taken care of in the companion object, under annotations.
   *
   * AppComponent extends from [[OnInit]] so that it does stuff when initiated.
   */
-final class AppComponent extends OnInit {
+final class AppComponent extends OnInit:
   val title: String = "Angular with Scala.js"
 
   def subtitle(): String = "This is a subtitle"
 
   override def ngOnInit(): Unit = println("AppComponent")
-}
+end AppComponent
 
-object AppComponent {
+object AppComponent:
 
-  /**
-    * The @Component decorator for AppComponent.
+  /** The @Component decorator for AppComponent.
     */
   @JSExportStatic
   val annotations = js.Array(
     new ComponentCls(
-      new Component{}
+      new Component {}
         .setSelector("app-root")
         .setTemplate("""
 <h1>{{ title }}</h1>
@@ -37,8 +35,7 @@ object AppComponent {
 <router-outlet></router-outlet>
 
 <app-messages></app-messages>
-""")
-        .setStylesVarargs("""
+""").setStylesVarargs("""
 h1 {
   font-size: 1.2em;
   color: #999;
@@ -70,4 +67,4 @@ nav a.active {
 """)
     )
   )
-}
+end AppComponent

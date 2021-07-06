@@ -7,13 +7,13 @@ import typings.phaser.Phaser.Types.GameObjects.GameObjectConfig
 import typings.phaser.Phaser.Types.GameObjects.Sprite.SpriteConfig
 import typings.phaser.Phaser.Types.Scenes.CreateSceneFromObjectConfig
 import typings.phaser.phaserMod.{Game, Scene}
-import typings.phaser.{phaserMod => Phaser}
+import typings.phaser.phaserMod as Phaser
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.util.Random
 
-object Demo {
+object Demo:
   @JSImport("./gems.png", JSImport.Namespace)
   @js.native
   val GemsPng: String = js.native
@@ -26,7 +26,7 @@ object Demo {
   val preload: js.ThisFunction0[Scene, Unit] =
     _.load.atlas("gems", GemsPng, GemsJson, js.undefined, js.undefined)
 
-  val create: js.ThisFunction1[Scene, js.Object, Unit] = (scene, data) => {
+  val create: js.ThisFunction1[Scene, js.Object, Unit] = (scene, data) =>
     //  Define the animations first
     scene.anims.create(
       Animation()
@@ -78,7 +78,6 @@ object Demo {
         )
       scene.make.sprite(config);
     }
-  }
 
   val config = GameConfig()
     .setType(Phaser.AUTO: Double)
@@ -89,7 +88,7 @@ object Demo {
 
   def main(args: Array[String]): Unit =
     new Game(config)
-}
+end Demo
 
 /* note that we could probably have refactored this whole thing to use classes to not avoid this.
  * To keep in line with the example I changed CreateSceneFromObjectConfig to take `ThisFunction`s.
@@ -99,23 +98,23 @@ object Demo {
  *
  * Unfortunately `js.ThisFunctionN` is not a subtype of the corresponding `js.FunctionN`
  */
-object createScene {
+object createScene:
   @scala.inline
   def apply(
       create:        /* data */ js.ThisFunction1[Scene, js.Object, Unit] = null,
-      extend:        js.Any                                              = null,
-      extendDotdata: js.Any                                              = null,
+      extend:        js.Any = null,
+      extendDotdata: js.Any = null,
       init:          /* data */ js.ThisFunction1[Scene, js.Object, Unit] = null,
-      preload:       js.ThisFunction0[Scene, Unit]                       = null,
-      update:        js.ThisFunction0[Scene, Unit]                       = null
-  ): CreateSceneFromObjectConfig = {
+      preload:       js.ThisFunction0[Scene, Unit] = null,
+      update:        js.ThisFunction0[Scene, Unit] = null
+  ): CreateSceneFromObjectConfig =
     val __obj = js.Dynamic.literal()
-    if (create != null) __obj.updateDynamic("create")(create)
-    if (extend != null) __obj.updateDynamic("extend")(extend.asInstanceOf[js.Any])
-    if (extendDotdata != null) __obj.updateDynamic("extend.data")(extendDotdata.asInstanceOf[js.Any])
-    if (init != null) __obj.updateDynamic("init")(init)
-    if (preload != null) __obj.updateDynamic("preload")(preload)
-    if (update != null) __obj.updateDynamic("update")(update.asInstanceOf[js.Any])
+    if create != null then __obj.updateDynamic("create")(create)
+    if extend != null then __obj.updateDynamic("extend")(extend.asInstanceOf[js.Any])
+    if extendDotdata != null then __obj.updateDynamic("extend.data")(extendDotdata.asInstanceOf[js.Any])
+    if init != null then __obj.updateDynamic("init")(init)
+    if preload != null then __obj.updateDynamic("preload")(preload)
+    if update != null then __obj.updateDynamic("update")(update.asInstanceOf[js.Any])
     __obj.asInstanceOf[CreateSceneFromObjectConfig]
-  }
-}
+  end apply
+end createScene

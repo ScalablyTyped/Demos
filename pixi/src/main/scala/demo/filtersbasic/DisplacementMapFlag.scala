@@ -3,16 +3,16 @@ package demo.filtersbasic
 import demo.assets.pixiFilters.{DisplacementMapRepeat, FlagImage}
 import demo.pixi.PIXIExample
 import typings.pixiJs.mod.{filters, Application, Container, Sprite, WRAP_MODES}
-import demo.monkeypatching.PIXIPatching._
+import demo.monkeypatching.PIXIPatching.*
 
 import scala.scalajs.js
 
-case object DisplacementMapFlag extends PIXIExample {
+case object DisplacementMapFlag extends PIXIExample:
   val name: String = "Displacement Map - Flag"
   val pixiUrl: String =
     "https://pixijs.io/examples/#/filters-basic/displacement-map-flag.js"
 
-  protected def newApplication(): Application = {
+  protected def newApplication(): Application =
 
     val app = new Application()
 
@@ -42,15 +42,14 @@ case object DisplacementMapFlag extends PIXIExample {
     displacementFilter.scale.x = 30
     displacementFilter.scale.y = 60
 
-    app.ticker.add(() => {
+    app.ticker.add { () =>
       // Offset the sprite position to make vFilterCoord update to larger value. Repeat wrapping makes sure there's still pixels on the coordinates.
       displacementSprite.x += 1
       // Reset x to 0 when it's over width to keep values from going to very huge numbers.
-      if (displacementSprite.x > displacementSprite.width) {
-        displacementSprite.x = 0
-      }
-    })
+      if displacementSprite.x > displacementSprite.width then displacementSprite.x = 0
+
+    }
 
     app
-  }
-}
+  end newApplication
+end DisplacementMapFlag

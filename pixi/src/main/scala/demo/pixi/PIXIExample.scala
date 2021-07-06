@@ -1,7 +1,7 @@
 package demo.pixi
 
-import demo.demosadvanced._
-import demo.demosbasic._
+import demo.demosadvanced.*
+import demo.demosbasic.*
 import demo.filtersbasic.DisplacementMapFlag
 import demo.graphics.Simple
 import demo.interaction.Click
@@ -9,10 +9,10 @@ import demo.meshandshaders.Uniform
 import demo.pluginfilters.Outline
 import demo.sprite.{TilingSpriteExample, VideoExample}
 import org.scalajs.dom.html
-import typings.pixiJs.anon.{BaseTexture => StageOptions}
+import typings.pixiJs.anon.BaseTexture as StageOptions
 import typings.pixiJs.mod.Application
 
-trait PIXIExample {
+trait PIXIExample:
 
   val name: String
 
@@ -23,32 +23,31 @@ trait PIXIExample {
 
   private var pixiApp: Option[Application] = None
 
-  private def stop(): Unit = {
-    pixiApp match {
+  private def stop(): Unit =
+    pixiApp match
       case Some(app) =>
         app.destroy(
-          removeView   = true,
+          removeView = true,
           stageOptions = StageOptions().setBaseTexture(true)
         )
       case None =>
-    }
+    end match
     pixiApp = None
-  }
+  end stop
 
   protected def newApplication(): Application
 
-  def run(pkg: String): Unit = {
+  def run(pkg: String): Unit =
     PIXIExample.stopAll()
     pixiApp = Some(newApplication())
     ExampleSelector.changeCanvas(this)
     ExampleSelector.loadAndDisplayCode(this, pkg)
-  }
+  end run
 
   def canvas: html.Canvas = pixiApp.get.view
+end PIXIExample
 
-}
-
-object PIXIExample {
+object PIXIExample:
 
   val allExamples: Map[String, List[PIXIExample]] = Map(
     "DEMOS-BASIC" -> List(Basics, Containers, ContainerPivot, Tinting),
@@ -63,5 +62,4 @@ object PIXIExample {
 
   def stopAll(): Unit =
     allExamples.values.flatten.foreach(_.stop())
-
-}
+end PIXIExample

@@ -4,16 +4,16 @@ import demo.assets.BackgroundSceneRotate
 import demo.pixi.PIXIExample
 import typings.pixiJs.mod.{Application, Geometry, Mesh, Shader, Texture}
 import typings.pixiJs.PIXI.Buffer
-import demo.monkeypatching.PIXIPatching._
+import demo.monkeypatching.PIXIPatching.*
 
 import scala.scalajs.js
 import scala.scalajs.js.|
 
-case object Uniform extends PIXIExample {
+case object Uniform extends PIXIExample:
   val name:    String = "Uniform"
   val pixiUrl: String = "https://pixijs.io/examples/#/mesh-and-shaders/uniforms.js"
 
-  protected def newApplication(): Application = {
+  protected def newApplication(): Application =
 
     val app = new Application()
 
@@ -21,8 +21,8 @@ case object Uniform extends PIXIExample {
       .addAttribute(
         "aVertexPosition", // the attribute name
         js.Array(-100.0, -100, // x, y
-            100, -100, // x, y
-            100, 100, -100, 100)
+          100, -100, // x, y
+          100, 100, -100, 100)
           .asInstanceOf[js.UndefOr[js.Array[Double] | Buffer]], // x, y
         2,
         js.undefined,
@@ -33,8 +33,8 @@ case object Uniform extends PIXIExample {
       .addAttribute(
         "aUvs", // the attribute name
         js.Array(0.0, 0, // u, v
-            1, 0, // u, v
-            1, 1, 0, 1)
+          1, 0, // u, v
+          1, 1, 0, 1)
           .asInstanceOf[js.UndefOr[js.Array[Double] | Buffer]], // u, v
         2,
         js.undefined,
@@ -94,12 +94,11 @@ case object Uniform extends PIXIExample {
 
     app.stage.addChild(quad)
 
-    app.ticker.add(() => {
+    app.ticker.add { () =>
       quad.rotation += 0.01
       quad.shader.asInstanceOf[Shader].uniforms.asInstanceOf[Uniform].time += 0.1
-    })
+    }
 
     app
-
-  }
-}
+  end newApplication
+end Uniform

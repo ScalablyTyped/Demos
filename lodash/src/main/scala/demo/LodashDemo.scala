@@ -1,14 +1,14 @@
 package demo
 
 import org.scalablytyped.runtime.NumberDictionary
-import typings.lodash.mod.{ArrayIterator, MemoListIterator, ^ => L}
-import typings.lodash.{fpMod => Fp}
+import typings.lodash.mod.{ArrayIterator, MemoListIterator, ^ as L}
+import typings.lodash.fpMod as Fp
 import typings.node.global.console
 import typings.std.ArrayLike
 
 import scala.scalajs.js
 
-object LodashDemo {
+object LodashDemo:
 
   class Person(val name: String, val age: Int) extends js.Object
 
@@ -16,7 +16,7 @@ object LodashDemo {
   val Sam     = new Person("Sam Second", 101)
   val Persons = js.Array(Fiona, Sam)
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
 
     val summarizeNames: MemoListIterator[Person, String, js.Array[Person]] =
       (prev, curr, idx, all) => prev + " and " + curr.name
@@ -35,10 +35,9 @@ object LodashDemo {
     console.log("fields for Fiona", L.entriesIn(Fiona))
 
     console.log("Dropped first", Fp.^.drop(1, Knowledge.isArrayLike(Persons)))
-  }
-}
+  end main
+end LodashDemo
 
-object Knowledge {
+object Knowledge:
   def isArrayLike[T](ts: js.Array[T]): ArrayLike[T] =
     ts.asInstanceOf[ArrayLike[T]]
-}

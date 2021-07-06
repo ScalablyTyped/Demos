@@ -8,31 +8,29 @@ import typings.angularRouter.mod.ActivatedRoute
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic
 
-final class HeroDetailComponent(route: ActivatedRoute, heroService: HeroService, location: Location) extends OnInit {
+final class HeroDetailComponent(route: ActivatedRoute, heroService: HeroService, location: Location) extends OnInit:
 
   var hero: js.UndefOr[Hero] = js.undefined
 
   def getHero(): Unit =
-    asOption(route.snapshot.paramMap.get("id")) match {
+    asOption(route.snapshot.paramMap.get("id")) match
       case Some(id) if id.forall(_.isDigit) =>
         hero = heroService.getHero(id.toInt)
       case _ => ()
-    }
 
-  override def ngOnInit(): Unit = {
+  override def ngOnInit(): Unit =
     getHero()
     println(hero)
-  }
 
   def goBack(): Unit =
     location.back()
-}
+end HeroDetailComponent
 
-object HeroDetailComponent {
+object HeroDetailComponent:
   @JSExportStatic
   val annotations = js.Array(
     new ComponentCls(
-      new Component{}
+      new Component {}
         .setSelector("app-hero-detail")
         .setInputsVarargs("hero")
         .setTemplate("""
@@ -82,9 +80,9 @@ button:disabled {
   )
 
   @JSExportStatic
-  val parameters: js.Array[Type[_]] = js.Array(
+  val parameters: js.Array[Type[?]] = js.Array(
     typeOf[ActivatedRoute],
     typeOf[HeroService],
     typeOf[Location]
   )
-}
+end HeroDetailComponent

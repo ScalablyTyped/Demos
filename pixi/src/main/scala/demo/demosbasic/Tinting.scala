@@ -4,20 +4,20 @@ import demo.assets.EggHeadImage
 import demo.pixi.PIXIExample
 import typings.pixiJs.mod.{Application, Rectangle, Sprite, Texture}
 
-import demo.monkeypatching.PIXIPatching._
+import demo.monkeypatching.PIXIPatching.*
 
-case object Tinting extends PIXIExample {
+case object Tinting extends PIXIExample:
 
   val name: String = "Tinting"
 
   val pixiUrl: String = "https://pixijs.io/examples/#/demos-basic/tinting.js"
 
-  def newApplication(): Application = {
+  def newApplication(): Application =
     val app = new Application()
 
     val totalDudes = 20
 
-    final class Dude {
+    final class Dude:
 
       // create a new Sprite that uses the image name that we just generated as its source
       val dude: Sprite = new Sprite(Texture.from(EggHeadImage))
@@ -32,7 +32,7 @@ case object Tinting extends PIXIExample {
       dude.x = Math.random() * app.screen.width
       dude.y = Math.random() * app.screen.height
 
-      dude.tint = Math.random() * 0xFFFFFF
+      dude.tint = Math.random() * 0xffffff
 
       // create some extra properties that will control movement :
       // create a random direction in radians. This is a number between 0 and PI*2 which is the equivalent of 0 - 360 degrees
@@ -45,7 +45,7 @@ case object Tinting extends PIXIExample {
       var speed: Double = 2 + Math.random() * 2
 
       app.stage.addChild(dude)
-    }
+    end Dude
 
     val aliens = (0 until totalDudes).map(_ => new Dude)
 
@@ -58,10 +58,9 @@ case object Tinting extends PIXIExample {
       app.screen.height + dudeBoundsPadding * 2
     )
 
-    app.ticker.add((_: Double) => {
-
+    app.ticker.add { (_: Double) =>
       // iterate through the dudes and update their position
-      for (dude <- aliens) {
+      for dude <- aliens do
 
         dude.direction += dude.turningSpeed * 0.01
         dude.dude.x += Math.sin(dude.direction) * dude.speed
@@ -69,21 +68,14 @@ case object Tinting extends PIXIExample {
         dude.dude.rotation = -dude.direction - Math.PI / 2
 
         // wrap the dudes by testing their bounds...
-        if (dude.dude.x < dudeBounds.x) {
-          dude.dude.x += dudeBounds.width
-        } else if (dude.dude.x > dudeBounds.x + dudeBounds.width) {
-          dude.dude.x -= dudeBounds.width
-        }
+        if dude.dude.x < dudeBounds.x then dude.dude.x += dudeBounds.width
+        else if dude.dude.x > dudeBounds.x + dudeBounds.width then dude.dude.x -= dudeBounds.width
 
-        if (dude.dude.y < dudeBounds.y) {
-          dude.dude.y += dudeBounds.height
-        } else if (dude.dude.y > dudeBounds.y + dudeBounds.height) {
-          dude.dude.y -= dudeBounds.height
-        }
-      }
-    })
+        if dude.dude.y < dudeBounds.y then dude.dude.y += dudeBounds.height
+        else if dude.dude.y > dudeBounds.y + dudeBounds.height then dude.dude.y -= dudeBounds.height
+
+    }
 
     app
-  }
-
-}
+  end newApplication
+end Tinting

@@ -1,6 +1,6 @@
 package demo
 
-import typings.chartJs.mod.{^ => Chart, _}
+import typings.chartJs.mod.{^ as Chart, *}
 import typings.moment.mod.Moment
 import typings.std.global.document
 import typings.std.{stdStrings, Date, HTMLButtonElement, HTMLCanvasElement, HTMLDivElement, MouseEvent}
@@ -9,10 +9,10 @@ import scala.scalajs.js
 import scala.scalajs.js.|
 import scala.util.Random
 
-object Demo {
+object Demo:
   val random = new Random()
 
-  def main(argv: scala.Array[String]): Unit = {
+  def main(argv: scala.Array[String]): Unit =
     val section = document.createElement_section(stdStrings.section)
     section.className = "w"
     section.append(
@@ -23,7 +23,7 @@ object Demo {
     )
 
     document.body.append(section)
-  }
+  end main
 
   def chartConfig(tpe: ChartType, Data: js.Array[js.UndefOr[ChartPoint | Double | Null]]): ChartConfiguration =
     ChartConfiguration()
@@ -44,7 +44,7 @@ object Demo {
       )
       .setOptions(ChartOptions().setResponsive(true))
 
-  def chart(config: ChartConfiguration): HTMLDivElement = {
+  def chart(config: ChartConfiguration): HTMLDivElement =
     val div:    HTMLDivElement    = document.createElement_div(stdStrings.div)
     val canvas: HTMLCanvasElement = document.createElement_canvas(stdStrings.canvas)
     val chart:  Chart             = new Chart(canvas, config)
@@ -76,16 +76,16 @@ object Demo {
 
     div.append(canvas, randomizeBtn, addDataSet, removeDataset)
     div
-  }
+  end chart
 
-  def button(title: String)(onClick: js.ThisFunction1[HTMLButtonElement, MouseEvent, js.Any]): HTMLButtonElement = {
+  def button(title: String)(onClick: js.ThisFunction1[HTMLButtonElement, MouseEvent, js.Any]): HTMLButtonElement =
     val btn = document.createElement_button(stdStrings.button)
     btn.textContent = title
     btn.addEventListener_click(stdStrings.click, onClick)
     btn
-  }
+  end button
 
-  def randomData(max: Int, seed: Int): js.Array[js.UndefOr[ChartPoint | Double | scala.Null]] = {
+  def randomData(max: Int, seed: Int): js.Array[js.UndefOr[ChartPoint | Double | scala.Null]] =
     val random = new Random(seed)
     js.Array[js.UndefOr[ChartPoint | Double | Null]](
       random.nextInt(max),
@@ -95,7 +95,7 @@ object Demo {
       random.nextInt(max),
       random.nextInt(max)
     )
-  }
+  end randomData
 
   val Labels: js.Array[String | js.Array[Date | Double | Moment | String] | Double | Date | Moment] =
     js.Array("Red", "Blue", "Yellow", "Green", "Purple", "Orange")
@@ -121,4 +121,4 @@ object Demo {
 
   def color(r: Int, g: Int, b: Int, a: Double): String =
     s"rgba($r, $g, $b, $a)"
-}
+end Demo
