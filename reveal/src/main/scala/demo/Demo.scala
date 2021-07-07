@@ -8,7 +8,8 @@ import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
 object Demo:
-  def main(args: Array[String]): Unit =
+  @main
+  def main: Unit =
     // Touch to load
     Includes.HighlightingCss
     Includes.WhiteThemeCss

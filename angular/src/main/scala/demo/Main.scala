@@ -16,7 +16,8 @@ object Main:
   @js.native @JSImport("core-js/client/shim.min.js", JSImport.Namespace)
   object coreJsCustomRequire extends js.Object
 
-  def main(args: Array[String]): Unit =
+  @main
+  def main: Unit =
     /* touch to require */
     coreJsCustomRequire
     typings.tslib.tslibRequire

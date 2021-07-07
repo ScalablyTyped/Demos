@@ -12,7 +12,7 @@ import scala.scalajs.js
 import scala.scalajs.js.JSConverters.*
 
 case object MouseTrail extends PIXIExample:
-
+  
   val name: String = "Mouse trail"
 
   val pixiUrl: String =

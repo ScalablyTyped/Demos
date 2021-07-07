@@ -1,26 +1,24 @@
-package demo
-
 import org.scalajs.dom.console
 import typings.p5.mod.{p5InstanceExtensions, ^ as P5}
 
 import scala.scalajs.js
 
-object Main:
-  def main(argv: Array[String]): Unit =
-    val sketch = P5Facade { p =>
-      val x = 100
-      val y = 100
+@main
+def main: Unit =
+  val sketch = P5Facade { p =>
+    val x = 100
+    val y = 100
 
-      p.setup = () => p.createCanvas(700, 410)
+    p.setup = () => p.createCanvas(700, 410)
 
-      p.draw = () =>
-        p.background(0)
-        p.fill(255)
-        p.rect(x, y, 50, 50)
-    }
-    console.warn(sketch.windowHeight)
-  end main
-end Main
+    p.draw = () =>
+      p.background(0)
+      p.fill(255)
+      p.rect(x, y, 50, 50)
+  }
+  console.warn(sketch.windowHeight)
+end main
+
 
 object P5Facade:
 

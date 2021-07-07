@@ -1,5 +1,3 @@
-package demo
-
 import typings.express.mod as e
 import typings.expressServeStaticCore.mod.*
 import typings.node.global.console
@@ -24,14 +22,14 @@ object WelcomeController:
   Router
     .get[Unit, String, Unit]("/", Index)
     .get[HasName, String, Unit]("/:name", Name)
+
 end WelcomeController
 
-object NodeExpress:
-  def main(args: Array[String]): Unit =
-    val app  = e()
-    val port = process.env.get("PORT").flatMap(_.toOption).fold(3000)(_.toInt)
-    app.use[ParamsDictionary, js.Any, js.Any]("/welcome", WelcomeController.Router)
+@main
+def main: Unit =
+  val app  = e()
+  val port = process.env.get("PORT").flatMap(_.toOption).fold(3000)(_.toInt)
+  app.use("/welcome", WelcomeController.Router)
 
-    app.listen(port, () => console.log(s"Listening at http://localhost:$port/"))
-  end main
-end NodeExpress
+  app.listen(port, () => console.log(s"Listening at http://localhost:$port/"))
+end main

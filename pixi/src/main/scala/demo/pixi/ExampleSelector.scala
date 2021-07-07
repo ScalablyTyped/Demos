@@ -115,7 +115,8 @@ object ExampleSelector:
   @js.native @JSImport("./a11y-light.css", JSImport.Namespace)
   object `a11y-light.css` extends js.Object
 
-  def main(args: Array[String]): Unit =
+  @main
+  def main: Unit =
 
     /** Touch to load */
     Style

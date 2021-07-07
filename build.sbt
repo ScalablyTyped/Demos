@@ -281,7 +281,7 @@ lazy val baseSettings: Project => Project =
     .settings(
       scalaVersion := "3.0.0",
       version := "0.1-SNAPSHOT",
-      scalacOptions ++= Seq("-deprecation", "-encoding", "utf-8", "-feature", "-unchecked"),
+      scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked"),
       scalaJSUseMainModuleInitializer := true,
       scalaJSLinkerConfig ~= (_
       /* disabled because it somehow triggers many warnings */

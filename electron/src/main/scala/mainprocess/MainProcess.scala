@@ -53,7 +53,8 @@ object MainProcess:
   /** The main method is called automatically when the JavaScript file is loaded, thanks to the sbt setting
     * scalaJSUseMainModuleInitializer := true in the build.sbt file. Removing this method will fail at compile time.
     */
-  def main(args: Array[String]): Unit =
+  @main
+  def main: Unit =
     app.on_ready(electronStrings.ready, _ => createWindow())
     app.on_windowallclosed(electronStrings.`window-all-closed`, () => app.quit())
   end main
