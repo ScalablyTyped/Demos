@@ -2,18 +2,18 @@ package demo.sprite
 
 import demo.assets.TheVideo
 import demo.pixi.PIXIExample
-import typings.pixiJs.anon.{Antialias => ApplicationOptions}
+import typings.pixiJs.anon.Antialias as ApplicationOptions
 import typings.pixiJs.mod.{Application, Graphics, Sprite, Texture}
 
 import scala.scalajs.js
 
-case object VideoExample extends PIXIExample {
+case object VideoExample extends PIXIExample:
 
   val name: String = "Video"
 
   val pixiUrl: String = "https://pixijs.io/examples/#/sprite/video.js"
 
-  override def newApplication(): Application = {
+  override def newApplication(): Application =
     val app = new Application(ApplicationOptions().setTransparent(true))
 
     // Create play button that can be used to trigger the video
@@ -32,7 +32,7 @@ case object VideoExample extends PIXIExample {
 
     // Enable interactivity on the button
     button.interactive = true
-    button.buttonMode  = true
+    button.buttonMode = true
 
     // Add to the stage
     app.stage.addChild(button)
@@ -46,7 +46,7 @@ case object VideoExample extends PIXIExample {
     // not have this requirement
     button.on("pointertap", (_: js.Any) => onPlayVideo())
 
-    def onPlayVideo() = {
+    def onPlayVideo() =
 
       // Don't need the button anymore
       button.destroy()
@@ -58,13 +58,12 @@ case object VideoExample extends PIXIExample {
       val videoSprite = new Sprite(texture)
 
       // Stetch the fullscreen
-      videoSprite.width  = app.screen.width
+      videoSprite.width = app.screen.width
       videoSprite.height = app.screen.height
 
       app.stage.addChild(videoSprite)
-    }
+    end onPlayVideo
 
     app
-  }
-
-}
+  end newApplication
+end VideoExample

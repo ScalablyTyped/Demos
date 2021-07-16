@@ -2,7 +2,7 @@ package demo.heroeditor
 
 import scala.scalajs.js
 
-object MockHeroes {
+object MockHeroes:
 
   private val names = js.Array(
     "Mr. Nice",
@@ -19,4 +19,4 @@ object MockHeroes {
 
   val heroes: js.Array[Hero] =
     names.zipWithIndex.map { case (n, index) => new Hero(index + 11, n) }
-}
+end MockHeroes

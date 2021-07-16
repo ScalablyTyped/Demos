@@ -8,13 +8,13 @@ import scala.scalajs.js.annotation.JSExportStatic
 
 final class AppRoutingModule extends js.Object
 
-object AppRoutingModule {
+object AppRoutingModule:
 
   @JSExportStatic
   val annotations =
     js.Array(
       new NgModuleCls(
-        new NgModule{}
+        new NgModule {}
           .setImportsVarargs(unspecify(RouterModule.forRoot(routes)))
           .setExports(js.Array(typeOf[RouterModule]))
       )
@@ -26,4 +26,4 @@ object AppRoutingModule {
     Route().setPath("").setRedirectTo("/dashboard").setPathMatch("full"),
     Route().setPath("detail/:id").setComponent(typeOf[heroeditor.HeroDetailComponent])
   )
-}
+end AppRoutingModule

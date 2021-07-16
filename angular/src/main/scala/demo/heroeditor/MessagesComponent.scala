@@ -6,11 +6,10 @@ import typings.angularCore.mod.{Component, ComponentCls}
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic
 
-final class MessagesComponent(val messageService: MessageService) extends js.Object {
+final class MessagesComponent(val messageService: MessageService) extends js.Object:
   def ngOnInit(): Unit = ()
-}
 
-object MessagesComponent {
+object MessagesComponent:
   @JSExportStatic
   val annotations =
     js.Array(
@@ -67,4 +66,4 @@ button.clear {
 
   @JSExportStatic
   val parameters = js.Array(typeOf[MessageService])
-}
+end MessagesComponent

@@ -2,18 +2,18 @@ package demo.interaction
 
 import demo.assets.BunnyImage
 import demo.pixi.PIXIExample
-import typings.pixiJs.anon.{Antialias => ApplicationOptions}
-import typings.pixiJs.mod._
+import typings.pixiJs.anon.Antialias as ApplicationOptions
+import typings.pixiJs.mod.*
 
 import scala.scalajs.js
 
-case object Click extends PIXIExample {
+case object Click extends PIXIExample:
 
   val name: String = "Click"
 
   val pixiUrl: String = "https://pixijs.io/examples/#/interaction/click.js"
 
-  def newApplication(): Application = {
+  def newApplication(): Application =
 
     val app = new Application(ApplicationOptions().setBackgroundColor(0x1099bb))
 
@@ -43,12 +43,10 @@ case object Click extends PIXIExample {
 
     app.stage.addChild(sprite)
 
-    def onClick(): Unit = {
+    def onClick(): Unit =
       sprite.scale.x *= 1.25
       sprite.scale.y *= 1.25
-    }
 
     app
-  }
-
-}
+  end newApplication
+end Click

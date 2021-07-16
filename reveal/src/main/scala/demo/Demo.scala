@@ -7,8 +7,9 @@ import typings.reveal.{RevealOptions, RevealStatic}
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-object Demo {
-  def main(args: Array[String]): Unit = {
+object Demo:
+  @main
+  def main: Unit =
     // Touch to load
     Includes.HighlightingCss
     Includes.WhiteThemeCss
@@ -32,10 +33,10 @@ object Demo {
         .setCenter(true)
         .setTransition("none")
     )
-  }
-}
+  end main
+end Demo
 
-object Includes {
+object Includes:
 
   /* customize import and use as module, even though the typings originally were global */
   @JSImport("reveal.js/js/reveal.js", JSImport.Namespace)
@@ -57,4 +58,4 @@ object Includes {
   @JSImport("reveal.js/css/reveal.css", JSImport.Namespace)
   @js.native
   object RevealCss extends js.Object
-}
+end Includes

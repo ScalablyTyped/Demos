@@ -5,7 +5,7 @@ import typings.angularCore.mod.InjectableCls
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic
 
-final class MessageService extends js.Object {
+final class MessageService extends js.Object:
   val messages: js.Array[String] = js.Array()
 
   def add(message: String): Unit =
@@ -14,9 +14,6 @@ final class MessageService extends js.Object {
   def clear(): Unit =
     messages.clear()
 
-}
-
-object MessageService {
+object MessageService:
   @JSExportStatic
   val annotations = js.Array(new InjectableCls)
-}

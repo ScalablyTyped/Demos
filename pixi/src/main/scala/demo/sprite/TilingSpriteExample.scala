@@ -3,15 +3,15 @@ package demo.sprite
 import demo.assets.P2Image
 import demo.pixi.PIXIExample
 import typings.pixiJs.mod.{Application, Texture, TilingSprite}
-import demo.monkeypatching.PIXIPatching._
+import demo.monkeypatching.PIXIPatching.*
 
-case object TilingSpriteExample extends PIXIExample {
+case object TilingSpriteExample extends PIXIExample:
 
   val name: String = "Tiling Sprite"
 
   val pixiUrl: String = "https://pixijs.io/examples/#/sprite/tiling-sprite.js"
 
-  def newApplication(): Application = {
+  def newApplication(): Application =
 
     val app = new Application()
 
@@ -28,7 +28,7 @@ case object TilingSpriteExample extends PIXIExample {
 
     var count: Double = 0
 
-    app.ticker.add(() => {
+    app.ticker.add { () =>
 
       count += 0.005
 
@@ -37,10 +37,9 @@ case object TilingSpriteExample extends PIXIExample {
 
       tilingSprite.tilePosition.x += 1
       tilingSprite.tilePosition.y += 1
-    })
+
+    }
 
     app
-
-  }
-
-}
+  end newApplication
+end TilingSpriteExample

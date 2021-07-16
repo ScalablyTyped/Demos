@@ -6,7 +6,7 @@ import typings.angularCore.mod.{Component, ComponentCls, OnInit}
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExportStatic
 
-final class DashboardComponent(heroService: HeroService) extends OnInit {
+final class DashboardComponent(heroService: HeroService) extends OnInit:
   var heroes: js.Array[Hero] = MockHeroes.heroes.slice(1, 5)
 
   override def ngOnInit(): Unit =
@@ -14,14 +14,13 @@ final class DashboardComponent(heroService: HeroService) extends OnInit {
 
   def getHeroes(): Unit =
     heroService.heroes.subscribe(hs => heroes = hs.slice(1, 5))
-}
 
-object DashboardComponent {
+object DashboardComponent:
 
   @JSExportStatic
   val annotations = js.Array(
     new ComponentCls(
-      new Component{}
+      new Component {}
         .setSelector("app-dashboard")
         .setTemplate(
           """
@@ -106,4 +105,4 @@ object DashboardComponent {
 
   @JSExportStatic
   val parameters = js.Array(typeOf[HeroService])
-}
+end DashboardComponent

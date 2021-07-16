@@ -5,8 +5,8 @@ import org.scalablytyped.runtime.TopLevel
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-object assets {
-  object pixiFilters {
+object assets:
+  object pixiFilters:
     @js.native
     @JSImport("./assets/pixi-filters/displacement_map_repeat.jpg", JSImport.Namespace)
     object DisplacementMapRepeat extends TopLevel[String]
@@ -14,7 +14,6 @@ object assets {
     @js.native
     @JSImport("./assets/pixi-filters/flag.png", JSImport.Namespace)
     object FlagImage extends TopLevel[String]
-  }
 
   @js.native
   @JSImport("./assets/bg_grass.jpg", JSImport.Namespace)
@@ -47,4 +46,4 @@ object assets {
   @js.native
   @JSImport("./assets/trail.png", JSImport.Namespace)
   object TrailImage extends TopLevel[String]
-}
+end assets
