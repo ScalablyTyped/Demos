@@ -220,6 +220,22 @@ lazy val pixi = project
     webpackDevServerPort := 8013
   )
 
+lazy val cypress = project
+  .enablePlugins(ScalablyTypedConverterPlugin)
+  .configure(baseSettings, bundlerSettings)
+  .settings(
+    Compile / npmDependencies ++= Seq(
+      "cypress" -> "8.5.0",
+    ),
+    useYarn := true,
+    run := {
+      (Compile / npmInstallDependencies).value
+      (Compile / fastOptJS).value
+      val cypressRunner: File = (Compile / npmUpdate / crossTarget).value / "node_modules" / ".bin" / "cypress"
+      if (Process(s"$cypressRunner run", baseDirectory.value).run().exitValue() != 0) throw new RuntimeException("failed")
+    }
+  )
+
 lazy val electron = project
   .enablePlugins(ScalablyTypedConverterExternalNpmPlugin)
   .configure(baseSettings)
@@ -228,7 +244,7 @@ lazy val electron = project
     /* ScalablyTypedConverterExternalNpmPlugin requires that we define how to install node dependencies and where they are */
     externalNpm := {
       /* since we run yarn ourselves the dependencies live in electron/package.json */
-      Process("yarn", baseDirectory.value).!
+      Process("yarn", baseDirectory.value).run()
       baseDirectory.value
     },
     jsEnv := new NodeJSEnv(

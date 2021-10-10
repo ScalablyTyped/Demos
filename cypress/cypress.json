@@ -1,0 +1,4 @@
+{
+  "integrationFolder": "target/scala-3.0.0/cypress-fastopt",
+  "testFiles": "main.js"
+}

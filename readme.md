@@ -153,5 +153,9 @@ You'll need for instance `curl` to test it:
 `sbt> typescript/run` runs the typescript compiler on two files (one of which is meant to fail).
 It accepts parameters to specify other files if you want to play around.
 
+### cypress
+
+`sbt> cypress/run` runs a basic test
+
 ## Your demo here! :)
 Pull requests most welcome!
