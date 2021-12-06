@@ -241,10 +241,17 @@ lazy val electron = project
   .configure(baseSettings)
   .settings(
     stStdlib := List("es5"), // doesn't include DOM
-    /* ScalablyTypedConverterExternalNpmPlugin requires that we define how to install node dependencies and where they are */
+    /**
+     * ScalablyTypedConverterExternalNpmPlugin requires that we define how to install node dependencies and where they are
+     *
+     * Since we run yarn ourselves the dependencies live in electron/package.json
+     *
+     * Invoking yarn is somewhat awkward, because for instance sbt started through intellij won't have a proper PATH set.
+     * try to start an interactive shell to read the necessary dot files
+     */
     externalNpm := {
-      /* since we run yarn ourselves the dependencies live in electron/package.json */
-      Process("yarn", baseDirectory.value).run()
+      if (scala.util.Properties.isWin) Process("yarn", baseDirectory.value).run()
+      else Process("bash -ci 'yarn'", baseDirectory.value).run()
       baseDirectory.value
     },
     jsEnv := new NodeJSEnv(
