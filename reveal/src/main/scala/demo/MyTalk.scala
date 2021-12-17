@@ -82,5 +82,5 @@ object MyTalk:
         )
       )
     )
-    .build(CtorType.Summoner.summonN, implicitly)
+    .build
 end MyTalk

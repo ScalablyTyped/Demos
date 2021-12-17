@@ -8,8 +8,8 @@ package object demo:
 
   /** Get the Type[T] of a Class, by calling js.constructorOf
     */
-  @inline def typeOf[T <: js.Any](implicit tag: js.ConstructorTag[T]): Type[js.Any] =
-    tag.constructor.asInstanceOf[Type[js.Any]]
+  @inline def typeOf[T <: js.Any](implicit tag: js.ConstructorTag[T]): Type[Any] =
+    tag.constructor.asInstanceOf[Type[Any]]
 
   /* pretend that the world is contravariant */
   @inline def unspecify[M[_], T <: js.Object](mt: M[T]): M[js.Object] =

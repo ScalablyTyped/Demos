@@ -97,7 +97,7 @@ def randomData(max: Int, seed: Int): js.Array[js.UndefOr[ChartPoint | Double | s
   )
 end randomData
 
-val Labels: js.Array[String | js.Array[Date | Double | Moment | String] | Double | Date | Moment] =
+val Labels: js.Array[String | js.Array[js.Date | Double | Moment | String] | Double | js.Date | Moment] =
   js.Array("Red", "Blue", "Yellow", "Green", "Purple", "Orange")
 
 val BackgroundColor: ChartColor =

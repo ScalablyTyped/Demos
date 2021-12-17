@@ -112,7 +112,7 @@ lazy val reveal = project
     ),
     // note: this demo is not a react demo. It doesn't use any typescript react components, it's just used to render
     stIgnore ++= List("react", "react-dom", "reveal.js"),
-    stFlavour := Flavour.Japgolly,
+    stFlavour := Flavour.ScalajsReact,
     useYarn := true,
     webpackDevServerPort := 8006
   )
@@ -302,7 +302,7 @@ lazy val typescript =
 lazy val baseSettings: Project => Project =
   _.enablePlugins(ScalaJSPlugin)
     .settings(
-      scalaVersion := "3.0.0",
+      scalaVersion := "3.1.0",
       version := "0.1-SNAPSHOT",
       scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked"),
       scalaJSUseMainModuleInitializer := true,
