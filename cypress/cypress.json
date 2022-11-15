@@ -1,4 +1,4 @@
 {
-  "integrationFolder": "target/scala-3.0.0/cypress-fastopt",
+  "integrationFolder": "target/scala-3.1.0/cypress-fastopt",
   "testFiles": "main.js"
 }

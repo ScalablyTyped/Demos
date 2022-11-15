@@ -147,8 +147,8 @@ lazy val leaflet = project
   .configure(baseSettings, bundlerSettings, browserProject)
   .settings(
     Compile / npmDependencies ++= Seq(
-      "leaflet" -> "1.5.1",
-      "@types/leaflet" -> "1.5.8"
+      "leaflet" -> "1.9.2",
+      "@types/leaflet" -> "1.9.0"
     ),
     useYarn := true,
     webpackDevServerPort := 8010
@@ -280,8 +280,8 @@ lazy val `node-express` =
     .configure(baseSettings, bundlerSettings, nodeProject)
     .settings(
       Compile / npmDependencies ++= Seq(
-        "@types/express" -> "4.17.8",
-        "express" -> "4.17.1"
+        "@types/express" -> "4.17.14",
+        "express" -> "4.18.2"
       ),
       useYarn := true
     )
@@ -314,6 +314,7 @@ lazy val baseSettings: Project => Project =
 
 lazy val bundlerSettings: Project => Project =
   _.settings(
+    webpackCliVersion := "4.10.0",
     Compile / fastOptJS / webpackExtraArgs += "--mode=development",
     Compile / fullOptJS / webpackExtraArgs += "--mode=production",
     Compile / fastOptJS / webpackDevServerExtraArgs += "--mode=development",
@@ -327,7 +328,7 @@ val nodeProject: Project => Project =
     stStdlib := List("esnext"),
     stUseScalaJsDom := false,
     Compile / npmDependencies ++= Seq(
-      "@types/node" -> "14.10.2"
+      "@types/node" -> "18.11.9"
     )
   )
 
@@ -336,11 +337,11 @@ lazy val withCssLoading: Project => Project =
     /* custom webpack file to include css */
     webpackConfigFile := Some((ThisBuild / baseDirectory).value / "custom.webpack.config.js"),
     Compile / npmDevDependencies ++= Seq(
-      "webpack-merge" -> "4.1",
-      "css-loader" -> "2.1.0",
-      "style-loader" -> "0.23.1",
-      "file-loader" -> "3.0.1",
-      "url-loader" -> "1.1.2"
+      "webpack-merge" -> "5.8.0",
+      "css-loader" -> "6.7.2",
+      "style-loader" -> "3.3.1",
+      "file-loader" -> "6.2.0",
+      "url-loader" -> "4.1.1"
     )
   )
 

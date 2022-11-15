@@ -1,7 +1,6 @@
 import org.scalablytyped.runtime.TopLevel
 import typings.std.global.{document, requestAnimationFrame, window}
 import typings.std.{FrameRequestCallback, HTMLDivElement, UIEvent, Window, stdStrings}
-import typings.three.loaderMod.Loader
 import typings.three.mod.{Math as ThreeMath, *}
 
 import scala.scalajs.js
@@ -42,6 +41,7 @@ def main: Unit =
 
   var mixerOpt: js.UndefOr[AnimationMixer] = js.undefined
 
+  typings.std.global.console.warn(HorseModel)
   new GLTFLoader().load(
     HorseModel,
     gltf =>
@@ -101,6 +101,7 @@ trait GLTF extends js.Object:
   val asset:      js.Object
 end GLTF
 
-@JSImport("./Horse.glb", JSImport.Namespace)
+
+@JSImport("./Horse.glb", JSImport.Default)
 @js.native
 object HorseModel extends TopLevel[String]

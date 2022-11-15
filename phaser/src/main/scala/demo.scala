@@ -6,19 +6,19 @@ import typings.phaser.Phaser.Types.Core.GameConfig
 import typings.phaser.Phaser.Types.GameObjects.GameObjectConfig
 import typings.phaser.Phaser.Types.GameObjects.Sprite.SpriteConfig
 import typings.phaser.Phaser.Types.Scenes.CreateSceneFromObjectConfig
-import typings.phaser.phaserMod.{Game, Scene}
-import typings.phaser.phaserMod as Phaser
+import typings.phaser.mod.{Game, Scene}
+import typings.phaser.mod as Phaser
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 import scala.util.Random
 
-@JSImport("./gems.png", JSImport.Namespace)
+@JSImport("./gems.png", JSImport.Default)
 @js.native
 val GemsPng: String = js.native
 
 /* file renamed from .json because of https://github.com/webpack/webpack/issues/6586 */
-@JSImport("./gems.jsn", JSImport.Namespace)
+@JSImport("./gems.jsn", JSImport.Default)
 @js.native
 val GemsJson: String = js.native
 

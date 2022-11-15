@@ -2,7 +2,8 @@ package demo.pluginfilters
 
 import demo.assets.BunnyImage
 import demo.pixi.PIXIExample
-import typings.pixiFilterGlow.mod.{GlowFilter, GlowFilterOptions}
+import typings.pixiFilterGlow.PIXI.filters.GlowFilterOptions
+import typings.pixiFilterGlow.mod.{GlowFilter}
 import typings.pixiFilterOutline.mod.OutlineFilter
 import typings.pixiJs.mod.{Application, Sprite, Texture}
 

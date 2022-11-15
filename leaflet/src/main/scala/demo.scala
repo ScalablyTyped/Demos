@@ -6,7 +6,7 @@ import typings.leaflet.mod as L
 import scala.scalajs.js
 
 val TileLayerUri =
-  "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZmFuY2VsbHUiLCJhIjoiY2oxMHRzZm5zMDAyMDMycndyaTZyYnp6NSJ9.AJ3owakJtFAJaaRuYB7Ukw"
+  "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 
 @main
 def main: Unit =

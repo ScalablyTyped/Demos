@@ -1,7 +1,7 @@
 import typings.express.mod as e
 import typings.expressServeStaticCore.mod.*
 import typings.node.global.console
-import typings.node.processMod as process
+import typings.node.processMod.^ as process
 
 import scala.scalajs.js
 
@@ -10,18 +10,18 @@ object WelcomeController:
   val Router: Router =
     e.Router()
 
-  val Index: RequestHandler[Unit, String, Unit] =
+  val Index: RequestHandler[Unit, String, Unit, Unit, Unit] =
     (_, res, _) => res.send("Hello, World!")
 
   trait HasName extends js.Object:
     val name: js.UndefOr[String]
 
-  val Name: RequestHandler[HasName, String, Unit] = (req, res, next) =>
+  val Name: RequestHandler[HasName, String, Unit, Unit, Unit] = (req, res, next) =>
     res.send(s"Hello, ${req.params.name.getOrElse("No Name")}!")
 
   Router
-    .get[Unit, String, Unit]("/", Index)
-    .get[HasName, String, Unit]("/:name", Name)
+    .get[Unit, String, Unit, Unit, Unit]("/", Index)
+    .get[HasName, String, Unit, Unit, Unit]("/:name", Name)
 
 end WelcomeController
 

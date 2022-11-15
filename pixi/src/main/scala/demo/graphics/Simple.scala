@@ -2,7 +2,7 @@ package demo.graphics
 
 import demo.pixi.PIXIExample
 import typings.pixiJs.PIXI.Point
-import typings.pixiJs.anon.Antialias as ApplicationOptions
+import typings.pixiJs.anon.AutoDensity as ApplicationOptions
 import typings.pixiJs.mod.{Application, Graphics}
 
 import scala.scalajs.js

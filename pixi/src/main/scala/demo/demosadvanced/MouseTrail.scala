@@ -5,7 +5,7 @@ import demo.pixi.PIXIExample
 import typings.pixiJs.mod.interaction.InteractionManager
 import typings.pixiJs.mod.{Application, BLEND_MODES, Point, SimpleRope, Texture}
 import demo.monkeypatching.PIXIPatching.*
-import typings.pixiJs.anon.Antialias as ApplicationOptions
+import typings.pixiJs.anon.AutoDensity as ApplicationOptions
 
 import scala.collection.mutable
 import scala.scalajs.js

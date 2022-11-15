@@ -1,11 +1,11 @@
 package demo
 
 import typings.d3.mod as d3Mod
-import typings.d3Geo.mod.{GeoContext, GeoProjection_}
+import typings.d3Geo.mod.{GeoContext, GeoPermissibleObjects, GeoProjection_, GeoPath_}
 import typings.geojson.geojsonStrings
 import typings.geojson.mod.{LineString, Position}
 import typings.std.global.{console, document, window}
-import typings.std.{stdStrings, CanvasRenderingContext2D, FrameRequestCallback, HTMLCanvasElement}
+import typings.std.{CanvasRenderingContext2D, FrameRequestCallback, HTMLCanvasElement, stdStrings}
 
 import scala.scalajs.js
 import scala.scalajs.js.|
@@ -50,7 +50,7 @@ def start(context: CanvasRenderingContext2D): Double =
       .scale(0.45 * size)
       .translate(js.Tuple2(0.5 * width, 0.5 * height))
 
-  val geoGenerator =
+  val geoGenerator: GeoPath_[Any, GeoPermissibleObjects] =
     d3Mod.geoPath(projection, isGeoContext(context))
 
   val geometry = LineString(coordinates = js.Array[Position]())

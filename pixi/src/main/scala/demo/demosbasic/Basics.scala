@@ -3,7 +3,7 @@ package demo.demosbasic
 import demo.assets.BunnyImage
 import demo.pixi.PIXIExample
 import demo.monkeypatching.PIXIPatching.*
-import typings.pixiJs.anon.Antialias as ApplicationOptions
+import typings.pixiJs.anon.AutoDensity as ApplicationOptions
 import typings.pixiJs.mod.{Application, Sprite, Texture}
 
 case object Basics extends PIXIExample:

@@ -1,4 +1,4 @@
-var merge = require('webpack-merge');
+var merge = require('webpack-merge').merge;
 var generated = require('./scalajs.webpack.config');
 var path = require('path');
 

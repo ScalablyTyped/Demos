@@ -1,5 +1,5 @@
 import typings.node.global.console
-import typings.node.processMod as process
+import typings.node.processMod.^ as process
 import typings.typescript.mod as ts
 
 import scala.scalajs.js
