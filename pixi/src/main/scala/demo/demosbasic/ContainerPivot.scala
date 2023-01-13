@@ -3,7 +3,7 @@ package demo.demosbasic
 import demo.assets.BunnyImage
 import demo.monkeypatching.PIXIPatching.*
 import demo.pixi.PIXIExample
-import typings.pixiJs.anon.AutoDensity as ApplicationOptions
+import typings.pixiJs.anon.Antialias as ApplicationOptions
 import typings.pixiJs.mod.{Application, Container, Sprite, Texture}
 
 case object ContainerPivot extends PIXIExample:

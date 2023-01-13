@@ -2,7 +2,7 @@ package demo.interaction
 
 import demo.assets.BunnyImage
 import demo.pixi.PIXIExample
-import typings.pixiJs.anon.AutoDensity as ApplicationOptions
+import typings.pixiJs.anon.Antialias as ApplicationOptions
 import typings.pixiJs.mod.*
 
 import scala.scalajs.js

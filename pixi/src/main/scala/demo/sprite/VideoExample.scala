@@ -2,7 +2,7 @@ package demo.sprite
 
 import demo.assets.TheVideo
 import demo.pixi.PIXIExample
-import typings.pixiJs.anon.AutoDensity as ApplicationOptions
+import typings.pixiJs.anon.Antialias as ApplicationOptions
 import typings.pixiJs.mod.{Application, Graphics, Sprite, Texture}
 
 import scala.scalajs.js

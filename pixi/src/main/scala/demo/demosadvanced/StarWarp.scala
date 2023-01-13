@@ -2,7 +2,7 @@ package demo.demosadvanced
 
 import demo.assets.StarImage
 import demo.pixi.PIXIExample
-import typings.pixiJs.anon.AutoDensity as ApplicationOptions
+import typings.pixiJs.anon.Antialias as ApplicationOptions
 import typings.pixiJs.mod.{Application, Sprite, Texture}
 import demo.monkeypatching.PIXIPatching.*
 
